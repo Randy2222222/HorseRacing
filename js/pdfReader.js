@@ -5,6 +5,10 @@ import { applyGlyphMap } from "./glyphMap.js";
 
 const DEV_MODE = true;   // turn off later when finished
 
+function updateStatus(msg) {
+  document.getElementById("status").textContent = msg;
+}
+
 // Load PDF and return full extracted text
 export async function loadPDF(file) {
   const pdf = await pdfjsLib.getDocument({ url: URL.createObjectURL(file) }).promise;
@@ -16,7 +20,7 @@ export async function loadPDF(file) {
     const strings = content.items.map(item => item.str);
     fullText += strings.join("\n") + "\n";
   }
-
+    updateStatus(`PDF loaded successfully (${pdf.numPages} pages)`);
   return fullText;
 }
 
