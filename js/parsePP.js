@@ -1,6 +1,7 @@
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into blocks we can inspect
-
+// Turn noarmal fractionns into tiny fractions
+import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 // 1️⃣ Horse Anchor
 const HORSE_ANCHOR =
   /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
