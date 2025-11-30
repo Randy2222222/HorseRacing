@@ -5,6 +5,31 @@ import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 // After fractions.js has normalized tiny glyphs:
 const DISTANCE_REGEX =
   /\b(?:[4-7](?:\s1\/2)?f|1m|2m|1m70|1\s1\/16|1\s1\/8|1\s3\/16|1\s1\/4|1\s3\/8|1\s1\/2|1\s5\/8)\b/i;
+// 2-letter real Brisnet surface conditions
+const SURFACE_CODES = [
+  "ft", // fast
+  "gd", // good
+  "my", // muddy
+  "sy", // sloppy
+  "wf", // wet fast
+  "fm", // firm
+  "yl", // yielding
+  "sf", // soft
+  "hy", // heavy
+  "sl"  // slow
+];
+
+// Single-letter modifiers (superscripts in the PDF)
+const SURFACE_MODIFIERS = [
+  "s", // sealed
+  "x", // drying / variant
+  "n", // rail out / inner turf
+  "t", // turf variant
+  "y"  // yielding superscript
+];
+
+// Regex to find the base 2-letter surface condition
+const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|"
 // 1️⃣ Horse Anchor
 const HORSE_ANCHOR =
   /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
