@@ -6,7 +6,7 @@ import { applyGlyphMap } from "./glyphMap.js";
 const DEV_MODE = true;   // turn off later when finished
 
 function updateStatus(msg) {
-  document.getElementById("status").textContent = msg;
+  document.getElementById("pdfStatus").textContent = msg;
 }
 
 // Load PDF and return full extracted text
