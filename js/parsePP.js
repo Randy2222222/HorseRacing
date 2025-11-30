@@ -61,13 +61,26 @@ export function parsePP(decodedText) {
 
     for (let line of lines) {
       if (dateRegex.test(line)) {
-        if (currentPP.length > 0) {
-          h.pp.push([...currentPP]);
-          currentPP = [];
-        }
-        currentPP.push(line);
-        continue;
-      }
+    // save previous PP
+    if (currentPP.length > 0) {
+        h.pp.push({ 
+            raw: [...currentPP],
+            distance: currentPPdistance || ""
+        });
+        currentPP = [];
+        currentPPdistance = "";
+    }
+
+    currentPP.push(line);
+
+    // ---- NEW DISTANCE EXTRACTION ----
+    const parts = line.split(/\s+/);
+    const rawDist = parts[2];               // distance token like "6½" or "1⁄16"
+    const asciiDist = normalizeDistance(rawDist); 
+    currentPPdistance = asciiDist;          // store ASCII normalized form
+
+    continue;
+}
 
       if (currentPP.length > 0) {
         currentPP.push(line);
