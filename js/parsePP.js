@@ -15,7 +15,32 @@ export function parsePP(decodedText) {
     ppBlocks: [],
     unknown: []
   };
+  //Detect When each Horse PP starts and ends
+  function splitHorses(fullText) {
+  const horses = [];
+  let m;
 
+  while ((m = HORSE_ANCHOR.exec(fullText)) !== null) {
+    horses.push({
+      post: m[1],        // 1, 2, 3, ...
+      name: m[2].trim(), // Horse name
+      style: m[3],       // P, E, S, EP...
+      index: m.index
+    });
+  }
+
+  // Slice each horse's block
+  for (let i = 0; i < horses.length; i++) {
+    const start = horses[i].index;
+    const end = (i < horses.length - 1)
+      ? horses[i + 1].index
+      : fullText.length;
+
+    horses[i].block = fullText.slice(start, end).trim();
+  }
+
+  return horses;
+}
   // Basic line pattern detection
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;  // e.g. "09Oct25"
   const fractionRegex = /^(:?\d{1,2}:\d{2}|\:\d{2})/;
