@@ -97,7 +97,7 @@ export function parsePP(decodedText) {
   if (currentPP.length > 0) {
     h.pp.push({
       raw: [...currentPP],
-      distance: currentPPdistance || ""
+      distance: currentPPdistance || "",
       surface: currentPPsurface || "",
       modifier: currentPPmodifier || ""
     });
