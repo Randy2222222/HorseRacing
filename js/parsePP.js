@@ -87,6 +87,8 @@ export function parsePP(decodedText) {
     let currentPP = [];
     h.pp = [];
     let currentPPdistance = "";
+    let currentPPsurface = "";
+    let currentPPmodifier = "";
 
     for (let line of lines) {
       if (dateRegex.test(line)) {
