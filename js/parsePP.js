@@ -109,7 +109,21 @@ export function parsePP(decodedText) {
   if (distMatch) {
     currentPPdistance = normalizeDistance(distMatch[0]);
   }
+  // --- SURFACE EXTRACTION ---
+const surfMatch = line.match(SURFACE_REGEX);
+if (surfMatch) {
+  currentPPsurface = surfMatch[0].toLowerCase();
 
+  // Look ahead for one-letter modifier on next line
+  const nextLine = lines[i + 1]?.trim() || "";
+  if (
+    nextLine.length === 1 &&
+    SURFACE_MODIFIERS.includes(nextLine.toLowerCase())
+  ) {
+    currentPPmodifier = nextLine.toLowerCase();
+    i++; // consume the modifier line
+  }
+}
   continue;
 }
 
