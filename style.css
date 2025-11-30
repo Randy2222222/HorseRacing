@@ -1,0 +1,131 @@
+/* Base page settings */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Header (blue banner) */
+header {
+  background-color: #004aad;
+  color: #fff;
+  text-align: center;
+  padding: 0.3em 0;      /* thin height */
+  margin: 0;
+  line-height: 1;        /* tighten blue bar */
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+  line-height: 1.2em;    /* vertically centered text */
+}
+
+/* Upload box (right below header) */
+#pdf-upload {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 2px 0 8px 0;
+  margin: 5px auto 8px auto;   /* tiny space under header */
+  width: 40%;
+  max-width: 350px;
+}
+
+/* Run Analysis button spacing */
+#runAnalysis {
+  display: block;
+  margin: 2px auto 0 auto;  /* centers button + small gap above */
+}
+
+#results {
+  margin-top: -25px;            /* small, even space above results */
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+  #pdf-upload {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+
+/* Upload section text and file input */
+#pdf-upload h2 {
+  margin-top: 4px;
+  margin-bottom: 6px;
+  font-size: 1.2em;
+}
+
+#pdf-upload input[type="file"] {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 6px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#pdfStatus {
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+/* Output area */
+#program-output {
+  padding: 20px;
+}
+
+/* Compact call-time table */
+.compact-calls {
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.compact-calls table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.compact-calls th,
+.compact-calls td {
+  padding: 0 3px;   /* tight spacing */
+}
+
+/* Compact Calls Table */
+.compact-calls table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4px 0;
+}
+
+.compact-calls th,
+.compact-calls td {
+  padding: 2px 4px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.compact-calls th {
+  font-weight: bold;
+  border-bottom: 1px solid #666;
+}
+
+/* Box around each horse's PP section */
+.horse-pp-box {
+  border: 1px solid #444;
+  padding: 8px;
+  margin: 10px 0;
+  background: #1a1a1a;
+  border-radius: 6px;
+}
