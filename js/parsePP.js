@@ -2,6 +2,9 @@
 // Phase 1 DEV parser — organizes decoded text into blocks we can inspect
 // Turn noarmal fractionns into tiny fractions
 import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
+// After fractions.js has normalized tiny glyphs:
+const DISTANCE_REGEX =
+  /\b(?:[4-7](?:\s1\/2)?f|1m|2m|1m70|1\s1\/16|1\s1\/8|1\s3\/16|1\s1\/4|1\s3\/8|1\s1\/2|1\s5\/8)\b/i;
 // 1️⃣ Horse Anchor
 const HORSE_ANCHOR =
   /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
