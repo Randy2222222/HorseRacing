@@ -72,14 +72,15 @@
   import { readPDFAndDecode } from "./js/pdfReader.js";
   import { parsePP } from "./js/parsePP.js";
 
-  document.getElementById("runAnalysis").addEventListener("click", async () => {
-    const file = document.getElementById("pdfFile").files[0];
-    if (!file) return alert("Select a PDF first!");
+  // When user selects a PDF file, show page count immediately
+document.getElementById("pdfFile").addEventListener("change", async () => {
+  const file = document.getElementById("pdfFile").files[0];
+  if (!file) return;
 
-    const decoded = await readPDFAndDecode(file);
-    const structure = parsePP(decoded);
-  });
-
+  const pdf = await pdfjsLib.getDocument({ url: URL.createObjectURL(file) }).promise;
+  document.getElementById("pdfStatus").textContent =
+      `PDF loaded successfully (${pdf.numPages} pages)`;
+});
 
   document.getElementById("runAnalysis").addEventListener("click", async () => {
   const file = document.getElementById("pdfFile").files[0];
