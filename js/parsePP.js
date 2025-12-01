@@ -33,7 +33,9 @@ const SURFACE_MODIFIERS = [
 ];
 
 // Regex to find the base 2-letter surface condition
-   const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");                                                          
+   const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");   
+// Contr Fraction Regex
+   const FRACTION_REGEX = /\b(?:\d:)?\d{2}\b/;
            // LEADER TIMES (fractions)
 if (FRACTION_REGEX.test(line)) {
     const times = line.match(/\b(?:\d:)?\d{2}\b/g);
@@ -99,7 +101,8 @@ export function parsePP(decodedText) {
     let currentPPmodifier = "";
     let currentPPfractions = [];
 
-    for (let line of lines) {
+    for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
       if (dateRegex.test(line)) {
 
   // Save previous PP block
