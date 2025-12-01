@@ -33,7 +33,7 @@ const SURFACE_MODIFIERS = [
 ];
 
 // Regex to find the base 2-letter surface condition
-const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|"
+   const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");                                                          
            // LEADER TIMES (fractions)
 if (FRACTION_REGEX.test(line)) {
     const times = line.match(/\b(?:\d:)?\d{2}\b/g);
