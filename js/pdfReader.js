@@ -20,7 +20,7 @@ export async function loadPDF(file) {
     const strings = content.items.map(item => item.str);
     fullText += strings.join("\n") + "\n";
   }
-    updateStatus(`PDF loaded successfully (${pdf.numPages} pages)`);
+    //updateStatus(`PDF loaded successfully (${pdf.numPages} pages)`);
   return fullText;
 }
 
