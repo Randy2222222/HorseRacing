@@ -80,7 +80,7 @@ document.getElementById("pdfFile").addEventListener("change", async () => {
       `PDF loaded successfully (${pdf.numPages} pages)`;
 });
 
-  document.getElementById("runAnalysis").addEventListener("click", async () => {
+  document.getElementById("runCreate").addEventListener("click", async () => {
   const file = document.getElementById("pdfFile").files[0];
   if (!file) return alert("Select a PDF first!");
 
