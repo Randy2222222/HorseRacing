@@ -67,9 +67,19 @@
 </div>
 
   <!-- Your JS Files -->
- <script type="module">
+ 
+   <script type="module">
   import { readPDFAndDecode } from "./js/pdfReader.js";
   import { parsePP } from "./js/parsePP.js";
+
+  document.getElementById("runAnalysis").addEventListener("click", async () => {
+    const file = document.getElementById("pdfFile").files[0];
+    if (!file) return alert("Select a PDF first!");
+
+    const decoded = await readPDFAndDecode(file);
+    const structure = parsePP(decoded);
+  });
+
 
   document.getElementById("runAnalysis").addEventListener("click", async () => {
   const file = document.getElementById("pdfFile").files[0];
