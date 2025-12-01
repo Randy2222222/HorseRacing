@@ -136,6 +136,28 @@ export function parsePP(decodedText) {
         if (times) currentPPfractions.push(...times);
         continue;
       }
+     
+      // LEADER TIMES (fractions + tiny numbers)
+if (FRACTION_REGEX.test(line)) {
+
+    const times = line.match(/\b(?:\d:)?\d{2}\b/g);   // :22 :45 :57 1:10
+
+    // Check next line: it may contain a tiny-number glyph alone
+    const nextLine = lines[i + 1]?.trim() || "";
+
+    // If next line is a tiny-number glyph (one character)
+    if (nextLine.length === 1 && nextLine in GLYPH_DIGITS) {
+        const tiny = GLYPH_DIGITS[nextLine];
+        const tinySup = toSuperscript(tiny);   // convert 3 → ³
+        times[times.length - 1] += tinySup;    // attach tiny number inline
+        i++; // consume next line
+    }
+
+    if (times) {
+        currentPPfractions.push(...times);
+    }
+    continue;
+}
 
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
