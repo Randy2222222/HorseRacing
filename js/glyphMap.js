@@ -6,20 +6,17 @@
 // Tiny-number cipher (Race Numbers)
 // ------------------------------
 export const GLYPH_DIGITS = {
-  "§": 0,          // tiny 0
-  "¨": 1,          // tiny 1
-  "©": 2,          // tiny 2
-
-  "ª": 3  // a̲ (letter 'a' + underline) = Race 3  **IMPORTANT**
-
-  "«": 4,          // tiny 4
-  "¬": 5,          // tiny 5
-
-  "": 6,           // Race 6 = missing glyph (PDF.js drops it)
-
-  "®": 7,          // tiny 7
-  "¯": 8,          // tiny 8
-  "°": 9           // tiny 9
+  // Tiny race-number output (superscripts)
+"§": "⁰",
+"¨": "¹",
+"©": "²",
+"ª": "³",
+"«": "⁴",
+"¬": "⁵",
+"":  "⁶",   // invisible glyph = Race 6
+"®": "⁷",
+"¯": "⁸",
+"°": "⁹",
 };
 
 // Decode a single glyph → digit
