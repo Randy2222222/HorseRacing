@@ -96,15 +96,7 @@ export function parsePP(decodedText) {
 
     for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
-      // LEADER TIMES (fractions)
-if (FRACTION_REGEX.test(line)) {
-    const times = line.match(/\b(?:\d:)?\d{2}\b/g);
-    if (times) {
-        currentPPfractions.push(...times);
-    }
-    continue;
-}
-      if (dateRegex.test(line)) {
+       if (dateRegex.test(line)) {
 
   // Save previous PP block
   if (currentPP.length > 0) {
@@ -134,6 +126,14 @@ if (FRACTION_REGEX.test(line)) {
 const surfMatch = line.match(SURFACE_REGEX);
 if (surfMatch) {
   currentPPsurface = surfMatch[0].toLowerCase();
+  // LEADER TIMES (fractions)
+if (FRACTION_REGEX.test(line)) {
+    const times = line.match(/\b(?:\d:)?\d{2}\b/g);
+    if (times) {
+        currentPPfractions.push(...times);
+    }
+    continue;
+}
 
   // Look ahead for one-letter modifier on next line
   const nextLine = lines[i + 1]?.trim() || "";
