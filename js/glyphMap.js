@@ -10,7 +10,7 @@ export const GLYPH_DIGITS = {
   "¨": 1,          // tiny 1
   "©": 2,          // tiny 2
 
-  "\u0061\u0332": 3,  // a̲ (letter 'a' + underline) = Race 3  **IMPORTANT**
+  "ª": 3  // a̲ (letter 'a' + underline) = Race 3  **IMPORTANT**
 
   "«": 4,          // tiny 4
   "¬": 5,          // tiny 5
