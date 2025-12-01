@@ -3,6 +3,12 @@
 
 import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 
+// Make the little numbers
+const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
+function toSuperscript(n) {
+    return SUPERSCRIPTS[n] || "";
+}
+
 // 1️⃣ Horse Anchor
 const HORSE_ANCHOR =
   /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
