@@ -108,7 +108,8 @@ export function parsePP(decodedText) {
       raw: [...currentPP],
       distance: currentPPdistance || "",
       surface: currentPPsurface || "",
-      modifier: currentPPmodifier || ""
+      modifier: currentPPmodifier || "",
+      fractions: currentPPfractions || []
     });
   }
 
