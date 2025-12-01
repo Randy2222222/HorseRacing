@@ -3,6 +3,10 @@
 // Turn noarmal fractionns into tiny fractions
 import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 // After fractions.js has normalized tiny glyphs:
+// 1️⃣ Horse Anchor
+const HORSE_ANCHOR =
+  /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
+// Distance
 const DISTANCE_REGEX =
   /\b(?:[4-7](?:\s1\/2)?f|1m|2m|1m70|1\s1\/16|1\s1\/8|1\s3\/16|1\s1\/4|1\s3\/8|1\s1\/2|1\s5\/8)\b/i;
 // 2-letter real Brisnet surface conditions
@@ -30,9 +34,13 @@ const SURFACE_MODIFIERS = [
 
 // Regex to find the base 2-letter surface condition
 const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|"
-// 1️⃣ Horse Anchor
-const HORSE_ANCHOR =
-  /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
+           // LEADER TIMES (fractions)
+if (FRACTION_REGEX.test(line)) {
+    const times = line.match(/\b(?:\d:)?\d{2}\b/g);
+    if (times) {
+        currentPPfractions.push(...times);
+    }
+}                                               
 
 // 2️⃣ Split text into horses
 function splitHorses(fullText) {
