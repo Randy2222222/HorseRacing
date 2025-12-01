@@ -1,57 +1,23 @@
 // glyphMap.js
-// Converts Brisnet encoded glyphs → readable text
+// Brisnet tiny-number cipher: converts glyph → digit (0–9)
 
-export const GLYPHS = {
-
-  export const GLYPH_DIGITS = {
-  "§": "0",
-  "¨": "1",
-  "©": "2",
-  "ª": "3",
-  "«": "4",
-  "¬": "5",
-  "":  "6",   // invisible glyph = 6
-  "®": "7",
-  "¯": "8",
-  "°": "9"
-
-  // ---------- Distance Fractions ----------
-  "Ë": "1/16",
-  "Ë‡": "1/32",
-
-    // ---------- Margins / Beaten Lengths ----------
-  "©": "1",
-  "³": ".75",
-  "²": ".5",
-  "ƒ": "nk",    // neck
-
-  // ---------- Path Symbols ----------
-  "": "p1",
-  "": "p2",
-  "": "p3",
-
-  // ---------- Surface ----------
-  "Ã": "T",     // Turf (Brisnet uses a weird Ã code for turf)
-  // "D" will remain dirt
-  // "AW" appears as letters normally
-
-  // ---------- Pace/Class Symbols ----------
-  "™": "",
-  "‘": "",
-  "’": "",
-
-  // ---------- Just in case ----------
-  "": "p1",
+export const GLYPH_DIGITS = {
+  "§": 0,   // tiny 0
+  "¨": 1,   // tiny 1
+  "©": 2,   // tiny 2
+  "ª": 3,   // tiny 3
+  "«": 4,   // tiny 4
+  "¬": 5,   // tiny 5
+  "":  6,   // tiny 6 (invisible or dropped by PDF.js)
+  "®": 7,   // tiny 7
+  "¯": 8,   // tiny 8
+  "°": 9    // tiny 9
 };
 
-// Apply glyph replacements to text
-export function applyGlyphMap(text) {
-  let out = text;
-
-  for (let key in GLYPHS) {
-    const val = GLYPHS[key];
-    out = out.split(key).join(val);
+// Decode a single glyph character into a digit
+export function decodeTinyNumber(sym) {
+  if (sym in GLYPH_DIGITS) {
+    return GLYPH_DIGITS[sym];
   }
-
-  return out;
+  return null; // unknown symbol
 }
