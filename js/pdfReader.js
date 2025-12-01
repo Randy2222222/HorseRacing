@@ -28,7 +28,7 @@ export async function readPDFAndDecode(file) {
   const rawText = await loadPDF(file);
 
   // DEV MODE: show raw text panel
-  if (DEV_MODE) {
+  if (DEV_MODE === "raw") {
     const rawOut = document.getElementById("devRawOutput");
     if (rawOut) rawOut.textContent = rawText;
   }
@@ -37,7 +37,7 @@ export async function readPDFAndDecode(file) {
   let cleanText = rawText.replace(/Â/g, "");
 
   // DEV MODE: show cleaned text
-  if (DEV_MODE) {
+  if (DEV_MODE === "clean") {
     const cleanOut = document.getElementById("devCleanOutput");
     if (cleanOut) cleanOut.textContent = cleanText;
   }
@@ -46,7 +46,7 @@ export async function readPDFAndDecode(file) {
   const decodedText = applyGlyphMap(cleanText);
 
   // DEV MODE: show decoded text panel
-  if (DEV_MODE) {
+  if (DEV_MODE === "decoded") {
     const decodedOut = document.getElementById("devDecodedOutput");
     if (decodedOut) decodedOut.textContent = decodedText;
   }
