@@ -1,4 +1,4 @@
-// pdfReader1.js
+// pdfReader.js
 // Clean, simple PDF loader with DEV MODE output
 
 import { applyGlyphMap } from "./glyphMap.js";
