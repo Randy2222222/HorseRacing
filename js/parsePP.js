@@ -115,6 +115,9 @@ export function parsePP(decodedText) {
   // Reset for new PP block
   currentPP = [];
   currentPPdistance = "";
+  currentPPsurface = "";
+  currentPPmodifier = "";
+  currentPPfractions = [];
   currentPP.push(line);
 
   // --- REAL DISTANCE EXTRACTION USING YOUR REGEX ---
