@@ -1,7 +1,7 @@
 // pdfReader1.js
 // Clean, simple PDF loader with DEV MODE output
 
-import { applyGlyphMap } from "./glyphMap.js";
+//import { applyGlyphMap } from "./glyphMap.js";
 
 const DEV_MODE = true;   // turn off later when finished
 
