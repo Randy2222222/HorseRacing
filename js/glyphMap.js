@@ -6,7 +6,7 @@
 // Tiny-number cipher (Race Numbers)
 // ------------------------------
 export const GLYPH_DIGITS = {
-  // Tiny race-number output (superscripts)
+// Tiny race-number output (superscripts)
 "§": "⁰",
 "¨": "¹",
 "©": "²",
@@ -17,6 +17,22 @@ export const GLYPH_DIGITS = {
 "®": "⁷",
 "¯": "⁸",
 "°": "⁹",
+//----------------------------
+//----------------------------
+"Ë": "1/16",
+"Ë‡": "1/32",
+//--–--------------------------
+// 3/4 Length, 1/2 Length, Neck
+//-----------------------------
+"³": ".75",
+"²": ".5",
+"ƒ": "nk",
+// Path ?
+"": "p1",
+"": "p2",
+"": "p3",
+// Turf, All Weather
+"Ã": "T"
 // ------------------------------
 // Comment Quality Markers
 // ------------------------------
