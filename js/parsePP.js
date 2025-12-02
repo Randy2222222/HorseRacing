@@ -95,7 +95,7 @@ export function parsePP(decodedText) {
       const line = lines[i];
 
       // 1️⃣ DATE = start of new PP block
-      if (dateRegex.test(line)) {
+      if (DATE_REGEX.test(line)) {
 
         // save previous block
         if (currentPP.length > 0) {
