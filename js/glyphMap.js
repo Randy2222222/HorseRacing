@@ -12,12 +12,10 @@ export const GLYPH_DIGITS = {
   "§": "0",
   "¨": "1",
   "©": "2",
-
+  "ª": "3",        // ⭐ Race 3 — MUST be here or decoding breaks
   "«": "4",
   "¬": "5",
-
   "":  "6",             // Tiny 6 is invisible (PDF.js drops it)
-
   "®": "7",
   "¯": "8",
   "°": "9"
@@ -43,6 +41,7 @@ export const GLYPHS = {
   "ª": "³",      // tiny-a glyph visually becomes superscript 3
   "«": "⁴",
   "¬": "⁵",
+  
   "®": "⁷",
   "¯": "⁸",
   "°": "⁹",
