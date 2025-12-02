@@ -13,12 +13,7 @@ export const GLYPH_DIGITS = {
 "\u0061\u0332": "³",
 "«": "⁴",
 "¬": "⁵",
-"":  "⁶",   // invisible glyph = 6
-// ------------------------------
-// Comment Quality Markers
-// ------------------------------
-"ñ": "+",    // GOOD comment (positive)
-"×": "-",
+"":  "⁶",   // invisible "" number 6
 }
 // Race 3 — underlined a (PDF splits it)
 GLYPHS["\u0332"] = "³";      // underline alone
@@ -39,18 +34,11 @@ export function decodeTinyNumber(sym) {
 // (add more later as you decode them)
 // ------------------------------
 export const GLYPHS = {
-
-  // digits
-  "§": "0",
-  "¨": "1",
-  "©": "2",
-  "\u0061\u0332": "3",
-  "«": "4",
-  "¬": "5",
-  "":  "6",
-  "®": "7",
-  "¯": "8",
-  "°": "
+// ------------------------------
+// Comment Quality Markers
+// ------------------------------
+"ñ": "+",    // GOOD comment (positive)
+"×": "-",
 };
 
 
