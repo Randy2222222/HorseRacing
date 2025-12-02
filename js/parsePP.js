@@ -15,7 +15,7 @@ function toSuperscript(n) {
 
 // 1️⃣ Horse Anchor
 const HORSE_ANCHOR =
-  /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
+  /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;u
 
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
@@ -146,35 +146,35 @@ export function parsePP(decodedText) {
       // 2️⃣ FRACTIONS — leader times + tiny-number line
 if (FRACTION_REGEX.test(line)) {
 
-    // read leader times like :22 :45 :57 1:10
+    // STEP 1 — check if a tiny glyph is glued to the end of this line
+    let tinyOnSameLine = null;
+    let lastChar = line.slice(-1);
+
+    if (lastChar in GLYPH_DIGITS) {
+        tinyOnSameLine = GLYPH_DIGITS[lastChar];   // normal digit "3"
+        line = line.slice(0, -1).trim();           // remove it from the line
+    }
+
+    // STEP 2 — extract fractions cleanly (now without the glyph)
     const times = line.match(/\b(?:\d:)?\d{2}\b/g) || [];
-// add crazy code so dont get lost
-  // 🔹 Case #1 — tiny number is on SAME line as ":22" or "1:10"
-let lastChar = line.slice(-1);
-if (lastChar in GLYPH_DIGITS) {
-    const tinyDigit = GLYPH_DIGITS[lastChar];
-    const tinySup   = toSuperscript(tinyDigit);
-    times[times.length - 1] += tinySup;
-    line = line.slice(0, -1).trim(); // remove glyph from raw line
-}// end crazy line
-    // check next line — might be a tiny-number glyph
+
+    // STEP 3 — if tiny digit was ON SAME LINE, attach it
+    if (tinyOnSameLine !== null && times.length > 0) {
+        times[times.length - 1] += toSuperscript(tinyOnSameLine);
+    }
+
+    // STEP 4 — check NEXT LINE for tiny-number-only row
     const nextLine = (lines[i + 1] || "").trim();
-
-    // if next line is one tiny symbol (digit glyph)
     if (nextLine.length === 1 && nextLine in GLYPH_DIGITS) {
-
-        const tinyDigit = GLYPH_DIGITS[nextLine];   // "3"
-        const tinySup   = toSuperscript(tinyDigit); // "³"
-
-        // attach tiny number to the LAST fraction
+        const tinyDigit = GLYPH_DIGITS[nextLine];  
+        const tinySup   = toSuperscript(tinyDigit);
         if (times.length > 0) {
             times[times.length - 1] += tinySup;
         }
-
-        i++; // consume the tiny-number line
+        i++; // consume tiny-number row
     }
 
-    // push fractions
+    // STEP 5 — push fractions normally
     currentPPfractions.push(...times);
     continue;
 }
