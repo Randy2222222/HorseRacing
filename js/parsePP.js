@@ -148,7 +148,15 @@ if (FRACTION_REGEX.test(line)) {
 
     // read leader times like :22 :45 :57 1:10
     const times = line.match(/\b(?:\d:)?\d{2}\b/g) || [];
-
+// add crazy code so dont get lost
+  // 🔹 Case #1 — tiny number is on SAME line as ":22" or "1:10"
+let lastChar = line.slice(-1);
+if (lastChar in GLYPH_DIGITS) {
+    const tinyDigit = GLYPH_DIGITS[lastChar];
+    const tinySup   = toSuperscript(tinyDigit);
+    times[times.length - 1] += tinySup;
+    line = line.slice(0, -1).trim(); // remove glyph from raw line
+}// end crazy line
     // check next line — might be a tiny-number glyph
     const nextLine = (lines[i + 1] || "").trim();
 
