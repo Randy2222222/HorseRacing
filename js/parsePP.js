@@ -5,7 +5,7 @@ import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 
 // Make the little numbers
 const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
-function toSuperscript(n) {
+function toSuperscript(n) { 
     return SUPERSCRIPTS[n] || "";
 }
 
@@ -139,26 +139,31 @@ export function parsePP(decodedText) {
         continue; // end of DATE block
       }
 
-      // 2️⃣ FRACTIONS — must come AFTER date block
-      // LEADER TIMES (fractions + tiny numbers)
+      // 2️⃣ FRACTIONS — leader times + tiny-number line
 if (FRACTION_REGEX.test(line)) {
 
-    const times = line.match(/\b(?:\d:)?\d{2}\b/g);   // :22 :45 :57 1:10
+    // read leader times like :22 :45 :57 1:10
+    const times = line.match(/\b(?:\d:)?\d{2}\b/g) || [];
 
-    // Check next line: it may contain a tiny-number glyph alone
-    const nextLine = lines[i + 1]?.trim() || "";
+    // check next line — might be a tiny-number glyph
+    const nextLine = (lines[i + 1] || "").trim();
 
-    // If next line is a tiny-number glyph (one character)
+    // if next line is one tiny symbol (digit glyph)
     if (nextLine.length === 1 && nextLine in GLYPH_DIGITS) {
-        const tiny = GLYPH_DIGITS[nextLine];
-        const tinySup = toSuperscript(tiny);   // convert 3 → ³
-        times[times.length - 1] += tinySup;    // attach tiny number inline
-        i++; // consume next line
+
+        const tinyDigit = GLYPH_DIGITS[nextLine];   // "3"
+        const tinySup   = toSuperscript(tinyDigit); // "³"
+
+        // attach tiny number to the LAST fraction
+        if (times.length > 0) {
+            times[times.length - 1] += tinySup;
+        }
+
+        i++; // consume the tiny-number line
     }
 
-    if (times) {
-        currentPPfractions.push(...times);
-    }
+    // push fractions
+    currentPPfractions.push(...times);
     continue;
 }
 
