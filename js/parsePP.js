@@ -143,13 +143,13 @@ export function parsePP(decodedText) {
         continue; // end of DATE block
       }
 
-      // 2️⃣ LEADER FRACTIONS — with tiny-digit on next line + blank line
+      // 2️⃣ LEADER FRACTIONS — tiny digit on next line, then ANY number of blank lines
 if (FRACTION_REGEX.test(line)) {
 
-    // Extract the fraction on this line
+    // Extract the main time
     const times = line.match(/\b(?:\d:)?\d{2}\b/g) || [];
 
-    // Look at next line (tiny digit)
+    // Look at next line — tiny number?
     const nextLine = (lines[i + 1] || "").trim();
 
     if (nextLine.length === 1 && nextLine in GLYPH_DIGITS) {
@@ -157,18 +157,25 @@ if (FRACTION_REGEX.test(line)) {
         const tinyDigit = GLYPH_DIGITS[nextLine];  
         const tinySup   = toSuperscript(tinyDigit);
 
-        // Attach to last fraction
         if (times.length > 0) {
             times[times.length - 1] += tinySup;
         }
 
-        // SKIP two rows:
-        // 1 = tiny digit
-        // 2 = blank line
-        i += 2;
+        // Consume the tiny-number row
+        i++;
+
+        // 🔹 NOW skip ALL blank/space-only lines (1,2,3 doesn't matter)
+        while (true) {
+            const peek = (lines[i + 1] || "").trim();
+            if (peek === "" || peek === "\u00A0") {
+                i++;    // skip it
+            } else {
+                break;  // stop when a real line appears
+            }
+        }
     }
 
-    // Save fractions
+    // Save final fractions
     currentPPfractions.push(...times);
     continue;
 }
