@@ -13,26 +13,7 @@ export const GLYPH_DIGITS = {
 "\u0061\u0332": "³",
 "«": "⁴",
 "¬": "⁵",
-"":  "⁶",   // invisible glyph = Race 6
-"®": "⁷",
-"¯": "⁸",
-"°": "⁹",
-//----------------------------
-//----------------------------
-"Ë": "1/16",
-"Ë‡": "1/32",
-//--–--------------------------
-// 3/4 Length, 1/2 Length, Neck
-//-----------------------------
-"³": ".75",
-"²": ".5",
-"ƒ": "nk",
-// Path ?
-"": "p1",
-"": "p2",
-"": "p3",
-// Turf, All Weather
-"Ã": "T"
+"":  "⁶",   // invisible glyph = 6
 // ------------------------------
 // Comment Quality Markers
 // ------------------------------
@@ -69,29 +50,7 @@ export const GLYPHS = {
   "":  "6",
   "®": "7",
   "¯": "8",
-  "°": "9",
-
-  // Fraction symbols (if Brisnet outputs them later)
-  "Ë": "1/16",
-  "Ë‡": "1/32",
-
-  // Margins (beaten lengths)
-  "³": ".75",
-  "²": ".5",
-  "ƒ": "nk",
-
-  // Path symbols — still verifying
-  "": "p1",
-  "": "p2",
-  "": "p3",
-
-  // Surface symbols (Brisnet turf code)
-  "Ã": "T",
-
-  // Extra placeholders — harmless
-  "™": "",
-  "‘": "",
-  "’": ""
+  "°": "
 };
 
 
