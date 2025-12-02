@@ -53,7 +53,6 @@ export const GLYPHS = {
   // (Add more decoded symbols later as we discover them)
   // Tiny race-number glyph fixes
   "\u0332": "",     // remove underline combining mark
-  "ª": "³",         // tiny-a glyph = superscript 3
 
   // (More glyphs will be added later)
 };
