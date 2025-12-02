@@ -22,7 +22,11 @@ export const GLYPH_DIGITS = {
 // ------------------------------
 "ñ": "+",    // GOOD comment (positive)
 "×": "-",
-};
+}
+// Race 3 — underlined a (PDF splits it)
+GLYPHS["\u0332"] = "³";      // underline alone
+GLYPHS["a\u0332"] = "³";     // a + underline
+GLYPHS["\u0332a"] = "³";     // underline + a
 
 // Decode a single glyph → digit
 export function decodeTinyNumber(sym) {
