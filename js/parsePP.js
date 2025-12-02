@@ -143,38 +143,32 @@ export function parsePP(decodedText) {
         continue; // end of DATE block
       }
 
-      // 2️⃣ FRACTIONS — leader times + tiny-number line
+      // 2️⃣ LEADER FRACTIONS — with tiny-digit on next line + blank line
 if (FRACTION_REGEX.test(line)) {
 
-    // STEP 1 — check if a tiny glyph is glued to the end of this line
-    let tinyOnSameLine = null;
-    let lastChar = line.slice(-1);
-
-    if (lastChar in GLYPH_DIGITS) {
-        tinyOnSameLine = GLYPH_DIGITS[lastChar];   // normal digit "3"
-        line = line.slice(0, -1).trim();           // remove it from the line
-    }
-
-    // STEP 2 — extract fractions cleanly (now without the glyph)
+    // Extract the fraction on this line
     const times = line.match(/\b(?:\d:)?\d{2}\b/g) || [];
 
-    // STEP 3 — if tiny digit was ON SAME LINE, attach it
-    if (tinyOnSameLine !== null && times.length > 0) {
-        times[times.length - 1] += toSuperscript(tinyOnSameLine);
-    }
-
-    // STEP 4 — check NEXT LINE for tiny-number-only row
+    // Look at next line (tiny digit)
     const nextLine = (lines[i + 1] || "").trim();
+
     if (nextLine.length === 1 && nextLine in GLYPH_DIGITS) {
+
         const tinyDigit = GLYPH_DIGITS[nextLine];  
         const tinySup   = toSuperscript(tinyDigit);
+
+        // Attach to last fraction
         if (times.length > 0) {
             times[times.length - 1] += tinySup;
         }
-        i++; // consume tiny-number row
+
+        // SKIP two rows:
+        // 1 = tiny digit
+        // 2 = blank line
+        i += 2;
     }
 
-    // STEP 5 — push fractions normally
+    // Save fractions
     currentPPfractions.push(...times);
     continue;
 }
