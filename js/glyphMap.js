@@ -21,6 +21,7 @@ export const GLYPH_DIGITS = {
 // Comment Quality Markers
 // ------------------------------
 "ñ": "+",    // GOOD comment (positive)
+"×": "-",
 };
 
 // Decode a single glyph → digit
