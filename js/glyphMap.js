@@ -17,6 +17,10 @@ export const GLYPH_DIGITS = {
 "®": "⁷",
 "¯": "⁸",
 "°": "⁹",
+// ------------------------------
+// Comment Quality Markers
+// ------------------------------
+"ñ": "+",    // GOOD comment (positive)
 };
 
 // Decode a single glyph → digit
