@@ -6,19 +6,22 @@
 // Tiny-number cipher (Race Numbers)
 // ------------------------------
 export const GLYPH_DIGITS = {
-// Tiny race-number output (superscripts)
+// Tiny race-number 
+// tiny numbers → superscripts
 "§": "⁰",
 "¨": "¹",
 "©": "²",
 "\u0061\u0332": "³",
+"a\u0332": "³",
+"\u0332a": "³",
+"\u0332": "³",
 "«": "⁴",
 "¬": "⁵",
-"":  "⁶",   // invisible "" number 6
+"":  "⁶",     // careful — only used in GLYPH_DIGITS, not GLYPHS
+"®": "⁷",
+"¯": "⁸",
+"°": "⁹",
 }
-// Race 3 — underlined a (PDF splits it)
-GLYPHS["\u0332"] = "³";      // underline alone
-GLYPHS["a\u0332"] = "³";     // a + underline
-GLYPHS["\u0332a"] = "³";     // underline + a
 
 // Decode a single glyph → digit
 export function decodeTinyNumber(sym) {
