@@ -12,7 +12,7 @@ export const GLYPH_DIGITS = {
   "§": "0",
   "¨": "1",
   "©": "2",
-  "ª": "³",      // ⭐ Race 3 — MUST be here or decoding breaks
+  "ª": "3",      
   "«": "4",
   "¬": "5",
   "":  "6",             // Tiny 6 is invisible (PDF.js drops it)
@@ -52,7 +52,11 @@ export const GLYPHS = {
 
   // (Add more decoded symbols later as we discover them)
   // Tiny race-number glyph fixes
- // "\u0332": "",     // remove underline combining mark
+  // tiny-a split versions
+  "a\u0332": "³",
+  "\u0332a": "³",
+  "\u0061\u0332": "³",
+ "\u0332": "",     // remove underline combining mark
 
   // (More glyphs will be added later)
 };
