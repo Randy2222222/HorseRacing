@@ -13,6 +13,9 @@ function toSuperscript(n) {
 const HORSE_ANCHOR =
   /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
 
+// 2️⃣ PP Header Regex (Date + Race Line begins)
+const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
+
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX =
   /\b(?:[4-7](?:\s1\/2)?f|1m|2m|1m70|1\s1\/16|1\s1\/8|1\s3\/16|1\s1\/4|1\s3\/8|1\s1\/2|1\s5\/8)\b/i;
