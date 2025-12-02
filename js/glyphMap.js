@@ -40,7 +40,7 @@ export const GLYPHS = {
   "§": "⁰",
   "¨": "¹",
   "©": "²",
-  
+  "ª": "³",      // tiny-a glyph visually becomes superscript 3
   "«": "⁴",
   "¬": "⁵",
   "®": "⁷",
