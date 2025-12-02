@@ -10,7 +10,7 @@ export const GLYPH_DIGITS = {
 "§": "⁰",
 "¨": "¹",
 "©": "²",
-"ª": "³",
+"\u0061\u0332": "³",
 "«": "⁴",
 "¬": "⁵",
 "":  "⁶",   // invisible glyph = Race 6
