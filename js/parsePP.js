@@ -140,12 +140,6 @@ export function parsePP(decodedText) {
       }
 
       // 2️⃣ FRACTIONS — must come AFTER date block
-      if (FRACTION_REGEX.test(line)) {
-        const times = line.match(/\b(?:\d:)?\d{2}\b/g);
-        if (times) currentPPfractions.push(...times);
-        continue;
-      }
-     
       // LEADER TIMES (fractions + tiny numbers)
 if (FRACTION_REGEX.test(line)) {
 
