@@ -13,12 +13,6 @@ export const GLYPH_DIGITS = {
   "¨": "1",
   "©": "2",
 
-  // Underlined tiny "a" = 3 (Brisnet race number 3)
-  "\u0061\u0332": "3",  // a + underline
-  "a\u0332": "3",
-  "\u0332a": "3",
-  "\u0332":  "3",       // underline on its own (PDF sometimes splits it)
-
   "«": "4",
   "¬": "5",
 
@@ -46,10 +40,7 @@ export const GLYPHS = {
   "§": "⁰",
   "¨": "¹",
   "©": "²",
-  "\u0061\u0332": "³",
-  "a\u0332": "³",
-  "\u0332a": "³",
-  "\u0332":  "³",
+  
   "«": "⁴",
   "¬": "⁵",
   "®": "⁷",
