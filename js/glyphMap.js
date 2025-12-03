@@ -87,9 +87,9 @@ export const GLYPH_MARGINS = {
 
   // nose / head / neck
 
-  "¹": { display: "ns", value: 0.05 },
-  "²": { display: "hd", value: 0.175 },
-  "³": { display: "nk", value: 0.21 }
+ // "¹": { display: "ns", value: 0.05 },
+ // "²": { display: "hd", value: 0.175 },
+  //"³": { display: "nk", value: 0.21 }
 };
 
 
