@@ -41,7 +41,7 @@ export const GLYPHS = {
   "§": "⁰",
   "¨": "¹",
   "©": "²",
-  //"ª": "³",      // tiny-a precomposed
+  "ª": "³",      // tiny-a precomposed
   "«": "⁴",
   "¬": "⁵",
   "®": "⁷",
