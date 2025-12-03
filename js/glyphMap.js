@@ -62,6 +62,8 @@ export const GLYPHS = {
   "‚": "1/4",
   "ƒ": "3/4",
   "²": "hd",
+  // Track Surface Turf, All Weather, PolyTrack
+  "à": "T",
   // (More glyphs will be added later)
 };
 
