@@ -20,13 +20,6 @@ export const GLYPH_DIGITS = {
   "¯": "8",
   "°": "9"
 };
-  // Export Lengths for math
-export const GLYPH_MARGINS = {
-  "‚": ".25",
-  "▯": ".5",
-  "ƒ": ",75",
-  "²": ",18",
-};
 
 // Decode a single glyph → normal digit
 export function decodeTinyNumber(sym) {
@@ -77,7 +70,13 @@ export const GLYPHS = {
   // (More glyphs will be added later)
 };
 
-
+// Export Lengths for math
+export const GLYPH_MARGINS = {
+  "‚": ".25",
+  "▯": ".5",
+  "ƒ": ",75",
+  "²": ",18",
+};
 // ------------------------------------------------------------
 // 3️⃣ REPLACE ALL GLYPHS IN TEXT
 // ------------------------------------------------------------
