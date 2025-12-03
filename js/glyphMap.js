@@ -64,6 +64,8 @@ export const GLYPHS = {
   "²": "hd",
   // Track Surface Turf, All Weather, PolyTrack
   "à": "Ⓣ",
+  // Age Restriction Race
+  "¦": "3↑",
   // (More glyphs will be added later)
 };
 
