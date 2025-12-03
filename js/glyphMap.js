@@ -55,9 +55,9 @@ export const GLYPHS = {
 
   // Fractions for horse lengths (display)
   "‚": "¼",
-  "▯": "½",
+ // "▯": "½",
   "ƒ": "¾",
-"\u25AF": "½",
+"\u0081": "½",
   // Nose / Head / Neck display
   //"¹": "ns",
   //"²": "hd",
@@ -82,7 +82,8 @@ export const GLYPHS = {
 export const GLYPH_MARGINS = {
   // length fractions
   "‚": { display: "¼", value: 0.25 },
-  "▯": { display: "½", value: 0.50 },
+  //"▯": { display: "½", value: 0.50 },
+  //"\u0081": "½",
   "ƒ": { display: "¾", value: 0.75 },
 
   // nose / head / neck
