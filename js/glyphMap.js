@@ -57,7 +57,7 @@ export const GLYPHS = {
   "‚": "¼",
   "▯": "½",
   "ƒ": "¾",
-
+"\u25AF": "½",
   // Nose / Head / Neck display
   //"¹": "ns",
   //"²": "hd",
