@@ -50,15 +50,14 @@ export const GLYPHS = {
 
   // Tiny-3 weird split forms (underline + a combos)
   "a\u0332": "³",
-  "\u0332a": "³",
-  "\u0061\u0332": "³",
-  "\u0332": "",         // stray underline by itself → remove
+  //"\u0332a": "³",
+  //"\u0061\u0332": "³",
+//  "\u0332": "",         // stray underline by itself → remove
 
   // Fractions for horse lengths (display)
   "‚": "¼",
- // "▯": "½",
+  "\u0081": "½",
   "ƒ": "¾",
-"\u0081": "½",
   // Nose / Head / Neck display
   //"¹": "ns",
   //"²": "hd",
