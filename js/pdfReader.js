@@ -39,7 +39,7 @@ export async function readPDFAndDecode(file) {
   // Decode ns / hd / nk BEFORE glyphMap introduces fractions
   cleanText = cleanText
     .replace(/¹/g, "ns")
-    .replace(/²/g, "hd")
+    .replace(/²/g, "ʰd")
     .replace(/³/g, "nk");
   // ⭐⭐ END INSERT ⭐⭐
 
