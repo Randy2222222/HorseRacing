@@ -63,9 +63,9 @@ export const GLYPHS = {
   //"²": "hd",
   //"³": "nk",
 // Running-line beaten margins (Brisnet standard)
-"\u00B9": "ns",   // tiny 1 → nose
-"\u00B2": "hd",   // tiny 2 → head
-"\u00B3": "nk",   // tiny 3 → neck
+//"\u00B9": "ns",   // tiny 1 → nose
+//"u00B2": "hd",   // tiny 2 → head
+//"\u00B3": "nk",   // tiny 3 → neck
 
 // Fraction lengths
 //"\u00BC": "¼",
