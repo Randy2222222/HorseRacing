@@ -62,6 +62,7 @@ export const GLYPHS = {
   "‚": "¼",
   "▯": "½",
   "ƒ": "¾",
+  "³": "nk"
   "²": "hd",
   // Track Surface Turf, All Weather, PolyTrack
   "à": "Ⓣ",
@@ -74,8 +75,9 @@ export const GLYPHS = {
 export const GLYPH_MARGINS = {
   "‚": ".25",
   "▯": ".5",
-  "ƒ": ",75",
-  "²": ",18",
+  "ƒ": ".75",
+  "²": ".175"
+  "³": ".21",
 };
 // ------------------------------------------------------------
 // 3️⃣ REPLACE ALL GLYPHS IN TEXT
