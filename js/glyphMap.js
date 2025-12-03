@@ -79,7 +79,7 @@ export const GLYPHS = {
 // Export Lengths for math
 export const GLYPH_MARGINS = {
   "‚": ".25",
-  "▯": ".5",
+  "\u0081": ".5",
   "ƒ": ".75",
   //"¹": ".05",
   //"²": ".175",
