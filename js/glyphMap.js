@@ -51,9 +51,9 @@ export const GLYPHS = {
   "a\u0332": "³",
 
   // Fractions for horse lengths (display)
-  //"‚": "¼",
-  // "\u0081": "½",
-  //"ƒ": "¾",
+  "‚": "¼",
+  "\u0081": "½",
+  "ƒ": "¾",
   // Nose / Head / Neck display
   //"¹": "ns",
   //"²": "hd",
@@ -75,18 +75,18 @@ export const GLYPHS = {
 // 3️⃣ LENGTH MAP — for math (SPL/LPS etc.)
 //     You can import this separately when you do margin math.
 // ------------------------------------------------------------
-export const GLYPH_MARGINS = {
+//export const GLYPH_MARGINS = {
   // length fractions
-  "‚": { display: "¼", value: 0.25 },
-  "\u0081": { display: "½", value: 0.50 },
-  "ƒ": { display: "¾", value: 0.75 },
+//  "‚": { display: "¼", value: 0.25 },
+ // "\u0081": { display: "½", value: 0.50 },
+ // "ƒ": { display: "¾", value: 0.75 },
 
   // nose / head / neck
 
  // "¹": { display: "ns", value: 0.05 },
  // "²": { display: "hd", value: 0.175 },
   //"³": { display: "nk", value: 0.21 }
-};
+//};
 
 
 // ------------------------------------------------------------
