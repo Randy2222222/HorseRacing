@@ -58,6 +58,9 @@ export const GLYPHS = {
   "\u0061\u0332": "³",
  "\u0332": "",     // remove underline combining mark
 
+  // Fractions for Horse Lengths
+  "‚": "1/4",
+  
   // (More glyphs will be added later)
 };
 
