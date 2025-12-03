@@ -18,7 +18,7 @@ export const GLYPH_DIGITS = {
   "":  "6",             // Tiny 6 is invisible (PDF.js drops it)
   "®": "7",
   "¯": "8",
-  "°": "9"
+  "°": "9",
 };
 
 // Decode a single glyph → normal digit
