@@ -1,26 +1,27 @@
-GlythMap cyphers
 
 // glyphMap.js
 // Converts Brisnet encoded glyphs → readable digits or text
-// Uses TWO separate maps:
-// 1) GLYPH_DIGITS = internal meaning for parser (normal digits)
-// 2) GLYPHS       = display replacements (superscripts, symbols, etc.)
+// Uses three maps:
+//
+// 1) GLYPH_DIGITS   = internal tiny-number → normal digit (for parser logic)
+// 2) GLYPHS         = what you SEE in decoded text (superscripts, symbols)
+// 3) GLYPH_MARGINS  = beaten-length symbols → { display, value }
 
 // ------------------------------------------------------------
-// 1️⃣ INTERNAL DECODER MAP — parser logic only
-//     These MUST be normal 0–9 digits, not superscripts.
+// 1️⃣ INTERNAL DECODER MAP — parser logic ONLY
+//     MUST be normal digits "0"–"9" (no superscripts here).
 // ------------------------------------------------------------
 export const GLYPH_DIGITS = {
   "§": "0",
   "¨": "1",
   "©": "2",
-  "ª": "3",      
+  "ª": "3",      // tiny 3 (race #3, leader 1/4 etc.)
   "«": "4",
   "¬": "5",
-  "":  "6",             // Tiny 6 is invisible (PDF.js drops it)
+  // no entry for 6 — PDF.js drops that glyph, nothing we can do
   "®": "7",
   "¯": "8",
-  "°": "9",
+  "°": "9"
 };
 
 // Decode a single glyph → normal digit
@@ -31,68 +32,86 @@ export function decodeTinyNumber(sym) {
 
 
 // ------------------------------------------------------------
-// 2️⃣ VISUAL OUTPUT MAP — what the user SEES on screen
-//     These CAN be superscripts, +/– markers, etc.
+// 2️⃣ VISUAL OUTPUT MAP — what shows in DECODED TEXT panel
+//     This is where we use superscripts, ns/hd/nk, Ⓣ, 3↑, 4↑, etc.
 // ------------------------------------------------------------
 export const GLYPHS = {
 
-  // Superscript tiny digits (for display)
+  // Tiny race / time numbers → superscripts
   "§": "⁰",
   "¨": "¹",
   "©": "²",
-  "ª": "³",      // tiny-a glyph visually becomes superscript 3
+  "ª": "³",      // tiny-a precomposed
   "«": "⁴",
   "¬": "⁵",
-  
   "®": "⁷",
   "¯": "⁸",
   "°": "⁹",
 
-  // Comment quality markers
-  "ñ": "+",   // GOOD
-  "×": "-",   // BAD
-
-  // (Add more decoded symbols later as we discover them)
-  // Tiny race-number glyph fixes
-  // tiny-a split versions
+  // Tiny-3 weird split forms (underline + a combos)
   "a\u0332": "³",
   "\u0332a": "³",
   "\u0061\u0332": "³",
-  "\u0332": "",     // remove underline combining mark
+  "\u0332": "",         // stray underline by itself → remove
 
-  // Fractions for Horse Lengths
+  // Fractions for horse lengths (display)
   "‚": "¼",
-  "\u0081": "½",
+ // "▯": "½",
   "ƒ": "¾",
-  "³": "nk",
-  "²": "hd",
-  "¹": "ns",
-  // Track Surface Turf, All Weather, PolyTrack
+"\u0081": "½",
+  // Nose / Head / Neck display
+  //"¹": "ns",
+  //"²": "hd",
+  //"³": "nk",
+// Running-line beaten margins (Brisnet standard)
+"\u00B9": "ns",   // tiny 1 → nose
+"\u00B2": "hd",   // tiny 2 → head
+"\u00B3": "nk",   // tiny 3 → neck
+
+// Fraction lengths
+//"\u00BC": "¼",
+//"\u00BE": "¾",
+//"\u0081": "½",   // tiny 1/2 from your PDF
+  // Track surface: Turf symbol (circle T)
   "à": "Ⓣ",
-  // Age Restriction Race
+
+  // Age restrictions
   "¦": "3↑",
   "¡": "4↑",
- 
-  // (More glyphs will be added later)
+
+  // Comment quality markers
+  "ñ": "+",   // good comment
+  "×": "-"    // bad comment
 };
 
-// Export Lengths for math
-//export const GLYPH_MARGINS = {
-  //"‚": ".25",
-  //"\u0081": ".5",
- // "ƒ": ".75",
- // "¹": ".05",
-  //"²": ".175",
- // "³": ".21",
-//};
 // ------------------------------------------------------------
-// 3️⃣ REPLACE ALL GLYPHS IN TEXT
+// 3️⃣ LENGTH MAP — for math (SPL/LPS etc.)
+//     You can import this separately when you do margin math.
+// ------------------------------------------------------------
+export const GLYPH_MARGINS = {
+  // length fractions
+  "‚": { display: "¼", value: 0.25 },
+  //"▯": { display: "½", value: 0.50 },
+  //"\u0081": "½",
+  "ƒ": { display: "¾", value: 0.75 },
+
+  // nose / head / neck
+
+ // "¹": { display: "ns", value: 0.05 },
+ // "²": { display: "hd", value: 0.175 },
+  //"³": { display: "nk", value: 0.21 }
+};
+
+
+// ------------------------------------------------------------
+// 4️⃣ Apply glyph replacements to the whole text
+//     NOTE: this only uses GLYPHS (visual map), NOT GLYPH_MARGINS.
 // ------------------------------------------------------------
 export function applyGlyphMap(text) {
   let out = text;
 
   for (let key in GLYPHS) {
-    if (key === "") continue; // avoid replacing empty-string “6”
+    if (key === "") continue; // (we never mapped "" here anyway)
     const val = GLYPHS[key];
     out = out.split(key).join(val);
   }
