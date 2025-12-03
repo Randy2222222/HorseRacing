@@ -20,10 +20,10 @@ export const GLYPH_DIGITS = {
   "¯": "8",
   "°": "9"
   // Export Lengths for math
-  "‚": "¼",
-  "▯": "½",
-  "ƒ": "¾",
-  "²": "hd",
+  "‚": ".25",
+  "▯": ".5",
+  "ƒ": ",75",
+  "²": ",18",
 };
 
 // Decode a single glyph → normal digit
@@ -64,10 +64,10 @@ export const GLYPHS = {
  "\u0332": "",     // remove underline combining mark
 
   // Fractions for Horse Lengths
-  "‚": ".25",
-  "▯": ".5",
-  "ƒ": ".75",
-  "²": ".18",
+  "‚": "¼",
+  "▯": "½",
+  "ƒ": "¾",
+  "²": "hd",
   // Track Surface Turf, All Weather, PolyTrack
   "à": "Ⓣ",
   // Age Restriction Race
