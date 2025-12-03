@@ -64,6 +64,7 @@ export const GLYPHS = {
   "ƒ": "¾",
   "³": "nk",
   "²": "hd",
+  "¹": "ns",
   // Track Surface Turf, All Weather, PolyTrack
   "à": "Ⓣ",
   // Age Restriction Race
@@ -76,6 +77,7 @@ export const GLYPH_MARGINS = {
   "‚": ".25",
   "▯": ".5",
   "ƒ": ".75",
+  "¹": ".05",
   "²": ".175",
   "³": ".21",
 };
