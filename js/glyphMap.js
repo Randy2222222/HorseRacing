@@ -51,9 +51,9 @@ export const GLYPHS = {
   "a\u0332": "³",
 
   // Fractions for horse lengths (display)
-  "‚": "¼",
-  "\u0081": "½",
-  "ƒ": "¾",
+  //"‚": "¼",
+  // "\u0081": "½",
+  //"ƒ": "¾",
   // Nose / Head / Neck display
   //"¹": "ns",
   //"²": "hd",
