@@ -41,18 +41,14 @@ export const GLYPHS = {
   "§": "⁰",
   "¨": "¹",
   "©": "²",
-  "ª": "³",      // tiny-a precomposed
+  //"ª": "³",      // tiny-a precomposed
   "«": "⁴",
   "¬": "⁵",
   "®": "⁷",
   "¯": "⁸",
   "°": "⁹",
-
-  // Tiny-3 weird split forms (underline + a combos)
+// Tiny-3 weird split forms (underline + a combos)
   "a\u0332": "³",
-  //"\u0332a": "³",
-  //"\u0061\u0332": "³",
-//  "\u0332": "",         // stray underline by itself → remove
 
   // Fractions for horse lengths (display)
   "‚": "¼",
@@ -62,15 +58,7 @@ export const GLYPHS = {
   //"¹": "ns",
   //"²": "hd",
   //"³": "nk",
-// Running-line beaten margins (Brisnet standard)
-//"\u00B9": "ns",   // tiny 1 → nose
-//"u00B2": "hd",   // tiny 2 → head
-//"\u00B3": "nk",   // tiny 3 → neck
 
-// Fraction lengths
-//"\u00BC": "¼",
-//"\u00BE": "¾",
-//"\u0081": "½",   // tiny 1/2 from your PDF
   // Track surface: Turf symbol (circle T)
   "à": "Ⓣ",
 
