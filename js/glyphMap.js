@@ -61,7 +61,7 @@ export const GLYPHS = {
   // Fractions for Horse Lengths
   "‚": "1/4",
   "ƒ": "3/4",
-  
+  "²": "hd",
   // (More glyphs will be added later)
 };
 
