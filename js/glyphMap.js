@@ -19,7 +19,9 @@ export const GLYPH_DIGITS = {
   "®": "7",
   "¯": "8",
   "°": "9"
+};
   // Export Lengths for math
+export const GLYPH_MARGINS = {
   "‚": ".25",
   "▯": ".5",
   "ƒ": ",75",
