@@ -59,9 +59,9 @@ export const GLYPHS = {
   "ƒ": "¾",
 
   // Nose / Head / Neck display
-  "¹": "ns",
-  "²": "hd",
-  "³": "nk",
+  //"¹": "ns",
+  //"²": "hd",
+  //"³": "nk",
 
   // Track surface: Turf symbol (circle T)
   "à": "Ⓣ",
@@ -86,9 +86,10 @@ export const GLYPH_MARGINS = {
   "ƒ": { display: "¾", value: 0.75 },
 
   // nose / head / neck
-  //"¹": { display: "ns", value: 0.05 },
- // "²": { display: "hd", value: 0.175 },
- // "³": { display: "nk", value: 0.21 }
+
+  "¹": { display: "ns", value: 0.05 },
+  "²": { display: "hd", value: 0.175 },
+  "³": { display: "nk", value: 0.21 }
 };
 
 
