@@ -56,9 +56,9 @@ export const GLYPHS = {
   // Tiny race-number glyph fixes
   // tiny-a split versions
   "a\u0332": "³",
-  "\u0332a": "³",
-  "\u0061\u0332": "³",
- "\u0332": "",     // remove underline combining mark
+  //"\u0332a": "³",
+  //"\u0061\u0332": "³",
+ //"\u0332": "",     // remove underline combining mark
 
   // Fractions for Horse Lengths
   "‚": "¼",
