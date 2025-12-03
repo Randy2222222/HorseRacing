@@ -56,17 +56,17 @@ export const GLYPHS = {
   // Tiny race-number glyph fixes
   // tiny-a split versions
   "a\u0332": "³",
-  //"\u0332a": "³",
-  //"\u0061\u0332": "³",
- //"\u0332": "",     // remove underline combining mark
+  "\u0332a": "³",
+  "\u0061\u0332": "³",
+  "\u0332": "",     // remove underline combining mark
 
   // Fractions for Horse Lengths
   "‚": "¼",
   "\u0081": "½",
   "ƒ": "¾",
-  //"³": "nk",
-  //"²": "hd",
-  //"¹": "ns",
+  "³": "nk",
+  "²": "hd",
+  "¹": "ns",
   // Track Surface Turf, All Weather, PolyTrack
   "à": "Ⓣ",
   // Age Restriction Race
