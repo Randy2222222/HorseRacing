@@ -90,8 +90,7 @@ export const GLYPHS = {
 export const GLYPH_MARGINS = {
   // length fractions
   "‚": { display: "¼", value: 0.25 },
-  //"▯": { display: "½", value: 0.50 },
-  //"\u0081": "½",
+  "\u0081": { display: "½", value: 0.50 },
   "ƒ": { display: "¾", value: 0.75 },
 
   // nose / head / neck
