@@ -69,7 +69,7 @@ export const GLYPHS = {
   "à": "Ⓣ",
   // Age Restriction Race
   "¦": "3↑",
-  "¡": "4",
+  "¡": "4↑",
  
   // (More glyphs will be added later)
 };
