@@ -59,9 +59,9 @@ export const GLYPHS = {
  "\u0332": "",     // remove underline combining mark
 
   // Fractions for Horse Lengths
-  "‚": "1/4",
+  "‚": "¼",
   "▯": "½",
-  "ƒ": "3/4",
+  "ƒ": "¾",
   "²": "hd",
   // Track Surface Turf, All Weather, PolyTrack
   "à": "Ⓣ",
