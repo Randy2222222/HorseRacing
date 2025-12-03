@@ -35,6 +35,13 @@ export async function readPDFAndDecode(file) {
 
   // Remove stray UTF-8 junk (Â)
   let cleanText = rawText.replace(/Â/g, "");
+   // ⭐⭐ INSERT THIS BLOCK RIGHT HERE ⭐⭐
+  // Decode ns / hd / nk BEFORE glyphMap introduces fractions
+  cleanText = cleanText
+    .replace(/¹/g, "ns")
+    .replace(/²/g, "hd")
+    .replace(/³/g, "nk");
+  // ⭐⭐ END INSERT ⭐⭐
 
   // DEV MODE: show cleaned text
   if (DEV_MODE === "clean") {
