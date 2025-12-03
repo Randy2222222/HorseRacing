@@ -2,20 +2,20 @@
 // Converts Brisnet encoded glyphs → readable digits or text
 // Uses TWO separate maps:
 // 1) GLYPH_DIGITS = internal meaning for parser (normal digits)
-// 2) GLYPHS       = display replacements (superscripts, symbols, etc.)
+// 2) GLYPHS       = visual replacements (superscripts, lengths, etc.)
 
 // ------------------------------------------------------------
 // 1️⃣ INTERNAL DECODER MAP — parser logic only
-//     These MUST be normal 0–9 digits, not superscripts.
+//     MUST be NORMAL digits 0–9
 // ------------------------------------------------------------
 export const GLYPH_DIGITS = {
   "§": "0",
   "¨": "1",
   "©": "2",
-  "ª": "3",      
+  "ª": "3",    
   "«": "4",
   "¬": "5",
-  "":  "6",             // Tiny 6 is invisible (PDF.js drops it)
+  "":  "6",            // invisible tiny-6
   "®": "7",
   "¯": "8",
   "°": "9",
@@ -29,68 +29,74 @@ export function decodeTinyNumber(sym) {
 
 
 // ------------------------------------------------------------
-// 2️⃣ VISUAL OUTPUT MAP — what the user SEES on screen
-//     These CAN be superscripts, +/– markers, etc.
+// 2️⃣ VISUAL OUTPUT MAP — WHAT SHOWS ON SCREEN
 // ------------------------------------------------------------
 export const GLYPHS = {
 
-  // Superscript tiny digits (for display)
+  // --- Superscript tiny digits (DISPLAY only) ---
   "§": "⁰",
   "¨": "¹",
   "©": "²",
-  "ª": "³",      // tiny-a glyph visually becomes superscript 3
+  "ª": "³",      // the *main* race-3 glyph
   "«": "⁴",
   "¬": "⁵",
-  
   "®": "⁷",
   "¯": "⁸",
   "°": "⁹",
 
-  // Comment quality markers
-  "ñ": "+",   // GOOD
-  "×": "-",   // BAD
-
-  // (Add more decoded symbols later as we discover them)
-  // Tiny race-number glyph fixes
-  // tiny-a split versions
+  // --------------------------------------------------------
+  // ⭐ TINY-A UNDERLINE FIX (DO NOT REMOVE — YOU ARE CORRECT)
+  // --------------------------------------------------------
   "a\u0332": "³",
   "\u0332a": "³",
   "\u0061\u0332": "³",
- "\u0332": "",     // remove underline combining mark
+  "\u0332": "",         // remove stray underline
+  // --------------------------------------------------------
 
-  // Fractions for Horse Lengths
+  // --- Comment quality markers ---
+  "ñ": "+",
+  "×": "-",
+
+  // --- Fractional lengths (QUARTERS) ---
   "‚": "¼",
   "▯": "½",
   "ƒ": "¾",
-  "³": "nk",
-  "²": "hd",
+
+  // --- Nose / Head / Neck (tiny digits in raw) ---
   "¹": "ns",
-  // Track Surface Turf, All Weather, PolyTrack
+  "²": "hd",
+  "³": "nk",
+
+  // --- Track surface (Brisnet turf symbol) ---
   "à": "Ⓣ",
-  // Age Restriction Race
+
+  // --- Age restrictions ---
   "¦": "3↑",
   "¡": "4↑",
- 
-  // (More glyphs will be added later)
 };
 
-// Export Lengths for math
-export const GLYPH_MARGINS = {
-  "‚": ".25",
-  "▯": ".5",
-  "ƒ": ".75",
-  "¹": ".05",
-  "²": ".175",
-  "³": ".21",
-};
+
 // ------------------------------------------------------------
-// 3️⃣ REPLACE ALL GLYPHS IN TEXT
+// 3️⃣ NUMERIC VALUES FOR LENGTH MATH (no visual output)
+// ------------------------------------------------------------
+export const GLYPH_MARGINS = {
+  "‚": ".25",   // ¼
+  "▯": ".5",    // ½
+  "ƒ": ".75",   // ¾
+  "¹": ".05",   // nose
+  "²": ".175",  // head
+  "³": ".21",   // neck
+};
+
+
+// ------------------------------------------------------------
+// 4️⃣ APPLY GLYPH MAP TO TEXT
 // ------------------------------------------------------------
 export function applyGlyphMap(text) {
   let out = text;
 
   for (let key in GLYPHS) {
-    if (key === "") continue; // avoid replacing empty-string “6”
+    if (key === "") continue;   // do not touch invisible tiny-6
     const val = GLYPHS[key];
     out = out.split(key).join(val);
   }
