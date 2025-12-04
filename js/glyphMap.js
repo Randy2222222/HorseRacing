@@ -21,7 +21,7 @@ export const GLYPH_DIGITS = {
   //"6": "⁶",    // no entry for 6 — PDF.js drops that glyph, nothing we can do
   "®": "7",
   "¯": "8",
-  "°": "9"
+  "°": "9",
 };
 
 // Decode a single glyph → normal digit
@@ -69,7 +69,7 @@ export const GLYPHS = {
 
   // Comment quality markers
   "ñ": "+",   // good comment
-  "×": "-"    // bad comment
+  "×": "-",   // bad comment
 
   // Racetype
   "™": "Ⓕ",
