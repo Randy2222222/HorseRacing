@@ -203,8 +203,7 @@ if (isTimeLine(trimmed)) {
   // don’t `continue` if you still need other logic on the same line.
 }
 
-    // Save final fractions
-    currentPPfractions.push(...times);
+  
     continue;
 }
 
