@@ -70,6 +70,9 @@ export const GLYPHS = {
   // Comment quality markers
   "ñ": "+",   // good comment
   "×": "-"    // bad comment
+
+  // Racetype
+  "™": "Ⓕ",
 };
 
 // ------------------------------------------------------------
