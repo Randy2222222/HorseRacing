@@ -101,6 +101,21 @@ export function parsePP(decodedText) {
       // 1️⃣ DATE = start of new PP block
       if (DATE_REGEX.test(line)) {
 
+        // 🔧 Fix: Race# 6 is missing from PDF (superscript '⁶' never extracted).
+    // If the line only has DATE + TRACK and no race#, append " 6".
+    const parts = line.split(/\s+/);
+
+    // parts[0] = DATE   (always exists)
+    // parts[1] = TRACK  (always exists)
+    // parts[2] = Race#  (MISSING ONLY WHEN RACE = 6)
+
+    if (parts.length === 2) {
+        // → no race number present
+        line += " 6";      // 🔥 add missing #6
+    }
+
+    // Save the previous block if needed
+
         // save previous block
         if (currentPP.length > 0) {
           h.pp.push({
