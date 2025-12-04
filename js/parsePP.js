@@ -168,41 +168,40 @@ let slotIndex = 0;
         continue; // end of DATE block
       }
 
-      // 2️⃣ LEADER FRACTIONS — tiny digit on next line, then ANY number of blank lines
+      // -----------------------------
+// 2️⃣ Leader Times (calls)
+// -----------------------------
 const trimmed = line.trim();
 
-// 🔹 Leader times section — time + tiny superscript
 if (isTimeLine(trimmed)) {
 
-  // For 4f / 4½f races, leader1 is missing
+  // handle short sprints (missing leader1)
   if (slotIndex === 0 && totalCalls === 3) {
-    // leader1 stays { raw: null, sup: null }
-    slotIndex++;
+    slotIndex++; // skip leader1
   }
 
   let raw = trimmed;
   let sup = null;
 
-  // check next line for a tiny ¹²³⁴
+  // look for superscript on next line
   if (i + 1 < lines.length && isSuperscript(lines[i + 1])) {
     sup = lines[i + 1].trim();
     i++; // skip the superscript line
   }
 
+  // store the call in the right slot
   if (slotIndex === 0) {
     currentPPleaderTimes.leader1 = { raw, sup };
-} else if (slotIndex === 1) {
+  } else if (slotIndex === 1) {
     currentPPleaderTimes.leader2 = { raw, sup };
-} else if (slotIndex === 2) {
+  } else if (slotIndex === 2) {
     currentPPleaderTimes.leader3 = { raw, sup };
-} else {
+  } else {
     currentPPleaderTimes.leaderFinal = { raw, sup };
-}
+  }
 
   slotIndex++;
-  // don’t `continue` if you still need other logic on the same line.
- }
-
+  continue; // <- MUST BE HERE
 }
 
       // 3️⃣ normal lines inside PP block
