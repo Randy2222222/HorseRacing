@@ -44,6 +44,7 @@ function isShortSprint(distanceStr) {
 //-------------------------
 // 7️⃣ RR Regex
 //-------------------------
+const UNICODE_SIX = "\u2076";   // ⁶
 const RR_REGEX = /^RR[:\s]*(\d{2,3})$/;
 
 function isTimeLine(line) {
