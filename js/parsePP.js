@@ -13,7 +13,7 @@ function toSuperscript(n) {
 }
 
 // ------------------------
-// Leader-time helper functions
+//  6️⃣ Leader-time helper functions
 // ------------------------
 function isShortSprint(distanceStr) {
   const d = distanceStr.toLowerCase();
@@ -55,9 +55,6 @@ const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
 
 // 5️⃣ Surface regex
 const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");
-
-// 6️⃣ Leader time fractions (22, 45, 57, 1:10 etc)
-const FRACTION_REGEX = /\b(?:\d:)?\d{2}\b/;
 
 // 🔹 Split into horses
 function splitHorses(fullText) {
