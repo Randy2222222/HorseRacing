@@ -12,28 +12,6 @@ function toSuperscript(n) {
   return Number.isInteger(idx) ? (SUPERSCRIPTS[idx] || "") : "";
 }
 
-// ------------------------
-//  6️⃣ Leader-time helper functions
-// ------------------------
-function isShortSprint(distanceStr) {
-  const d = distanceStr.toLowerCase();
-  return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
-}
-
-function isTimeLine(line) {
-  const t = line.trim();
-  return (
-    /^:\d{2}$/.test(t) ||      // :22 :45 :57
-    /^\d:\d{2}$/.test(t)       // 1:10
-  );
-}
-
-function isSuperscript(line) {
-  const t = line.trim();
-  return /^[¹²³⁴]$/.test(t);  // tiny 1–4
-}
-
-
 // 1️⃣ Horse Anchor
 const HORSE_ANCHOR =
   /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
@@ -54,7 +32,26 @@ const SURFACE_CODES = [
 const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
 
 // 5️⃣ Surface regex
-const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");
+const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "// ------------------------
+//  6️⃣ Leader-time helper functions
+// ------------------------
+function isShortSprint(distanceStr) {
+  const d = distanceStr.toLowerCase();
+  return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
+}
+
+function isTimeLine(line) {
+  const t = line.trim();
+  return (
+    /^:\d{2}$/.test(t) ||      // :22 :45 :57
+    /^\d:\d{2}$/.test(t)       // 1:10
+  );
+}
+
+function isSuperscript(line) {
+  const t = line.trim();
+  return /^[¹²³⁴]$/.test(t);  // tiny 1–4
+}
 
 // 🔹 Split into horses
 function splitHorses(fullText) {
