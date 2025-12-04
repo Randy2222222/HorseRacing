@@ -62,6 +62,8 @@ export const GLYPHS = {
 
   // Track surface: Turf symbol (circle T)
   "à": "Ⓣ",
+  //   "Ⓐ",
+  //   "Ⓧ",
 
   // Age restrictions
   "¦": "3↑",
