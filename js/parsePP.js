@@ -123,7 +123,7 @@ export function parsePP(decodedText) {
             distance: currentPPdistance,
             surface: currentPPsurface,
             modifier: currentPPmodifier,
-            fractions: currentPPfractions
+            leaderTimes: currentPPleaderTimes
           });
         }
 
@@ -132,13 +132,11 @@ export function parsePP(decodedText) {
         currentPPdistance = "";
         currentPPsurface = "";
         currentPPmodifier = "";
-
-        // ⭐ new leaderTimes reset here
-currentPPleaderTimes = {
-  leader1:    { raw: null, sup: null },
-  leader2:    { raw: null, sup: null },
-  leader3:    { raw: null, sup: null },
-  leaderFinal:{ raw: null, sup: null }
+        currentPPleaderTimes = {
+              leader1:    { raw: null, sup: null },
+              leader2:    { raw: null, sup: null },
+              leader3:    { raw: null, sup: null },
+              leaderFinal:{ raw: null, sup: null }
 }
 
         currentPP.push(line);
