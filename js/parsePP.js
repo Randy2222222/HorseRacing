@@ -165,36 +165,39 @@ export function parsePP(decodedText) {
       }
 
       // 2️⃣ LEADER FRACTIONS — tiny digit on next line, then ANY number of blank lines
-if (FRACTION_REGEX.test(line)) {
+const trimmed = line.trim();
 
-    // Extract the main time
-    const times = line.match(/\b(?:\d:)?\d{2}\b/g) || [];
+// 🔹 Leader times section — time + tiny superscript
+if (isTimeLine(trimmed)) {
 
-    // Look at next line — tiny number?
-    const nextLine = (lines[i + 1] || "").trim();
+  // For 4f / 4½f races, leader1 is missing
+  if (slotIndex === 0 && totalCalls === 3) {
+    // leader1 stays { raw: null, sup: null }
+    slotIndex++;
+  }
 
-    if (nextLine.length === 1 && nextLine in GLYPH_DIGITS) {
+  let raw = trimmed;
+  let sup = null;
 
-        const tinyDigit = GLYPH_DIGITS[nextLine];  
-        const tinySup   = toSuperscript(tinyDigit);
+  // check next line for a tiny ¹²³⁴
+  if (i + 1 < lines.length && isSuperscript(lines[i + 1])) {
+    sup = lines[i + 1].trim();
+    i++; // skip the superscript line
+  }
 
-        if (times.length > 0) {
-            times[times.length - 1] += tinySup;
-        }
+  if (slotIndex === 0) {
+    leaderTimes.leader1 = { raw, sup };
+  } else if (slotIndex === 1) {
+    leaderTimes.leader2 = { raw, sup };
+  } else if (slotIndex === 2) {
+    leaderTimes.leader3 = { raw, sup };
+  } else {
+    leaderTimes.leaderFinal = { raw, sup };
+  }
 
-        // Consume the tiny-number row
-        i++;
-
-        // 🔹 NOW skip ALL blank/space-only lines (1,2,3 doesn't matter)
-        while (true) {
-            const peek = (lines[i + 1] || "").trim();
-            if (peek === "" || peek === "\u00A0") {
-                i++;    // skip it
-            } else {
-                break;  // stop when a real line appears
-            }
-        }
-    }
+  slotIndex++;
+  // don’t `continue` if you still need other logic on the same line.
+}
 
     // Save final fractions
     currentPPfractions.push(...times);
