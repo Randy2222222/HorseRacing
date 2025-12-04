@@ -108,7 +108,7 @@ export function parsePP(decodedText) {
     let currentPPdistance = "";
     let currentPPsurface = "";
     let currentPPmodifier = "";
-    let currentPPfractions = [];
+    let currentPPleaderTimes = null;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
