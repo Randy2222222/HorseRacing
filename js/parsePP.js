@@ -201,10 +201,8 @@ if (isTimeLine(trimmed)) {
 
   slotIndex++;
   // don’t `continue` if you still need other logic on the same line.
-}
+ }
 
-  
-    continue;
 }
 
       // 3️⃣ normal lines inside PP block
