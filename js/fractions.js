@@ -1,6 +1,13 @@
 // STEP 1: Convert Brisnet tiny/staked fractions → ASCII
+// fractions.js
+
 export function normalizeDistance(d) {
-  return d
+  return d;  // no-op now, glyphMap already did the work
+}
+
+export function toUnicodeFraction(str) {
+  return str; // no-op for now
+}
     // Convert Brisnet fraction slash (U+2044) → regular slash
     .replace(/\u2044/g, "/")
 
