@@ -138,7 +138,14 @@ export function parsePP(decodedText) {
         currentPPdistance = "";
         currentPPsurface = "";
         currentPPmodifier = "";
-        leaderTimes
+
+        // ⭐ new leaderTimes reset here
+currentPPleaderTimes = {
+  leader1:    { raw: null, sup: null },
+  leader2:    { raw: null, sup: null },
+  leader3:    { raw: null, sup: null },
+  leaderFinal:{ raw: null, sup: null }
+}
 
         currentPP.push(line);
 
@@ -161,13 +168,6 @@ export function parsePP(decodedText) {
           }
         }
 
-        // Leader call timee 
-        let leaderTimes = {
-  leader1:    { raw: null, sup: null },
-  leader2:    { raw: null, sup: null },
-  leader3:    { raw: null, sup: null },
-  leaderFinal:{ raw: null, sup: null }
-};
 
 let totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
 let slotIndex = 0;
