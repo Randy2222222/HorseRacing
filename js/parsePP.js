@@ -41,6 +41,11 @@ function isShortSprint(distanceStr) {
   return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
 }
 
+//-------------------------
+// 7️⃣ RR Regex
+//-------------------------
+const RR_REGEX = /^RR[:\s]*(\d{2,3})$/;
+
 function isTimeLine(line) {
   const t = line.trim();
   return (
