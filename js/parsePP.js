@@ -111,7 +111,7 @@ export function parsePP(decodedText) {
 
     if (parts.length === 2) {
         // → no race number present
-        line += "⁶";   // 🔥 add missing #6
+        line += " 6";   // 🔥 add missing #6
     }
 
     // Save the previous block if needed
