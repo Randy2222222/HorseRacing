@@ -190,14 +190,14 @@ if (isTimeLine(trimmed)) {
   }
 
   if (slotIndex === 0) {
-    leaderTimes.leader1 = { raw, sup };
-  } else if (slotIndex === 1) {
-    leaderTimes.leader2 = { raw, sup };
-  } else if (slotIndex === 2) {
-    leaderTimes.leader3 = { raw, sup };
-  } else {
-    leaderTimes.leaderFinal = { raw, sup };
-  }
+    currentPPleaderTimes.leader1 = { raw, sup };
+} else if (slotIndex === 1) {
+    currentPPleaderTimes.leader2 = { raw, sup };
+} else if (slotIndex === 2) {
+    currentPPleaderTimes.leader3 = { raw, sup };
+} else {
+    currentPPleaderTimes.leaderFinal = { raw, sup };
+}
 
   slotIndex++;
   // don’t `continue` if you still need other logic on the same line.
