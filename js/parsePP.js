@@ -220,7 +220,7 @@ if (isTimeLine(trimmed)) {
         distance: currentPPdistance,
         surface: currentPPsurface,
         modifier: currentPPmodifier,
-        leaderTimes: leaderTimes 
+        leaderTimes: currentPPleaderTimes
       });
     }
 
