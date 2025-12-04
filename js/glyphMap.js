@@ -18,7 +18,7 @@ export const GLYPH_DIGITS = {
   "ª": "3",      // tiny 3 (race #3, leader 1/4 etc.)
   "«": "4",
   "¬": "5",
-  // no entry for 6 — PDF.js drops that glyph, nothing we can do
+  //"6": "⁶",    // no entry for 6 — PDF.js drops that glyph, nothing we can do
   "®": "7",
   "¯": "8",
   "°": "9"
@@ -44,6 +44,7 @@ export const GLYPHS = {
   "ª": "³",      // tiny-a precomposed
   "«": "⁴",
   "¬": "⁵",
+ // "6": "⁶",
   "®": "⁷",
   "¯": "⁸",
   "°": "⁹",
