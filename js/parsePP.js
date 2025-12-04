@@ -161,6 +161,17 @@ export function parsePP(decodedText) {
           }
         }
 
+        // Leader call timee 
+        let leaderTimes = {
+  leader1:    { raw: null, sup: null },
+  leader2:    { raw: null, sup: null },
+  leader3:    { raw: null, sup: null },
+  leaderFinal:{ raw: null, sup: null }
+};
+
+let totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+let slotIndex = 0;
+        
         continue; // end of DATE block
       }
 
@@ -217,7 +228,8 @@ if (isTimeLine(trimmed)) {
         distance: currentPPdistance,
         surface: currentPPsurface,
         modifier: currentPPmodifier,
-        fractions: currentPPfractions
+        fractions: currentPPfractions,
+        leaderTimes: leaderTimes 
       });
     }
 
