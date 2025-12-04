@@ -25,14 +25,15 @@ const DISTANCE_REGEX =
 
 // 3️⃣ Surface codes (2-letter)
 const SURFACE_CODES = [
-  "ft","gd","my","sy","wf","fm","yl","sf","hy","sl"
-];
+  "ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 
 // 4️⃣ Single-letter surface modifiers
 const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
 
 // 5️⃣ Surface regex
-const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "// ------------------------
+const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "
+                                 
+// ------------------------
 //  6️⃣ Leader-time helper functions
 // ------------------------
 function isShortSprint(distanceStr) {
