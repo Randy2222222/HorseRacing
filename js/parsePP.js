@@ -143,11 +143,15 @@ export function parsePP(decodedText) {
         currentPP.push(line);
 
         // distance
+       // const distMatch = line.match(DISTANCE_REGEX);
+       // if (distMatch) {
+      //    currentPPdistance = normalizeDistance(distMatch[0]);
+     //   }
+        // distance new
         const distMatch = line.match(DISTANCE_REGEX);
         if (distMatch) {
-          currentPPdistance = normalizeDistance(distMatch[0]);
+        currentPPdistance = distMatch[0];   // glyphMap already made it pretty
         }
-
         // surface
         const surfMatch = line.match(SURFACE_REGEX);
         if (surfMatch) {
