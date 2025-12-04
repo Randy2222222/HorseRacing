@@ -31,8 +31,8 @@ const SURFACE_CODES = [
 const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
 
 // 5️⃣ Surface regex
-const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "
-                                 
+const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");   
+
 // ------------------------
 //  6️⃣ Leader-time helper functions
 // ------------------------
