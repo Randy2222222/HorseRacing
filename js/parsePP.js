@@ -138,7 +138,7 @@ export function parsePP(decodedText) {
         currentPPdistance = "";
         currentPPsurface = "";
         currentPPmodifier = "";
-        currentPPfractions = [];
+        leaderTimes
 
         currentPP.push(line);
 
@@ -228,7 +228,6 @@ if (isTimeLine(trimmed)) {
         distance: currentPPdistance,
         surface: currentPPsurface,
         modifier: currentPPmodifier,
-        fractions: currentPPfractions,
         leaderTimes: leaderTimes 
       });
     }
