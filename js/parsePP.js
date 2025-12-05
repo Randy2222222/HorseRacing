@@ -173,13 +173,7 @@ export function parsePP(decodedText) {
         currentPPpace = {
     e1: null,
     e2: null,
-    lp: null
-};
-
-currentPPraceShapes = {
-    oneC: null,
-    twoC: null
-};
+    lp: null,
       
       };
       
