@@ -148,7 +148,12 @@ export function parsePP(decodedText) {
             modifier: currentPPmodifier,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
-            classRating: currentPPclassRating
+            classRating: currentPPclassRating,
+            e1: currentPPraceShapes.e1,
+            e2: currentPPraceShapes.e2,
+            lp: currentPPlp,
+            oneC: currentPPraceShapes.oneC,
+            twoC: currentPPraceShapes.twoC
           });
         }
 
