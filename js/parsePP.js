@@ -1,4 +1,3 @@
-.
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
@@ -26,13 +25,14 @@ const DISTANCE_REGEX =
 
 // 3️⃣ Surface codes (2-letter)
 const SURFACE_CODES = [
-  "ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
+  "ft","gd","my","sy","wf","fm","yl","sf","hy","sl"
+];
 
 // 4️⃣ Single-letter surface modifiers
 const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
 
 // 5️⃣ Surface regex
-const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");   
+const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");
 
 // ------------------------
 //  6️⃣ Leader-time helper functions
@@ -45,9 +45,12 @@ function isShortSprint(distanceStr) {
 //-------------------------
 // 7️⃣ RR Regex
 //-------------------------
+// (we’re not using UNICODE_SIX here yet, but keeping it in case you
+// later want to auto-append a missing ⁶)
 const UNICODE_SIX = "\u2076";   // ⁶
 // Line is ONLY 2–3 superscript digits → this IS the RR value
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
+
 //--------------------------
 // 8️⃣ Brisnet speed figures
 //-----------------–--------
@@ -55,8 +58,7 @@ const E1_REGEX  = /^\d{2}$/;      // ex: 76
 const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
 const LP_REGEX  = /^\d{2}$/;      // ex: 86
 
-
-// Regex ends
+// Regex helpers
 function isTimeLine(line) {
   const t = line.trim();
   return (
@@ -131,6 +133,10 @@ export function parsePP(decodedText) {
     let expectClassRatingNext = false;
     let currentPPraceType = "";
     let expectRaceTypeNext = false;
+    let currentPPpace = { e1: null, e2: null, lp: null };
+
+    let totalCalls = 4;
+    let slotIndex = 0;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
@@ -138,7 +144,7 @@ export function parsePP(decodedText) {
       // 1️⃣ DATE = start of new PP block
       if (DATE_REGEX.test(line)) {
 
-        // save previous block
+        // save previous block (if any)
         if (currentPP.length > 0) {
           h.pp.push({
             raw: [...currentPP],
@@ -147,8 +153,9 @@ export function parsePP(decodedText) {
             modifier: currentPPmodifier,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
-            classRating: currentPPclassRating
-
+            raceType: currentPPraceType,
+            classRating: currentPPclassRating,
+            pace: currentPPpace
           });
         }
 
@@ -158,42 +165,34 @@ export function parsePP(decodedText) {
         currentPPsurface = "";
         currentPPmodifier = "";
         currentPPleaderTimes = {
-              leader1:    { raw: null, sup: null },
-              leader2:    { raw: null, sup: null },
-              leader3:    { raw: null, sup: null },
-              leaderFinal:{ raw: null, sup: null }
-};
-            
-        currentPPraceResult = null;
-        currentPPraceType   = "";
-        expectRaceTypeNext  = false;
-        currentPPclassRating = null;
-        expectClassRatingNext = false;
-        currentPPpace = {
-  e1: null,
-  e2: null,
-  lp: null
-};
-        
-    
-      
-      };
-      
-        //end of reset block
+          leader1:    { raw: null, sup: null },
+          leader2:    { raw: null, sup: null },
+          leader3:    { raw: null, sup: null },
+          leaderFinal:{ raw: null, sup: null }
+        };
+
+        currentPPraceResult    = null;
+        currentPPraceType      = "";
+        expectRaceTypeNext     = false;
+        currentPPclassRating   = null;
+        expectClassRatingNext  = false;
+        currentPPpace          = { e1: null, e2: null, lp: null };
+
+        // start this PP block with the date line
         currentPP.push(line);
 
         // distance
         const distMatch = line.match(DISTANCE_REGEX);
         if (distMatch) {
-        currentPPdistance = distMatch[0];   // glyphMap already made it pretty changed one word / normalizeDistance(distMatch[0]);
+          currentPPdistance = distMatch[0];   // glyphMap already pretty-prints it
         }
-        
+
         // surface
         const surfMatch = line.match(SURFACE_REGEX);
         if (surfMatch) {
           currentPPsurface = surfMatch[0].toLowerCase();
 
-          const nextLine = lines[i+1] || "";
+          const nextLine = lines[i + 1] || "";
           if (nextLine.length === 1 &&
               SURFACE_MODIFIERS.includes(nextLine.toLowerCase())) {
             currentPPmodifier = nextLine.toLowerCase();
@@ -201,114 +200,114 @@ export function parsePP(decodedText) {
           }
         }
 
+        totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+        slotIndex = 0;
 
-let totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-let slotIndex = 0;
-        
         continue; // end of DATE block
       }
 
       // -----------------------------
-// 2️⃣ Leader Times (calls)
-// -----------------------------
-const trimmed = line.trim();
+      // 2️⃣ Leader Times (calls)
+      // -----------------------------
+      const trimmed = line.trim();
 
-if (isTimeLine(trimmed)) {
+      if (isTimeLine(trimmed)) {
 
-  // handle short sprints (missing leader1)
-  if (slotIndex === 0 && totalCalls === 3) {
-    slotIndex++; // skip leader1
-  }
+        // handle short sprints (missing leader1)
+        if (slotIndex === 0 && totalCalls === 3) {
+          slotIndex++; // skip leader1
+        }
 
-  let raw = trimmed;
-  let sup = null;
+        let raw = trimmed;
+        let sup = null;
 
-  // look for superscript on next line
-  if (i + 1 < lines.length && isSuperscript(lines[i + 1])) {
-    sup = lines[i + 1].trim();
-    i++; // skip the superscript line
-  }
+        // look for superscript on next line
+        if (i + 1 < lines.length && isSuperscript(lines[i + 1])) {
+          sup = lines[i + 1].trim();
+          i++; // skip the superscript line
+        }
 
-  // store the call in the right slot
-  if (slotIndex === 0) {
-    currentPPleaderTimes.leader1 = { raw, sup };
-  } else if (slotIndex === 1) {
-    currentPPleaderTimes.leader2 = { raw, sup };
-  } else if (slotIndex === 2) {
-    currentPPleaderTimes.leader3 = { raw, sup };
-  } else {
-    currentPPleaderTimes.leaderFinal = { raw, sup };
-  }
+        // store the call in the right slot
+        if (slotIndex === 0) {
+          currentPPleaderTimes.leader1 = { raw, sup };
+        } else if (slotIndex === 1) {
+          currentPPleaderTimes.leader2 = { raw, sup };
+        } else if (slotIndex === 2) {
+          currentPPleaderTimes.leader3 = { raw, sup };
+        } else {
+          currentPPleaderTimes.leaderFinal = { raw, sup };
+        }
 
-  slotIndex++;
-}
-  
-// ----------------------------------------------------
-//  RR — Race Rating (always on its own line AFTER calls)
-//  MUST be 2–3 superscript digits ONLY.
-// ----------------------------------------------------
-if (/^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/.test(trimmed)) {
-
-  // Store RR exactly as printed in the PDF
-  currentPPraceResult = trimmed;
-
-  continue;   // IMPORTANT — stop processing this line
-}
-      
-      // ---------------------------------------------
-// RaceType — the line immediately after RR
-// ---------------------------------------------
-if (expectRaceTypeNext) {
-
-    if (trimmed.length === 0) {
-        // Skip blank lines but stay in RaceType mode
+        slotIndex++;
         continue;
-    }
+      }
 
-    // This line IS the RaceType line
-    currentPPraceType = trimmed;
+      // ----------------------------------------------------
+      //  RR — Race Rating (always on its own line AFTER calls)
+      //  MUST be 2–3 superscript digits ONLY.
+      // ----------------------------------------------------
+      if (RR_SUP_LINE_REGEX.test(trimmed)) {
+        currentPPraceResult = trimmed;
+        expectRaceTypeNext = true;  // next non-blank line is RaceType
+        continue;
+      }
 
-    // After we read RaceType, the NEXT superscript line is Class Rating
-    expectRaceTypeNext = false;
-    expectClassRatingNext = true;
+      // ---------------------------------------------
+      // RaceType — the line immediately after RR
+      // ---------------------------------------------
+      if (expectRaceTypeNext) {
 
-    continue;
-}
-// ----------------------------------------------------
-//  CLASS RATING — superscript digits on the next line
-//  after RaceType. Example: ¹¹⁴
-// ----------------------------------------------------
-if (expectClassRatingNext) {
+        if (trimmed.length === 0) {
+          // Skip blank lines but stay in RaceType mode
+          continue;
+        }
 
-  if (trimmed.length === 0) {
-    // skip blank lines but keep expecting
-    continue;
-  }
+        // This line IS the RaceType line
+        currentPPraceType = trimmed;
 
-  // must be only superscript digits
-  if (/^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/.test(trimmed)) {
-    currentPPclassRating = trimmed;
-  }
+        // After we read RaceType, the NEXT superscript line is Class Rating
+        expectRaceTypeNext = false;
+        expectClassRatingNext = true;
 
-  expectClassRatingNext = false;
-  continue;
-}
+        continue;
+      }
+
+      // ----------------------------------------------------
+      //  CLASS RATING — superscript digits on the next line
+      //  after RaceType. Example: ¹¹⁴
+      // ----------------------------------------------------
+      if (expectClassRatingNext) {
+
+        if (trimmed.length === 0) {
+          // skip blank lines but keep expecting
+          continue;
+        }
+
+        // must be only superscript digits
+        if (RR_SUP_LINE_REGEX.test(trimmed)) {
+          currentPPclassRating = trimmed;
+        }
+
+        expectClassRatingNext = false;
+        continue;
+      }
+
       // 🟦 PACE: E1, E2/, LP  ------------------------
-    if (currentPPpace.e1 === null && E1_REGEX.test(trimmed)) {
-      currentPPpace.e1 = trimmed;
-    continue;
- }
+      if (currentPPpace.e1 === null && E1_REGEX.test(trimmed)) {
+        currentPPpace.e1 = trimmed;
+        continue;
+      }
 
-    if (currentPPpace.e2 === null && E2_REGEX.test(trimmed)) {
-     currentPPpace.e2 = trimmed;
-   continue;
- }
+      if (currentPPpace.e2 === null && E2_REGEX.test(trimmed)) {
+        currentPPpace.e2 = trimmed;
+        continue;
+      }
 
-    if (currentPPpace.lp === null && LP_REGEX.test(trimmed)) {
-     currentPPpace.lp = trimmed;
-continue;
-    }
-      
+      if (currentPPpace.lp === null && LP_REGEX.test(trimmed)) {
+        currentPPpace.lp = trimmed;
+        continue;
+      }
+
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
         currentPP.push(line);
@@ -326,7 +325,7 @@ continue;
         rr: currentPPraceResult,
         raceType: currentPPraceType,
         classRating: currentPPclassRating,
-        
+        pace: currentPPpace
       });
     }
 
