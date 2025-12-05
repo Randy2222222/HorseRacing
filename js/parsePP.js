@@ -236,7 +236,25 @@ if (/^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/.test(trimmed)) {
 
   continue;   // IMPORTANT — stop processing this line
 }
+// ----------------------------------------------------
+//  CLASS RATING — superscript digits on the next line
+//  after RaceType. Example: ¹¹⁴
+// ----------------------------------------------------
+if (expectClassRatingNext) {
 
+  if (trimmed.length === 0) {
+    // skip blank lines but keep expecting
+    continue;
+  }
+
+  // must be only superscript digits
+  if (/^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/.test(trimmed)) {
+    currentPPclassRating = trimmed;
+  }
+
+  expectClassRatingNext = false;
+  continue;
+}
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
         currentPP.push(line);
