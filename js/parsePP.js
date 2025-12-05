@@ -47,6 +47,12 @@ function isShortSprint(distanceStr) {
 const UNICODE_SIX = "\u2076";   // ⁶
 // Line is ONLY 2–3 superscript digits → this IS the RR value
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
+//-----------------------
+//Brisnet speed figures
+//-----------------–-----
+const E1_REGEX  = /^\d{2}$/;      // ex: 76
+const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
+const LP_REGEX  = /^\d{2}$/;      // ex: 86
 
 function isTimeLine(line) {
   const t = line.trim();
