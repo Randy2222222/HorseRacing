@@ -237,6 +237,26 @@ if (/^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/.test(trimmed)) {
 
   continue;   // IMPORTANT — stop processing this line
 }
+      
+      // ---------------------------------------------
+// RaceType — the line immediately after RR
+// ---------------------------------------------
+if (expectRaceTypeNext) {
+
+    if (trimmed.length === 0) {
+        // Skip blank lines but stay in RaceType mode
+        continue;
+    }
+
+    // This line IS the RaceType line
+    currentPPraceType = trimmed;
+
+    // After we read RaceType, the NEXT superscript line is Class Rating
+    expectRaceTypeNext = false;
+    expectClassRatingNext = true;
+
+    continue;
+}
 // ----------------------------------------------------
 //  CLASS RATING — superscript digits on the next line
 //  after RaceType. Example: ¹¹⁴
