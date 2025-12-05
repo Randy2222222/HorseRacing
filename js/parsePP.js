@@ -337,7 +337,8 @@ if (expectClassRatingNext) {
         rr: currentPPraceResult,
         raceType: currentPPraceType,
         classRating: currentPPclassRating,
-        pace: currentPPpace
+        pace: currentPPpace,
+        raceShapes: currentPPraceShapes
       });
     }
 
