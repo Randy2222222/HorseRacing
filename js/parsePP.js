@@ -141,14 +141,16 @@ export function parsePP(decodedText) {
         currentPPdistance = "";
         currentPPsurface = "";
         currentPPmodifier = "";
+       
         currentPPleaderTimes = {
               leader1:    { raw: null, sup: null },
               leader2:    { raw: null, sup: null },
               leader3:    { raw: null, sup: null },
-              leaderFinal:{ raw: null, sup: null },
+              leaderFinal:{ raw: null, sup: null }
+};
           currentPPraceResult = null;
-}
-
+      
+        //end of reset block
         currentPP.push(line);
 
         // distance
