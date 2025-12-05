@@ -1,4 +1,4 @@
-
+.
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
@@ -129,6 +129,8 @@ export function parsePP(decodedText) {
     let currentPPraceResult = null;
     let currentPPclassRating = null;
     let expectClassRatingNext = false;
+    let currentPPraceType = "";
+    let expectRaceTypeNext = false;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
