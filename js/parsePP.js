@@ -285,6 +285,21 @@ if (expectClassRatingNext) {
   expectClassRatingNext = false;
   continue;
 }
+      // 🟦 PACE: E1, E2/, LP  ------------------------
+    if (currentPPpace.e1 === null && E1_REGEX.test(trimmed)) {
+      currentPPpace.e1 = trimmed;
+    continue;
+ }
+
+    if (currentPPpace.e2 === null && E2_REGEX.test(trimmed)) {
+     currentPPpace.e2 = trimmed;
+   continue;
+ }
+
+    if (currentPPpace.lp === null && LP_REGEX.test(trimmed)) {
+     currentPPpace.lp = trimmed;
+   continue;
+ }
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
