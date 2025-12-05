@@ -132,13 +132,6 @@ export function parsePP(decodedText) {
     let currentPPraceResult = null;
     let currentPPclassRating = null;
     let expectClassRatingNext = false;
-    let currentPPraceShapes = {
-    e1: null,
-    e2: null
-};
-    let currentPPlp = null;
-    let currentPPoneC = null;
-    let currentPPtwoC = null;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
