@@ -173,10 +173,12 @@ export function parsePP(decodedText) {
         currentPPclassRating = null;
         expectClassRatingNext = false;
         currentPPpace = {
-        currentPPpace = {
-    e1: null,
-    e2: null,
-    lp: null,
+  e1: null,
+  e2: null,
+  lp: null
+};
+        
+    
       
       };
       
