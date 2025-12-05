@@ -164,18 +164,24 @@ export function parsePP(decodedText) {
               leader3:    { raw: null, sup: null },
               leaderFinal:{ raw: null, sup: null }
 };
-              currentPPraceResult = null;
-              currentPPraceResult = null;
-              currentPPraceType   = "";
-              expectRaceTypeNext  = false;
-
-              currentPPclassRating = null;
-              expectClassRatingNext = false;
-              currentPPpace = {
+            
+        
+        currentPPraceResult = null;
+        currentPPraceResult = null;
+        currentPPraceType   = "";
+        expectRaceTypeNext  = false;
+        currentPPclassRating = null;
+        expectClassRatingNext = false;
+        currentPPpace = {
             e1: null,
             e2: null,
-            lp: null
-          };
+            lp: null,
+            currentPPraceShapes = { oneC: null, twoC: null };
+        expectShape1Next = false;
+        expectShape2Next = false;
+        expectSPDNext = false;
+      
+      };
       
         //end of reset block
         currentPP.push(line);
