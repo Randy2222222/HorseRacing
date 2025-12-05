@@ -185,12 +185,16 @@ export function parsePP(decodedText) {
         currentPPclassRating = null;
         expectClassRatingNext = false;
         currentPPpace = {
-            e1: null,
-            e2: null,
-            lp: null,
-            currentPPraceShapes = { oneC: null, twoC: null };
-        expectShape1Next = false;
-        expectShape2Next = false;
+        currentPPpace = {
+    e1: null,
+    e2: null,
+    lp: null
+};
+
+currentPPraceShapes = {
+    oneC: null,
+    twoC: null
+};
       
       };
       
