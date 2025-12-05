@@ -157,7 +157,6 @@ export function parsePP(decodedText) {
         currentPPdistance = "";
         currentPPsurface = "";
         currentPPmodifier = "";
-       
         currentPPleaderTimes = {
               leader1:    { raw: null, sup: null },
               leader2:    { raw: null, sup: null },
@@ -165,8 +164,6 @@ export function parsePP(decodedText) {
               leaderFinal:{ raw: null, sup: null }
 };
             
-        
-        currentPPraceResult = null;
         currentPPraceResult = null;
         currentPPraceType   = "";
         expectRaceTypeNext  = false;
