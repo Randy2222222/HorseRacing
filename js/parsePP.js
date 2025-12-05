@@ -215,14 +215,15 @@ if (isTimeLine(trimmed)) {
   slotIndex++;
 }
   
-  // RR — 2 or 3 superscript digits alone on a line
+// RR — superscript digits, 2 or 3 long
 if (RR_SUP_LINE_REGEX.test(trimmed)) {
 
-  let rr = trimmed;  // "¹¹" or "¹¹⁴"
+  // Keep only superscript digits ⁰–⁹
+  let rr = trimmed.replace(/[^\u2070-\u2079]/g, "");
 
-  // If only two superscript digits → append superscript 6
-  if (rr.length === 2) {
-    rr = rr + UNICODE_SIX;   // becomes "¹¹⁶"
+  // If missing the 3rd digit → ALWAYS append superscript 6
+  if (rr.length < 3) {
+    rr = rr + UNICODE_SIX;   // "¹¹" → "¹¹⁶"
   }
 
   currentPPraceResult = rr;
