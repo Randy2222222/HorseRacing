@@ -153,7 +153,13 @@ export function parsePP(decodedText) {
               leader3:    { raw: null, sup: null },
               leaderFinal:{ raw: null, sup: null }
 };
-          currentPPraceResult = null;
+              currentPPraceResult = null;
+              currentPPraceResult = null;
+              currentPPraceType   = "";
+              expectRaceTypeNext  = false;
+
+              currentPPclassRating = null;
+              expectClassRatingNext = false;
       
         //end of reset block
         currentPP.push(line);
