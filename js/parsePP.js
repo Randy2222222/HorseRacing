@@ -45,7 +45,8 @@ function isShortSprint(distanceStr) {
 // 7️⃣ RR Regex
 //-------------------------
 const UNICODE_SIX = "\u2076";   // ⁶
-const RR_REGEX = /^RR[:\s]*(\d{2,3})$/;
+// Line is ONLY 2–3 superscript digits → this IS the RR value
+const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 function isTimeLine(line) {
   const t = line.trim();
