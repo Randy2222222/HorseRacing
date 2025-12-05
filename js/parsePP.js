@@ -215,19 +215,16 @@ if (isTimeLine(trimmed)) {
   slotIndex++;
 }
   
-// RR — superscript digits, 2 or 3 long
-if (RR_SUP_LINE_REGEX.test(trimmed)) {
+// ----------------------------------------------------
+//  RR — Race Rating (always on its own line AFTER calls)
+//  MUST be 2–3 superscript digits ONLY.
+// ----------------------------------------------------
+if (/^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/.test(trimmed)) {
 
-  // Keep only superscript digits ⁰–⁹
-  let rr = trimmed.replace(/[^\u2070-\u2079]/g, "");
+  // Store RR exactly as printed in the PDF
+  currentPPraceResult = trimmed;
 
-  // If missing the 3rd digit → ALWAYS append superscript 6
-  if (rr.length < 3) {
-    rr = rr + UNICODE_SIX;   // "¹¹" → "¹¹⁶"
-  }
-
-  currentPPraceResult = rr;
-  continue;
+  continue;   // IMPORTANT — stop processing this line
 }
 
       // 3️⃣ normal lines inside PP block
