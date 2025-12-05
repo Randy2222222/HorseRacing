@@ -239,7 +239,8 @@ if (rrMatch) {
         distance: currentPPdistance,
         surface: currentPPsurface,
         modifier: currentPPmodifier,
-        leaderTimes: currentPPleaderTimes
+        leaderTimes: currentPPleaderTimes,
+        rr: currentPPraceResult
       });
     }
 
