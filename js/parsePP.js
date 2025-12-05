@@ -210,6 +210,19 @@ if (isTimeLine(trimmed)) {
   }
 
   slotIndex++;
+
+  // RR
+  const rrMatch = line.match(RR_REGEX);
+if (rrMatch) {
+  let rr = rrMatch[1];   // "11", "112", etc.
+
+  // SIMPLE RULE: If only 2 digits → append Unicode 6
+  if (rr.length === 2) {
+    rr = rr + UNICODE_SIX;   // "11" → "11⁶"
+  }
+
+  currentPPraceResult = rr;
+
   continue; // <- MUST BE HERE
 }
 
