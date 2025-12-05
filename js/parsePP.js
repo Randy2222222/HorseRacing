@@ -251,7 +251,9 @@ if (/^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/.test(trimmed)) {
         surface: currentPPsurface,
         modifier: currentPPmodifier,
         leaderTimes: currentPPleaderTimes,
-        rr: currentPPraceResult
+        rr: currentPPraceResult,
+        raceType: currentPPraceType,
+        classRating: currentPPclassRating
       });
     }
 
