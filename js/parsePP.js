@@ -255,6 +255,7 @@ if (expectClassRatingNext) {
   expectClassRatingNext = false;
   continue;
 }
+      
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
         currentPP.push(line);
