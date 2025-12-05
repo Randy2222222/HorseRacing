@@ -212,7 +212,7 @@ if (isTimeLine(trimmed)) {
   }
 
   slotIndex++;
-
+}
   // RR
   const rrMatch = line.match(RR_REGEX);
 if (rrMatch) {
