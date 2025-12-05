@@ -312,6 +312,13 @@ if (expectClassRatingNext) {
      currentPPpace.lp = trimmed;
    continue;
  }
+    // 1c Race Shape
+    if (expectShape1Next && RACE_SHAPE_REGEX.test(trimmed)) {
+      currentPPraceShapes.oneC = trimmed;
+      expectShape1Next = false;
+      expectShape2Next = true;   // 2c comes next
+  continue;
+}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
