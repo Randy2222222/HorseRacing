@@ -317,7 +317,8 @@ if (expectClassRatingNext) {
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
-        classRating: currentPPclassRating
+        classRating: currentPPclassRating,
+        pace: currentPPpace
       });
     }
 
