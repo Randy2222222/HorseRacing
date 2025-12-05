@@ -137,7 +137,8 @@ export function parsePP(decodedText) {
             surface: currentPPsurface,
             modifier: currentPPmodifier,
             leaderTimes: currentPPleaderTimes,
-            rr: currentPPraceResult
+            rr: currentPPraceResult,
+            classRating: currentPPclassRating
           });
         }
 
