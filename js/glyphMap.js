@@ -52,7 +52,7 @@ export const GLYPHS = {
   "a\u0332": "³",
   // Fractions
   "ˆ": "¹⁄₁₆",
-
+   //    "⅛",
   // Fractions for horse lengths (display)
   "‚": "¼",
   "\u0081": "½",
