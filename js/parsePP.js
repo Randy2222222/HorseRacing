@@ -214,19 +214,19 @@ if (isTimeLine(trimmed)) {
 
   slotIndex++;
 }
-  // RR
-  const rrMatch = line.match(RR_REGEX);
-if (rrMatch) {
-  let rr = rrMatch[1];   // "11", "112", etc.
+  
+  // RR — 2 or 3 superscript digits alone on a line
+if (RR_SUP_LINE_REGEX.test(trimmed)) {
 
-  // SIMPLE RULE: If only 2 digits → append Unicode 6
+  let rr = trimmed;  // "¹¹" or "¹¹⁴"
+
+  // If only two superscript digits → append superscript 6
   if (rr.length === 2) {
-    rr = rr + UNICODE_SIX;   // "11" → "11⁶"
+    rr = rr + UNICODE_SIX;   // becomes "¹¹⁶"
   }
 
   currentPPraceResult = rr;
-
-  continue; // <- MUST BE HERE
+  continue;
 }
 
       // 3️⃣ normal lines inside PP block
