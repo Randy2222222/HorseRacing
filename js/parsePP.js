@@ -116,6 +116,7 @@ export function parsePP(decodedText) {
     let currentPPsurface = "";
     let currentPPmodifier = "";
     let currentPPleaderTimes = null;
+    let currentPPraceResult = null;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
