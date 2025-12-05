@@ -53,7 +53,13 @@ const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 const E1_REGEX  = /^\d{2}$/;      // ex: 76
 const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
 const LP_REGEX  = /^\d{2}$/;      // ex: 86
+//---------------------
+// 9️⃣ Race Shapes
+//---------------------
+// 1c and 2c — one digit, may have + or -
+const RACE_SHAPE_REGEX = /^[+\-]?\d$/;
 
+// Regex ends
 function isTimeLine(line) {
   const t = line.trim();
   return (
