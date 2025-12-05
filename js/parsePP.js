@@ -159,6 +159,11 @@ export function parsePP(decodedText) {
 
               currentPPclassRating = null;
               expectClassRatingNext = false;
+              currentPPpace = {
+            e1: null,
+            e2: null,
+            lp: null
+          };
       
         //end of reset block
         currentPP.push(line);
