@@ -323,12 +323,24 @@ if (expectClassRatingNext) {
      currentPPpace.lp = trimmed;
    continue;
  }
-    // 1c Race Shape
-    if (expectShape1Next && RACE_SHAPE_REGEX.test(trimmed)) {
-      currentPPraceShapes.oneC = trimmed;
-      expectShape1Next = false;
-      expectShape2Next = true;   // 2c comes next
-  continue;
+    // -------------------------
+// 1c and 2c Race Shapes
+// -------------------------
+
+// The moment LP is captured → the NEXT line is 1c
+if (currentPPpace.lp !== null && currentPPraceShapes.oneC === null) {
+    if (RACE_SHAPE_REGEX.test(trimmed)) {
+        currentPPraceShapes.oneC = trimmed;
+        continue;
+    }
+}
+
+       // After we have 1c → the NEXT line is 2c
+       if (currentPPraceShapes.oneC !== null && currentPPraceShapes.twoC === null) {
+       if (RACE_SHAPE_REGEX.test(trimmed)) {
+        currentPPraceShapes.twoC = trimmed;
+        continue;
+    }
 }
       
       // 3️⃣ normal lines inside PP block
