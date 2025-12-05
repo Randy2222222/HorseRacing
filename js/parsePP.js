@@ -120,6 +120,8 @@ export function parsePP(decodedText) {
     let currentPPraceResult = null;
     let currentPPclassRating = null;
     let expectClassRatingNext = false;
+    let currentPPclassRating = null;
+    let expectClassRatingNext = false;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
