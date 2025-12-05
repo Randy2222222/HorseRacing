@@ -184,7 +184,6 @@ export function parsePP(decodedText) {
             currentPPraceShapes = { oneC: null, twoC: null };
         expectShape1Next = false;
         expectShape2Next = false;
-        expectSPDNext = false;
       
       };
       
