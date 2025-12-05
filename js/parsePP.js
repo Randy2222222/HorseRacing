@@ -144,7 +144,8 @@ export function parsePP(decodedText) {
               leader1:    { raw: null, sup: null },
               leader2:    { raw: null, sup: null },
               leader3:    { raw: null, sup: null },
-              leaderFinal:{ raw: null, sup: null }
+              leaderFinal:{ raw: null, sup: null },
+          currentPPraceResult = null;
 }
 
         currentPP.push(line);
