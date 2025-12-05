@@ -53,11 +53,7 @@ const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 const E1_REGEX  = /^\d{2}$/;      // ex: 76
 const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
 const LP_REGEX  = /^\d{2}$/;      // ex: 86
-//---------------------
-// 9️⃣ Race Shapes
-//---------------------
-// 1c and 2c — one digit, may have + or -
-const RACE_SHAPE_REGEX = /^[+\-]?\d$/;
+
 
 // Regex ends
 function isTimeLine(line) {
@@ -148,16 +144,8 @@ export function parsePP(decodedText) {
             modifier: currentPPmodifier,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
-            classRating: currentPPclassRating,
-          pace: {
-    e1: currentPPpace.e1,
-    e2: currentPPpace.e2,
-    lp: currentPPpace.lp
-},
-raceShapes: {
-    oneC: currentPPraceShapes.oneC,
-    twoC: currentPPraceShapes.twoC
-}
+            classRating: currentPPclassRating
+
           });
         }
 
@@ -322,27 +310,8 @@ if (expectClassRatingNext) {
 
     if (currentPPpace.lp === null && LP_REGEX.test(trimmed)) {
      currentPPpace.lp = trimmed;
-   continue;
- }
-    // -------------------------
-// 1c and 2c Race Shapes
-// -------------------------
-
-// The moment LP is captured → the NEXT line is 1c
-if (currentPPpace.lp !== null && currentPPraceShapes.oneC === null) {
-    if (RACE_SHAPE_REGEX.test(trimmed)) {
-        currentPPraceShapes.oneC = trimmed;
-        continue;
+continue;
     }
-}
-
-       // After we have 1c → the NEXT line is 2c
-       if (currentPPraceShapes.oneC !== null && currentPPraceShapes.twoC === null) {
-       if (RACE_SHAPE_REGEX.test(trimmed)) {
-        currentPPraceShapes.twoC = trimmed;
-        continue;
-    }
-}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -361,8 +330,7 @@ if (currentPPpace.lp !== null && currentPPraceShapes.oneC === null) {
         rr: currentPPraceResult,
         raceType: currentPPraceType,
         classRating: currentPPclassRating,
-        pace: currentPPpace,
-        raceShapes: currentPPraceShapes
+        
       });
     }
 
