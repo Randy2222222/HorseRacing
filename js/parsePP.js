@@ -149,11 +149,15 @@ export function parsePP(decodedText) {
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             classRating: currentPPclassRating,
-            e1: currentPPraceShapes.e1,
-            e2: currentPPraceShapes.e2,
-            lp: currentPPlp,
-            oneC: currentPPraceShapes.oneC,
-            twoC: currentPPraceShapes.twoC
+          pace: {
+    e1: currentPPpace.e1,
+    e2: currentPPpace.e2,
+    lp: currentPPpace.lp
+},
+raceShapes: {
+    oneC: currentPPraceShapes.oneC,
+    twoC: currentPPraceShapes.twoC
+}
           });
         }
 
