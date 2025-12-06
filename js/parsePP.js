@@ -187,6 +187,7 @@ export function parsePP(decodedText) {
         currentPPpace          = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
         currentPPtwoC = null;
+        currentPPspd = null;
         
         // start this PP block with the date line
         currentPP.push(line);
