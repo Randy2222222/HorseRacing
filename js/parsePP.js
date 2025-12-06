@@ -332,6 +332,11 @@ export function parsePP(decodedText) {
       }
       // If both set, fall through and treat any later numbers as normal
     }
+      // SPD — Bris Speed Rating (2 or 3 digit number)
+if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
+  currentPPspd = trimmed;
+  continue;
+}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
