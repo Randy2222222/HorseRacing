@@ -71,7 +71,7 @@ export const GLYPHS = {
   // Track surface: Turf symbol (circle T)
   "à": "Ⓣ",
   //   "Ⓐ",
-  //   "Ⓧ",
+  “š”: "ⓧ",
   //   "⦿",
   //   "🅃",
 
