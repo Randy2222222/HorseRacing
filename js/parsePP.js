@@ -136,6 +136,7 @@ export function parsePP(decodedText) {
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
     let currentPPtwoC = null;   // race shape 2c
+    let currentPPspd = null;   // 🆕 Brisnet Speed Rating (SPD)
     
     let totalCalls = 4;
     let slotIndex = 0;
