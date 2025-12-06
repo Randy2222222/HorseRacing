@@ -57,6 +57,10 @@ const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 const E1_REGEX  = /^\d{2}$/;      // ex: 76
 const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
 const LP_REGEX  = /^\d{2}$/;      // ex: 86
+//--------–-----------------------------------
+// 9️⃣ Race Shapes (1c and 2c): +3, -1, 4, etc.
+//----–---------------------------------------
+const SHAPE_REGEX = /^[+\-]?\d{1,3}$/;
 
 // Regex helpers
 function isTimeLine(line) {
@@ -313,12 +317,10 @@ export function parsePP(decodedText) {
         currentPPpace.lp = trimmed;
         continue;
       }
-    // 🟥 Race Shapes: 1c and 2c (after LP)
-    // Format: optional +/- + 1–3 digits, e.g. "+22", "-3", "8"
-    const shapePattern = /^[+\-]?\d{1,3}$/;
-
+  
+      // 🟥 Race Shapes: 1c and 2c (after LP) 
     // Only start looking for shapes AFTER we have LP
-    if (currentPPpace.lp !== null && shapePattern.test(trimmed)) {
+    if (currentPPpace.lp !== null && SHAPE_REGEX.test(trimmed)) {
 
       // First such line after LP = 1c
       if (currentPPoneC === null) {
