@@ -75,6 +75,7 @@ export const GLYPHS = {
   "š": "ⓧ",
   //   "⦿",
   //   "🅃",
+  //“æ”  
 
   // Age restrictions
   "¦": "3↑",
