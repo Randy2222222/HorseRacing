@@ -34,33 +34,29 @@ const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
 // 5️⃣ Surface regex
 const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");
 
-// ------------------------
 //  6️⃣ Leader-time helper functions
-// ------------------------
 function isShortSprint(distanceStr) {
   const d = distanceStr.toLowerCase();
   return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
 }
 
-//-------------------------
 // 7️⃣ RR Regex
-//-------------------------
 // (we’re not using UNICODE_SIX here yet, but keeping it in case you
 // later want to auto-append a missing ⁶)
 const UNICODE_SIX = "\u2076";   // ⁶
 // Line is ONLY 2–3 superscript digits → this IS the RR value
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
-//--------------------------
 // 8️⃣ Brisnet speed figures
-//-----------------–--------
 const E1_REGEX  = /^\d{2}$/;      // ex: 76
 const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
 const LP_REGEX  = /^\d{2}$/;      // ex: 86
-//--------–-----------------------------------
+
 // 9️⃣ Race Shapes (1c and 2c): +3, -1, 4, etc.
-//----–---------------------------------------
 const SHAPE_REGEX = /^[+\-]?\d{1,3}$/;
+
+// 🔟 SPD Speed Rating
+const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 
 // Regex helpers
 function isTimeLine(line) {
