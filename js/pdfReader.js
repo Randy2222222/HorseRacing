@@ -1,12 +1,10 @@
+
 // pdfReader.js
 // Clean, simple PDF loader with DEV MODE output
-// Import ParsePP
-import { parsePP } from "./parsePP.js";
 
-// Import GlyphMap
 import { applyGlyphMap } from "./glyphMap.js";
 
-const DEV_MODE = "structured";  // turn off later when finished
+const DEV_MODE = "raw";  // turn off later when finished
 
 function updateStatus(msg) {
   document.getElementById("pdfStatus").textContent = msg;
@@ -53,29 +51,13 @@ export async function readPDFAndDecode(file) {
   }
 
   // Decode Brisnet symbols
-const decodedText = applyGlyphMap(cleanText);
+  const decodedText = applyGlyphMap(cleanText);
 
-// DEV MODE: show decoded panel
-if (DEV_MODE === "decoded") {
-  const decodedOut = document.getElementById("devDecodedOutput");
-  if (decodedOut) decodedOut.textContent = decodedText;
-}
-
-// ===============================
-// 🔥 STRUCTURED PARSE OUTPUT — TEST
-// ===============================
-if (DEV_MODE === "structured") {
-  const structuredOut = document.getElementById("devStructuredOutput");
-  if (structuredOut) structuredOut.textContent = "A";
-
-  let parsed;
-  try {
-    parsed = parsePP(decodedText);
-  } catch (err) {
-    structuredOut.textContent = "PARSEPP ERROR → " + err.message;
-    return decodedText;
+  // DEV MODE: show decoded text panel
+  if (DEV_MODE === "decoded") {
+    const decodedOut = document.getElementById("devDecodedOutput");
+    if (decodedOut) decodedOut.textContent = decodedText;
   }
 
-  structuredOut.textContent = "B";
-  return decodedText;
+  return decodedText;   // parser will use this next
 }
