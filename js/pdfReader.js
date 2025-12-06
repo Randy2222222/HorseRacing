@@ -1,6 +1,9 @@
 // pdfReader.js
 // Clean, simple PDF loader with DEV MODE output
+// Import ParsePP
+import { parsePP } from "./parsePP.js";
 
+// Import GlyphMap
 import { applyGlyphMap } from "./glyphMap.js";
 
 const DEV_MODE = "clean";  // turn off later when finished
