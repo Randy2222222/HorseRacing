@@ -61,5 +61,15 @@ export async function readPDFAndDecode(file) {
     if (decodedOut) decodedOut.textContent = decodedText;
   }
 
+ // ⭐⭐⭐ PARSE STRUCTURED DATA ⭐⭐⭐
+  const parsed = parsePP(decodedText);
+
+// DEV MODE: structured output
+if (DEV_MODE === "structured") {
+  const structOut = document.getElementById("devStructuredOutput");
+  if (structOut) structOut.textContent = JSON.stringify(parsed, null, 2);
+}
+
+
   return decodedText;   // parser will use this next
 }
