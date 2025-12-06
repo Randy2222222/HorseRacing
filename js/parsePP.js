@@ -313,7 +313,27 @@ export function parsePP(decodedText) {
         currentPPpace.lp = trimmed;
         continue;
       }
+    // 🟥 Race Shapes: 1c and 2c (after LP)
+    // Format: optional +/- + 1–3 digits, e.g. "+22", "-3", "8"
+    const shapePattern = /^[+\-]?\d{1,3}$/;
 
+    // Only start looking for shapes AFTER we have LP
+    if (currentPPpace.lp !== null && shapePattern.test(trimmed)) {
+
+      // First such line after LP = 1c
+      if (currentPPoneC === null) {
+        currentPPoneC = trimmed;
+        continue;
+      }
+
+      // Second such line after LP = 2c
+      if (currentPPtwoC === null) {
+        currentPPtwoC = trimmed;
+        continue;
+      }
+      // If both set, fall through and treat any later numbers as normal
+    }
+      
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
         currentPP.push(line);
