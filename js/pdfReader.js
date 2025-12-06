@@ -53,23 +53,51 @@ export async function readPDFAndDecode(file) {
   }
 
   // Decode Brisnet symbols
-  const decodedText = applyGlyphMap(cleanText);
+const decodedText = applyGlyphMap(cleanText);
 
-  // DEV MODE: show decoded text panel
-  if (DEV_MODE === "decoded") {
-    const decodedOut = document.getElementById("devDecodedOutput");
-    if (decodedOut) decodedOut.textContent = decodedText;
-  }
+// DEV MODE: show decoded panel
+if (DEV_MODE === "decoded") {
+  const decodedOut = document.getElementById("devDecodedOutput");
+  if (decodedOut) decodedOut.textContent = decodedText;
+}
 
- // ⭐⭐⭐ PARSE STRUCTURED DATA ⭐⭐⭐
+// ===============================
+// 🔥 STRUCTURED PARSE OUTPUT
+// ===============================
+if (DEV_MODE === "structured") {
   const parsed = parsePP(decodedText);
 
-// DEV MODE: structured output
-if (DEV_MODE === "structured") {
-  const structOut = document.getElementById("devStructuredOutput");
-  if (structOut) structOut.textContent = JSON.stringify(parsed, null, 2);
+  let out = "=========== PARSED STRUCTURE ===========\n\n";
+
+  for (const h of parsed.horses) {
+    out += `HORSE ${h.post} — ${h.name}\n`;
+
+    h.pp.forEach((pp, idx) => {
+      out += `  PP #${idx + 1}\n`;
+      out += `    Distance: ${pp.distance}\n`;
+      out += `    Surface: ${pp.surface} (${pp.modifier || ""})\n`;
+      out += `    Leader Times:\n`;
+      out += `        1c: ${pp.leaderTimes.leader1.raw || ""} ${pp.leaderTimes.leader1.sup || ""}\n`;
+      out += `        2c: ${pp.leaderTimes.leader2.raw || ""} ${pp.leaderTimes.leader2.sup || ""}\n`;
+      out += `        3c: ${pp.leaderTimes.leader3.raw || ""} ${pp.leaderTimes.leader3.sup || ""}\n`;
+      out += `     Final: ${pp.leaderTimes.leaderFinal.raw || ""} ${pp.leaderTimes.leaderFinal.sup || ""}\n`;
+      out += `    RR: ${pp.rr}\n`;
+      out += `    Race Type: ${pp.raceType}\n`;
+      out += `    Class Rating: ${pp.classRating}\n`;
+      out += `    Pace:\n`;
+      out += `        E1: ${pp.pace.e1}\n`;
+      out += `        E2: ${pp.pace.e2}\n`;
+      out += `        LP: ${pp.pace.lp}\n`;
+      out += `    1c Shape: ${pp.oneC}\n`;
+      out += `    2c Shape: ${pp.twoC}\n\n`;
+    });
+
+    out += "========================================\n\n";
+  }
+
+  const structuredOut = document.getElementById("devStructuredOutput");
+  if (structuredOut) structuredOut.textContent = out;
 }
 
-
-  return decodedText;   // parser will use this next
-}
+// Return decoded for normal pipeline
+return decodedText;
