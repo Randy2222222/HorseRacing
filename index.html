@@ -59,7 +59,7 @@
     
   <div style="border:1px solid #666; padding:10px; margin:10px;">
     <strong>PARSED STRUCTURE (DEV MODE)</strong>
-    <pre id="devStructOutput"></pre>
+    <pre id="devStructuredOutput"></pre>
   </div>
     
 
@@ -91,7 +91,7 @@ document.getElementById("pdfFile").addEventListener("change", async () => {
   const structure = parsePP(decoded);
 
   // Show structure in dev panel
-  const out = document.getElementById("devStructOutput");
+  const out = document.getElementById("devStructuredOuput");
   if (out) out.textContent = JSON.stringify(structure, null, 2);
 });
 </script>
