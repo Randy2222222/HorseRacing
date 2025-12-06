@@ -66,12 +66,16 @@ if (DEV_MODE === "decoded") {
 // ===============================
 if (DEV_MODE === "structured") {
   const structuredOut = document.getElementById("devStructuredOutput");
-  if (structuredOut) {
-    structuredOut.textContent = "STRUCTURED BRANCH REACHED ✅";
-  }
-  return decodedText;
-}
+  if (structuredOut) structuredOut.textContent = "A";
 
-// Return decoded for normal pipeline
-return decodedText;
+  let parsed;
+  try {
+    parsed = parsePP(decodedText);
+  } catch (err) {
+    structuredOut.textContent = "PARSEPP ERROR → " + err.message;
+    return decodedText;
+  }
+
+  structuredOut.textContent = "B";
+  return decodedText;
 }
