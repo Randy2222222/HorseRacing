@@ -157,7 +157,9 @@ export function parsePP(decodedText) {
             rr: currentPPraceResult,
             raceType: currentPPraceType,
             classRating: currentPPclassRating,
-            pace: currentPPpace
+            pace: currentPPpace,
+            oneC: currentPPoneC,
+            twoC: currentPPtwoC
           });
         }
 
