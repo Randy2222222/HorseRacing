@@ -117,7 +117,7 @@ export function parsePP(decodedText) {
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
 
-  // Parse PP for each horse
+  // 🏇 Parse PP for each Horse
   for (const h of horses) {
     const lines = h.block.split("\n").map(l => l.trim());
 
