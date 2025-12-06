@@ -51,8 +51,9 @@ export const GLYPHS = {
 // Tiny-3 weird split forms (underline + a combos)
   "a\u0332": "³",
   // Fractions
-  "ˆ": "¹⁄₁₆",
-   //    "⅛",
+  "ˆ": "¹⁄₁₆", 
+  "„": "⅛”,
+  
   
   "‚": "¼",
   //     "⅜",
@@ -71,7 +72,7 @@ export const GLYPHS = {
   // Track surface: Turf symbol (circle T)
   "à": "Ⓣ",
   //   "Ⓐ",
-  “š”: "ⓧ",
+  "š": "ⓧ",
   //   "⦿",
   //   "🅃",
 
