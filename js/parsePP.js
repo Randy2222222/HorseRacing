@@ -134,7 +134,9 @@ export function parsePP(decodedText) {
     let currentPPraceType = "";
     let expectRaceTypeNext = false;
     let currentPPpace = { e1: null, e2: null, lp: null };
-
+    let currentPPoneC = null;   // race shape 1c
+    let currentPPtwoC = null;   // race shape 2c
+    
     let totalCalls = 4;
     let slotIndex = 0;
 
