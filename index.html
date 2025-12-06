@@ -91,7 +91,7 @@ document.getElementById("pdfFile").addEventListener("change", async () => {
   const structured = parsePP(decoded);
 
   // Show structure in dev panel
-  const out = document.getElementById("devStructuredOuput");
+  const out = document.getElementById("devStructuredOutput");
   if (out) out.textContent = JSON.stringify(structured, null, 2);
 });
 </script>
