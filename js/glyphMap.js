@@ -50,7 +50,7 @@ export const GLYPHS = {
   "°": "⁹",
 // Tiny-3 weird split forms (underline + a combos)
   "a\u0332": "³",
-  // Fractions
+  // Distance Fractions
   "ˆ": "¹⁄₁₆", 
   "„": "⅛”,
   "‰": "³⁄₁₆",
