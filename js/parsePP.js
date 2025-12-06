@@ -147,7 +147,7 @@ export function parsePP(decodedText) {
       // 1️⃣ DATE = start of new PP block
       if (DATE_REGEX.test(line)) {
 
-        // save previous block (if any)
+        // 🔒 Save previous block (if any)
         if (currentPP.length > 0) {
           h.pp.push({
             raw: [...currentPP],
@@ -165,7 +165,7 @@ export function parsePP(decodedText) {
           });
         }
 
-        // reset everything
+        // 🎬 Reset everything
         currentPP = [];
         currentPPdistance = "";
         currentPPsurface = "";
@@ -346,7 +346,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       }
     }
 
-    // final PP block
+    // 🏁 Final PP block
     if (currentPP.length > 0) {
       h.pp.push({
         raw: [...currentPP],
