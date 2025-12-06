@@ -356,7 +356,8 @@ export function parsePP(decodedText) {
         classRating: currentPPclassRating,
         pace: currentPPpace,
         oneC: currentPPoneC,
-        twoC: currentPPtwoC
+        twoC: currentPPtwoC,
+        spd: currentPPspd
       });
     }
 
