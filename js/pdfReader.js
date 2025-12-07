@@ -35,20 +35,20 @@ export async function readPDFAndDecode(file) {
   }
 
   // Remove stray UTF-8 junk (Â)
-  let cleanText = rawText.replace(/Â/g, "");
+  //let cleanText = rawText.replace(/Â/g, "");
    // ⭐⭐ INSERT THIS BLOCK RIGHT HERE ⭐⭐
   // Decode ns / hd / nk BEFORE glyphMap introduces fractions
-  cleanText = cleanText
-    .replace(/¹/g, "ⁿˢ")
-    .replace(/²/g, "ʰᵈ")
-    .replace(/³/g, "ⁿᵏ");
+  //cleanText = cleanText
+   // .replace(/¹/g, "ⁿˢ")
+    //.replace(/²/g, "ʰᵈ")
+    //.replace(/³/g, "ⁿᵏ");
   // ⭐⭐ END INSERT ⭐⭐
 
   // DEV MODE: show cleaned text
-  if (DEV_MODE === "clean") {
-    const cleanOut = document.getElementById("devCleanOutput");
-    if (cleanOut) cleanOut.textContent = cleanText;
-  }
+ // if (DEV_MODE === "clean") {
+   // const cleanOut = document.getElementById("devCleanOutput");
+   // if (cleanOut) cleanOut.textContent = cleanText;
+ // }
 
   // Decode Brisnet symbols
   const decodedText = applyGlyphMap(cleanText);
