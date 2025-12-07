@@ -200,10 +200,26 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-        // distance
-        const distMatch = line.match(DISTANCE_REGEX);
-        if (distMatch) {
-          currentPPdistance = distMatch[0];   // glyphMap already pretty-prints it
+        
+        const surfLine = lines[i + 1] || "";
+const distLine = lines[i + 2] || "";
+const condLine = lines[i + 3] || "";
+
+// Surface (Turf symbol = Ⓣ OR any single-character symbol)
+// Dirt has NO symbol
+if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
+    // one-character symbol means surface
+    currentPPsurface = surfLine;
+    i++; // consumed surface line
+} else {
+    currentPPsurface = ""; // dirt
+}
+
+// Distance
+const dmatch = distLine.match(DISTANCE_REGEX);
+if (dmatch) {
+    currentPPdistance = dmatch[0];
+    i++; // consumed distance
         }
 
         // surface
