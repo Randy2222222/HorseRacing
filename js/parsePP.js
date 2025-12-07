@@ -51,13 +51,13 @@ const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 // 8️⃣ Brisnet speed figures
 const E1_REGEX  = /^\d{2}$/;      // ex: 76
 const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
-const E1_REGEX  = /^\d{2}$/;      // ex: 86  🔥was LP
+const LP_REGEX  = /^\d{2}$/;      // ex: 86  🔥was LP
 
 // 9️⃣ Race Shapes (1c and 2c): +3, -1, 4, etc.
 const SHAPE_REGEX = /^[+\-]?\d{1,3}$/;
 
 // 🔟 SPD Speed Rating
-const SPD_REGEX = /^\d{2}$/;            //   /^\d{2,3}$/;   // matches 84 or 104
+const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 
 // Regex helpers
 function isTimeLine(line) {
