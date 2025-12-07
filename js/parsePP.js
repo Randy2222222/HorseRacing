@@ -113,6 +113,15 @@ export function parsePP(decodedText) {
     unknown: []
   };
 
+  // No horse anchor. Treat all text as 1 horse block for PP parsing.🔥
+const horses = [{
+  post: "?",
+  name: "UNKNOWN",
+  style: "",
+  block: decodedText
+}];
+
+structure.horses = horses;
  // const horses = splitHorses(decodedText);
  // structure.horses = horses;
 
