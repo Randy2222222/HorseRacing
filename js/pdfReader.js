@@ -1,7 +1,7 @@
 
 // pdfReader.js
 // Clean, simple PDF loader with DEV MODE output
-//import { parsePP } from "./parsePP.js";
+import { parsePP } from "./parsePP.js";
 import { applyGlyphMap } from "./glyphMap.js";
 
 const DEV_MODE = "decoded";  // turn off later when finished
@@ -54,10 +54,10 @@ export async function readPDFAndDecode(file) {
   const decodedText = applyGlyphMap(cleanText);
 
   // DEV MODE: show decoded text panel
-  //if (DEV_MODE === "decoded") {
-    //const decodedOut = document.getElementById("devDecodedOutput");
-  //  if (decodedOut) decodedOut.textContent = decodedText;
-//  }
+  if (DEV_MODE === "decoded") {
+    const decodedOut = document.getElementById("devDecodedOutput");
+   if (decodedOut) decodedOut.textContent = decodedText;
+ }
 
  // return decodedText;   // parser will use this next
 //}
@@ -98,5 +98,7 @@ if (DEV_MODE === "structured") {
   const structuredOut = document.getElementById("devStructuredOutput");
   if (structuredOut) structuredOut.textContent = out;
 
+  return decodedText;
+}
   return decodedText;
 }
