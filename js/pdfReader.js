@@ -73,7 +73,7 @@ if (DEV_MODE === "structured") {
     out += `HORSE ${h.post} — ${h.name}\n`;
 
     h.pp.forEach((pp, idx) => {
-      out += `  DATE_REGEX.test(line)\n`;
+      out += `  DATE:/^\d{2}[A-Za-z]{3}\d{2}/;
       out += `  PP #${idx + 1}\n`;
       out += `    Distance: ${pp.distance}\n`;
       out += `    Surface: ${pp.surface} (${pp.modifier || ""})\n`;
