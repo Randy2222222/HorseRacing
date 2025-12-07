@@ -173,6 +173,10 @@ export function parsePP(decodedText) {
 
         // 🎬 Reset everything
         currentPP = [];
+        // ▶️ NEW: extract components from header line
+  currentPPdate  = line.slice(0, 7);      // 12Oct25
+  currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
+  currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
         currentPPdistance = "";
         currentPPsurface = "";
         currentPPmodifier = "";
