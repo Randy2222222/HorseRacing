@@ -113,8 +113,8 @@ export function parsePP(decodedText) {
     unknown: []
   };
 
-  const horses = splitHorses(decodedText);
-  structure.horses = horses;
+ // const horses = splitHorses(decodedText);
+ // structure.horses = horses;
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
 
