@@ -70,26 +70,34 @@ if (DEV_MODE === "structured") {
   let out = "=========== PARSED STRUCTURE ===========\n\n";
 
   for (const h of parsed.horses) {
-    out += `HORSE ${h.post} — ${h.name}\n`;
+    out += `HORSE ${h.post || "?"} — ${h.name || "UNKNOWN"}\n`;
 
     h.pp.forEach((pp, idx) => {
-      out += `  DATE_REGEX: /^\d{2}[A-Za-z]{3}\d{2}/`;
+      out += `  PP #${idx + 1}\n`;
+      out += `    Date: ${pp.date}\n`;
+      out += `    Track: ${pp.track}\n`;
+      out += `    Race#: ${pp.race}\n`;
       out += `    Distance: ${pp.distance}\n`;
       out += `    Surface: ${pp.surface} (${pp.modifier || ""})\n`;
+
       out += `    Leader Times:\n`;
       out += `        1c: ${pp.leaderTimes.leader1.raw || ""} ${pp.leaderTimes.leader1.sup || ""}\n`;
       out += `        2c: ${pp.leaderTimes.leader2.raw || ""} ${pp.leaderTimes.leader2.sup || ""}\n`;
       out += `        3c: ${pp.leaderTimes.leader3.raw || ""} ${pp.leaderTimes.leader3.sup || ""}\n`;
       out += `     Final: ${pp.leaderTimes.leaderFinal.raw || ""} ${pp.leaderTimes.leaderFinal.sup || ""}\n`;
+
       out += `    RR: ${pp.rr}\n`;
       out += `    Race Type: ${pp.raceType}\n`;
       out += `    Class Rating: ${pp.classRating}\n`;
+
       out += `    Pace:\n`;
       out += `        E1: ${pp.pace.e1}\n`;
       out += `        E2: ${pp.pace.e2}\n`;
       out += `        LP: ${pp.pace.lp}\n`;
+
       out += `    1c Shape: ${pp.oneC}\n`;
-      out += `    2c Shape: ${pp.twoC}\n\n`;
+      out += `    2c Shape: ${pp.twoC}\n`;
+      out += `    SPD: ${pp.spd}\n\n`;
     });
 
     out += "========================================\n\n";
