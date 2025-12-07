@@ -54,13 +54,13 @@ export async function readPDFAndDecode(file) {
   const decodedText = applyGlyphMap(cleanText);
 
   // DEV MODE: show decoded text panel
-  if (DEV_MODE === "decoded") {
-    const decodedOut = document.getElementById("devDecodedOutput");
-    if (decodedOut) decodedOut.textContent = decodedText;
-  }
+  //if (DEV_MODE === "decoded") {
+    //const decodedOut = document.getElementById("devDecodedOutput");
+  //  if (decodedOut) decodedOut.textContent = decodedText;
+//  }
 
-  return decodedText;   // parser will use this next
-}
+ // return decodedText;   // parser will use this next
+//}
 // ===============================
 // 🔥 STRUCTURED PARSE OUTPUT
 // ===============================
