@@ -84,17 +84,17 @@ function isSuperscript(line) {
     //  name: m[2].trim(),
     //  style: m[3],
     //  index: m.index
-    });
-  }
+    //});
+ // }
 
-  for (let i = 0; i < horses.length; i++) {
-    const start = horses[i].index;
-    const end = (i < horses.length - 1) ? horses[i+1].index : fullText.length;
-    horses[i].block = fullText.slice(start, end).trim();
-  }
+ // for (let i = 0; i < horses.length; i++) {
+  //  const start = horses[i].index;
+   // const end = (i < horses.length - 1) ? horses[i+1].index : fullText.length;
+   // horses[i].block = fullText.slice(start, end).trim();
+//  }
 
-  return horses;
-}
+ // return horses;
+// }
 
 // =====================================================
 // MAIN PARSER
