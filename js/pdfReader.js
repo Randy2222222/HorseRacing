@@ -73,7 +73,7 @@ if (DEV_MODE === "structured") {
     out += `HORSE ${h.post || "?"} — ${h.name || "UNKNOWN"}\n`;
 
     h.pp.forEach((pp) => {
-      out += `   Date: ${pp.date}\n`; ${pp.track}\n ‘ ; ${pp.race}\n ‘ ;
+      out += `   Date: ${pp.date}\n`; ${pp.track}\n`; ${pp.race}\n`;
       //   out += `    Date: ${pp.date}\n`;
     //  out += `    Track: ${pp.track}\n`;
      // out += `    Race#: ${pp.race}\n`;
