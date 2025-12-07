@@ -360,6 +360,9 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
     if (currentPP.length > 0) {
       h.pp.push({
         raw: [...currentPP],
+        date: currentPPdate,
+        track: currentPPtrack,
+        race: currentPPraceNo,
         distance: currentPPdistance,
         surface: currentPPsurface,
         modifier: currentPPmodifier,
