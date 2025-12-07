@@ -124,7 +124,9 @@ export function parsePP(decodedText) {
 
     let currentPP = [];
     h.pp = [];
-
+    let currentPPdate = "";
+    let currentPPtrack = "";
+    let currentPPraceNo = "";
     let currentPPdistance = "";
     let currentPPsurface = "";
     let currentPPmodifier = "";
