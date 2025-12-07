@@ -13,8 +13,8 @@ function toSuperscript(n) {
 }
 
 // 1️⃣ Horse Anchor
-//const HORSE_ANCHOR =
-// /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
+const HORSE_ANCHOR =
+ /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
 
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
@@ -74,27 +74,27 @@ function isSuperscript(line) {
 }
 
 // 🔹 Split into horses
-//function splitHorses(fullText) {
-//  const horses = [];
- // let m;
+function splitHorses(fullText) {
+  const horses = [];
+  let m;
 
- // while ((m = HORSE_ANCHOR.exec(fullText)) !== null) {
-   // horses.push({
-     // post: m[1],
-    //  name: m[2].trim(),
-    //  style: m[3],
-    //  index: m.index
-    //});
- // }
+  while ((m = HORSE_ANCHOR.exec(fullText)) !== null) {
+      horses.push({
+      post: m[1],
+      name: m[2].trim(),
+      style: m[3],
+      index: m.index
+    });
+  }
 
- // for (let i = 0; i < horses.length; i++) {
-  //  const start = horses[i].index;
-   // const end = (i < horses.length - 1) ? horses[i+1].index : fullText.length;
-   // horses[i].block = fullText.slice(start, end).trim();
-//  }
+ for (let i = 0; i < horses.length; i++) {
+    const start = horses[i].index;
+    const end = (i < horses.length - 1) ? horses[i+1].index : fullText.length;
+    horses[i].block = fullText.slice(start, end).trim();
+  }
 
- // return horses;
-// }
+  return horses;
+ }
 
 // =====================================================
 // MAIN PARSER
@@ -113,17 +113,8 @@ export function parsePP(decodedText) {
     unknown: []
   };
 
-  // No horse anchor. Treat all text as 1 horse block for PP parsing.🔥
-const horses = [{
-  post: "?",
-  name: "UNKNOWN",
-  style: "",
-  block: decodedText
-}];
-
-structure.horses = horses;
- // const horses = splitHorses(decodedText);
- // structure.horses = horses;
+  const horses = splitHorses(decodedText);
+  structure.horses = horses;
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
 
