@@ -154,6 +154,9 @@ export function parsePP(decodedText) {
         if (currentPP.length > 0) {
           h.pp.push({
             raw: [...currentPP],
+            date: currentPPdate,
+            track: currentPPtrack,
+            race: currentPPraceNo,
             distance: currentPPdistance,
             surface: currentPPsurface,
             modifier: currentPPmodifier,
