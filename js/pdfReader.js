@@ -59,8 +59,8 @@ export async function readPDFAndDecode(file) {
     if (decodedOut) decodedOut.textContent = decodedText;
   }
 
- // return decodedText;   // parser will use this next
-//}
+  return decodedText;   // parser will use this next
+}
 // ===============================
 // 🔥 STRUCTURED PARSE OUTPUT
 // ===============================
