@@ -222,18 +222,14 @@ if (dmatch) {
     i++; // consumed distance
         }
 
-        // surface
-        const surfMatch = line.match(SURFACE_REGEX);
-        if (surfMatch) {
-          currentPPsurface = surfMatch[0].toLowerCase();
+        // Track condition (ft, fm, my, sy, etc.) with optional superscript seal marker
+const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
 
-          const nextLine = lines[i + 1] || "";
-          if (nextLine.length === 1 &&
-              SURFACE_MODIFIERS.includes(nextLine.toLowerCase())) {
-            currentPPmodifier = nextLine.toLowerCase();
-            i++; // skip modifier line
-          }
-        }
+if (condMatch) {
+    currentPPmodifier = condMatch[1].toLowerCase();  // the main condition
+    currentPPconditionSup = condMatch[2] || "";        // optional superscript marker
+    i++; // consumed condition
+}
 
         totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
         slotIndex = 0;
