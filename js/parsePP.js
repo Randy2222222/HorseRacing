@@ -17,8 +17,8 @@ const HORSE_ANCHOR =
   /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
 
 // 2️⃣ PP Header Regex (Date + Race Line begins)
-//const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
-const DATE_LINE_REGEX =/^\d{2}[A-Za-z]{3}\d{2}[A-Za-z]{2,4}[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
+const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
+
 
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX =
