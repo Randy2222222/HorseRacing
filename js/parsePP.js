@@ -213,41 +213,49 @@ export function parsePP(decodedText) {
         
         // start this PP block with the date line
         currentPP.push(line);
-        
 
-          // ---------------------------
-    // SURFACE (Ⓣ, Ⓐ, ⓓ, ⓧ — single symbol)
-    // ---------------------------
-    let surfLine = lines[i + 1]?.trim() || "";
-    if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
-        currentPPsurface = surfLine;
-        i++;  // consume surface line
-    } else {
-        currentPPsurface = ""; // dirt
-    }
+        // ---------------------------
+// SURFACE SYMBOL (Ⓣ, Ⓐ, ⓓ, ⓧ)
+// Dirt = no symbol
+// ---------------------------
+let surfLine = lines[i + 1]?.trim() || "";
+let consumed = 0;
 
-    // ---------------------------
-    // DISTANCE (next line)
-    // ---------------------------
-    let distLine = lines[i + 1]?.trim() || "";
-    currentPPdistance = distLine;
-    i++; // consume distance line
+if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
+    currentPPsurface = surfLine;
+    consumed = 1; // consumed surface line
+} else {
+    currentPPsurface = ""; // dirt
+}
 
-    // ---------------------------
-    // TRACK CONDITION (ft, fm, my, etc.)
-    // ---------------------------
-    let condLine = lines[i + 1]?.trim() || "";
-    const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
+// ---------------------------
+// DISTANCE (next line after surface)
+// ---------------------------
+let distLine = lines[i + 1 + consumed]?.trim() || "";
+currentPPdistance = distLine;
+consumed++;
 
-    if (condMatch) {
-        currentPPmodifier = condMatch[1].toLowerCase();  // ft/fm/my
-        currentPPconditionSup = condMatch[2] || "";       // superscript marker
-        i++; // consumed condition line
-    }
+// ---------------------------
+// TRACK CONDITION (ft, fm, my, sy…)
+// optional superscript (sealed, etc.)
+// ---------------------------
+let condLine = lines[i + 1 + consumed]?.trim() || "";
+const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
 
-    // Reset call-slot counter
-    totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-    slotIndex = 0;
+if (condMatch) {
+    currentPPmodifier = condMatch[1].toLowerCase();
+    currentPPconditionSup = condMatch[2] || "";
+    consumed++;
+}
+
+// advance i by however many lines we consumed
+i += consumed;
+
+// ---------------------------
+// CALL COUNT (3 for sprints)
+// ---------------------------
+totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+slotIndex = 0;
 
         continue; // end of DATE block
       }
