@@ -214,30 +214,38 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
+        // -----------------------------------------
+// STEP 1 — READ NEXT NON-EMPTY LINE
+// (could be a glyph OR the distance)
 // -----------------------------------------
-// STEP 2 — DISTANCE always comes first
-// (4f, 5½f, 1m, 1¹⁄₁₆, etc.)
-// -----------------------------------------
-let first = nextLine(j);
-let second = nextLine(j + 1);
+function nextLine(idx) {
+    return lines[idx]?.trim() || "";
+}
 
-// Case A: first line IS the distance (most races — dirt)
-if (DISTANCE_REGEX.test(first)) {
-    currentPPdistance = first;
-    currentPPsurface  = "";   // no glyph → dirt
-    j++; // consumed distance
+let j = i + 1;  // cursor walks forward
+
+// grab first non-empty line after date
+let first = nextLine(j);
+
+// -----------------------------------------
+// STEP 2 — OPTIONAL GLYPH TAG (Ⓣ, Ⓐ, ⓓ, ⓧ)
+// If this line is exactly ONE non-digit char → glyph
+// -----------------------------------------
+if (first.length === 1 && !/^\d/.test(first)) {
+    currentPPsurface = first;   // save glyph as surface tag
+    j++;                       // consume glyph line
+} else {
+    currentPPsurface = "";     // dirt = no glyph
 }
-// Case B: first line is a glyph (Ⓣ, Ⓐ, ⓓ, ⓧ) AND second is distance
-else if (first.length === 1 && !/^\d/.test(first) && DISTANCE_REGEX.test(second)) {
-    currentPPsurface  = first;    // save glyph
-    currentPPdistance = second;   // actual distance
-    j += 2; // consumed glyph + distance
-}
-// Case C: unrecognized pattern → leave blank but don’t crash
-else {
-    currentPPsurface  = "";
-    currentPPdistance = "";
-}
+
+// -----------------------------------------
+// STEP 3 — DISTANCE (THIS LINE MUST EXIST)
+// -----------------------------------------
+let distanceLine = nextLine(j);
+
+currentPPdistance = distanceLine;  
+j++;  // consume distance line
+
 // -----------------------------------------
 // STEP 4 — TRACK CONDITION (ft, fm, my, etc.)
 // + optional superscript (ˢ, ˣ, ⁿ, ᵗ, ʸ)
@@ -259,6 +267,7 @@ if (condMatch) {
 // ADVANCE MAIN LOOP CURSOR
 // -----------------------------------------
 i = j - 1;
+
 
 // ---------------------------
 // CALL COUNT (3 for sprints)
