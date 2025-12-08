@@ -214,7 +214,7 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-        // -----------------------------------------
+// -----------------------------------------
 // STEP 1 — READ NEXT NON-EMPTY LINE
 // (could be a glyph OR the distance)
 // -----------------------------------------
