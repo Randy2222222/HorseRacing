@@ -211,69 +211,32 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-// -----------------------------------------
-// STEP 1 — READ NEXT NON-EMPTY LINE
-// (could be a glyph OR the distance)
-       // -----------------------------------------
-        if (DISTANCE_REGEX.test(trimmed)) {
-        currentPPdistance = trimmed;
-   continue;
-  }
-       //------------------------------------------
-        if (SURFACE_REGEX.test(trimmed)) {
-    currentPPsurface = trimmed;
-    continue;
-} 
-        
-//function nextLine(idx) {
-   // return lines[idx]?.trim() || "";
-//}
+// --------------------------------------------------
+// STEP 2 — FIND DISTANCE (ignore the glyph completely)
+// --------------------------------------------------
 
-//let j = i + 1;  // cursor walks forward
+let L1 = (lines[i + 1] || "").trim();  // could be distance OR glyph
+let L2 = (lines[i + 2] || "").trim();  // used only if L1 is a glyph
 
-// grab first non-empty line after date
-//let first = nextLine(j);
+// CASE 1 — L1 is a distance
+if (DISTANCE_REGEX.test(L1)) {
+    currentPPdistance = L1;
+    currentGlyph      = "";   // ignore glyphs, not looking for them here
+    i += 1;
+}
 
-// -----------------------------------------
-// STEP 2 — OPTIONAL GLYPH TAG (Ⓣ, Ⓐ, ⓓ, ⓧ)
-// If this line is exactly ONE non-digit char → glyph
-// -----------------------------------------
-//if (first.length === 1 && !/^\d/.test(first)) {
-    //currentPPsurface = first;   // save glyph as surface tag
-   // j++;                       // consume glyph line
-//} else {
-   // currentPPsurface = "";     // dirt = no glyph
-//}
+// CASE 2 — L1 is ONE CHARACTER (glyph) AND L2 is a distance
+else if (L1.length === 1 && !/^\d/.test(L1) && DISTANCE_REGEX.test(L2)) {
+    currentPPdistance = L2;
+    currentGlyph      = L1;   // save it separately ONLY IF YOU WANT IT
+    i += 2;
+}
 
-// -----------------------------------------
-// STEP 3 — DISTANCE (THIS LINE MUST EXIST)
-// -----------------------------------------
-  // let distanceLine = nextLine(j);
-   //  currentPPdistance = distanceLine;  
-  
-//j++;  // consume distance line
-
-// -----------------------------------------
-// STEP 4 — TRACK CONDITION (ft, fm, my, etc.)
-// + optional superscript (ˢ, ˣ, ⁿ, ᵗ, ʸ)
-// -----------------------------------------
-//let conditionLine = nextLine(j);
-
-//const condMatch = conditionLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
-
-//if (condMatch) {
-  //  currentPPmodifier     = condMatch[1].toLowerCase();  // ft / fm / my
-   // currentPPconditionSup = condMatch[2] || "";           // ⟵ superscript modifier
-  //  j++;  // consume condition
-//} else {
-   // currentPPmodifier     = "";
-   // currentPPconditionSup = "";
-//}
-
-// -----------------------------------------
-// ADVANCE MAIN LOOP CURSOR
-// -----------------------------------------
-//i = j - 1;
+// CASE 3 — nothing matches → leave it blank
+else {
+    currentPPdistance = "";
+    currentGlyph      = "";
+}
 
 
 // ---------------------------
