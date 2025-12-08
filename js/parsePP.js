@@ -209,7 +209,8 @@ export function parsePP(decodedText) {
         currentPPspd = null;
         
         // start this PP block with the date line
-        currentPP.push(
+        currentPP.push(line);
+        
 
           // ---------------------------
     // SURFACE (Ⓣ, Ⓐ, ⓓ, ⓧ — single symbol)
