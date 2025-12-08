@@ -392,6 +392,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         distance: currentPPdistance,
         surface: currentPPsurface,
         modifier: currentPPmodifier,
+        conditionSup: currentPPconditionSup,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
