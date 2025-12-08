@@ -141,6 +141,7 @@ export function parsePP(decodedText) {
     let currentPPdistance = "";
     let currentPPsurface = "";
     let currentPPmodifier = "";
+    let currentPPconditionSup = "";
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPclassRating = null;
