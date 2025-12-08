@@ -228,14 +228,14 @@ export function parsePP(decodedText) {
 
     // ---------------------------
     // DISTANCE (next line)
-    ---------------------------
+    // ---------------------------
     let distLine = lines[i + 1]?.trim() || "";
     currentPPdistance = distLine;
     i++; // consume distance line
 
     // ---------------------------
     // TRACK CONDITION (ft, fm, my, etc.)
-    ---------------------------
+    // ---------------------------
     let condLine = lines[i + 1]?.trim() || "";
     const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
 
