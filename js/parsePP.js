@@ -214,42 +214,59 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-        // ---------------------------
-// SURFACE SYMBOL (Ⓣ, Ⓐ, ⓓ, ⓧ)
-// Dirt = no symbol
-// ---------------------------
-let surfLine = lines[i + 1]?.trim() || "";
-let consumed = 0;
-
-if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
-    currentPPsurface = surfLine;   // Ⓣ or ⓓ etc.
-    consumed = 1;
-} else {
-    currentPPsurface = ""; // dirt
+        // -----------------------------------------
+// STEP 1 — READ NEXT NON-EMPTY LINE
+// (could be a glyph OR the distance)
+// -----------------------------------------
+function nextLine(idx) {
+    return lines[idx]?.trim() || "";
 }
 
-// ---------------------------
-// DISTANCE
-// ---------------------------
-let distLine = lines[i + 1 + consumed]?.trim() || "";
-currentPPdistance = distLine;
-consumed++;
+let j = i + 1;  // cursor walks forward
 
-// ---------------------------
-// TRACK CONDITION (ft, fm, my, sy…)
-// superscript = sealed / etc.
-// ---------------------------
-let condLine = lines[i + 1 + consumed]?.trim() || "";
-const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
+// grab first non-empty line after date
+let first = nextLine(j);
+
+// -----------------------------------------
+// STEP 2 — OPTIONAL GLYPH TAG (Ⓣ, Ⓐ, ⓓ, ⓧ)
+// If this line is exactly ONE non-digit char → glyph
+// -----------------------------------------
+if (first.length === 1 && !/^\d/.test(first)) {
+    currentPPsurface = first;   // save glyph as surface tag
+    j++;                       // consume glyph line
+} else {
+    currentPPsurface = "";     // dirt = no glyph
+}
+
+// -----------------------------------------
+// STEP 3 — DISTANCE (THIS LINE MUST EXIST)
+// -----------------------------------------
+let distanceLine = nextLine(j);
+
+currentPPdistance = distanceLine;  
+j++;  // consume distance line
+
+// -----------------------------------------
+// STEP 4 — TRACK CONDITION (ft, fm, my, etc.)
+// + optional superscript (ˢ, ˣ, ⁿ, ᵗ, ʸ)
+// -----------------------------------------
+let conditionLine = nextLine(j);
+
+const condMatch = conditionLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
 
 if (condMatch) {
-    currentPPcondition = condMatch[1].toLowerCase();   // <-- THIS IS THE CONDITION
-    currentPPconditionSup = condMatch[2] || "";         // <-- THIS IS THE SUPERSCRIPT
-    consumed++;
+    currentPPmodifier     = condMatch[1].toLowerCase();  // ft / fm / my
+    currentPPconditionSup = condMatch[2] || "";           // ⟵ superscript modifier
+    j++;  // consume condition
+} else {
+    currentPPmodifier     = "";
+    currentPPconditionSup = "";
 }
 
-// finally advance i
-i += consumed;
+// -----------------------------------------
+// ADVANCE MAIN LOOP CURSOR
+// -----------------------------------------
+i = j - 1;
 
 // ---------------------------
 // CALL COUNT (3 for sprints)
