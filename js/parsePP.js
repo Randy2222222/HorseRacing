@@ -210,28 +210,52 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-        // SURFACE (Ⓣ, ⓓ, Ⓐ, ⓧ — any single symbol)
-// Dirt has NO symbol
-let surfLine = lines[i + 1]?.trim() || "";
+        // ------------------------------------
+// SURFACE SYMBOL (Ⓣ, ⓐ, ⓓ, ⓧ, etc.)
+// If no symbol → dirt
+// ------------------------------------
+const surfLine = lines[i + 1] || "";
+let consumed = 0;
+
 if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
-    currentPPsurface = surfLine;
-    i++;  // consume surface line
+    currentPPsurface = surfLine;  // turf/all-weather/inner/etc
+    consumed = 1;                 // consumed surface line
 } else {
-    currentPPsurface = "";  // default dirt
+    currentPPsurface = "";        // dirt default
 }
 
-// DISTANCE (always right after surface line)
-let distLine = lines[i + 1]?.trim() || "";
-currentPPdistance = distLine;
-i++;  // consume distance line
+// ------------------------------------
+// DISTANCE (4½f, 6f, 1m70y, 1 1/16, etc.)
+// ------------------------------------
+const distLine = lines[i + 1 + consumed] || "";
+const dmatch = distLine.match(DISTANCE_REGEX);
 
-// TRACK CONDITION (ft, fm, my, sy, etc.)
-let condLine = lines[i + 1]?.trim() || "";
-currentPPcondition = condLine;
-i++;  // consume condition line
+if (dmatch) {
+    currentPPdistance = dmatch[0];
+    consumed++; // consumed distance
+}
 
-        totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-        slotIndex = 0;
+// ------------------------------------
+// TRACK CONDITION (ft, fm, my, sy…)
+// optional Unicode superscript seal
+// ------------------------------------
+const condLine = lines[i + 1 + consumed] || "";
+const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
+
+if (condMatch) {
+    currentPPmodifier = condMatch[1].toLowerCase(); // ft, fm, sy, etc.
+    currentPPconditionSup = condMatch[2] || "";      // optional superscript
+    consumed++;
+}
+
+// advance parser
+i += consumed;
+
+// ------------------------------------
+// CALL COUNT (3 for sprints, 4 for routes)
+// ------------------------------------
+totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+slotIndex = 0;
 
         continue; // end of DATE block
       }
