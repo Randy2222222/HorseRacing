@@ -19,7 +19,15 @@ const HORSE_ANCHOR =
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
-
+const SURFACE_GLYPHS = ["à", "Ì", "š", "•", "æ"];
+// Raw Brisnet surface glyphs → your chosen display symbols
+const SURFACE_LOOKUP = {
+  "à": "Ⓣ",   // turf
+  "Ì": "Ⓐ",   // all-weather / synthetic
+  "š": "ⓧ",   // taken off turf
+  "•": "ⓓ",   // dirt / inner dirt
+  "æ": "�"    // unknown
+};
 // 2️⃣ Distance Patterns
 //const DISTANCE_REGEX =
  // /\b(?:[4-7](?:\s1\/2)?f|1m|2m|1m70|1\s1\/16|1\s1\/8|1\s3\/16|1\s1\/4|1\s3\/8|1\s1\/2|1\s5\/8)\b/i;
