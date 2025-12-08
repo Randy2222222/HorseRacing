@@ -209,54 +209,41 @@ export function parsePP(decodedText) {
         currentPPspd = null;
         
         // start this PP block with the date line
-        currentPP.push(line);
+        currentPP.push(
 
-        // ------------------------------------
-// SURFACE SYMBOL (Ⓣ, ⓐ, ⓓ, ⓧ, etc.)
-// If no symbol → dirt
-// ------------------------------------
-const surfLine = lines[i + 1] || "";
-let consumed = 0;
+          // ---------------------------
+    // SURFACE (Ⓣ, Ⓐ, ⓓ, ⓧ — single symbol)
+    // ---------------------------
+    let surfLine = lines[i + 1]?.trim() || "";
+    if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
+        currentPPsurface = surfLine;
+        i++;  // consume surface line
+    } else {
+        currentPPsurface = ""; // dirt
+    }
 
-if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
-    currentPPsurface = surfLine;  // turf/all-weather/inner/etc
-    consumed = 1;                 // consumed surface line
-} else {
-    currentPPsurface = "";        // dirt default
-}
+    // ---------------------------
+    // DISTANCE (next line)
+    ---------------------------
+    let distLine = lines[i + 1]?.trim() || "";
+    currentPPdistance = distLine;
+    i++; // consume distance line
 
-// ------------------------------------
-// DISTANCE (4½f, 6f, 1m70y, 1 1/16, etc.)
-// ------------------------------------
-const distLine = lines[i + 1 + consumed] || "";
-const dmatch = distLine.match(DISTANCE_REGEX);
+    // ---------------------------
+    // TRACK CONDITION (ft, fm, my, etc.)
+    ---------------------------
+    let condLine = lines[i + 1]?.trim() || "";
+    const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
 
-if (dmatch) {
-    currentPPdistance = dmatch[0];
-    consumed++; // consumed distance
-}
+    if (condMatch) {
+        currentPPmodifier = condMatch[1].toLowerCase();  // ft/fm/my
+        currentPPconditionSup = condMatch[2] || "";       // superscript marker
+        i++; // consumed condition line
+    }
 
-// ------------------------------------
-// TRACK CONDITION (ft, fm, my, sy…)
-// optional Unicode superscript seal
-// ------------------------------------
-const condLine = lines[i + 1 + consumed] || "";
-const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
-
-if (condMatch) {
-    currentPPmodifier = condMatch[1].toLowerCase(); // ft, fm, sy, etc.
-    currentPPconditionSup = condMatch[2] || "";      // optional superscript
-    consumed++;
-}
-
-// advance parser
-i += consumed;
-
-// ------------------------------------
-// CALL COUNT (3 for sprints, 4 for routes)
-// ------------------------------------
-totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-slotIndex = 0;
+    // Reset call-slot counter
+    totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+    slotIndex = 0;
 
         continue; // end of DATE block
       }
