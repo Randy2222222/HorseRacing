@@ -210,36 +210,25 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-        
-        const surfLine = lines[i + 1] || "";
-const distLine = lines[i + 2] || "";
-const condLine = lines[i + 3] || "";
-
-// Surface (Turf symbol = Ⓣ OR any single-character symbol)
+        // SURFACE (Ⓣ, ⓓ, Ⓐ, ⓧ — any single symbol)
 // Dirt has NO symbol
+let surfLine = lines[i + 1]?.trim() || "";
 if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
-    // one-character symbol means surface
     currentPPsurface = surfLine;
-    i++; // consumed surface line
+    i++;  // consume surface line
 } else {
-    currentPPsurface = ""; // dirt
+    currentPPsurface = "";  // default dirt
 }
 
-// Distance
-const dmatch = distLine.match(DISTANCE_REGEX);
-if (dmatch) {
-    currentPPdistance = dmatch[0];
-    i++; // consumed distance
-        }
+// DISTANCE (always right after surface line)
+let distLine = lines[i + 1]?.trim() || "";
+currentPPdistance = distLine;
+i++;  // consume distance line
 
-        // Track condition (ft, fm, my, sy, etc.) with optional superscript seal marker
-const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
-
-if (condMatch) {
-    currentPPmodifier = condMatch[1].toLowerCase();  // the main condition
-    currentPPconditionSup = condMatch[2] || "";        // optional superscript marker
-    i++; // consumed condition
-}
+// TRACK CONDITION (ft, fm, my, sy, etc.)
+let condLine = lines[i + 1]?.trim() || "";
+currentPPcondition = condLine;
+i++;  // consume condition line
 
         totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
         slotIndex = 0;
