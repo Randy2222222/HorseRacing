@@ -35,7 +35,7 @@ const DISTANCE_REGEX =
   /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
 
 // 3️⃣ Surface codes (2-letter)
-const SURFACE_CODES = [
+const SURFACE_REGEX = [
   "ft","gd","my","sy","wf","fm","yl","sf","hy","sl"
 ];
 
