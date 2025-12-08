@@ -36,9 +36,6 @@ const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 // 4️⃣ Single-letter surface modifiers
 const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
 
-// 5️⃣ Surface regex
-//const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_MODIFIERS.join("|") + ")\\b", "i");
-
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
   const d = distanceStr.toLowerCase();
@@ -132,9 +129,9 @@ export function parsePP(decodedText) {
     let currentPPtrack = "";
     let currentPPraceNo = "";
     let currentPPdistance = "";
-   // let currentPPsurface = "";
-   // let currentPPmodifier = "";
-   // let currentPPconditionSup = "";
+    let currentPPsurface = "";
+    let currentPPmodifier = "";
+    let currentPPconditionSup = "";
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPclassRating = null;
@@ -163,9 +160,9 @@ export function parsePP(decodedText) {
             track: currentPPtrack,
             race: currentPPraceNo,
             distance: currentPPdistance,
-           // surface: currentPPsurface,
-           // modifier: currentPPmodifier,
-          //  conditionSup: currentPPconditionSup,
+            surface: currentPPsurface,
+            modifier: currentPPmodifier,
+            conditionSup: currentPPconditionSup,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -184,9 +181,9 @@ export function parsePP(decodedText) {
   currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
         currentPPdistance = "";
-       // currentPPsurface = "";
-      //  currentPPmodifier = "";
-      //  currentPPconditionSup = "";
+         currentPPsurface = "";
+        currentPPmodifier = "";
+        currentPPconditionSup = "";
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -383,9 +380,9 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         track: currentPPtrack,
         race: currentPPraceNo,
         distance: currentPPdistance,
-       // surface: currentPPsurface,
-       // modifier: currentPPmodifier,
-       // conditionSup: currentPPconditionSup,
+        surface: currentPPsurface,
+        modifier: currentPPmodifier,
+        conditionSup: currentPPconditionSup,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
