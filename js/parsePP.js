@@ -40,7 +40,8 @@ const SURFACE_CODES = [
 ];
 
 // 4️⃣ Single-letter surface modifiers
-const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
+//const SURFACE_MODIFIERS = ["s", "x", "n", "t", "y"];
+const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
 
 // 5️⃣ Surface regex
 const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");
