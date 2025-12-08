@@ -214,56 +214,62 @@ export function parsePP(decodedText) {
 // -----------------------------------------
 // STEP 1 — READ NEXT NON-EMPTY LINE
 // (could be a glyph OR the distance)
-// -----------------------------------------
-function nextLine(idx) {
-    return lines[idx]?.trim() || "";
-}
+       // -----------------------------------------
+        if (DISTANCE_REGEX.test(trimmed)) {
+        currentPPdistance = trimmed;
+   continue;
+  }
+       //------------------------------------------
+        
+//function nextLine(idx) {
+   // return lines[idx]?.trim() || "";
+//}
 
-let j = i + 1;  // cursor walks forward
+//let j = i + 1;  // cursor walks forward
 
 // grab first non-empty line after date
-let first = nextLine(j);
+//let first = nextLine(j);
 
 // -----------------------------------------
 // STEP 2 — OPTIONAL GLYPH TAG (Ⓣ, Ⓐ, ⓓ, ⓧ)
 // If this line is exactly ONE non-digit char → glyph
 // -----------------------------------------
-if (first.length === 1 && !/^\d/.test(first)) {
-    currentPPsurface = first;   // save glyph as surface tag
-    j++;                       // consume glyph line
-} else {
-    currentPPsurface = "";     // dirt = no glyph
-}
+//if (first.length === 1 && !/^\d/.test(first)) {
+    //currentPPsurface = first;   // save glyph as surface tag
+   // j++;                       // consume glyph line
+//} else {
+   // currentPPsurface = "";     // dirt = no glyph
+//}
 
 // -----------------------------------------
 // STEP 3 — DISTANCE (THIS LINE MUST EXIST)
 // -----------------------------------------
-let distanceLine = nextLine(j);
-
-currentPPdistance = distanceLine;  
-j++;  // consume distance line
+  // let distanceLine = nextLine(j);
+   //  currentPPdistance = distanceLine;  
+  
+//j++;  // consume distance line
 
 // -----------------------------------------
 // STEP 4 — TRACK CONDITION (ft, fm, my, etc.)
 // + optional superscript (ˢ, ˣ, ⁿ, ᵗ, ʸ)
 // -----------------------------------------
-let conditionLine = nextLine(j);
+//let conditionLine = nextLine(j);
 
-const condMatch = conditionLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
+//const condMatch = conditionLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
 
-if (condMatch) {
-    currentPPmodifier     = condMatch[1].toLowerCase();  // ft / fm / my
-    currentPPconditionSup = condMatch[2] || "";           // ⟵ superscript modifier
-    j++;  // consume condition
-} else {
-    currentPPmodifier     = "";
-    currentPPconditionSup = "";
-}
+//if (condMatch) {
+  //  currentPPmodifier     = condMatch[1].toLowerCase();  // ft / fm / my
+   // currentPPconditionSup = condMatch[2] || "";           // ⟵ superscript modifier
+  //  j++;  // consume condition
+//} else {
+   // currentPPmodifier     = "";
+   // currentPPconditionSup = "";
+//}
 
 // -----------------------------------------
 // ADVANCE MAIN LOOP CURSOR
 // -----------------------------------------
-i = j - 1;
+//i = j - 1;
 
 
 // ---------------------------
