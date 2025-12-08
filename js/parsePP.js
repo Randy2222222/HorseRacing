@@ -222,14 +222,14 @@ let surfLine = lines[i + 1]?.trim() || "";
 let consumed = 0;
 
 if (surfLine.length === 1 && !/^\d/.test(surfLine)) {
-    currentPPsurface = surfLine;
-    consumed = 1; // consumed surface line
+    currentPPsurface = surfLine;   // Ⓣ or ⓓ etc.
+    consumed = 1;
 } else {
     currentPPsurface = ""; // dirt
 }
 
 // ---------------------------
-// DISTANCE (next line after surface)
+// DISTANCE
 // ---------------------------
 let distLine = lines[i + 1 + consumed]?.trim() || "";
 currentPPdistance = distLine;
@@ -237,18 +237,18 @@ consumed++;
 
 // ---------------------------
 // TRACK CONDITION (ft, fm, my, sy…)
-// optional superscript (sealed, etc.)
+// superscript = sealed / etc.
 // ---------------------------
 let condLine = lines[i + 1 + consumed]?.trim() || "";
 const condMatch = condLine.match(/^(ft|fm|gd|my|sy|wf|sl|hy|sf|yl)([ˢˣⁿᵗʸ])?$/i);
 
 if (condMatch) {
-    currentPPmodifier = condMatch[1].toLowerCase();
-    currentPPconditionSup = condMatch[2] || "";
+    currentPPcondition = condMatch[1].toLowerCase();   // <-- THIS IS THE CONDITION
+    currentPPconditionSup = condMatch[2] || "";         // <-- THIS IS THE SUPERSCRIPT
     consumed++;
 }
 
-// advance i by however many lines we consumed
+// finally advance i
 i += consumed;
 
 // ---------------------------
