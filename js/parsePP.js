@@ -192,9 +192,6 @@ export function parsePP(decodedText) {
         currentPPdistance = "";
         currentPPsurface = "";
         currentPPmodifier = "";
-        currentPPsurface = "";
-        currentPPdistance = "";
-        currentPPmodifier = "";
         currentPPconditionSup = "";
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
