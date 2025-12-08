@@ -41,7 +41,7 @@ const SURFACE_REGEX = [
 const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
 
 // 5️⃣ Surface regex
-const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_MODIFIERS.join("|") + ")\\b", "i");
+//const SURFACE_REGEX = new RegExp("\\b(" + SURFACE_MODIFIERS.join("|") + ")\\b", "i");
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
