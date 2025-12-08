@@ -220,6 +220,10 @@ export function parsePP(decodedText) {
    continue;
   }
        //------------------------------------------
+        if (SURFACE_REGEX.test(trimmed)) {
+    currentPPsurface = trimmed;
+    continue;
+} 
         
 //function nextLine(idx) {
    // return lines[idx]?.trim() || "";
