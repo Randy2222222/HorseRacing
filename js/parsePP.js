@@ -49,9 +49,9 @@ const UNICODE_SIX = "\u2076";   // ⁶
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ Brisnet speed figures
-const E1_REGEX  = /^\d{2}$/;      // ex: 76
-const E2_REGEX  = /^\d{2}\/$/;    // ex: 82/
-const LP_REGEX  = /^\d{2}$/;      // ex: 86  🔥was LP
+const E1_REGEX  = /^\d{2,3}$/;      // ex: 76
+const E2_REGEX  = /^\d{2,3}\/$/;    // ex: 82/
+const LP_REGEX  = /^\d{2,3}$/;      // ex: 86  🔥was LP
 
 // 9️⃣ Race Shapes (1c and 2c): +3, -1, 4, etc.
 const SHAPE_REGEX = /^[+\-]?\d{1,3}$/;
