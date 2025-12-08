@@ -171,6 +171,7 @@ export function parsePP(decodedText) {
             distance: currentPPdistance,
             surface: currentPPsurface,
             modifier: currentPPmodifier,
+            conditionSup: currentPPconditionSup,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
