@@ -120,11 +120,11 @@ export function parsePP(decodedText) {
   // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
-  function nextNonBlank(lines, startIndex) {
-    let j = startIndex;
-    while (j < lines.length && lines[j].trim() === "") j++;
-   return j;
-}
+ // function nextNonBlank(lines, startIndex) {
+  //  let j = startIndex;
+  //  while (j < lines.length && lines[j].trim() === "") j++;
+  // return j;
+//}
 //–---–---------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 //--------------------------------------------
@@ -213,11 +213,11 @@ export function parsePP(decodedText) {
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
-// function nextNonBlank(lines, startIndex) {
-  // let j = startIndex;
-  // while (j < lines.length && lines[j].trim() === "") j++;
-  // return j;
-//}
+ function nextNonBlank(lines, startIndex) {
+   let j = startIndex;
+   while (j < lines.length && lines[j].trim() === "") j++;
+ return j;
+}
 //–---–---------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 //--------------------------------------------
