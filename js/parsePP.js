@@ -20,13 +20,13 @@ const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
 const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 // Raw Brisnet surface glyphs → your chosen display symbols
-//const SURFACE_LOOKUP = {
-//  "à": "Ⓣ",   // turf
- // "Ì": "Ⓐ",   // all-weather / synthetic
- // "š": "ⓧ",   // taken off turf
- // "•": "ⓓ",   // dirt / inner dirt
- // "æ": "�"    // unknown
-//};
+const GLYPHS_TO_DISPLAY = {
+  "à": "Ⓣ",   // turf
+  "Ì": "Ⓐ",   // all-weather / synthetic
+  "š": "ⓧ",   // taken off turf
+  "•": "ⓓ",   // dirt / inner dirt
+  "æ": "�"    // unknown
+}
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
 
@@ -38,7 +38,7 @@ const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
 
 // 5️⃣ Condition Regex
 const CONDITION_REGEX =
-    new RegExp("\\b(" + GLYPH_TAGS.join("|") + ")\\b", "i");
+    new RegExp("\\b(" + SURFACE_MODIFIERS.join("|") + ")\\b", "i");
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
