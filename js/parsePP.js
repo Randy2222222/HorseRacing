@@ -20,7 +20,7 @@ const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
 //const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 // Raw Brisnet surface glyphs → your chosen display symbols
-const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ", "ⓓ","�"]   
+const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
 
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
