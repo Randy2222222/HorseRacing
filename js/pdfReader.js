@@ -79,9 +79,10 @@ if (DEV_MODE === "structured") {
       //   out += `    Date: ${pp.date}\n`;
     //  out += `    Track: ${pp.track}\n`;
      // out += `    Race#: ${pp.race}\n`;
+      out += `    Glyph: ${pp.glyph}\n`;
       out += `    Distance: ${pp.distance}\n`;
-     // out += `    Surface: ${pp.surface} (${pp.modifier || ""})\n`;
-     // out += `    Condition: ${pp.condition}${pp.conditionSup || ""}\n`;
+      out += `    Surface: ${pp.surface} (${pp.modifier || ""})\n`;
+      out += `    Condition: ${pp.condition}${pp.conditionSup || ""}\n`;
 
       out += `    Leader Times:\n`;
       out += `        1c: ${pp.leaderTimes.leader1.raw || ""} ${pp.leaderTimes.leader1.sup || ""}\n`;
