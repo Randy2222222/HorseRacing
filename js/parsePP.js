@@ -1,6 +1,5 @@
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
-// .replace(/1¹⁄₁₆/, "1¹⁄₁₆")
 //import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
 
@@ -18,31 +17,17 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
-const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
+//const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 // Raw Brisnet surface glyphs → your chosen display symbols
-const GLYPHS_TO_DISPLAY = {
-  "à": "Ⓣ",   // turf
-  "Ì": "Ⓐ",   // all-weather / synthetic
+//const GLYPHS_TO_DISPLAY = {
+//  "à": "Ⓣ",   // turf
+ // "Ì": "Ⓐ",   // all-weather / synthetic
   //"š": "ⓧ",   // taken off turf
  // "•": "ⓓ",   // dirt / inner dirt
-  "æ": "�"    // unknown
-}
-// 2️⃣ Distance Patterns
-//const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
-
-const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
-
- // function normalizeDistance(raw) {
- // return raw
-   // .replace(/ˆ/g,  "¹⁄₁₆")  // 1/16
-  //  .replace(/‰/g,  "³⁄₁₆")  // 3/16
-   // .replace(/„/g,  "⅛")     // 1/8
-   // .replace(/…/g,  "⅜")     // 3/8
-   // .replace(/‚/g,  "¼")     // 1/4
-  //  .replace(/\u0081/g, "½") // 1/2
-  //  .replace(/\/\//g, "⅝")   // 5/8
-   // .replace(/ƒ/g,  "¾");    // 3/4
+//  "æ": "�"    // unknown
 //}
+// 2️⃣ Distance Patterns
+const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
 
 // 3️⃣ Surface codes (2-letter)
 const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
