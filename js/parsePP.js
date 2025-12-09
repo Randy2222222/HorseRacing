@@ -318,9 +318,9 @@ slotIndex = 0;
         currentPPraceType = trimmed;
 
         // After we read RaceType, the NEXT superscript line is Class Rating
-        if (RR_SUP_LINE_REGEX.test(trimmed)) {
-        currentPPclassRating = trimmed;
-        expectRaceTypeNext = false;
+        if (RR_SUP_LINE_REGEX.test(trimmed)) {  // added🔥
+        currentPPclassRating = trimmed;   // added🔥
+        expectRaceTypeNext = false; // was here and line below
       //  expectClassRatingNext = true;
 
         continue;
