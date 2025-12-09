@@ -18,7 +18,7 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
-const SURFACE_GLYPHS = ["à", "Ì", "š", "•", "æ"];
+const GLYTH_TAGS = ["à", "Ì", "š", "•", "æ"];
 // Raw Brisnet surface glyphs → your chosen display symbols
 //const SURFACE_LOOKUP = {
 //  "à": "Ⓣ",   // turf
@@ -221,21 +221,21 @@ let L2 = (lines[i + 2] || "").trim();  // used only if L1 is a glyph
 // CASE 1 — L1 is a distance
 if (DISTANCE_REGEX.test(L1)) {
     currentPPdistance = L1;
-    currentGlyph      = "";   // ignore glyphs, not looking for them here
+    currentGlyph_TAGS = "";   // ignore glyphs, not looking for them here
     i += 1;
 }
 
 // CASE 2 — L1 is ONE CHARACTER (glyph) AND L2 is a distance
 else if (L1.length === 1 && !/^\d/.test(L1) && DISTANCE_REGEX.test(L2)) {
     currentPPdistance = L2;
-    currentGlyph      = L1;   // save it separately ONLY IF YOU WANT IT
+    currentGlyph_TAGS = L1;   // save it separately ONLY IF YOU WANT IT
     i += 2;
 }
 
 // CASE 3 — nothing matches → leave it blank
 else {
     currentPPdistance = "";
-    currentGlyph      = "";
+    currentGlyph_TAGS = "";
 }
 
 
