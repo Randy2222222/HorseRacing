@@ -18,7 +18,7 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
-const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
+//const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 // Raw Brisnet surface glyphs → your chosen display symbols
 const GLYPHS_TO_DISPLAY = {
   "à": "Ⓣ",   // turf
@@ -27,23 +27,9 @@ const GLYPHS_TO_DISPLAY = {
   "•": "ⓓ",   // dirt / inner dirt
   "æ": "�"    // unknown
 }
-// 2️⃣ Distance Patterns
-//const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
 
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
-
-function normalizeDistance(raw) {
-  return raw
-    .replace(/ˆ/g, "¹⁄₁₆")        // PDF “hat” → real 1/16 unicode
-    .replace(/1\/16/gi, "¹⁄₁₆")
-    .replace(/3\/16/gi, "³⁄₁₆")
-    .replace(/1\/8/gi,  "¹⁄₈")
-    .replace(/3\/8/gi,  "³⁄₈")
-    .replace(/1\/4/gi,  "¹⁄₄")
-    .replace(/1\/2/gi,  "¹⁄₂")
-    .replace(/5\/8/gi,  "⁵⁄₈");
-}
 
 // 3️⃣ Surface codes (2-letter)
 const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
@@ -246,8 +232,7 @@ export function parsePP(decodedText) {
 // -----------------------------------------
 
 let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
-//let L1 = lines[j1] || "";
-let L1 = normalizeDistance(lines[j1] || "");
+let L1 = lines[j1] || "";
 
 // CASE 1 — L1 IS A GLYPH (always 1 char)
 // ex: Ⓣ, Ⓐ, ⓧ, ⓓ
@@ -256,8 +241,7 @@ if (L1.length === 1 && !/^\d/.test(L1)) {
 
     // Next NON-BLANK *must* be distance
     let j2 = nextNonBlank(lines, j1 + 1);
-  //  let L2 = lines[j2] || "";
-    let L2 = normalizeDistance(lines[j2] || "");
+    let L2 = lines[j2] || "";
 
     if (DISTANCE_REGEX.test(L2)) {
         currentPPdistance = L2;
