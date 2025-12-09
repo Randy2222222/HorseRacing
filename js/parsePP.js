@@ -28,21 +28,21 @@ const GLYPHS_TO_DISPLAY = {
   "æ": "�"    // unknown
 }
 // 2️⃣ Distance Patterns
-const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
+//const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
 
 const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⅜|½|⅝|¾|))\b/;
 
-  function normalizeDistance(raw) {
-  return raw
-    .replace(/ˆ/g,  "¹⁄₁₆")  // 1/16
-    .replace(/‰/g,  "³⁄₁₆")  // 3/16
-    .replace(/„/g,  "⅛")     // 1/8
-    .replace(/…/g,  "⅜")     // 3/8
-    .replace(/‚/g,  "¼")     // 1/4
-    .replace(/\u0081/g, "½") // 1/2
-    .replace(/\/\//g, "⅝")   // 5/8
-    .replace(/ƒ/g,  "¾");    // 3/4
-}
+ // function normalizeDistance(raw) {
+ // return raw
+   // .replace(/ˆ/g,  "¹⁄₁₆")  // 1/16
+  //  .replace(/‰/g,  "³⁄₁₆")  // 3/16
+   // .replace(/„/g,  "⅛")     // 1/8
+   // .replace(/…/g,  "⅜")     // 3/8
+   // .replace(/‚/g,  "¼")     // 1/4
+  //  .replace(/\u0081/g, "½") // 1/2
+  //  .replace(/\/\//g, "⅝")   // 5/8
+   // .replace(/ƒ/g,  "¾");    // 3/4
+//}
 
 // 3️⃣ Surface codes (2-letter)
 const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
@@ -245,8 +245,8 @@ export function parsePP(decodedText) {
 // -----------------------------------------
 
 let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
-//let L1 = lines[j1] || "";
-let L1 = normalizeDistance(lines[j1] || "");
+let L1 = lines[j1] || "";
+//let L1 = normalizeDistance(lines[j1] || "");
 
 // CASE 1 — L1 IS A GLYPH (always 1 char)
 // ex: Ⓣ, Ⓐ, ⓧ, ⓓ
@@ -255,8 +255,8 @@ if (L1.length === 1 && !/^\d/.test(L1)) {
 
     // Next NON-BLANK *must* be distance
     let j2 = nextNonBlank(lines, j1 + 1);
-  //  let L2 = lines[j2] || "";
-    let L2 = normalizeDistance(lines[j2] || "");
+    let L2 = lines[j2] || "";
+   // let L2 = normalizeDistance(lines[j2] || "");
 
     if (DISTANCE_REGEX.test(L2)) {
         currentPPdistance = L2;
