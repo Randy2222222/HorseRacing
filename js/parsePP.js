@@ -128,6 +128,7 @@ export function parsePP(decodedText) {
     let currentPPdate = "";
     let currentPPtrack = "";
     let currentPPraceNo = "";
+    let currentGlyph = "";
     let currentPPdistance = "";
     let currentPPsurface = "";
     let currentPPmodifier = "";
@@ -159,6 +160,7 @@ export function parsePP(decodedText) {
             date: currentPPdate,
             track: currentPPtrack,
             race: currentPPraceNo,
+            glyph: currentPPglyph,
             distance: currentPPdistance,
             surface: currentPPsurface,
             modifier: currentPPmodifier,
@@ -180,6 +182,7 @@ export function parsePP(decodedText) {
   currentPPdate  = line.slice(0, 7);      // 12Oct25
   currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
+        currentPPglyph = "";
         currentPPdistance = "";
          currentPPsurface = "";
         currentPPmodifier = "";
@@ -379,6 +382,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         date: currentPPdate,
         track: currentPPtrack,
         race: currentPPraceNo,
+        glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
         modifier: currentPPmodifier,
