@@ -1,6 +1,6 @@
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
-
+// .replace(/1¹⁄₁₆/, "1¹⁄₁₆")
 //import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
 
