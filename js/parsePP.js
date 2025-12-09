@@ -212,31 +212,31 @@ export function parsePP(decodedText) {
         currentPP.push(line);
 
           // --------------------------------------------------
-// STEP 2 — FIND DISTANCE (ignore glyphs except for skipping them)
+// STEP 2 — FIND DISTANCE (glyph optional, distance mandatory)
 // --------------------------------------------------
-let L1 = (lines[i + 1] || "").trim();  // could be distance OR glyph
-let L2 = (lines[i + 2] || "").trim();  // used only if L1 is a glyph
+let L1 = (lines[i + 1] || "").trim();  // either distance OR glyph
+let L2 = (lines[i + 2] || "").trim();  // only checked if L1 is a glyph
 
-// CASE 1 — L1 is a distance
+// CASE 1 — L1 IS a distance
 if (DISTANCE_REGEX.test(L1)) {
+    currentPPglyph = "";         // no glyph
     currentPPdistance = L1;
-    currentGlyph = "";   // no glyph here
-    i += 1;
+    i += 1;                      // consumed distance
 }
 
-// CASE 2 — L1 is ONE CHARACTER (not a digit) AND L2 is a distance
+// CASE 2 — L1 IS a glyph AND L2 IS a distance
 else if (L1.length === 1 && !/^\d/.test(L1) && DISTANCE_REGEX.test(L2)) {
-    currentGlyph = L1;        // save glyph if you ever care
-    currentPPdistance = L2;   // this is the real distance
-    i += 2;
+    currentPPglyph = L1;         // save glyph if needed
+    currentPPdistance = L2;
+    i += 2;                      // consumed glyph + distance
 }
 
-// CASE 3 — nothing matches → leave blank
+// CASE 3 — BAD / unknown input
 else {
+    currentPPglyph = "";
     currentPPdistance = "";
-    currentGlyph = "";
 }
-
+        
 // calls setup
 totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
 slotIndex = 0;
