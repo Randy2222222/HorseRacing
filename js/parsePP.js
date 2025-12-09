@@ -122,6 +122,17 @@ export function parsePP(decodedText) {
   structure.horses = horses;
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
+  // ------------------------------------------
+// ⭐️ Counting Function must keep ⭐️
+// ------------------------------------------
+// function nextNonBlank(lines, startIndex) {
+  // let j = startIndex;
+  // while (j < lines.length && lines[j].trim() === "") j++;
+  // return j;
+//}
+//–---–---------------------------------------
+// ⭐️ Counting Function must keep ⭐️
+//--------------------------------------------
 
  // 🏇 Parse PP for each Horse
   for (const h of horses) {
