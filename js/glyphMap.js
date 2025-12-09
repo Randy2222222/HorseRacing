@@ -58,7 +58,7 @@ export const GLYPHS = {
   "Š": "⁵⁄₁₆",
   "…": "⅜",
   "\u0081": "½",
-  //   "⅝",
+  "Ñ": "⅝",
   "ƒ": "¾",
   // Fractions for horse lengths (display)
  // "‚": "¼",
