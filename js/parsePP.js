@@ -123,11 +123,11 @@ export function parsePP(decodedText) {
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
   //Bullshit🔥
-  function nextNonBlank(lines, startIndex) {
-    let j = startIndex;
-    while (j < lines.length && lines[j].trim() === "") j++;
-    return j;
-}// end of bullshit🔥
+  // function nextNonBlank(lines, startIndex) {
+  // let j = startIndex;
+  //  while (j < lines.length && lines[j].trim() === "") j++;
+  //  return j;
+//}// end of bullshit🔥
 
   // 🏇 Parse PP for each Horse
   for (const h of horses) {
@@ -214,11 +214,11 @@ export function parsePP(decodedText) {
           // ------------------------------------------
 // DISTANCE + optional glyph (handles blank lines)
 // ------------------------------------------
-//function nextNonBlank(lines, startIndex) {
-   // let j = startIndex;
-  //  while (j < lines.length && lines[j].trim() === "") j++;
-  //  return j;
-//}
+ function nextNonBlank(lines, startIndex) {
+   let j = startIndex;
+   while (j < lines.length && lines[j].trim() === "") j++;
+   return j;
+}
 
 let j1 = nextNonBlank(lines, i + 1);   // could be glyph OR distance
 let j2 = nextNonBlank(lines, j1 + 1);  // next non-blank after that
