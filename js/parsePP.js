@@ -122,6 +122,12 @@ export function parsePP(decodedText) {
   structure.horses = horses;
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
+  //Bullshit🔥
+  function nextNonBlank(lines, startIndex) {
+    let j = startIndex;
+    while (j < lines.length && lines[j].trim() === "") j++;
+    return j;
+}// end of bullshit🔥
 
   // 🏇 Parse PP for each Horse
   for (const h of horses) {
@@ -205,30 +211,36 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-          // --------------------------------------------------
-// STEP 2 — FIND GLYPH + DISTANCE (kept as separate fields)
-// --------------------------------------------------
+          // ------------------------------------------
+// DISTANCE + optional glyph (handles blank lines)
+// ------------------------------------------
+function nextNonBlank(lines, startIndex) {
+    let j = startIndex;
+    while (j < lines.length && lines[j].trim() === "") j++;
+    return j;
+}
 
-let L1 = (lines[i + 1] || "").trim();  // could be glyph OR distance
-let L2 = (lines[i + 2] || "").trim();  // used only if L1 is a glyph
+let j1 = nextNonBlank(lines, i + 1);   // could be glyph OR distance
+let j2 = nextNonBlank(lines, j1 + 1);  // next non-blank after that
 
-// CASE 1 — L1 is a distance
+let L1 = lines[j1] || "";
+let L2 = lines[j2] || "";
+
+// CASE 1 — first non-blank is distance
 if (DISTANCE_REGEX.test(L1)) {
-    currentPPglyph    = "";   // no glyph in front
+    currentPPglyph = "";
     currentPPdistance = L1;
-    i += 1;
+    i = j1;
 }
-
-// CASE 2 — L1 is ONE CHARACTER (glyph) AND L2 is a distance
+// CASE 2 — first is glyph and second is distance
 else if (L1.length === 1 && !/^\d/.test(L1) && DISTANCE_REGEX.test(L2)) {
-    currentPPglyph    = L1;   // glyph goes to its own field
-    currentPPdistance = L2;   // distance stays separate
-    i += 2;
+    currentPPglyph = L1;      // Ⓣ, Ⓐ, etc.
+    currentPPdistance = L2;   // 6f, 1¹⁄₁₆, etc.
+    i = j2;
 }
-
-// CASE 3 — nothing matches → leave blank
+// CASE 3 — nothing found
 else {
-    currentPPglyph    = "";
+    currentPPglyph = "";
     currentPPdistance = "";
 }
         
