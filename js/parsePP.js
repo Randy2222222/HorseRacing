@@ -30,7 +30,7 @@ const GLYPHS_TO_DISPLAY = {
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
 
-const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⅜|¹⁄₂|⁵⁄₈))\b/;
+const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⅜|½|⁵⁄₈))\b/;
 
   function normalizeDistance(raw) {
   return raw
