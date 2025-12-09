@@ -215,25 +215,39 @@ export function parsePP(decodedText) {
 //–---–---------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 //--------------------------------------------
-let j1 = nextNonBlank(lines, i + 1);   // could be glyph OR distance
-let j2 = nextNonBlank(lines, j1 + 1);  // next non-blank after that
+// -----------------------------------------
+// STEP — FIND GLYPH + DISTANCE (skip blanks)
+// -----------------------------------------
 
+let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
 let L1 = lines[j1] || "";
-let L2 = lines[j2] || "";
 
-// CASE 1 — first non-blank is distance
-if (DISTANCE_REGEX.test(L1)) {
+// CASE 1 — L1 IS A GLYPH (always 1 char)
+// ex: Ⓣ, Ⓐ, ⓧ, ⓓ
+if (L1.length === 1 && !/^\d/.test(L1)) {
+    currentPPglyph = L1;
+
+    // Next NON-BLANK *must* be distance
+    let j2 = nextNonBlank(lines, j1 + 1);
+    let L2 = lines[j2] || "";
+
+    if (DISTANCE_REGEX.test(L2)) {
+        currentPPdistance = L2;
+        i = j2;                    // advance pointer
+    } else {
+        currentPPdistance = "";    // failed to detect distance
+        i = j2;
+    }
+}
+
+// CASE 2 — L1 IS ALREADY A DISTANCE
+else if (DISTANCE_REGEX.test(L1)) {
     currentPPglyph = "";
     currentPPdistance = L1;
-    i = j1;
+    i = j1;                        // consume distance
 }
-// CASE 2 — first is glyph and second is distance
-else if (L1.length === 1 && !/^\d/.test(L1) && DISTANCE_REGEX.test(L2)) {
-    currentPPglyph = L1;      // Ⓣ, Ⓐ, etc.
-    currentPPdistance = L2;   // 6f, 1¹⁄₁₆, etc.
-    i = j2;
-}
-// CASE 3 — nothing found
+
+// CASE 3 — nothing useful found
 else {
     currentPPglyph = "";
     currentPPdistance = "";
