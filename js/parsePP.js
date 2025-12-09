@@ -18,7 +18,7 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
-//const SURFACE_GLYPHS = ["à", "Ì", "š", "•", "æ"];
+const SURFACE_GLYPHS = ["à", "Ì", "š", "•", "æ"];
 // Raw Brisnet surface glyphs → your chosen display symbols
 //const SURFACE_LOOKUP = {
 //  "à": "Ⓣ",   // turf
@@ -35,6 +35,10 @@ const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 
 // 4️⃣ Single-letter surface modifiers
 const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
+
+// 5️⃣ Condition Regex
+const CONDITION_REGEX =
+    new RegExp("\\b(" + SURFACE_CODES.join("|") + ")\\b", "i");
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
