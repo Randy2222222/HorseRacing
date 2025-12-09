@@ -30,15 +30,16 @@ const GLYPHS_TO_DISPLAY = {
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX = /\b([4-7](?:¹⁄₂)?f?|1m|2m|1m70|1(?:¹⁄₁₆|¹⁄₈|³⁄₁₆|¹⁄₄|³⁄₈|¹⁄₂|⁵⁄₈))\b/;
 function normalizeDistance(raw) {
+  function normalizeDistance(raw) {
   return raw
-    .replace(/ˆ/g, "¹⁄₁₆")        // PDF “hat” → real 1/16 unicode
-    .replace(/1\/16/gi, "¹⁄₁₆")
-    .replace(/3\/16/gi, "³⁄₁₆")
-    .replace(/1\/8/gi,  "¹⁄₈")
-    .replace(/3\/8/gi,  "³⁄₈")
-    .replace(/1\/4/gi,  "¹⁄₄")
-    .replace(/1\/2/gi,  "¹⁄₂")
-    .replace(/5\/8/gi,  "⁵⁄₈");
+    .replace(/ˆ/g,  "¹⁄₁₆")  // 1/16
+    .replace(/‰/g,  "³⁄₁₆")  // 3/16
+    .replace(/„/g,  "⅛")     // 1/8
+    .replace(/…/g,  "⅜")     // 3/8
+    .replace(/‚/g,  "¼")     // 1/4
+    .replace(/\u0081/g, "½") // 1/2
+    .replace(/\/\//g, "⅝")   // 5/8
+    .replace(/ƒ/g,  "¾");    // 3/4
 }
 
 // 3️⃣ Surface codes (2-letter)
