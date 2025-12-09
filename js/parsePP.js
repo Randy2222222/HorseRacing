@@ -23,8 +23,8 @@ const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 const GLYPHS_TO_DISPLAY = {
   "à": "Ⓣ",   // turf
   "Ì": "Ⓐ",   // all-weather / synthetic
-  "š": "ⓧ",   // taken off turf
-  "•": "ⓓ",   // dirt / inner dirt
+  //"š": "ⓧ",   // taken off turf
+ // "•": "ⓓ",   // dirt / inner dirt
   "æ": "�"    // unknown
 }
 // 2️⃣ Distance Patterns
