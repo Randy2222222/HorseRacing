@@ -204,16 +204,17 @@ export function parsePP(decodedText) {
         
         // start this PP block with the date line
         currentPP.push(line);
-
-          // ------------------------------------------
-// DISTANCE + optional glyph (handles blank lines)
+// ------------------------------------------
+// ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
  function nextNonBlank(lines, startIndex) {
    let j = startIndex;
    while (j < lines.length && lines[j].trim() === "") j++;
    return j;
 }
-
+//–---–---------------------------------------
+// ⭐️ Counting Function must keep ⭐️
+//--------------------------------------------
 let j1 = nextNonBlank(lines, i + 1);   // could be glyph OR distance
 let j2 = nextNonBlank(lines, j1 + 1);  // next non-blank after that
 
