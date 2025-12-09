@@ -122,14 +122,8 @@ export function parsePP(decodedText) {
   structure.horses = horses;
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
-  //Bullshit🔥
-  // function nextNonBlank(lines, startIndex) {
-  // let j = startIndex;
-  //  while (j < lines.length && lines[j].trim() === "") j++;
-  //  return j;
-//}// end of bullshit🔥
 
-  // 🏇 Parse PP for each Horse
+ // 🏇 Parse PP for each Horse
   for (const h of horses) {
     const lines = h.block.split("\n").map(l => l.trim());
 
