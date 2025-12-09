@@ -9,7 +9,7 @@
 
 // ------------------------------------------------------------
 // 1️⃣ INTERNAL DECODER MAP — parser logic ONLY
-//     MUST be normal digits "0"–"9" (no superscripts here).
+//     MUST be normal digits "0"–"9" (no superscripts here)
 // ------------------------------------------------------------
 export const GLYPH_DIGITS = {
   "§": "0",
@@ -55,7 +55,7 @@ export const GLYPHS = {
   "„": "⅛",
   "‰": "³⁄₁₆",
   "‚": "¼",
-  "Š": 
+  "Š": "⁵⁄₁₆",
   "…": "⅜",
   "\u0081": "½",
   //   "⅝",
