@@ -212,29 +212,35 @@ export function parsePP(decodedText) {
         currentPP.push(line);
 
           // --------------------------------------------------
-// STEP 2 — FIND DISTANCE (glyph optional, distance mandatory)
+// STEP 2 — FIND DISTANCE (with optional glyph BEFORE it)
 // --------------------------------------------------
-let L1 = (lines[i + 1] || "").trim();  // either distance OR glyph
-let L2 = (lines[i + 2] || "").trim();  // only checked if L1 is a glyph
 
-// CASE 1 — L1 IS a distance
+let L1 = (lines[i + 1] || "").trim();   // could be glyph OR distance
+let L2 = (lines[i + 2] || "").trim();   // used only if L1 is a glyph
+
+currentPPdistance = "";  // reset
+
+// CASE 1 — L1 is a distance (normal dirt races)
 if (DISTANCE_REGEX.test(L1)) {
-    currentPPglyph = "";         // no glyph
     currentPPdistance = L1;
-    i += 1;                      // consumed distance
+    i += 1;   // consumed distance line
 }
 
-// CASE 2 — L1 IS a glyph AND L2 IS a distance
-else if (L1.length === 1 && !/^\d/.test(L1) && DISTANCE_REGEX.test(L2)) {
-    currentPPglyph = L1;         // save glyph if needed
-    currentPPdistance = L2;
-    i += 2;                      // consumed glyph + distance
+// CASE 2 — L1 is a GLYPH (one character AND not a digit)
+//        AND L2 is the distance
+else if (
+    L1.length === 1 &&
+    !/^\d/.test(L1) &&
+    DISTANCE_REGEX.test(L2)
+) {
+    // Attach glyph IN FRONT OF distance
+    currentPPdistance = L1 + L2;
+    i += 2;   // consumed glyph + distance
 }
 
-// CASE 3 — BAD / unknown input
+// CASE 3 — neither matched
 else {
-    currentPPglyph = "";
-    currentPPdistance = "";
+    currentPPdistance = "";   // leave empty
 }
         
 // calls setup
