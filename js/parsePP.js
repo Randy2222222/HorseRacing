@@ -214,11 +214,11 @@ export function parsePP(decodedText) {
           // ------------------------------------------
 // DISTANCE + optional glyph (handles blank lines)
 // ------------------------------------------
-function nextNonBlank(lines, startIndex) {
-    let j = startIndex;
-    while (j < lines.length && lines[j].trim() === "") j++;
-    return j;
-}
+//function nextNonBlank(lines, startIndex) {
+   // let j = startIndex;
+  //  while (j < lines.length && lines[j].trim() === "") j++;
+  //  return j;
+//}
 
 let j1 = nextNonBlank(lines, i + 1);   // could be glyph OR distance
 let j2 = nextNonBlank(lines, j1 + 1);  // next non-blank after that
