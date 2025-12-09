@@ -132,11 +132,8 @@ export function parsePP(decodedText) {
     let currentPPdate = "";
     let currentPPtrack = "";
     let currentPPraceNo = "";
-    let currentPPglyph = "";
     let currentPPdistance = "";
     let currentPPsurface = "";
-    let currentPPmodifier = "";
-    let currentPPconditionSup = "";
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPclassRating = null;
@@ -164,11 +161,8 @@ export function parsePP(decodedText) {
             date: currentPPdate,
             track: currentPPtrack,
             race: currentPPraceNo,
-            glyph: currentPPglyph,
             distance: currentPPdistance,
             surface: currentPPsurface,
-            modifier: currentPPmodifier,
-            conditionSup: currentPPconditionSup,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -186,11 +180,8 @@ export function parsePP(decodedText) {
   currentPPdate  = line.slice(0, 7);      // 12Oct25
   currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
-        currentPPglyph = "";
         currentPPdistance = "";
          currentPPsurface = "";
-        currentPPmodifier = "";
-        currentPPconditionSup = "";
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -395,11 +386,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         date: currentPPdate,
         track: currentPPtrack,
         race: currentPPraceNo,
-        glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
-        modifier: currentPPmodifier,
-        conditionSup: currentPPconditionSup,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
