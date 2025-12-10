@@ -18,9 +18,9 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
-//const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
+const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 // Raw Brisnet surface glyphs → your chosen display symbols
-//const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
+const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
 
 // 2️⃣ Distance Patterns
 const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
@@ -232,7 +232,7 @@ export function parsePP(decodedText) {
    let L1 = lines[j1] || "";
 
 // CASE 1 — L1 IS A GLYPH (always 1 char)
-   ex: Ⓣ, Ⓐ, ⓧ, ⓓ
+  // ex: Ⓣ, Ⓐ, ⓧ, 🅃
   if (L1.length === 1 && !/^\d/.test(L1)) {
       currentPPglyph = L1;
 
