@@ -222,7 +222,7 @@ export function parsePP(decodedText) {
         const surfMatch = line.match(SURFACE_REGEX);
         if (surfMatch) {
           currentPPsurface = surfMatch[0].toLowerCase();
-
+        }
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
