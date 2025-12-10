@@ -18,14 +18,14 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 // 2️⃣ PP Header Regex (Date + Race Line begins)
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
+// 3️⃣ Raw Brisnet surface glyphs → your chosen display symbols
 const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
-// Raw Brisnet surface glyphs → your chosen display symbols
 const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
 
-// 2️⃣ Distance Patterns
+// 4️⃣ Distance Patterns
 const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
 
-// 3️⃣ Surface codes (2-letter)
+// 5️⃣ Surface codes (2-letter)
 const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 
@@ -42,12 +42,15 @@ function isShortSprint(distanceStr) {
   return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
 }
 
-// 7️⃣ RR Regex
 // (we’re not using UNICODE_SIX here yet, but keeping it in case you
 // later want to auto-append a missing ⁶)
 const UNICODE_SIX = "\u2076";   // ⁶
-// Line is ONLY 2–3 superscript digits → this IS the RR value
+
+// 7️⃣ Line is ONLY 2–3 superscript digits → this IS the RR value
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
+
+// 8️⃣ RaceType
+const RACETTYPE_REGEX = /^\d(
 
 // 8️⃣ Brisnet speed figures
 const E1_REGEX  = /^\d{2,3}$/;      // ex: 76
