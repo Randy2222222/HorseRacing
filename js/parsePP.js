@@ -212,18 +212,44 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-           // distance
-        const distMatch = line.match(DISTANCE_REGEX);
-        if (distMatch) {
-          currentPPdistance = distMatch[0];   // glyphMap already pretty-prints it
-        }
-           continue;
-        // surface
-        const surfMatch = line.match(SURFACE_REGEX);
-        if (surfMatch) {
-          currentPPsurface = surfMatch[0].toLowerCase();
-        }
-        continue;
+          // 🔥 BEGINING OF CODE
+        
+// GLYPH — single symbol line (Ⓣ, Ⓐ, ⓧ, ⓓ, �)
+if (!currentPPglyph &&
+    trimmed.length === 1 &&
+    ["Ⓣ","Ⓐ","ⓧ","ⓓ","�"].includes(trimmed)) {
+
+  currentPPglyph = trimmed;   // store symbol
+  continue;                   // go to next line
+}
+
+// 🔴 DISTANCE
+
+// DISTANCE — 4f, 6f, 5½, 1m, 1¹⁄₁₆, 1⅝, etc.
+if (!currentPPdistance) {
+  const dm = trimmed.match(DISTANCE_REGEX);  // ← THIS calls DISTANCE_REGEX
+
+  if (dm) {
+    // dm[0] is the whole match
+    currentPPdistance = dm[0];
+    continue;
+  }
+}
+
+/ 🔵 SURFACE
+
+// SURFACE — ft, fm, my, sy, etc. with optional superscript
+if (!currentPPsurface) {
+  const sm = trimmed.match(SURFACE_REGEX);  // ← THIS calls SURFACE_REGEX
+
+  if (sm) {
+    // sm[0] = "myˢ" or "ft" etc.
+    currentPPsurface = sm[0];
+    continue;
+  }
+}
+
+
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
