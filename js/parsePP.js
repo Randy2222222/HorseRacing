@@ -299,9 +299,7 @@ if (!currentPPsurface) {
   //  currentPPdistance = "";
 //}
         
-// calls setup
-totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-slotIndex = 0;
+
 
 
 // ---------------------------
