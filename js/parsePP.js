@@ -232,7 +232,7 @@ if (!currentPPdistance) {
   if (dm) {
     // dm[0] is the whole match
     currentPPdistance = dm[0];
-    
+    continue;
   }
 }
 
@@ -245,7 +245,7 @@ if (!currentPPsurface) {
   if (sm) {
     // sm[0] = "myˢ" or "ft" etc.
     currentPPsurface = sm[0];
-    continue;
+    
   }
 }
 
