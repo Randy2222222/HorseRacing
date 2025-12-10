@@ -346,7 +346,7 @@ slotIndex = 0;
         currentPPraceType = trimmed;
 
         // After we read RaceType, the NEXT superscript line is Class Rating
-       // expectRaceTypeNext = false; 🔥 commented out
+        expectRaceTypeNext = false; 
         expectClassRatingNext = true;
 
         continue;
