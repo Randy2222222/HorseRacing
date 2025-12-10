@@ -29,6 +29,8 @@ const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄�
 //const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 const SURFACE_REGEX = /\b([ft|gd|my|sy|wf|fm|yl|sf|hy|sl](?:ˢ|ˣ|ⁿ|ᵗ|ʸ|))\b/;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
+const SURFACE_REGEX =
+  /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢ|ˣ|ⁿ|ᵗ|ʸ])?\b/i;
 
 // 4️⃣ Single-letter surface modifiers
 //const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
@@ -62,7 +64,7 @@ const E2_REGEX  = /^\d{2,3}\/$/;    // ex: 82/
 const LP_REGEX  = /^\d{2,3}$/;      // ex: 86  🔥was LP
 
 // 9️⃣ Race Shapes (1c and 2c): +3, -1, 4, etc.
-const SHAPE_REGEX = /^[+\-]?\d{1,3}$/;
+const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 
 // 🔟 SPD Speed Rating
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
