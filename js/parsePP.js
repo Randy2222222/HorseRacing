@@ -217,12 +217,13 @@ export function parsePP(decodedText) {
         if (distMatch) {
           currentPPdistance = distMatch[0];   // glyphMap already pretty-prints it
         }
-
+           continue;
         // surface
         const surfMatch = line.match(SURFACE_REGEX);
         if (surfMatch) {
           currentPPsurface = surfMatch[0].toLowerCase();
         }
+        continue;
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
