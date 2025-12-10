@@ -268,8 +268,16 @@ else {
     currentPPglyph = "";
     currentPPdistance = "";
 }
-        
 
+   // ⚡️ RUNNING SURFACE ⚡️
+        const surfMatch = line.match(SURFACE_REGEX);
+
+if (surfMatch) {
+    currentPPsurface = surfMatch[0];   // "fmˣ" or "gd" or "slᵗ"
+} else {
+    currentPPsurface = "";
+} 
+// ⚡️ END OF SURFACE CODE ⚡️
 
 
 // ---------------------------
