@@ -52,6 +52,9 @@ const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 // 8️⃣ RaceType
 const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
 
+// 9️⃣ Class Rating
+const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
+
 // 8️⃣ Brisnet speed figures
 const E1_REGEX  = /^\d{2,3}$/;      // ex: 76
 const E2_REGEX  = /^\d{2,3}\/$/;    // ex: 82/
