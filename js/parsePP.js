@@ -212,11 +212,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
         currentPPraceResult    = null;
         currentPPraceType      = "";
-        expectRaceTypeNext     = false;
-       // currentPPclassRating   = null;
-        expectClassRatingNext  = false;
-      // 🔥 Added next line, commented out above 2 lines
-        currentPPclassRating   = "";
+        //expectRaceTypeNext     = false;
+        currentPPclassRating   = null;
+       // expectClassRatingNext  = false;
+      // 🔥 Added next line, commented out line above and line above that
+       // currentPPclassRating   = "";
         currentPPpace          = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
         currentPPtwoC = null;
@@ -365,7 +365,7 @@ slotIndex = 0;
 
         // After we read RaceType, the NEXT superscript line is Class Rating
         expectRaceTypeNext = false; 
-        expectClassRatingNext = true;
+        //expectClassRatingNext = true;
 
         continue;
       }
@@ -374,15 +374,21 @@ slotIndex = 0;
       //  CLASS RATING — superscript digits on the next line
       //  after RaceType. Example: ¹¹⁴
       // ----------------------------------------------------
-      if (CR_SUP_LINE_REGEX.test(trimmed)) {
-        currentPPclassRating = trimmed;
+      // CLASS RATING — any line that is only superscript digits,
+// and we haven't captured a class rating yet
+if (CR_SUP_LINE_REGEX.test(trimmed) && currentPPclassRating === null) {
+  currentPPclassRating = trimmed;
+  continue;
+}
+     //🔥 if (CR_SUP_LINE_REGEX.test(trimmed)) {
+      //🔥  currentPPclassRating = trimmed;
   // 🔥 Added top 2 lines commented out bottom 3
     //  if (expectClassRatingNext) {
 
        // if (trimmed.length === 0) {
           // skip blank lines but keep expecting
-          continue;
-        }
+        //  continue;
+     //   }
          // 🔥 Commented out till 🔵
         // must be only superscript digits
      //   if (RR_SUP_LINE_REGEX.test(trimmed)) {
