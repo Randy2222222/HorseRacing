@@ -215,8 +215,10 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPraceResult    = null;
         currentPPraceType      = "";
         expectRaceTypeNext     = false;
-        currentPPclassRating   = null;
+      //  currentPPclassRating   = null;
         expectClassRatingNext  = false;
+      // 🔥 Added next line, commented out liee before above line
+        currentPPclassRating   = "";
         currentPPpace          = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
         currentPPtwoC = null;
@@ -365,21 +367,24 @@ slotIndex = 0;
       //  CLASS RATING — superscript digits on the next line
       //  after RaceType. Example: ¹¹⁴
       // ----------------------------------------------------
-      if (expectClassRatingNext) {
+      if (CR_SUP_LINE_REGEX.test(trimmed)) {
+        currentPPclassRating = trimmed;
+  // 🔥 Added top 2 lines commented out bottom 3
+    //  if (expectClassRatingNext) {
 
-        if (trimmed.length === 0) {
+       // if (trimmed.length === 0) {
           // skip blank lines but keep expecting
           continue;
         }
-
+         // 🔥 Commented out till 🔵
         // must be only superscript digits
-        if (RR_SUP_LINE_REGEX.test(trimmed)) {
-          currentPPclassRating = trimmed;
-        }
+     //   if (RR_SUP_LINE_REGEX.test(trimmed)) {
+       //   currentPPclassRating = trimmed;
+      //  }
 
-        expectClassRatingNext = false;
-        continue;
-      }
+      //  expectClassRatingNext = false;
+     //   continue;
+     // }
 
       // 🟦 PACE: E1, E2/, LP  ------------------------
       if (currentPPpace.e1 === null && E1_REGEX.test(trimmed)) {
