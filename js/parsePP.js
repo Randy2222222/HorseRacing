@@ -158,7 +158,17 @@ export function parsePP(decodedText) {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-
+      //--------------
+//🛟 SAFETY CATCH 🛟
+      //--------------
+// --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
+if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
+    currentPPdistance = line.trim();
+}
+      if (!currentPPglyph && GLYPHS_TO_DISPLAY[line]) {
+    currentPPglyph = line.trim();
+}// 🛟 END SAFETY CATCH 🛟
+      
       // 1️⃣ DATE = start of new PP block
       if (DATE_REGEX.test(line)) {
 
