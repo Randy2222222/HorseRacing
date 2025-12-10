@@ -232,7 +232,7 @@ if (!currentPPdistance) {
   if (dm) {
     // dm[0] is the whole match
     currentPPdistance = dm[0];
-    continue;
+    
   }
 }
 
