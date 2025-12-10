@@ -124,17 +124,6 @@ export function parsePP(decodedText) {
   structure.horses = horses;
 
   const dateRegex = /^\d{2}[A-Za-z]{3}\d{2}/;
-  // ------------------------------------------
-// ⭐️ Counting Function must keep ⭐️
-// ------------------------------------------
- // function nextNonBlank(lines, startIndex) {
-  //  let j = startIndex;
-  //  while (j < lines.length && lines[j].trim() === "") j++;
-  // return j;
-//}
-//–---–---------------------------------------
-// ⭐️ Counting Function must keep ⭐️
-//--------------------------------------------
 
  // 🏇 Parse PP for each Horse
   for (const h of horses) {
@@ -214,11 +203,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
         currentPPraceResult    = null;
         currentPPraceType      = "";
-        expectRaceTypeNext     = false;
+      //  expectRaceTypeNext     = false;
       //  currentPPclassRating   = null;
-        expectClassRatingNext  = false;
-      // 🔥 Added next line, commented out liee before above line
-        currentPPclassRating   = "";
+       // expectClassRatingNext  = false;
+      // 🔥 Added next line, commented out above 3 lines
+        currentPPclassRating   = null;
         currentPPpace          = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
         currentPPtwoC = null;
@@ -357,7 +346,7 @@ slotIndex = 0;
         currentPPraceType = trimmed;
 
         // After we read RaceType, the NEXT superscript line is Class Rating
-        expectRaceTypeNext = false; 
+       // expectRaceTypeNext = false; 🔥 commented out
         expectClassRatingNext = true;
 
         continue;
