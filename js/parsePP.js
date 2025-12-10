@@ -212,52 +212,15 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-          // 🔥 BEGINING OF CODE
-        
-// GLYPH — single symbol line (Ⓣ, Ⓐ, ⓧ, ⓓ, �)
-if (!currentPPglyph &&
-    trimmed.length === 1 &&
-    ["Ⓣ","Ⓐ","ⓧ","ⓓ","�"].includes(trimmed)) {
-
-  currentPPglyph = trimmed;   // store symbol
-  continue;                   // go to next line
-}
-
-// 🔴 DISTANCE
-
-// DISTANCE — 4f, 6f, 5½, 1m, 1¹⁄₁₆, 1⅝, etc.
-if (!currentPPdistance) {
-  const dm = trimmed.match(DISTANCE_REGEX);  // ← THIS calls DISTANCE_REGEX
-
-  if (dm) {
-    // dm[0] is the whole match
-    currentPPdistance = dm[0];
-    continue;
-  }
-}
-
-/ 🔵 SURFACE
-
-// SURFACE — ft, fm, my, sy, etc. with optional superscript
-if (!currentPPsurface) {
-  const sm = trimmed.match(SURFACE_REGEX);  // ← THIS calls SURFACE_REGEX
-
-  if (sm) {
-    // sm[0] = "myˢ" or "ft" etc.
-    currentPPsurface = sm[0];
-    
-  }
-}
-
 
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
-// function nextNonBlank(lines, startIndex) {
-  // let j = startIndex;
-  // while (j < lines.length && lines[j].trim() === "") j++;
-// return j;
-//}
+   function nextNonBlank(lines, startIndex) {
+     let j = startIndex;
+     while (j < lines.length && lines[j].trim() === "") j++;
+   return j;
+  }
 //–---–---------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 //--------------------------------------------
@@ -265,39 +228,39 @@ if (!currentPPsurface) {
 // STEP — FIND GLYPH + DISTANCE (skip blanks)
 // -----------------------------------------
 
-//let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
-//let L1 = lines[j1] || "";
+   let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
+   let L1 = lines[j1] || "";
 
 // CASE 1 — L1 IS A GLYPH (always 1 char)
-// ex: Ⓣ, Ⓐ, ⓧ, ⓓ
-//if (L1.length === 1 && !/^\d/.test(L1)) {
-   // currentPPglyph = L1;
+   ex: Ⓣ, Ⓐ, ⓧ, ⓓ
+  if (L1.length === 1 && !/^\d/.test(L1)) {
+      currentPPglyph = L1;
 
     // Next NON-BLANK *must* be distance
-  //  let j2 = nextNonBlank(lines, j1 + 1);
-  //  let L2 = lines[j2] || "";
+      let j2 = nextNonBlank(lines, j1 + 1);
+      let L2 = lines[j2] || "";
 
-  //  if (DISTANCE_REGEX.test(L2)) {
-     //   currentPPdistance = L2;
-      //  i = j2;                    // advance pointer
-  //  } else {
-      //  currentPPdistance = "";    // failed to detect distance
-      //  i = j2;
-   // }
-//}
+      if (DISTANCE_REGEX.test(L2)) {
+         currentPPdistance = L2;
+         i = j2;                    // advance pointer
+     } else {
+         currentPPdistance = "";    // failed to detect distance
+        i = j2;
+    }
+ }
 
 // CASE 2 — L1 IS ALREADY A DISTANCE
-//else if (DISTANCE_REGEX.test(L1)) {
- //   currentPPglyph = "";
-  //  currentPPdistance = L1;
-  //  i = j1;                        // consume distance
-//}
+  else if (DISTANCE_REGEX.test(L1)) {
+      currentPPglyph = "";
+      currentPPdistance = L1;
+    i = j1;                        // consume distance
+}
 
-// CASE 3 — nothing useful found
-//else {
-  //  currentPPglyph = "";
-  //  currentPPdistance = "";
-//}
+  //CASE 3 — nothing useful found
+else {
+    currentPPglyph = "";
+    currentPPdistance = "";
+}
         
 
 
