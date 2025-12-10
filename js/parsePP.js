@@ -50,7 +50,7 @@ const UNICODE_SIX = "\u2076";   // ⁶
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ RaceType
-const RACETTYPE_REGEX = /^\d(Ⓕ|
+const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Z
 
 // 8️⃣ Brisnet speed figures
 const E1_REGEX  = /^\d{2,3}$/;      // ex: 76
