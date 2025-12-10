@@ -26,8 +26,17 @@ const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]
 const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
 
 // 5️⃣ Surface codes (2-letter)
-const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
+//const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
+
+const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
+const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
+
+// Build regex: (ft|gd|my|...) plus optional superscript
+const SURFACE_REGEX =
+  new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
+
+
 
 // 4️⃣ Single-letter surface modifiers
 //const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
