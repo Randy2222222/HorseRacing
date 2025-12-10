@@ -140,7 +140,7 @@ export function parsePP(decodedText) {
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPclassRating = null;
-    let expectClassRatingNext = false;
+   // let expectClassRatingNext = false;
     let currentPPraceType = "";
     let expectRaceTypeNext = false;
     let currentPPpace = { e1: null, e2: null, lp: null };
@@ -203,10 +203,10 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
         currentPPraceResult    = null;
         currentPPraceType      = "";
-      //  expectRaceTypeNext     = false;
+        expectRaceTypeNext     = false;
       //  currentPPclassRating   = null;
        // expectClassRatingNext  = false;
-      // 🔥 Added next line, commented out above 3 lines
+      // 🔥 Added next line, commented out above 2 lines
         currentPPclassRating   = null;
         currentPPpace          = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
