@@ -277,14 +277,18 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
-if (!currentPPsurface) {
-    const m = line.match(SURFACE_REGEX);
-    if (m) {
+  if (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
+      currentPPsurface = trimmed;
+    continue;
+  }
+//if (!currentPPsurface) {
+   // const m = line.match(SURFACE_REGEX);
+   // if (m) {
         // m[1] = base (fm)
         // m[2] = optional superscript modifier
-        currentPPsurface = m[1] + (m[2] || "");
-    }
-}
+      //  currentPPsurface = m[1] + (m[2] || "");
+   // }
+//}
 
      //   const surfMatch = line.match(SURFACE_REGEX);
 
