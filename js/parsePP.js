@@ -255,7 +255,21 @@ if (L1.length === 1 && !/^\d/.test(L1)) {
         // 🔥 NEW: SURFACE is the next non-blank after DISTANCE
         let jSurf = nextNonBlank(lines, j2 + 1);
         currentPPsurface = (lines[jSurf] || "").trim();
+      
 
+// ---- CHECK FOR SURFACE SUPERSCRIPT ----
+// Superscript must be exactly one char AND must be one of these:
+const SURF_SUP = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
+
+// Look ahead one more non-blank line
+let jSup = nextNonBlank(lines, jSurf + 1);
+let sup = (lines[jSup] || "").trim();
+
+if (sup.length === 1 && SURF_SUP.includes(sup)) {
+    currentPPsurface += sup;   // attach superscript
+    i = jSup;                  // advance pointer over the superscript
+} else {
+    
         i = jSurf;   // advance pointer past surface
     } else {
         currentPPdistance = "";
@@ -272,8 +286,20 @@ else if (DISTANCE_REGEX.test(L1)) {
     // 🔥 NEW: SURFACE is next non-blank after L1
     let jSurf = nextNonBlank(lines, j1 + 1);
     currentPPsurface = (lines[jSurf] || "").trim();
+  
+// ---- CHECK FOR SURFACE SUPERSCRIPT ----
+// Superscript must be exactly one char AND must be one of these:
+const SURF_SUP = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
-    i = jSurf;
+// Look ahead one more non-blank line
+let jSup = nextNonBlank(lines, jSurf + 1);
+let sup = (lines[jSup] || "").trim();
+
+if (sup.length === 1 && SURF_SUP.includes(sup)) {
+    currentPPsurface += sup;   // attach superscript
+    i = jSup;                  // advance pointer over the superscript
+} else {
+    i = jSurf;                 // normal pointer movement
 }
 
 // CASE 3 — nothing useful found
