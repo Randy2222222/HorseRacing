@@ -256,70 +256,71 @@ if (currentPPsurface && !/[ˢˣⁿᵗʸ]$/.test(currentPPsurface)) {
 //--------------------------------------------
 let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
 let L1 = lines[j1] || "";
-
-// CASE 1 — L1 IS A GLYPH (always 1 char)
-// ex: Ⓣ, Ⓐ, ⓧ, 🅃
+// =====================================================
+// CASE 1 — GLYPH on its own line, then DISTANCE
+// =====================================================
 if (L1.length === 1 && !/^\d/.test(L1)) {
+
     currentPPglyph = L1;
 
-    // Next NON-BLANK *must* be distance
+    // find distance
     let j2 = nextNonBlank(lines, j1 + 1);
-    let L2 = lines[j2] || "";
+    let L2 = (lines[j2] || "").trim();
 
     if (DISTANCE_REGEX.test(L2)) {
+
         currentPPdistance = L2;
 
-        // 🔥 NEW: SURFACE is the next non-blank after DISTANCE
+        // find surface
         let jSurf = nextNonBlank(lines, j2 + 1);
         currentPPsurface = (lines[jSurf] || "").trim();
-      
 
-// ---- CHECK FOR SURFACE SUPERSCRIPT ----
-// Superscript must be exactly one char AND must be one of these:
-const SURF_SUP = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
+        // find surface superscript (optional)
+        let jSup = nextNonBlank(lines, jSurf + 1);
+        let sup = (lines[jSup] || "").trim();
 
-// Look ahead one more non-blank line
-let jSup = nextNonBlank(lines, jSurf + 1);
-let sup = (lines[jSup] || "").trim();
+        if (sup.length === 1 && SURF_SUP.includes(sup)) {
+            currentPPsurface += sup;
+            i = jSup;      // jump over superscript
+        } else {
+            i = jSurf;     // jump over surface
+        }
+    }
 
-if (sup.length === 1 && SURF_SUP.includes(sup)) {
-    currentPPsurface += sup;   // attach superscript
-    i = jSup;                  // advance pointer over the superscript
-} else {
-    
-        i = jSurf;   // advance pointer past surface
-    } else {
+    else {
         currentPPdistance = "";
         currentPPsurface = "";
         i = j2;
     }
 }
 
-// CASE 2 — L1 IS ALREADY A DISTANCE
+// =====================================================
+// CASE 2 — L1 *IS* the distance
+// =====================================================
 else if (DISTANCE_REGEX.test(L1)) {
+
     currentPPglyph = "";
     currentPPdistance = L1;
 
-    // 🔥 NEW: SURFACE is next non-blank after L1
+    // find surface
     let jSurf = nextNonBlank(lines, j1 + 1);
     currentPPsurface = (lines[jSurf] || "").trim();
-  
-// ---- CHECK FOR SURFACE SUPERSCRIPT ----
-// Superscript must be exactly one char AND must be one of these:
-const SURF_SUP = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
-// Look ahead one more non-blank line
-let jSup = nextNonBlank(lines, jSurf + 1);
-let sup = (lines[jSup] || "").trim();
+    // find surface superscript
+    let jSup = nextNonBlank(lines, jSurf + 1);
+    let sup = (lines[jSup] || "").trim();
 
-if (sup.length === 1 && SURF_SUP.includes(sup)) {
-    currentPPsurface += sup;   // attach superscript
-    i = jSup;                  // advance pointer over the superscript
-} else {
-    i = jSurf;                 // normal pointer movement
+    if (sup.length === 1 && SURF_SUP.includes(sup)) {
+        currentPPsurface += sup;
+        i = jSup;
+    } else {
+        i = jSurf;
+    }
 }
 
-// CASE 3 — nothing useful found
+// =====================================================
+// CASE 3 — NONE OF THE ABOVE
+// =====================================================
 else {
     currentPPglyph = "";
     currentPPdistance = "";
