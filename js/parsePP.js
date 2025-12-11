@@ -1,3 +1,5 @@
+Don’t Trust this one
+
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
@@ -29,12 +31,12 @@ const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄�
 //const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 
-//const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-//const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
+const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
+const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
 // Build regex: (ft|gd|my|...) plus optional superscript
-//const SURFACE_REGEX =
- // new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
+const SURFACE_REGEX =
+  new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
 
 
 
@@ -168,15 +170,6 @@ export function parsePP(decodedText) {
 if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
     currentPPdistance = line.trim();
 }
-  // --- SURFACE SAFETY CATCH --- 
-if (!currentPPsurface) {
-    let trimmed = line.trim();
-
-    // If this line *is* a valid surface (fm, gd, sy, etc.)
-    if (SURFACE_CODES.includes(trimmed)) {
-        currentPPsurface = trimmed;
-    }
-}
 // 🛟 END SAFETY CATCH 🛟
       
       // 1️⃣ DATE = start of new PP block
@@ -246,51 +239,61 @@ if (!currentPPsurface) {
 //–---–---------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 //--------------------------------------------
-let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
-let L1 = lines[j1] || "";
+// -----------------------------------------
+// STEP — FIND GLYPH + DISTANCE (skip blanks)
+// -----------------------------------------
+
+   let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
+   let L1 = lines[j1] || "";
 
 // CASE 1 — L1 IS A GLYPH (always 1 char)
-// ex: Ⓣ, Ⓐ, ⓧ, 🅃
-if (L1.length === 1 && !/^\d/.test(L1)) {
-    currentPPglyph = L1;
+  // ex: Ⓣ, Ⓐ, ⓧ, 🅃
+  if (L1.length === 1 && !/^\d/.test(L1)) {
+      currentPPglyph = L1;
 
     // Next NON-BLANK *must* be distance
-    let j2 = nextNonBlank(lines, j1 + 1);
-    let L2 = lines[j2] || "";
+      let j2 = nextNonBlank(lines, j1 + 1);
+      let L2 = lines[j2] || "";
 
-    if (DISTANCE_REGEX.test(L2)) {
-        currentPPdistance = L2;
-
-        // 🔥 NEW: SURFACE is the next non-blank after DISTANCE
-        let jSurf = nextNonBlank(lines, j2 + 1);
-        currentPPsurface = (lines[jSurf] || "").trim();
-
-        i = jSurf;   // advance pointer past surface
-    } else {
-        currentPPdistance = "";
-        currentPPsurface = "";
+      if (DISTANCE_REGEX.test(L2)) {
+         currentPPdistance = L2;
+         i = j2;                    // advance pointer
+     } else {
+         currentPPdistance = "";    // failed to detect distance
         i = j2;
     }
-}
+ }
 
 // CASE 2 — L1 IS ALREADY A DISTANCE
-else if (DISTANCE_REGEX.test(L1)) {
-    currentPPglyph = "";
-    currentPPdistance = L1;
-
-    // 🔥 NEW: SURFACE is next non-blank after L1
-    let jSurf = nextNonBlank(lines, j1 + 1);
-    currentPPsurface = (lines[jSurf] || "").trim();
-
-    i = jSurf;
+  else if (DISTANCE_REGEX.test(L1)) {
+      currentPPglyph = "";
+      currentPPdistance = L1;
+    i = j1;                        // consume distance
 }
 
-// CASE 3 — nothing useful found
+  //CASE 3 — nothing useful found
 else {
     currentPPglyph = "";
     currentPPdistance = "";
-    currentPPsurface = "";
 }
+
+   // ⚡️ RUNNING SURFACE ⚡️
+if (!currentPPsurface) {
+    const m = line.match(SURFACE_REGEX);
+    if (m) {
+        // m[1] = base (fm)
+        // m[2] = optional superscript modifier
+        currentPPsurface = m[1] + (m[2] || "");
+    }
+}
+
+     //   const surfMatch = line.match(SURFACE_REGEX);
+
+// if (surfMatch) {
+ //   currentPPsurface = surfMatch[0];   // "fmˣ" or "gd" or "slᵗ"
+//} else {
+  //  currentPPsurface = "";
+//} 
 // ⚡️ END OF SURFACE CODE ⚡️
 
 
