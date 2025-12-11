@@ -277,7 +277,7 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
-  if (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
+  if (SURFACE_REGEX.test(trimmed)) {
       currentPPsurface = trimmed;
     continue;
   }
