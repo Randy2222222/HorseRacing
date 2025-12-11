@@ -279,8 +279,9 @@ else {
    // ⚡️ RUNNING SURFACE ⚡️
   if (SURFACE_REGEX.test(trimmed)) {
       currentPPsurface = trimmed;
-    continue;
   }
+   continue;
+  
 //if (!currentPPsurface) {
    // const m = line.match(SURFACE_REGEX);
    // if (m) {
