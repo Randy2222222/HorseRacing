@@ -28,7 +28,7 @@ const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄�
 // 5️⃣ Surface codes (2-letter)
 //const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
+//const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
 
 const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
@@ -277,27 +277,7 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
-  if (SURFACE_REGEX.test(trimmed)) {
-      currentPPsurface = trimmed;
-  }
-   continue;
-  
-//if (!currentPPsurface) {
-   // const m = line.match(SURFACE_REGEX);
-   // if (m) {
-        // m[1] = base (fm)
-        // m[2] = optional superscript modifier
-      //  currentPPsurface = m[1] + (m[2] || "");
-   // }
-//}
 
-     //   const surfMatch = line.match(SURFACE_REGEX);
-
-// if (surfMatch) {
- //   currentPPsurface = surfMatch[0];   // "fmˣ" or "gd" or "slᵗ"
-//} else {
-  //  currentPPsurface = "";
-//} 
 // ⚡️ END OF SURFACE CODE ⚡️
 
 
