@@ -177,14 +177,6 @@ if (!currentPPsurface) {
         currentPPsurface = trimmed;
     }
 }
-  // --- SUPERSCRIPT SAFETY CATCH ---
-    // catch surface superscript if surface was already set earlier
-if (currentPPsurface && !/[ˢˣⁿᵗʸ]$/.test(currentPPsurface)) {
-    let trimmed = line.trim();
-    if (SURF_SUP.includes(trimmed)) {
-        currentPPsurface += trimmed;
-    }
-}
 // 🛟 END SAFETY CATCH 🛟
       
       // 1️⃣ DATE = start of new PP block
