@@ -254,8 +254,8 @@ if (currentPPsurface && !/[ˢˣⁿᵗʸ]$/.test(currentPPsurface)) {
 //–---–---------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 //--------------------------------------------
-let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
-let L1 = lines[j1] || "";
+//let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
+//let L1 = lines[j1] || "";
 // =====================================================
 // CASE 1 — GLYPH on its own line, then DISTANCE
 // =====================================================
