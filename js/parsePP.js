@@ -1,5 +1,3 @@
-Don’t Trust this one
-
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
