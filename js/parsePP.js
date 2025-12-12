@@ -354,7 +354,7 @@ slotIndex = 0;
       // ----------------------------------------------------
       // CLASS RATING — any line that is only superscript digits,
 // and we haven't captured a class rating yet
-if (CR_SUP_LINE_REGEX.test(trimmed) && currentPPclassRating === null) {
+if (CR_SUP_LINE_REGEX.test(trimmed) {
   currentPPclassRating = trimmed;
   continue;
 }
