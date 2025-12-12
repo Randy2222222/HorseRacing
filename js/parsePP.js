@@ -332,10 +332,10 @@ slotIndex = 0;
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // --------------------------------------------
-  if (RACETYPE-REGEX.test(trimmed)) {
-    currentPPraceType = trimmed;
-    continue;
-}
+ // if (RACETYPE-REGEX.test(trimmed)) {
+  //  currentPPraceType = trimmed;
+  //  continue;
+//}
      // if (expectRaceTypeNext) {
 
        // if (trimmed.length === 0) {
