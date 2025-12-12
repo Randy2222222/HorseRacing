@@ -34,7 +34,7 @@ const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
 // Build regex: (ft|gd|my|...) plus optional superscript
-const SURFACE_REGEX =
+//const SURFACE_REGEX =
   new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
 
 // 4️⃣ Single-letter surface modifiers
@@ -263,10 +263,10 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 }
 
   //CASE 3 — nothing useful found
-//else {
- //   currentPPglyph = "";
-  //  currentPPdistance = "";
-//}
+else {
+   currentPPglyph = "";
+   currentPPdistance = "";
+}
 
    // ⚡️ RUNNING SURFACE ⚡️
 
@@ -324,29 +324,29 @@ slotIndex = 0;
       // ----------------------------------------------------
       if (RR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPraceResult = trimmed;
-        expectRaceTypeNext = true;  // next non-blank line is RaceType
+      //  expectRaceTypeNext = true;  // next non-blank line is RaceType
         continue;
       }
 
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-      if (expectRaceTypeNext) {
+     // if (expectRaceTypeNext) {
 
-        if (trimmed.length === 0) {
+       // if (trimmed.length === 0) {
           // Skip blank lines but stay in RaceType mode
-          continue;
-        }
+       //   continue;
+      //  }
 
         // This line IS the RaceType line
-        currentPPraceType = trimmed;
+       // currentPPraceType = trimmed;
 
         // After we read RaceType, the NEXT superscript line is Class Rating
-        expectRaceTypeNext = false; 
+        //expectRaceTypeNext = false; 
         
 
-        continue;
-      }
+       // continue;
+    //  }
 
       // ----------------------------------------------------
       //  CLASS RATING — superscript digits on the next line
