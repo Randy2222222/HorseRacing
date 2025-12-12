@@ -318,13 +318,9 @@ slotIndex = 0;
         continue;
       }
 
-      // ----------------------------------------------------
-      //  RR — Race Rating (always on its own line AFTER calls)
-      //  MUST be 2–3 superscript digits ONLY.
-      // ----------------------------------------------------
+      //  RR — Race Rating MUST be 3 superscript digits
       if (RR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPraceResult = trimmed;
-      //  expectRaceTypeNext = true;  // next non-blank line is RaceType
         continue;
       }
 
@@ -335,31 +331,13 @@ slotIndex = 0;
 
        // if (trimmed.length === 0) {
           // Skip blank lines but stay in RaceType mode
-       //   continue;
-      //  }
-
-        // This line IS the RaceType line
-       // currentPPraceType = trimmed;
-
-        // After we read RaceType, the NEXT superscript line is Class Rating
-        //expectRaceTypeNext = false; 
-        
-
-       // continue;
-    //  }
-
-      // ----------------------------------------------------
-      //  CLASS RATING — superscript digits on the next line
-      //  after RaceType. Example: ¹¹⁴
-      // ----------------------------------------------------
-      // CLASS RATING — any line that is only superscript digits,
-// and we haven't captured a class rating yet
-if (CR_SUP_LINE_REGEX.test(trimmed) {
-  currentPPclassRating = trimmed;
-  continue;
-}
+       
+      // CLASS RATING — Must Be 3 superscript digits,
+       if (CR_SUP_LINE_REGEX.test(trimmed)) {
+        currentPPclassRating = trimmed;
+        continue;
+     }
      
-
       // 🟦 PACE: E1, E2/, LP  ------------------------
       if (currentPPpace.e1 === null && E1_REGEX.test(trimmed)) {
         currentPPpace.e1 = trimmed;
