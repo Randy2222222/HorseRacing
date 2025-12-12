@@ -336,7 +336,7 @@ slotIndex = 0;
           // Skip blank lines but stay in RaceType mode
        
       // CLASS RATING — Must Be 3 superscript digits,
-       if (CR_SUP_LINE_REGEX.test(trimmed)) {
+       if (currenntPPraceTyoe === null && CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
         continue;
      }
