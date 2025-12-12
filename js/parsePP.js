@@ -319,30 +319,13 @@ slotIndex = 0;
       //  RR — Race Rating MUST be 3 superscript digits
       if (RR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPraceResult = trimmed;
-    //    continue;
-   //   }
+        continue;
+    }
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-    // 2️⃣ The VERY NEXT LINE is blank — skip exactly one🔥
-    let blankIndex = i + 1;
-
-    // Safety: make sure it's actually blank
-    if (blankIndex < lines.length && lines[blankIndex].trim() === "") {
-        // skip the blank line
-        i = blankIndex;
-    }
-
-    // 3️⃣ Now the line after the blank is ALWAYS Race Type
-    let rtIndex = i + 1;
-    currentPPraceType = (lines[rtIndex] || "").trim();
-
-    // Move pointer to the RaceType line
-    i = rtIndex;
-
-    continue;
-}
-     // 🔥if (expectRaceTypeNext) {
+    
+     // if (expectRaceTypeNext) {
 
        // if (trimmed.length === 0) {
           // Skip blank lines but stay in RaceType mode
