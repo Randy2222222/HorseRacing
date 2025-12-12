@@ -269,7 +269,12 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
+  const SURFACES   =  trimmed.(["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"]);
 
+If (SURFACES) {
+  CurrentPPsurface = SURFACES[0];
+Continue;
+}
 // ⚡️ END OF SURFACE CODE ⚡️
 
 
