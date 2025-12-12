@@ -325,13 +325,6 @@ slotIndex = 0;
       // RaceType — the line immediately after RR
       // ---------------------------------------------
 
-     let jRT = nextNonBlank(lines, i + 1);
-     let rtLine = lines[jRT]?.trim() || "";
-
-      { currentPPraceType = rtLine;
-         i = jRT;
-       continuue;
-      }
      // if (expectRaceTypeNext) {
 
        // if (trimmed.length === 0) {
