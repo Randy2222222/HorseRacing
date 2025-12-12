@@ -328,8 +328,10 @@ slotIndex = 0;
      let jRT = nextNonBlank(lines, i + 1);
      let rtLine = lines[jRT]?.trim() || "";
 
-     currentPPraceType = rtLine;
+      { currentPPraceType = rtLine;
          i = jRT;
+       continuue;
+      }
      // if (expectRaceTypeNext) {
 
        // if (trimmed.length === 0) {
