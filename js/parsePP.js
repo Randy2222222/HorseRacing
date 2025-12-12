@@ -327,7 +327,7 @@ slotIndex = 0;
       // ---------------------------------------------
 const raceTypeM = chunk.match(/\b(Mdn|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|Regret|MsGrillo|Mdn\s+\d+k|OC\d+k)/i);
       const racetype = raceTypeM ? raceTypeM[0] : '';
-      currentPPraceType = raceTypeM;
+      currentPPraceType = raceType;
      // if (expectRaceTypeNext) {
 
        // if (trimmed.length === 0) {
