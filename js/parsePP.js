@@ -36,7 +36,7 @@ const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
 // Build regex: (ft|gd|my|...) plus optional superscript
 //const SURFACE_REGEX =
-  new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
+ // new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
 
 // 4️⃣ Single-letter surface modifiers
 //const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
