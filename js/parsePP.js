@@ -58,7 +58,7 @@ const UNICODE_SIX = "\u2076";   // ⁶
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ RaceType
-const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
+const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|)([A-Za-z+])([0-9+])\/+))$/g;
 
 // 9️⃣ Class Rating
 const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
@@ -325,9 +325,8 @@ slotIndex = 0;
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // --------------------------------------------
-  const raceTypeM = trimmed.match( /\b(Mdn|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i);
-  if (raceTypeM) {
-    currentPPraceType = raceTypeM[0];
+  if (RACETYPE-REGEX.test(trimmed)) {
+    currentPPraceType = trimmed;
     continue;
 }
      // if (expectRaceTypeNext) {
