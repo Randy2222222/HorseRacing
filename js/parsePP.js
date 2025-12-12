@@ -324,11 +324,12 @@ slotIndex = 0;
     }
       // ---------------------------------------------
       // RaceType — the line immediately after RR
-      // ---------------------------------------------
-const raceTypeM = chunk.match(/\b(Mdn|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|Regret|MsGrillo|Mdn\s+\d+k|OC\d+k)/i);
-      const racetype = raceTypeM ? raceTypeM[0] : '';
-      currentPPraceType = raceType;
-      continue;
+      // --------------------------------------------
+  const raceTypeM = trimmed.match( /\b(Mdn|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i);
+  if (raceTypeM) {
+    currentPPraceType = raceTypeM[0];
+    continue;
+}
      // if (expectRaceTypeNext) {
 
        // if (trimmed.length === 0) {
