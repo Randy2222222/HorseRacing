@@ -146,10 +146,8 @@ export function parsePP(decodedText) {
     let currentPPsurface = "";
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
-    let currentPPclassRating = null;
-    let expectClassRatingNext = false;
     let currentPPraceType = "";
-    let expectRaceTypeNext = false;
+    let currentPPclassRating = null;
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
     let currentPPtwoC = null;   // race shape 2c
