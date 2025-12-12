@@ -28,16 +28,14 @@ const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄�
 // 5️⃣ Surface codes (2-letter)
 //const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-//const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
-
+const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
+const SURF_TAG  =  ["s","x","n","t","y"];
 const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
 // Build regex: (ft|gd|my|...) plus optional superscript
 const SURFACE_REGEX =
   new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
-
-
 
 // 4️⃣ Single-letter surface modifiers
 //const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
@@ -51,7 +49,6 @@ function isShortSprint(distanceStr) {
   const d = distanceStr.toLowerCase();
   return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
 }
-
 // (we’re not using UNICODE_SIX here yet, but keeping it in case you
 // later want to auto-append a missing ⁶)
 const UNICODE_SIX = "\u2076";   // ⁶
@@ -210,15 +207,10 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
           leader3:    { raw: null, sup: null },
           leaderFinal:{ raw: null, sup: null }
         };
-
         currentPPraceResult    = null;
         currentPPraceType      = "";
-        //expectRaceTypeNext     = false;
         currentPPclassRating   = null;
-       // expectClassRatingNext  = false;
-      // 🔥 Added next line, commented out line above and line above that
-       // currentPPclassRating   = "";
-        currentPPpace          = { e1: null, e2: null, lp: null };
+        currentPPpace  = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
         currentPPtwoC = null;
         currentPPspd = null;
@@ -271,10 +263,10 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 }
 
   //CASE 3 — nothing useful found
-else {
-    currentPPglyph = "";
-    currentPPdistance = "";
-}
+//else {
+ //   currentPPglyph = "";
+  //  currentPPdistance = "";
+//}
 
    // ⚡️ RUNNING SURFACE ⚡️
 
@@ -351,7 +343,7 @@ slotIndex = 0;
 
         // After we read RaceType, the NEXT superscript line is Class Rating
         expectRaceTypeNext = false; 
-        //expectClassRatingNext = true;
+        
 
         continue;
       }
@@ -366,24 +358,7 @@ if (CR_SUP_LINE_REGEX.test(trimmed) && currentPPclassRating === null) {
   currentPPclassRating = trimmed;
   continue;
 }
-     //🔥 if (CR_SUP_LINE_REGEX.test(trimmed)) {
-      //🔥  currentPPclassRating = trimmed;
-  // 🔥 Added top 2 lines commented out bottom 3
-    //  if (expectClassRatingNext) {
-
-       // if (trimmed.length === 0) {
-          // skip blank lines but keep expecting
-        //  continue;
-     //   }
-         // 🔥 Commented out till 🔵
-        // must be only superscript digits
-     //   if (RR_SUP_LINE_REGEX.test(trimmed)) {
-       //   currentPPclassRating = trimmed;
-      //  }
-
-      //  expectClassRatingNext = false;
-     //   continue;
-     // }
+     
 
       // 🟦 PACE: E1, E2/, LP  ------------------------
       if (currentPPpace.e1 === null && E1_REGEX.test(trimmed)) {
