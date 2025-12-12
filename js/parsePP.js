@@ -58,7 +58,7 @@ const UNICODE_SIX = "\u2076";   // ⁶
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ RaceType
-const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|)([A-Za-z+])([0-9+])\/+))$/g;
+const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|[A-Za-z+]|[0-9+]))$/g;
 
 // 9️⃣ Class Rating
 const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
