@@ -49,7 +49,8 @@ const UNICODE_SIX = "\u2076";   // ⁶
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ RaceType
-const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
+//const RACETYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
+const RACETYPE_REGEX = /.+/;
 
 // 9️⃣ Class Rating
 const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
@@ -323,7 +324,13 @@ slotIndex = 0;
          if (raceTypeM) {
            currentPPraceType = raceTypeM[0];
           continue;
-       }
+         }
+      
+         if (RACETYPE_REGEX.test.(trimmed)) {
+             currentPPraceType  =  trimmed;
+           continue;
+          {
+
        
       // CLASS RATING — Must Be 3 superscript digits,
        if (CR_SUP_LINE_REGEX.test(trimmed)) {
