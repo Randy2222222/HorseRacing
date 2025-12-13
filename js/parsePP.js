@@ -270,10 +270,6 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
-If (SURFACES.test.(trimmed)) {
-  CurrentPPsurface = trimmed;
-Continue;
-}
 // ⚡️ END OF SURFACE CODE ⚡️
 
 
@@ -340,7 +336,7 @@ slotIndex = 0;
           // Skip blank lines but stay in RaceType mode
        
       // CLASS RATING — Must Be 3 superscript digits,
-       if (currenntPPraceTyoe === null && CR_SUP_LINE_REGEX.test(trimmed)) {
+       if (CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
         continue;
      }
