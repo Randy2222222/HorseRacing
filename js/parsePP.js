@@ -26,8 +26,6 @@ const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]
 const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
 
 // 5️⃣ Surface codes (2-letter)
-//const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
-//const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
 const SURF_TAG  =  ["s","x","n","t","y"];
 const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
@@ -36,13 +34,6 @@ const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 // Build regex: (ft|gd|my|...) plus optional superscript
 //const SURFACE_REGEX =
   new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
-
-// 4️⃣ Single-letter surface modifiers
-//const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
-
-// 5️⃣ Condition Regex
-//const CONDITION_REGEX =
-   // new RegExp("\\b(" + SURFACE_MODIFIERS.join("|") + ")\\b", "i");
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
@@ -325,26 +316,13 @@ slotIndex = 0;
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-//      const raceTypeM = trimmed.match(
-//  /\b(Ⓕ|🅂|Mdn|Alw|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
-//);
-//      if (raceTypeM) {
-//        currentPPraceType = raceTypeM[0];
-//        continue;
-//    }
-      
-const raceTypeM = trimmed.match(
-  /\b(Ⓕ|🅂|Mdn|Alw|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
-);
-
-if (raceTypeM) {
-    currentPPraceType = raceTypeM[0];
-    continue;
-}
-     // if (expectRaceTypeNext) {
-
-       // if (trimmed.length === 0) {
-          // Skip blank lines but stay in RaceType mode
+        const raceTypeM = trimmed.match(
+    /\b(Ⓕ|🅂|Mdn|Alw|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
+  );
+       if (raceTypeM) {
+         currentPPraceType = raceTypeM[0];
+        continue;
+      }
        
       // CLASS RATING — Must Be 3 superscript digits,
        if (CR_SUP_LINE_REGEX.test(trimmed)) {
