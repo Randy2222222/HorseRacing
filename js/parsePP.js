@@ -270,10 +270,8 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
-  const SURFACES   =  trimmed.(["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"]);
-
-If (SURFACES) {
-  CurrentPPsurface = SURFACES[0];
+If (SURFACES.test.(trimmed)) {
+  CurrentPPsurface = trimmed;
 Continue;
 }
 // ⚡️ END OF SURFACE CODE ⚡️
