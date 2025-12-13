@@ -1,9 +1,10 @@
+Best Copy of Parser
+
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
 //import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
-//import { GLYPHS } from "./glyphMap.js";
 
 // Make the little numbers for leader times
 const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
@@ -36,7 +37,7 @@ const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
 // Build regex: (ft|gd|my|...) plus optional superscript
 //const SURFACE_REGEX =
- // new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
+  new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
 
 // 4️⃣ Single-letter surface modifiers
 //const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
@@ -58,9 +59,7 @@ const UNICODE_SIX = "\u2076";   // ⁶
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ RaceType
-const RACETYPE_REGEX = /^|Ⓕ|🅂|Mdn|OC|Alw|=|_|>|<|!|?|+|=|-|$|&|*||w/;
-//const RACETTYPE_REGEX = /^|Ⓕ|🅂|[A-Za-z+][0-9]{1,7}$/s;
-//const RACETYPE_REGEX = /^[Ⓕ🅂A-Za-z0-9+\/\-]+$/;
+const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
 
 // 9️⃣ Class Rating
 const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
@@ -270,6 +269,7 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
+
 // ⚡️ END OF SURFACE CODE ⚡️
 
 
@@ -322,14 +322,11 @@ slotIndex = 0;
       if (RR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPraceResult = trimmed;
         continue;
-    }
+      }
+
       // ---------------------------------------------
       // RaceType — the line immediately after RR
-      // --------------------------------------------
- // if (RACETYPE-REGEX.test(trimmed)) {
-  //  currentPPraceType = trimmed;
-  //  continue;
-//}
+      // ---------------------------------------------
      // if (expectRaceTypeNext) {
 
        // if (trimmed.length === 0) {
