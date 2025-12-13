@@ -316,14 +316,21 @@ slotIndex = 0;
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-        const raceTypeM = trimmed.match(
-    /\b(Ⓕ|🅂|Mdn|Alw|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
-  );
-       if (raceTypeM) {
-         currentPPraceType = raceTypeM[0];
-        continue;
-      }
+  //      const raceTypeM = trimmed.match(
+ //   /\b(Ⓕ|🅂|Mdn|Alw|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
+//  );
+   //    if (raceTypeM) {
+   //      currentPPraceType = raceTypeM[0];
+  //      continue;
+ //     }
        
+const raceTypeM = trimmed.match(
+  /\b(Ⓕ|🅂|Mdn|*|-|Alw|OC|A\d+k|G[1-3]d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB| ([1-9]\d{0,2})k|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\w$/;
+
+if (raceTypeM) {
+    currentPPraceType = raceTypeM[0];
+    continue;
+}
       // CLASS RATING — Must Be 3 superscript digits,
        if (CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
