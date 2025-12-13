@@ -1,5 +1,3 @@
-Best Copy of Parser
-
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
