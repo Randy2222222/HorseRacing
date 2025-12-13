@@ -317,11 +317,11 @@ slotIndex = 0;
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-          const raceTypeM = trimmed.test(
+          const raceTypeM = trimmed.match(
         /\b(Ⓕ|🅂|Mdn|Alw\d+k|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
       );
          if (raceTypeM) {
-           currentPPraceType = trimmed;
+           currentPPraceType = raceTypeM[0];
           continue;
        }
        
