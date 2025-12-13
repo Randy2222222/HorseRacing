@@ -316,9 +316,9 @@ slotIndex = 0;
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-          const raceTypeM = trimmed.match(
-      /\b(Ⓕ|🅂|Mdn|Alw|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
-    );
+          const raceTypeM = trimmed.match(/^([Ⓕ🅂A-Za-z0-9 _\/+\-\*/\b([1-9]\d{0,2})k\b/i);
+   //   /\b(Ⓕ|🅂|Mdn|Alw|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
+  //  );
          if (raceTypeM) {
            currentPPraceType = raceTypeM[0];
           continue;
