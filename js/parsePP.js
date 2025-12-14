@@ -326,9 +326,9 @@ slotIndex = 0;
        //    currentPPraceType = raceTypeM[0];
       //    continue;
       //   }
-      
-          if (RACETYPE_REGEX.test(trimmed)) {
-             currentPPraceType = trimmed;
+      const raceTypeP = trimmed.match(/.+/);
+          if (raceTypeP) {
+             currentPPraceType = raceTypeP[0]; 
            continue;
           {
 
