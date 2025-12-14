@@ -211,27 +211,27 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         // start this PP block with the date line
         currentPP.push(line);
 
-if  (GLYPHS_TO _DISPLAY_REGEX.test(trimmed)) {
-   currentPPglyph  =  trimmed;
+if  (GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
+   currentPPglyph = trimmed;
 }else{
-   currentPPglyph  = “”;
+   currentPPglyph = “”;
 continue;
 }
 
 if (DISTANCE_REGEX.test(trimmed)) {
-   currentePPdistance  =  trimmed;
+   currentePPdistance = trimmed;
 continue;
 }
 
-if (SURFACE_REGEX.test(trimmed))  {
-  currentPPsurface  =  trimmed;
+if (SURFACE_REGEX.test(trimmed)) {
+  currentPPsurface = trimmed;
 continue;
 }
 
-if (SURFACE_TAG_REGEX.test(trimmed))  {
-  currentPPsurTag  =  trimmed;
+if (SURFACE_TAG_REGEX.test(trimmed)) {
+  currentPPsurTag = trimmed;
 }else{
-  cuurentPPsurfTag  =  “”;
+  cuurentPPsurfTag = “”;
 continue;
 }
 
