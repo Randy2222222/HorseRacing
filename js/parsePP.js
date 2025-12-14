@@ -1,10 +1,9 @@
-
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
 //import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
-
+import { GLYPHS } from "./glyphMap.js";
 // Make the little numbers for leader times
 const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
 function toSuperscript(n) {
@@ -33,17 +32,6 @@ const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
 const SURF_TAG  =  ["s","x","n","t","y"];
 const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
-
-// Build regex: (ft|gd|my|...) plus optional superscript
-//const SURFACE_REGEX =
-  new RegExp(`\\b(${SURFACES.join("|")})(${SURF_SUPS.join("|")})?\\b`, "i");
-
-// 4️⃣ Single-letter surface modifiers
-//const SURFACE_MODIFIERS = ["ˢ", "ˣ", "ⁿ", "ᵗ", "ʸ"];
-
-// 5️⃣ Condition Regex
-//const CONDITION_REGEX =
-   // new RegExp("\\b(" + SURFACE_MODIFIERS.join("|") + ")\\b", "i");
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
@@ -327,7 +315,7 @@ slotIndex = 0;
       // RaceType — the line immediately after RR
       // ---------------------------------------------
       const raceTypeM = trimmed.match(
-  /\b(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
+  /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
 );
       if (raceTypeM) {
         currentPPraceType = raceTypeM[0];
