@@ -139,7 +139,7 @@ export function parsePP(decodedText) {
     let currentPPsurface = "";
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
-    let currentPPraceType = "";
+    let currentPPraceType = null;
     let currentPPclassRating = null;
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
@@ -199,7 +199,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
           leaderFinal:{ raw: null, sup: null }
         };
         currentPPraceResult    = null;
-        currentPPraceType      = "";
+        currentPPraceType      = null;
         currentPPclassRating   = null;
         currentPPpace  = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
