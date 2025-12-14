@@ -140,7 +140,7 @@ export function parsePP(decodedText) {
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = "";
-    let currentPPclassRating = "";
+    let currentPPclassRating = null;
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
     let currentPPtwoC = null;   // race shape 2c
@@ -200,7 +200,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         };
         currentPPraceResult    = null;
         currentPPraceType      = "";
-        currentPPclassRating   = "";
+        currentPPclassRating   = null;
         currentPPpace  = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
         currentPPtwoC = null;
@@ -319,7 +319,7 @@ slotIndex = 0;
       // RaceType — the line immediately after RR
       // ---------------------------------------------
               const raceTypeM = trimmed.match(
-            /(|Ⓕ|🅂|Alw\d+|A\d+k|G\d|Mdn\s+\d+k|OC\d+k|)/i);
+            /(|Ⓕ|🅂|Alw\d+|A\d+k|G\d|Mdn\s+\d+k|OC\d+k)/i);
            if (raceTypeM) {
              currentPPraceType = raceTypeM[0];
             continue;
