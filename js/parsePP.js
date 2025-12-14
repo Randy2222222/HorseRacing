@@ -136,7 +136,7 @@ export function parsePP(decodedText) {
     let currentPPglyph = "";
     let currentPPdistance = "";
     let currentPPsurface = "";
-    let currentPPsurfTag = “”;
+    let currentPPsurfTag = "";
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = "";
@@ -154,9 +154,9 @@ export function parsePP(decodedText) {
 
   //🛟 SAFETY CATCH 🛟
 // --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
-if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
-    currentPPdistance = line.trim();
-}
+//if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
+ //   currentPPdistance = line.trim();
+//}
 // 🛟 END SAFETY CATCH 🛟
       
       // 1️⃣ DATE = start of new PP block
@@ -193,7 +193,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPglyph = "";
         currentPPdistance = "";
         currentPPsurface = "";
-        currentPPsurfTag “”;
+        currentPPsurfTag = "";
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -214,7 +214,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 if  (GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
    currentPPglyph = trimmed;
 }else{
-   currentPPglyph = “”;
+   currentPPglyph = "";
 continue;
 }
 
@@ -231,7 +231,7 @@ continue;
 if (SURFACE_TAG_REGEX.test(trimmed)) {
   currentPPsurTag = trimmed;
 }else{
-  cuurentPPsurfTag = “”;
+  cuurentPPsurfTag = "";
 continue;
 }
 
@@ -367,7 +367,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
-        surfTag: currentPPsurfTag
+        surfTag: currentPPsurfTag,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
