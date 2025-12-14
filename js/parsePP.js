@@ -4,6 +4,7 @@
 //import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
 import { GLYPHS } from "./glyphMap.js";
+const lines = decodedText.split(/\r?\n/);
 
 // Make the little numbers for leader times
 const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
