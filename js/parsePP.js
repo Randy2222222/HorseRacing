@@ -139,8 +139,8 @@ export function parsePP(decodedText) {
     let currentPPsurface = "";
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
-    let currentPPraceType = null;
-    let currentPPclassRating = null;
+    let currentPPraceType = "";
+    let currentPPclassRating = "";
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
     let currentPPtwoC = null;   // race shape 2c
@@ -199,8 +199,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
           leaderFinal:{ raw: null, sup: null }
         };
         currentPPraceResult    = null;
-        currentPPraceType      = null;
-        currentPPclassRating   = null;
+        currentPPraceType      = "";
+        currentPPclassRating   = "";
         currentPPpace  = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
         currentPPtwoC = null;
@@ -319,7 +319,7 @@ slotIndex = 0;
       // RaceType — the line immediately after RR
       // ---------------------------------------------
             const raceTypeM = trimmed.match(
-          /\b(Ⓕ|🅂|Mdn|Alw\d{6}|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
+          /\b(Ⓕ|🅂|Mdn|Alw\d+k|OC|A\d+k|G\d|n1x|n2x|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)\b/i
         );
          if (raceTypeM) {
            currentPPraceType = raceTypeM[0];
