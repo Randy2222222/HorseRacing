@@ -224,10 +224,10 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-if (GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
-   currentPPglyph = trimmed;
-  continue;
-}
+//if (GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
+ //  currentPPglyph = trimmed;
+//  continue;
+//}
 
 if (DISTANCE_REGEX.test(trimmed)) {
    currentePPdistance = trimmed;
