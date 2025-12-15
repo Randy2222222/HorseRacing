@@ -28,7 +28,7 @@ const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄�
 // 5️⃣ Surface codes (2-letter)
 //const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-//const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/;
+const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/;
 
 const SURFACE_TAG_REGEX  =  /(s|x|n|t|y)/i;
 
@@ -267,20 +267,21 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       currentPPglyph = "";
       currentPPdistance = L1;
     i = j1; // consume distance
+    continue;
   }
   //CASE 3 — nothing useful found
-   else {
-     currentPPglyph = "";
-     currentPPdistance = "";
-  }
+//   else {
+ //    currentPPglyph = "";
+  //   currentPPdistance = "";
+//  }
  
    // ⚡️ RUNNING SURFACE ⚡️
 
-//const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
-  //    if (surfaceS) {
-  //      currentPPsurface = surfaceS[0];
-    //    continue;
-   //   }
+   const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
+      if (surfaceS) {
+        currentPPsurface = surfaceS[0];
+       continue;
+      }
 
 // ⚡️ END OF SURFACE CODE ⚡️
 
