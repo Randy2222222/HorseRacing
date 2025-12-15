@@ -267,19 +267,19 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       currentPPglyph = "";
       currentPPdistance = L1;
     i = j1; // consume distance
-  
+  }
   //CASE 3 — nothing useful found
-  } else {
+   else {
      currentPPglyph = "";
      currentPPdistance = "";
   }
  
    // ⚡️ RUNNING SURFACE ⚡️
 
- (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
-   currentPPsurface = trimmed;
-  continue;
-}
+ //(currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
+   //currentPPsurface = trimmed;
+ // continue;
+//}
 
 
 
