@@ -130,16 +130,16 @@ export function parsePP(decodedText) {
 
     let currentPP = [];
     h.pp = [];
-    let currentPPdate = "";
-    let currentPPtrack = "";
-    let currentPPraceNo = "";
-    let currentPPglyph = "";
-    let currentPPdistance = "";
-    let currentPPsurface = "";
-    let currentPPsurfTag = "";
+    let currentPPdate = null;
+    let currentPPtrack = null;
+    let currentPPraceNo = null;
+    let currentPPglyph = null;
+    let currentPPdistance = null;
+    let currentPPsurface = null;
+    let currentPPsurfTag = null;
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
-    let currentPPraceType = "";
+    let currentPPraceType = null;
     let currentPPclassRating = null;
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
@@ -190,10 +190,10 @@ export function parsePP(decodedText) {
   currentPPdate  = line.slice(0, 7);      // 12Oct25
   currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
-        currentPPglyph = "";
-        currentPPdistance = "";
-        currentPPsurface = "";
-        currentPPsurfTag = "";
+        currentPPglyph = null;
+        currentPPdistance = null;
+        currentPPsurface = null;
+        currentPPsurfTag = null;
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -201,7 +201,7 @@ export function parsePP(decodedText) {
           leaderFinal:{ raw: null, sup: null }
         };
         currentPPraceResult    = null;
-        currentPPraceType      = "";
+        currentPPraceType      = null;
         currentPPclassRating   = null;
         currentPPpace  = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
@@ -211,28 +211,24 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-if  (GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
+if (GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
    currentPPglyph = trimmed;
-}else{
-   currentPPglyph = "";
-continue;
+  continue;
 }
 
 if (DISTANCE_REGEX.test(trimmed)) {
    currentePPdistance = trimmed;
-continue;
+  continue;
 }
 
 if (SURFACE_REGEX.test(trimmed)) {
-  currentPPsurface = trimmed;
-continue;
+   currentPPsurface = trimmed;
+  continue;
 }
 
 if (SURFACE_TAG_REGEX.test(trimmed)) {
-  currentPPsurTag = trimmed;
-}else{
-  cuurentPPsurfTag = "";
-continue;
+   currentPPsurTag = trimmed;
+  continue;
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
