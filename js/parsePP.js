@@ -281,11 +281,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
  // continue;
 //}
 
-const raceTypeM = trimmed.match(
-  /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
+const SURFACE = trimmed.match(
+  const SURFACE = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 );
-      if (raceTypeM) {
-        currentPPraceType = raceTypeM[0];
+      if (SURFACE) {
+        currentPPsuface = SURFACE[0];
         continue;
       }
 
