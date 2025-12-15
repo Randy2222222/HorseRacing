@@ -224,22 +224,22 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
 
-if (GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
+if (currentPPglyph === null && GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
    currentPPglyph = trimmed;
   continue;
 }
 
-if (DISTANCE_REGEX.test(trimmed)) {
+if (currentPPdistance === null && DISTANCE_REGEX.test(trimmed)) {
    currentePPdistance = trimmed;
   continue;
 }
 
-if (SURFACE_REGEX.test(trimmed)) {
+if (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
    currentPPsurface = trimmed;
   continue;
 }
 
-if (SURFACE_TAG_REGEX.test(trimmed)) {
+if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
    currentPPsurfTag = toSupTag(trimmed);
   continue;
 }
@@ -295,7 +295,7 @@ slotIndex = 0;
       }
 
       //  RR — Race Rating MUST be 3 superscript digits
-      if (RR_SUP_LINE_REGEX.test(trimmed)) {
+      if (currentPPraceResult === null && RR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPraceResult = trimmed;
         continue;
       }
@@ -316,7 +316,7 @@ slotIndex = 0;
           // Skip blank lines but stay in RaceType mode
        
       // CLASS RATING — Must Be 3 superscript digits,
-       if (CR_SUP_LINE_REGEX.test(trimmed)) {
+       if (currentPPclassRating === null && CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
         continue;
      }
