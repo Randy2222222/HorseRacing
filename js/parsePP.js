@@ -270,8 +270,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   }
   //CASE 3 — nothing useful found
    else {
-     currentPPglyph = "";
-     currentPPdistance = "";
+     currentPPglyph = null;
+     currentPPdistance = null;
   }
  
    // ⚡️ RUNNING SURFACE ⚡️
