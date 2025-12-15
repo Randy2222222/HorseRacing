@@ -291,11 +291,11 @@ const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
 totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
 slotIndex = 0;
 
-console.log("BEFORE DATE");
 
-        continue; // end of DATE block
-        console.log("AFTER DATE");
-      }
+
+     //   continue; // end of DATE block
+      
+      //}
 
       // -----------------------------
       // 2️⃣ Leader Times (calls)
