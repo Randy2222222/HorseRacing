@@ -281,9 +281,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
  // continue;
 //}
 
-const SURFACE = trimmed.match(
-  const SURFACE = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-);
+const SURFACE = trimmed.match(/(ft|gd|my|sy|wf|fm|yl|sf|hy|/);
       if (SURFACE) {
         currentPPsuface = SURFACE[0];
         continue;
