@@ -274,18 +274,15 @@ else {
    currentPPglyph = "";
    currentPPdistance = "";
 }
- continue;
+ 
    // ⚡️ RUNNING SURFACE ⚡️
 
- (currentPPsurface === null && SURFACE.test(trimmed)) {
+ (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
    currentPPsurface = trimmed;
   continue;
 }
 
-if (currentPPsurfTag === null && SURFACE_TAG.test(trimmed)) {
-   currentPPsurfTag = toSupTag(trimmed);
-  continue;
-}
+
 
 // ⚡️ END OF SURFACE CODE ⚡️
 
