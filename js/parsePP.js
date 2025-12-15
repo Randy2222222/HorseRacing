@@ -281,6 +281,13 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
  // continue;
 //}
 
+const raceTypeM = trimmed.match(
+  /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
+);
+      if (raceTypeM) {
+        currentPPraceType = raceTypeM[0];
+        continue;
+      }
 
 
 // ⚡️ END OF SURFACE CODE ⚡️
