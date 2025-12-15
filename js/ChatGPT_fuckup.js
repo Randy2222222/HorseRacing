@@ -222,17 +222,19 @@ export function parsePP(decodedText) {
         
         // start this PP block with the date line
         currentPP.push(line);
+         continue;
+      }
 
-if (GLYPHS_TO_DISPLAY.has(trimmed)) {
-  currentPPglyph = trimmed;
-} else {
-  currentPPdistance = trimmed;
-}
-
-//if (currentPPglyph === null && GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
-//   currentPPglyph = trimmed;
-//  continue;
+//if (GLYPHS_TO_DISPLAY.has(trimmed)) {
+ // currentPPglyph = trimmed;
+//} else {
+//  currentPPdistance = trimmed;
 //}
+
+  if (currentPPglyph === null && GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
+     currentPPglyph = trimmed;
+    continue;
+  }
 
 if (currentPPdistance === null && DISTANCE_REGEX.test(trimmed)) {
    currentePPdistance = trimmed;
@@ -260,8 +262,8 @@ if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
 totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
 slotIndex = 0;
 
-        continue; // end of DATE block
-      }
+     //   continue; // end of DATE block
+     // }
 
       // -----------------------------
       // 2️⃣ Leader Times (calls)
