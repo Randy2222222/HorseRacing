@@ -32,8 +32,8 @@ const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/;
 
 const SURFACE_TAG_REGEX  =  /(s|x|n|t|y)/i;
 
-const SURF_TAG  =  ["s","x","n","t","y"];
-const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
+const SURFACE_TAG  =  ["s","x","n","t","y"];
+const SURFACE = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
 //  6️⃣ Leader-time helper functions
@@ -277,12 +277,12 @@ else {
 
    // ⚡️ RUNNING SURFACE ⚡️
 
- (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
+ (currentPPsurface === null && SURFACE.test(trimmed)) {
    currentPPsurface = trimmed;
   continue;
 }
 
-if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
+if (currentPPsurfTag === null && SURFACE_TAG.test(trimmed)) {
    currentPPsurfTag = toSupTag(trimmed);
   continue;
 }
