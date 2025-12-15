@@ -3,6 +3,7 @@
 // Clean, simple PDF loader with DEV MODE output
 import { parsePP } from "./parsePP.js";
 import { applyGlyphMap } from "./glyphMap.js";
+import { GLYPHS } from "./glyphMap.js";
 
 const DEV_MODE = "structured";  // turn off later when finished
 
@@ -82,7 +83,7 @@ if (DEV_MODE === "structured") {
       out += `    Glyph: ${pp.glyph}\n`;
       out += `    Distance: ${pp.distance}\n`;
       out += `    Surface: ${pp.surface}\n`; //(${pp.modifier || ""})\n`;
-
+      out += `    SurfTag: ${pp.surfTag}\n`;
       out += `    Leader Times:\n`;
       out += `        1c: ${pp.leaderTimes.leader1.raw || ""} ${pp.leaderTimes.leader1.sup || ""}\n`;
       out += `        2c: ${pp.leaderTimes.leader2.raw || ""} ${pp.leaderTimes.leader2.sup || ""}\n`;
