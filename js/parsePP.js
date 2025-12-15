@@ -241,7 +241,7 @@ if (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
 
 if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
    currentPPsurfTag = toSupTag(trimmed);
-  continue;
+//  continue;
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
