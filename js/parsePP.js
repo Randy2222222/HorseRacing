@@ -222,7 +222,7 @@ export function parsePP(decodedText) {
         
         // start this PP block with the date line
         currentPP.push(line);
-         continue;
+        // continue;
       }
 
 //if (GLYPHS_TO_DISPLAY.has(trimmed)) {
