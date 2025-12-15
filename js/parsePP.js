@@ -276,9 +276,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
  
    // ⚡️ RUNNING SURFACE ⚡️
 
-const SURFACE = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
-      if (SURFACE) {
-        currentPPsurface = SURFACE[0];
+const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
+      if (surfaceS) {
+        currentPPsurface = surfaceS[0];
         continue;
       }
 
