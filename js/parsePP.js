@@ -127,15 +127,15 @@ export function parsePP(decodedText) {
 
     let currentPP = [];
     h.pp = [];
-    let currentPPdate = "";
-    let currentPPtrack = "";
-    let currentPPraceNo = "";
-    let currentPPglyph = "";
-    let currentPPdistance = "";
-    let currentPPsurface = "";
+    let currentPPdate = null;
+    let currentPPtrack = null;
+    let currentPPraceNo = null;
+    let currentPPglyph = null;
+    let currentPPdistance = null;
+    let currentPPsurface = null;
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
-    let currentPPraceType = "";
+    let currentPPraceType = null;
     let currentPPclassRating = null;
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
@@ -185,9 +185,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   currentPPdate  = line.slice(0, 7);      // 12Oct25
   currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
-        currentPPglyph = "";
-        currentPPdistance = "";
-        currentPPsurface = "";
+        currentPPglyph = null;
+        currentPPdistance = null;
+        currentPPsurface = null;
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -195,7 +195,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
           leaderFinal:{ raw: null, sup: null }
         };
         currentPPraceResult    = null;
-        currentPPraceType      = "";
+        currentPPraceType      = null;
         currentPPclassRating   = null;
         currentPPpace  = { e1: null, e2: null, lp: null };
         currentPPoneC = null;
