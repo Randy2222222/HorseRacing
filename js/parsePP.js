@@ -273,6 +273,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 else {
    currentPPglyph = "";
    currentPPdistance = "";
+  continue;
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
