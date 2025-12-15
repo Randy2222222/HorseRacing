@@ -268,20 +268,19 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       currentPPdistance = L1;
     i = j1; // consume distance
     continue;
-  }
-  //CASE 3 — nothing useful found
-//   else {
- //    currentPPglyph = "";
-  //   currentPPdistance = "";
-//  }
+ //CASE 3 — nothing useful found
+     else {
+       currentPPglyph = "";
+       currentPPdistance = "";
+    }
  
    // ⚡️ RUNNING SURFACE ⚡️
 
-   const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
-      if (surfaceS) {
-        currentPPsurface = surfaceS[0];
-       continue;
-      }
+//   const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
+   //   if (surfaceS) {
+     //   currentPPsurface = surfaceS[0];
+     //  continue;
+     // }
 
 // ⚡️ END OF SURFACE CODE ⚡️
 
