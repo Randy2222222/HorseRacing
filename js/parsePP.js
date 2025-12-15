@@ -3,7 +3,7 @@
 
 //import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
-import { GLYPHS } from "./glyphMap.js";
+//import { GLYPHS } from "./glyphMap.js";
 // Make the little numbers for leader times
 const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
 function toSuperscript(n) {
@@ -306,7 +306,7 @@ slotIndex = 0;
       }
 
       //  RR — Race Rating MUST be 3 superscript digits
-      if (RR_SUP_LINE_REGEX.test(trimmed)) {
+      if (currentPPraceResult === null && RR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPraceResult = trimmed;
         continue;
       }
@@ -327,7 +327,7 @@ slotIndex = 0;
           // Skip blank lines but stay in RaceType mode
        
       // CLASS RATING — Must Be 3 superscript digits,
-       if (CR_SUP_LINE_REGEX.test(trimmed)) {
+       if (currentPPclassRating === null && CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
         continue;
      }
