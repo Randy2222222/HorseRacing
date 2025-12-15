@@ -65,6 +65,20 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 // 🔟 SPD Speed Rating
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 
+// Change SurfTag to Superscript
+const SUP_TAG = {
+  s: "ˢ",
+  x: "ˣ",
+  n: "ⁿ",
+  t: "ᵗ",
+  y: "ʸ"
+};
+// Superscript SurfTag Helper
+function toSupTag(tag) {
+  if (!tag) return "";   // null or ""
+  return SUP_TAG[tag] ?? tag;
+}
+
 // Regex helpers
 function isTimeLine(line) {
   const t = line.trim();
