@@ -266,14 +266,15 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   else if (DISTANCE_REGEX.test(L1)) {
       currentPPglyph = "";
       currentPPdistance = L1;
-    i = j1;                        // consume distance
+    i = j1; // consume distance
+  continue;
 }
 
   //CASE 3 — nothing useful found
-else {
-   currentPPglyph = "";
-   currentPPdistance = "";
-}
+//else {
+ //  currentPPglyph = "";
+ //  currentPPdistance = "";
+//}
  
    // ⚡️ RUNNING SURFACE ⚡️
 
