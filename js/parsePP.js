@@ -274,7 +274,7 @@ else {
    currentPPglyph = "";
    currentPPdistance = "";
 }
-
+ continue;
    // ⚡️ RUNNING SURFACE ⚡️
 
  (currentPPsurface === null && SURFACE.test(trimmed)) {
