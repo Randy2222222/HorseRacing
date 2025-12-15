@@ -22,7 +22,7 @@ const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
 // 3️⃣ Raw Brisnet surface glyphs → your chosen display symbols
 const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
-const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
+const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"];  
 const GLYPHS_TO_DISPLAY_REGEX = /^(Ⓣ|Ⓐ|ⓧ|🅃|�)$/;
 
 // 4️⃣ Distance Patterns
@@ -241,7 +241,7 @@ if (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
 
 if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
    currentPPsurfTag = toSupTag(trimmed);
-//  continue;
+  continue;
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
