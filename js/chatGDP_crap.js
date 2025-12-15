@@ -36,10 +36,10 @@ const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i;
 //const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 const SURFACE_TAG_REGEX  =  /(s|x|n|t|y)/i;
 //  6️⃣ Leader-time helper functions
-//function isShortSprint(distanceStr) {
-//  const d = distanceStr.toLowerCase();
-//  return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
-//}
+  function isShortSprint(distanceStr) {
+    const d = distanceStr.toLowerCase();
+    return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
+  }
 // (we’re not using UNICODE_SIX here yet, but keeping it in case you
 // later want to auto-append a missing ⁶)
 const UNICODE_SIX = "\u2076";   // ⁶
@@ -240,32 +240,21 @@ if (currentPPdistance === null && DISTANCE_REGEX.test(trimmed)) {
   continue;
 }
 
+   // ⚡️ RUNNING SURFACE ⚡️
 if (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
    currentPPsurface = trimmed;
   continue;
 }
-
 if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
    currentPPsurfTag = toSupTag(trimmed);
   continue;
 }
-
-   // ⚡️ RUNNING SURFACE ⚡️
-
-// ⚡️ END OF SURFACE CODE ⚡️
+  // ⚡️ END OF SURFACE CODE ⚡️
 
 
 // ---------------------------
 // CALL COUNT (3 for sprints)
 // ---------------------------
-
-//if (isDateLine(trimmed)) {
-//  totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-//  slotIndex = 0;          // ✅ ONLY HERE
- // inHeader = true;
-//  continue;
-//}
-
   totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
    slotIndex = 0;
 
@@ -286,13 +275,11 @@ if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
 
         let raw = trimmed;
         let sup = null;
-
         // look for superscript on next line
         if (i + 1 < lines.length && isSuperscript(lines[i + 1])) {
           sup = lines[i + 1].trim();
           i++; // skip the superscript line
         }
-
         // store the call in the right slot
         if (slotIndex === 0) {
           currentPPleaderTimes.leader1 = { raw, sup };
