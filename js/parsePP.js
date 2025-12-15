@@ -258,8 +258,16 @@ if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
 // ---------------------------
 // CALL COUNT (3 for sprints)
 // ---------------------------
-totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-slotIndex = 0;
+
+if (isDateLine(trimmed)) {
+  totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+  slotIndex = 0;          // ✅ ONLY HERE
+  inHeader = true;
+  continue;
+}
+
+//totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+//slotIndex = 0;
 
      //   continue; // end of DATE block
      // }
