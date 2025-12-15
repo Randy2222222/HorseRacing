@@ -270,22 +270,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   }
   //CASE 3 — nothing useful found
    else {
-     currentPPglyph = null;
-     currentPPdistance = null;
+     currentPPglyph = "";
+     currentPPdistance = "";
   }
  
    // ⚡️ RUNNING SURFACE ⚡️
-
- //(currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
-   //currentPPsurface = trimmed;
- // continue;
-//}
-
-const SURFACE = trimmed.match(/(ft|gd|my|sy|wf|fm|yl|sf|hy)/i);
-      if (SURFACE) {
-        currentPPsurface = SURFACE[0];
-        continue;
-      }
 
 
 // ⚡️ END OF SURFACE CODE ⚡️
