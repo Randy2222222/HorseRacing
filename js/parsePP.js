@@ -133,6 +133,7 @@ export function parsePP(decodedText) {
     let currentPPglyph = null;
     let currentPPdistance = null;
     let currentPPsurface = null;
+    let currentPPsurfTag = null;
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = null;
@@ -168,6 +169,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             glyph: currentPPglyph,
             distance: currentPPdistance,
             surface: currentPPsurface,
+            surfTag: currentPPsurfTag,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -188,6 +190,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPglyph = null;
         currentPPdistance = null;
         currentPPsurface = null;
+        currentPPsurfTag = null;
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -256,6 +259,16 @@ else {
 }
 
    // ⚡️ RUNNING SURFACE ⚡️
+
+ (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
+   currentPPsurface = trimmed;
+  continue;
+}
+
+if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
+   currentPPsurfTag = toSupTag(trimmed);
+  continue;
+}
 
 // ⚡️ END OF SURFACE CODE ⚡️
 
@@ -387,6 +400,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
+        surfTag: currentPPsurfTag,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
