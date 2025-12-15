@@ -36,10 +36,10 @@ const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i;
 //const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 const SURFACE_TAG_REGEX  =  /(s|x|n|t|y)/i;
 //  6️⃣ Leader-time helper functions
-function isShortSprint(distanceStr) {
-  const d = distanceStr.toLowerCase();
-  return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
-}
+//function isShortSprint(distanceStr) {
+//  const d = distanceStr.toLowerCase();
+//  return (d === "4" || d === "4f" || d === "4½" || d === "4½f");
+//}
 // (we’re not using UNICODE_SIX here yet, but keeping it in case you
 // later want to auto-append a missing ⁶)
 const UNICODE_SIX = "\u2076";   // ⁶
@@ -259,18 +259,18 @@ if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
 // CALL COUNT (3 for sprints)
 // ---------------------------
 
-if (isDateLine(trimmed)) {
+//if (isDateLine(trimmed)) {
+//  totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+//  slotIndex = 0;          // ✅ ONLY HERE
+ // inHeader = true;
+//  continue;
+//}
+
   totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-  slotIndex = 0;          // ✅ ONLY HERE
-  inHeader = true;
-  continue;
-}
+   slotIndex = 0;
 
-//totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-//slotIndex = 0;
-
-     //   continue; // end of DATE block
-     // }
+          continue; // end of DATE block
+        }
 
       // -----------------------------
       // 2️⃣ Leader Times (calls)
