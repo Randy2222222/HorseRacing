@@ -1,5 +1,3 @@
-
-
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
@@ -166,9 +164,9 @@ export function parsePP(decodedText) {
 
   //🛟 SAFETY CATCH 🛟
 // --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
-//if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
- //   currentPPdistance = line.trim();
-//}
+  if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
+      currentPPdistance = line.trim();
+  }
 // 🛟 END SAFETY CATCH 🛟
       
       // 1️⃣ DATE = start of new PP block
@@ -223,32 +221,86 @@ export function parsePP(decodedText) {
         // start this PP block with the date line
         currentPP.push(line);
         
+let j1 = nextNonBlank(lines, i + 1);
+let L1 = lines[j1] || "";
 
-//if (GLYPHS_TO_DISPLAY.has(trimmed)) {
- // currentPPglyph = trimmed;
-//} else {
-//  currentPPdistance = trimmed;
-//}
+// ----------------------------
+// CASE 1 — L1 is a glyph
+// ----------------------------
+if (L1.length === 1 && !/^\d/.test(L1)) {
+  currentPPglyph = L1;
 
-  if (currentPPglyph === null && GLYPHS_TO_DISPLAY_REGEX.test(trimmed)) {
-     currentPPglyph = trimmed;
-    continue;
+  // distance must be next non-blank
+  let j2 = nextNonBlank(lines, j1 + 1);
+  let L2 = lines[j2] || "";
+
+  if (DISTANCE_REGEX.test(L2)) {
+    currentPPdistance = L2;
+    i = j2; // consume distance
+  } else {
+    currentPPdistance = "";
+    currentPPsurface = "";
+    currentPPsurfTag = "";
+    i = j2;
+    return;
   }
-
-if (currentPPdistance === null && DISTANCE_REGEX.test(trimmed)) {
-   currentePPdistance = trimmed;
-  continue;
 }
 
+// ----------------------------
+// CASE 2 — L1 is distance
+// ----------------------------
+else if (DISTANCE_REGEX.test(L1)) {
+  currentPPglyph = "";
+  currentPPdistance = L1;
+  i = j1; // consume distance
+}
+
+// ----------------------------
+// CASE 3 — nothing useful
+// ----------------------------
+else {
+  currentPPglyph = "";
+  currentPPdistance = "";
+  currentPPsurface = "";
+  currentPPsurfTag = "";
+  return;
+}
+
+// =================================================
+// 🔑 SURFACE (NEXT NON-BLANK ONLY)
+// =================================================
+let jSurface = nextNonBlank(lines, i + 1);
+let surfaceLine = lines[jSurface] || "";
+
+if (SURFACE_REGEX.test(surfaceLine)) {
+  currentPPsurface = surfaceLine.trim();
+  i = jSurface; // consume surface
+} else {
+  currentPPsurface = "";
+  currentPPsurfTag = "";
+  return;
+}
+
+// =================================================
+// 🔑 SURFACE TAG (OPTIONAL — IMMEDIATE NEXT LINE ONLY)
+// =================================================
+let tagIndex = i + 1;
+let tagLine = lines[tagIndex] || "";
+
+if (SURFACE_TAG_REGEX.test(tagLine)) {
+  currentPPsurfTag = tagLine.trim();
+  currentPPsurfTag = toSupTag(trimmed);
+  i = tagIndex; // consume tag
+} else {
+  currentPPsurfTag = ""; // tag absent
+  // DO NOT advance i
+}
+        
    // ⚡️ RUNNING SURFACE ⚡️
-if (currentPPsurface === null && SURFACE_REGEX.test(trimmed)) {
-   currentPPsurface = trimmed;
-  continue;
-}
-if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
-   currentPPsurfTag = toSupTag(trimmed);
-  continue;
-}
+//if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
+ //  currentPPsurfTag = toSupTag(trimmed);
+ // continue;
+//}
   // ⚡️ END OF SURFACE CODE ⚡️
 
 
