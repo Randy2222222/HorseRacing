@@ -170,6 +170,7 @@ export function parsePP(decodedText) {
 // --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
 if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
     currentPPdistance = line.trim();
+  continue;
 }
 // 🛟 END SAFETY CATCH 🛟
       
@@ -278,11 +279,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
    // }
  
    // ⚡️ RUNNING SURFACE ⚡️
-//    const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
-   //   if (surfaceS) {
-    //    currentPPsurface = surfaceS[0];
-   //    continue;
-   //   }
+      const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
+        if (surfaceS) {
+          currentPPsurface = surfaceS[0];
+         continue;
+       }
       // ⚡️ END OF SURFACE CODE ⚡️
 
 
