@@ -289,10 +289,11 @@ let tagLine = lines[tagIndex] || "";
 
 if (SURFACE_TAG_REGEX.test(tagLine)) {
   currentPPsurfTag = tagLine.trim();
-  currentPPsurfTag = toSupTag(trimmed);
+//  currentPPsurfTag = toSupTag(trimmed);
   i = tagIndex; // consume tag
 } else {
   currentPPsurfTag = ""; // tag absent
+  continue;
   // DO NOT advance i
 }
         
