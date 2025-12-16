@@ -290,7 +290,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 // CALL COUNT (3 for sprints)
 // ---------------------------
    //     totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-  //      slotIndex = 0;
+         slotIndex = 0;
          continue; // end of DATE block
       }
       // -----------------------------
