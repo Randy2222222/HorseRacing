@@ -342,21 +342,14 @@ slotIndex = 0;
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-  //    const raceTypeM = trimmed.match(
-//  /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
-//);
-    //  if (raceTypeM) {
-    //    currentPPraceType = raceTypeM[0];
-     //   continue;
-   // }     
-      for (let index = 0; index < lines.length; index++) {
-        let i = index;
-       if (i + 1 < lines.length && lines[i + 1].trim() === "") {
-         i++;
-      }
-          const currentPPraceType = lines[i + 1];
-         continue;
-       }
+        const raceTypeM = trimmed.match(
+      /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
+   );
+      if (raceTypeM) {
+         currentPPraceType = raceTypeM[0];
+       continue;
+    }     
+      
 
 
       // CLASS RATING — Must Be 3 superscript digits,
