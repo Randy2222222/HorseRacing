@@ -349,7 +349,7 @@ slotIndex = 0;
     //    currentPPraceType = raceTypeM[0];
      //   continue;
    // }
-     const raceType = lines[index + 2];
+     const currentPPraceType = lines[index + 2];
       // CLASS RATING — Must Be 3 superscript digits,
        if (currentPPclassRating === null && CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
