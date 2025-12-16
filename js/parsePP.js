@@ -278,21 +278,21 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
    // }
  
    // ⚡️ RUNNING SURFACE ⚡️
-   //   const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
-      //  if (surfaceS) {
-       //   currentPPsurface = surfaceS[0];
-      //   continue;
-     //  }
+        const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
+          if (surfaceS) {
+            currentPPsurface = surfaceS[0];
+           continue;
+         }
       // ⚡️ END OF SURFACE CODE ⚡️
 
 
 // ---------------------------
 // CALL COUNT (3 for sprints)
 // ---------------------------
-        totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
-        slotIndex = 0;
-          continue; // end of DATE block
-      }
+   //     totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+  //      slotIndex = 0;
+   //       continue; // end of DATE block
+   //   }
       // -----------------------------
       // 2️⃣ Leader Times (calls)
       // -----------------------------
