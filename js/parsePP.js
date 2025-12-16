@@ -267,6 +267,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       currentPPglyph = "";
       currentPPdistance = L1;
     i = j1; // consume distance
+  }
  //CASE 3 — nothing useful found
      else {
        currentPPglyph = "";
