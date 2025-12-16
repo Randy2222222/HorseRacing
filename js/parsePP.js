@@ -348,8 +348,21 @@ slotIndex = 0;
     //  if (raceTypeM) {
     //    currentPPraceType = raceTypeM[0];
      //   continue;
-   // }
-     const currentPPraceType = lines[index + 2];
+   // }     
+   for (let index = 0; index < lines.length; index++) {
+     let i = index;
+   if (i + 1 < lines.length && lines[i + 1].trim() === "") {
+    i++;
+  }
+     const raceType = lines[i + 1] ?? null;
+   if (raceType) {
+     currentPPraceType = raceType;
+    continue;   // ONLY now does this make sense
+  }
+
+  // other parsing logic continues here
+}
+
       // CLASS RATING — Must Be 3 superscript digits,
        if (currentPPclassRating === null && CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
