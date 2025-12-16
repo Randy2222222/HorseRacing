@@ -354,7 +354,7 @@ slotIndex = 0;
        if (i + 1 < lines.length && lines[i + 1].trim() === "") {
          i++;
       }
-          const currentPPraceType = lines[i + 1] ?? null;
+          const currentPPraceType = lines[i + 1];
          continue;
        }
 
