@@ -2,8 +2,8 @@
 // pdfReader.js
 // Clean, simple PDF loader with DEV MODE output
 import { parsePP } from "./parsePP.js";
-import { applyGlyphMap } from "./glyphMap.js";
-import { GLYPHS } from "./glyphMap.js";
+//import { applyGlyphMap } from "./glyphMap.js";
+//import { GLYPHS } from "./glyphMap.js";
 
 const DEV_MODE = "structured";  // turn off later when finished
 
@@ -106,8 +106,8 @@ if (DEV_MODE === "structured") {
       out += `    START: ${pp.start}\n`;
       out += `    Lengths: ${pp.stlng}\n`;
       out += `    1stCall: ${pp.first}\n`;
-      out +=`     2ndCall: ${pp.second}\n`;
-      out +=`     FINISH: ${pp.final}\n`;
+      out += `     2ndCall: ${pp.second}\n`;
+      out += `    FINISH: ${pp.final}\n`;
       
     });
 
