@@ -203,7 +203,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             spd: currentPPspd,
             pp: currentPPpp,
             start: currentPPstart,
-            startlng: currentPPstlng
+            stlng: currentPPstlng
             
           });
         }
@@ -416,7 +416,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gates Lengths
-   const startLengthM = trimmed.match(/(¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾)/);
+      const startLengthM = trimmed.match(/(|¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾|)/i);
   
       if (startLengthM) {
          currentPPstlng = startLengthM[0];
@@ -450,7 +450,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         spd: currentPPspd,
         pp: currentPPpp,
         start: currentPPstart,
-        startlng: currentPPstlng
+        stlng: currentPPstlng
       });
     }
 
