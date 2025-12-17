@@ -104,6 +104,7 @@ if (DEV_MODE === "structured") {
       out += `    SPD: ${pp.spd}\n`
       out += `    Post: ${pp.pp}\n`
       out += `    Start: ${pp.gate}\n`
+      out += `   Lengths: ${pp.gatelng}\n`
     });
 
     out += "========================================\n\n";
