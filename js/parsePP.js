@@ -415,10 +415,19 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPstart = trimmed;
   continue;
 }
-      if (currentPPstlng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
-  currentPPstlng = trimmed;
-  continue;
+      // Starting Gates Lengths
+   //   const m = line.match(STARTING_GATE_LENGTHS_REGEX);
+//currentPPstlng = m && m[0] ? m[0] : "";
+     // continue;
+      if (currentPPstlng === null) {
+  const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+  if (m) currentPPstlng = m[0];
+        continue
 }
+   //   if (currentPPstlng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
+//  currentPPstlng = trimmed;
+//  continue;
+//}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
