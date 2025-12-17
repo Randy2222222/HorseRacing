@@ -64,7 +64,8 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 
 // 🔟 SPD Speed Rating
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
-const POST_POSITION_REGEX = /^\d[0-9{2}]$/;
+const POST_POSITION_REGEX = /^\d{1,2}$/;
+const STARTING_GATE_REGEX = /^\d{1,2}$/;
 
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -159,7 +160,9 @@ export function parsePP(decodedText) {
     let currentPPpace = { e1: null, e2: null, lp: null };
     let currentPPoneC = null;   // race shape 1c
     let currentPPtwoC = null;   // race shape 2c
-    let currentPPspd = null;   // 🆕 Brisnet Speed Rating (SPD)
+    let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
+    let currentPPpp = null;    // Post Position in Gate
+    let currentPPgate = null;  // Horse left Gat in what order( 1st, 4th, 7th, etc.
     
     let totalCalls = 4;
     let slotIndex = 0;
@@ -195,7 +198,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             pace: currentPPpace,
             oneC: currentPPoneC,
             twoC: currentPPtwoC,
-            spd: currentPPspd
+            spd: currentPPspd,
+            pp: currentPPpp,
+            gate: currentPPgate
           });
         }
 
@@ -222,6 +227,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPoneC = null;
         currentPPtwoC = null;
         currentPPspd = null;
+        currentPPpp = null;
+        currentPPgate = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -394,7 +401,15 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Post Position
-      
+      if (currentPPpp === null && POST_POSITION_REGEX.test(trimmed)) {
+  currentPPpp = trimmed;
+  continue;
+}
+      // Starting Gate Position
+       if (currentPPgate === null && STARTING_GATE_REGEX.test(trimmed)) {
+  currentPPgate = trimmed;
+  continue;
+}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -420,7 +435,9 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         pace: currentPPpace,
         oneC: currentPPoneC,
         twoC: currentPPtwoC,
-        spd: currentPPspd
+        spd: currentPPspd,
+        pp: currentPPpp,
+        gate: currentPPgate
       });
     }
 
