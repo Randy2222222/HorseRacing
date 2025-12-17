@@ -351,7 +351,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       // RaceType — the line immediately after RR
       // ---------------------------------------------
         const raceTypeM = trimmed.match(
-      /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
+      /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
    );
       if (raceTypeM) {
          currentPPraceType = raceTypeM[0];
