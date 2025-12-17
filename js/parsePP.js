@@ -414,6 +414,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPgate = trimmed;
   continue;
 }
+      // Starting Gate Lengths behind Leader
+      if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
+  currentPPgatelng = trimmed;
+  continue;
+}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
