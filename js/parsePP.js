@@ -26,13 +26,13 @@ const GLYPHS_TO_DISPLAY_REGEX = /^(Ⓣ|Ⓐ|ⓧ|🅃|�)$/;
 const DISTANCE_REGEX = /([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))/;
 
 // 5️⃣ Surface codes (2-letter)
-const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i;
+//const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-//const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
+const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
 //const SURF_TAG  =  ["s","x","n","t","y"];
 //const SURFACES = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 //const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
-const SURFACE_TAG_REGEX  =  /(s|x|n|t|y)/i;
+const SURFACE_TAG_REGEX  =  /\b(s|x|n|t|y)$/i;
 //  6️⃣ Leader-time helper functions
   function isShortSprint(distanceStr) {
     const d = distanceStr.toLowerCase();
@@ -278,7 +278,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 } else {
   currentPPsurface = "";
   currentPPsurfTag = "";
-  return;
+  continue;
 }
 
 // =================================================
