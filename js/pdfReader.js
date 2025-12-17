@@ -3,7 +3,7 @@
 // Clean, simple PDF loader with DEV MODE output
 import { parsePP } from "./parsePP.js";
 import { applyGlyphMap } from "./glyphMap.js";
-//import { GLYPHS } from "./glyphMap.js";
+import { GLYPHS } from "./glyphMap.js";
 
 const DEV_MODE = "structured";  // turn off later when finished
 
