@@ -103,7 +103,7 @@ if (DEV_MODE === "structured") {
       out += `    2c Shape: ${pp.twoC}\n`;
       out += `    SPD: ${pp.spd}\n`;
       out += `    POST: ${pp.pp}\n`;
-      out += `    START: ${pp.start}\n`;
+      out += `    START: ${pp.gate}\n`;
       
       
     });
