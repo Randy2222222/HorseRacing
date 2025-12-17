@@ -66,6 +66,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
+const STARTING_GATE_LENGTHS = /(?:
 
 // Change SurfTag to Superscript
 const SUP_TAG = {
