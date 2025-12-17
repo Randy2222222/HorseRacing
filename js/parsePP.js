@@ -288,14 +288,14 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
        continue; // end of DATE block
       
         }
-   // }
+   
  
    // ⚡️ RUNNING SURFACE ⚡️
-    //    const surfaceS = trimmed.match(/b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
-       //   if (surfaceS) {
-        //    currentPPsurface = surfaceS[0];
-       //    continue;
-      //   }
+    const surfaceM = trimmed.match(/(|ft|gd|my|sy|wf|fm|yl|sf|hy|sl|)/i);
+      if (surfaceM) {
+         currentPPsurface = surfaceM[0];
+       continue;
+    }     
       // ⚡️ END OF SURFACE CODE ⚡️
 
 
