@@ -105,6 +105,9 @@ if (DEV_MODE === "structured") {
       out += `    POST: ${pp.pp}\n`;
       out += `    START: ${pp.start}\n`;
       out += `    Lengths: ${pp.stlng}\n`;
+      out += `    1stCall: ${pp.first}\n`;
+      out +=`     2ndCall: ${pp.second}\n`;
+      out +=`     FINISH: ${pp.final}\n`;
       
     });
 
