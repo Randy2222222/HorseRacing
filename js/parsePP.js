@@ -162,7 +162,7 @@ export function parsePP(decodedText) {
     let currentPPtwoC = null;   // race shape 2c
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
-    let currentPPgate = null;  // Horse left Gat in what order( 1st, 4th, 7th, etc.
+    let currentPPstart = null;  // Horse left Gat in what order( 1st, 4th, 7th, etc.
     
     let totalCalls = 4;
     let slotIndex = 0;
@@ -200,7 +200,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             twoC: currentPPtwoC,
             spd: currentPPspd,
             pp: currentPPpp,
-            gate: currentPPgate
+            gate: currentPPstart
           });
         }
 
@@ -228,7 +228,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPtwoC = null;
         currentPPspd = null;
         currentPPpp = null;
-        currentPPgate = null;
+        currentPPstart = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -406,8 +406,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Position
-       if (currentPPgate === null && STARTING_GATE_REGEX.test(trimmed)) {
-  currentPPgate = trimmed;
+       if (currentPPstart === null && STARTING_GATE_REGEX.test(trimmed)) {
+  currentPPstart = trimmed;
   continue;
 }
       
@@ -437,7 +437,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         twoC: currentPPtwoC,
         spd: currentPPspd,
         pp: currentPPpp,
-        gate: currentPPgate
+        gate: currentPPstart
       });
     }
 
