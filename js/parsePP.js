@@ -64,6 +64,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 
 // 🔟 SPD Speed Rating
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
+const POST_POSITION_REGEX = /^\d[0-9{2}]$/;
 
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -392,6 +393,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPspd = trimmed;
   continue;
 }
+      // Post Position
+      
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
