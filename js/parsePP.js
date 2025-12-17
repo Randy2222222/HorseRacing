@@ -66,7 +66,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
-const STARTING_GATE_LENGTHS = /((?:¹|²|³|⁴|⁵|⁶|⁷|⁸|⁹|¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰)(?:¼|½|¾))/;
+const STARTING_GATE_LENGTHS_REGEX = /((?:¹|²|³|⁴|⁵|⁶|⁷|⁸|⁹|¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰)(?:¼|½|¾))/;
 
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -164,6 +164,7 @@ export function parsePP(decodedText) {
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
     let currentPPstart = null;  // Horse left Gat in what order( 1st, 4th, 7th, etc.
+    let currentPPstlng = null;  // Start Gate Lengths
     
     let totalCalls = 4;
     let slotIndex = 0;
@@ -201,7 +202,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             twoC: currentPPtwoC,
             spd: currentPPspd,
             pp: currentPPpp,
-            gate: currentPPstart
+            start: currentPPstart,
+            startlng: currentPPstlng
+            
           });
         }
 
@@ -230,6 +233,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPstart = null;
+        currentPPstlng = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -411,6 +415,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPstart = trimmed;
   continue;
 }
+      if (currentPPstlng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
+  currentPPstlng = trimmed;
+  continue;
+}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -438,7 +446,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         twoC: currentPPtwoC,
         spd: currentPPspd,
         pp: currentPPpp,
-        gate: currentPPstart
+        start: currentPPstart,
+        startlng: currentPPstlng
       });
     }
 
