@@ -439,20 +439,20 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
    //    continue;
   //  }    
     // First Call
-    if (currentPPfirst === null && FIRST_CALL_REGEX.test(
-         currentPPfirst = trimmed;
-        continue;
-    }
+ //   if (currentPPfirst === null && FIRST_CALL_REGEX.test(
+     //    currentPPfirst = trimmed;
+     //   continue;
+  //  }
       // Second Call
-    if (currentPPsecond === null && SECOND_CALL_REGEX.test(
-         currentPPsecond = trimmed;
-        continue;
-    }
+ //   if (currentPPsecond === null && SECOND_CALL_REGEX.test(
+    //     currentPPsecond = trimmed;
+     //   continue;
+//    }
       // FINISH
-      if (currentPPfinal === null && FINAL_REGEX.test(
-         currentPPfinal = trimmed;
-        continue;
-    }
+    //  if (currentPPfinal === null && FINAL_REGEX.test(
+     //    currentPPfinal = trimmed;
+    //    continue;
+  //  }
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
