@@ -23,14 +23,14 @@ const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
 
 // 4️⃣ Distance Patterns
-const DISTANCE_REGEX = /\b([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))\b/;
+const DISTANCE_REGEX = /([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))/;
 
 // 5️⃣ Surface codes (2-letter)
 //const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/;
+const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/;
 
-const SURFACE_TAG_REGEX  =  /\b(s|x|n|t|y)$/i;
+const SURFACE_TAG_REGEX  =  /(s|x|n|t|y)/i;
 
 const SURFACE_TAG  =  ["s","x","n","t","y"];
 //const SURFACE = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
@@ -308,7 +308,7 @@ if (SURFACE_TAG_REGEX.test(tagLine)) {
   currentPPsurfTag = ""; // tag absent
   
   // DO NOT advance i
-}
+//}
         
    // ⚡️ RUNNING SURFACE ⚡️
 //if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
