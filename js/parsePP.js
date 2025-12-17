@@ -66,7 +66,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
-const STARTING_GATE_LENGTHS_REGEX = /(?:[¹²³⁴⁵⁶⁷⁸⁹]|¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰)?(?:¼|½|¾)?/;
+//const STARTING_GATE_LENGTHS_REGEX = /(?:[¹²³⁴⁵⁶⁷⁸⁹]|¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰)?(?:¼|½|¾)?/;
 
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -416,18 +416,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gates Lengths
-   //   const m = line.match(STARTING_GATE_LENGTHS_REGEX);
-//currentPPstlng = m && m[0] ? m[0] : "";
-     // continue;
-      if (currentPPstlng === null) {
-  const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
-  if (m) currentPPstlng = m[0];
-        continue
-}
-   //   if (currentPPstlng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
-//  currentPPstlng = trimmed;
-//  continue;
-//}
+   const startLengthM = trimmed.match(/(?:[¹²³⁴⁵⁶⁷⁸⁹]|¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰)?(?:¼|½|¾)?/);
+  
+      if (startLengthM) {
+         currentPPstlng = startLengthM[0];
+       continue;
+    }     
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
