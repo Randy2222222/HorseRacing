@@ -66,6 +66,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
+const STARTING_GATE_LENGTHS_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
 
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -162,7 +163,8 @@ export function parsePP(decodedText) {
     let currentPPtwoC = null;   // race shape 2c
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
-    let currentPPgate = null;  // Horse left Gat in what order( 1st, 4th, 7th, etc.
+    let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
+    let currentPPgatelng = null; // Horses Lengths behind Leader
     
     let totalCalls = 4;
     let slotIndex = 0;
@@ -200,7 +202,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             twoC: currentPPtwoC,
             spd: currentPPspd,
             pp: currentPPpp,
-            gate: currentPPgate
+            gate: currentPPgate,
+            gl: currentPPgatelng
           });
         }
 
@@ -229,6 +232,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPgate = null;
+        currentPPgatelng = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -437,7 +441,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         twoC: currentPPtwoC,
         spd: currentPPspd,
         pp: currentPPpp,
-        gate: currentPPgate
+        gate: currentPPgate,
+        gl: currentPPgatelng
       });
     }
 
