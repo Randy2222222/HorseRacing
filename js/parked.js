@@ -68,6 +68,8 @@ const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX = /(?:[¹²³⁴⁵⁶⁷⁸⁹]|¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰)?(?:¼|½|¾)?/;
 
+const STARTING_GATE_LENGTHS_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
+
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
 
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
