@@ -68,6 +68,12 @@ const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX = /(?:[¹²³⁴⁵⁶⁷⁸⁹]|¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰)?(?:¼|½|¾)?/;
 
+const FIRST_CALL_REGEX = /^\d{1,2}$/;
+
+const SECOND_CALL_REGEX = /^\d{1,2}$/;
+
+const FINAL_REGEX = /^\d{1,2}$/;
+
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -165,6 +171,9 @@ export function parsePP(decodedText) {
     let currentPPpp = null;    // Post Position in Gate
     let currentPPstart = null;  // Horse left Gat in what order( 1st, 4th, 7th, etc.
     let currentPPstlng = null;  // Start Gate Lengths
+    let currentPPfirst = null;  // First Call
+    let currentPPsecond = null;  // Second Call
+    let currentPPfinal = null;    // Final Call: FINISH
     
     let totalCalls = 4;
     let slotIndex = 0;
@@ -203,7 +212,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             spd: currentPPspd,
             pp: currentPPpp,
             start: currentPPstart,
-            stlng: currentPPstlng
+            stlng: currentPPstlng,
+            first: currentPPfirst,
+            second: currentPPsecond,
+            final: currentPPfinal
+            
             
           });
         }
@@ -234,6 +247,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPpp = null;
         currentPPstart = null;
         currentPPstlng = null;
+        currentPPfirst = null;
+        currentPPsecond = null;
+        currentPPfinal = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -411,17 +427,32 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Position
-       if (currentPPstart === null && STARTING_GATE_REGEX.test(trimmed)) {
-  currentPPstart = trimmed;
-  continue;
-}
+       if (currentPPstart === null && STARTING_GATE_REGEX.test(
+         currentPPstart = trimmed;
+        continue;
+    }
       // Starting Gates Lengths
       const startLengthM = trimmed.match(/(|¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾|)/i);
   
       if (startLengthM) {
          currentPPstlng = startLengthM[0];
        continue;
-    }     
+    }    
+    // First Call
+    if (currentPPfirst === null && FIRST_CALL_REGEX.test(
+         currentPPfirst = trimmed;
+        continue;
+    }
+      // Second Call
+    if (currentPPsecond === null && SECOND_CALL_REGEX.test(
+         currentPPsecond = trimmed;
+        continue;
+    }
+      // FINISH
+      if (currentPPfinal === null && FINAL_REGEX.test(
+         currentPPfinal = trimmed;
+        continue;
+    }
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -450,7 +481,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         spd: currentPPspd,
         pp: currentPPpp,
         start: currentPPstart,
-        stlng: currentPPstlng
+        stlng: currentPPstlng,
+        first: currentPPfirst,
+        second: currentPPsecond,
+        final: currentPPfinal
       });
     }
 
