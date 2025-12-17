@@ -102,6 +102,8 @@ if (DEV_MODE === "structured") {
       out += `    1c Shape: ${pp.oneC}\n`;
       out += `    2c Shape: ${pp.twoC}\n`;
       out += `    SPD: ${pp.spd}\n\n`;
+      out += `    POST: ${pp.pp}\n`;
+      out += `    LEFT GATE: ${pp.gate}\n`;
     });
 
     out += "========================================\n\n";
