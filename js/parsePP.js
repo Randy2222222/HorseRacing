@@ -435,8 +435,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
     //  }
       if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
         currentgatelng = trimmed; 
-      }else{
-        currentgatelng = "";
         continue;
       }
       // First Call
