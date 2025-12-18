@@ -1,7 +1,7 @@
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
-import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
+//import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
 import { GLYPHS } from "./glyphMap.js";
 // Make the little numbers for leader times
@@ -423,7 +423,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       // Starting Gate Lengths behind Leader
       const gatelengthM = trimmed.match(
-        /(¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾)/i);
+        /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
       if (gatelengthM) {
                     currentPPgatelng = gatelengthM[0];
             continue;
