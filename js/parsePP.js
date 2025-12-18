@@ -291,16 +291,15 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
      else {
        currentPPglyph = "";
        currentPPdistance = "";
-      // continue; // end of DATE block
+       continue; // end of DATE block
       
         }
-   // }
- 
-   // ⚡️ RUNNING SURFACE ⚡️
+
+        // ⚡️ RUNNING SURFACE ⚡️
        const surfaceS = trimmed.match(/\b|ft|gd|my|sy|wf|fm|yl|sf|hy|sl/i);
           if (surfaceS) {
              currentPPsurface = surfaceS[0];
-       //   continue;
+           continue;
         }
       // ⚡️ END OF SURFACE CODE ⚡️
 
