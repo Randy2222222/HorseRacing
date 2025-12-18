@@ -67,8 +67,8 @@ const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
-//const STARTING_GATE_LENGTHS_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
-const STARTING_GATE_LENGTHS_REGEX = /^[^-]+-[^-]+$/
+const STARTING_GATE_LENGTHS_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
+//const STARTING_GATE_LENGTHS_REGEX = /^[^-]+-[^-]+$/
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
 const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
@@ -433,10 +433,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
                   //  currentPPgatelng = gateLengthM[0];
            // continue;
     //  }
-    //  if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
-     //   currentgatelng = trimmed; 
-      //  continue;
-    //  }
+        if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
+          currentgatelng = trimmed; 
+          continue;
+        }
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
