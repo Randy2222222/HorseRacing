@@ -1,9 +1,9 @@
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
-//import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
+import { normalizeDistance, toUnicodeFraction } from "./fractions.js";
 import { GLYPH_DIGITS } from "./glyphMap.js";
-//import { GLYPHS } from "./glyphMap.js";
+import { GLYPHS } from "./glyphMap.js";
 // Make the little numbers for leader times
 const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
 function toSuperscript(n) {
