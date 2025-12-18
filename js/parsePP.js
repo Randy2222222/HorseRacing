@@ -68,7 +68,10 @@ const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
 const STARTING_GATE_LENGTHS_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
-
+const FIRST_CALL_REGEX = /^\d{1,2}$/;
+const SECOND_CALL_REGEX = /^\d{1,2}$/;
+const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
+const FINISH_REGEX = /^\d{1,2}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -166,7 +169,8 @@ export function parsePP(decodedText) {
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPgatelng = null; // Horses Lengths behind Leader
-    
+    let currentPPfirst = null;  // First Call
+   // let currentPPsecond = null; // Second Call
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -204,7 +208,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             spd: currentPPspd,
             pp: currentPPpp,
             gate: currentPPgate,
-            gl: currentPPgatelng
+            gl: currentPPgatelng,
+            first: currentPPfirst
           });
         }
 
@@ -234,6 +239,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPpp = null;
         currentPPgate = null;
         currentPPgatelng = null;
+        currentPPfirst = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -418,6 +424,13 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Starting Gate Lengths behind Leader
       if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
   currentPPgatelng = trimmed;
+      }else{
+        currentPPgatelng = "";
+  continue;
+}
+      // First Call
+      if (currentPPgatelng === null && FIRST_CALL_REGEX.test(trimmed)) {
+  currentPPgatelng = trimmed;
   continue;
 }
       
@@ -448,7 +461,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         spd: currentPPspd,
         pp: currentPPpp,
         gate: currentPPgate,
-        gl: currentPPgatelng
+        gl: currentPPgatelng,
+        first: currentPPfirst
       });
     }
 
