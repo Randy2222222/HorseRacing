@@ -73,7 +73,7 @@ const STARTING_GATE_LENGTHS_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸�
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
 
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
-const STRAIGHT_Call_REGEX = /^\d{1,2}$/;
+const STRAIGHT_CAll_REGEX = /^\d{1,2}$/;
 
 const FINISH_REGEX = /^\d{1,2}$/;
 
