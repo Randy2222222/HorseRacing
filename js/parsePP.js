@@ -30,9 +30,9 @@ const DISTANCE_REGEX = /([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁�
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/;
 
-const SURFACE_TAG_REGEX  =  /(s|x|n|t|y)/i;
+const SURFACE_TAG_REGEX = /(s|x|n|t|y)/i;
 
-const SURFACE_TAG  =  ["s","x","n","t","y"];
+const SURFACE_TAG = ["s","x","n","t","y"];
 //const SURFACE = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
 
@@ -55,9 +55,9 @@ const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
 const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ Brisnet speed figures
-const E1_REGEX  = /^\d{2,3}$/;      // ex: 76
-const E2_REGEX  = /^\d{2,3}\/$/;    // ex: 82/
-const LP_REGEX  = /^\d{2,3}$/;      // ex: 86  🔥was LP
+const E1_REGEX = /^\d{2,3}$/;      // ex: 76
+const E2_REGEX = /^\d{2,3}\/$/;    // ex: 82/
+const LP_REGEX = /^\d{2,3}$/;      // ex: 86  🔥was LP
 
 // 9️⃣ Race Shapes (1c and 2c): +3, -1, 4, etc.
 const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
@@ -301,7 +301,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
        //   if (surfaceS) {
         //   currentPPsurface = surfaceS[1];
        //   continue;
-         }
+       //  }
       // ⚡️ END OF SURFACE CODE ⚡️
 
 
