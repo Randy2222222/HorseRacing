@@ -170,7 +170,9 @@ export function parsePP(decodedText) {
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPgatelng = null; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
-   // let currentPPsecond = null; // Second Call
+    let currentPPsecond = null; // Second Call
+    let currentPPstr = null;  // Straight Call
+    let currentPPfinish = null;  // FINISH
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -209,7 +211,10 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             pp: currentPPpp,
             gate: currentPPgate,
             gl: currentPPgatelng,
-            first: currentPPfirst
+            first: currentPPfirst,
+            second: currentPPsecond,
+            str: currentPPstr,
+            finish: currentPPfinish
           });
         }
 
@@ -240,6 +245,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPgate = null;
         currentPPgatelng = null;
         currentPPfirst = null;
+        currentPPsecond = null;
+        currentPPstr = null;
+        currentPPfinish = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -429,6 +437,21 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
   continue;
 }
+      // Second Call
+      if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
+  currentPPsecond = trimmed;
+  continue;
+}
+      // Straight Call
+      if (currentPPstr === null && STRAIGHT_CALL_REGEX.test(trimmed)) {
+  currentPPstr = trimmed;
+  continue;
+}
+      // FINISH
+      if (currentPPfinish === null && FINISH_CALL_REGEX.test(trimmed)) {
+  currentPPfinish = trimmed;
+  continue;
+}
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -458,7 +481,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         pp: currentPPpp,
         gate: currentPPgate,
         gl: currentPPgatelng,
-        first: currentPPfirst
+        first: currentPPfirst,
+        second: currentPPsecond,
+        str: currentPPstr,
+        finish: currentPPfinish
       });
     }
 
