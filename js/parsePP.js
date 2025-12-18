@@ -361,7 +361,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
    );
       if (raceTypeM) {
-         currentPPraceType = raceTypeM[0];
+         currentPPraceType = raceTypeM.(join)"  ";
        continue;
     }     
       
