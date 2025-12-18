@@ -73,8 +73,9 @@ const STARTING_GATE_LENGTHS_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸�
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
 
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
+const STRAIGHT_Call_REGEX = /^\d{1,2}$/;
 
-const FINAL_REGEX = /^\d{1,2}$/;
+const FINISH_REGEX = /^\d{1,2}$/;
 
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -175,7 +176,8 @@ export function parsePP(decodedText) {
     let currentPPstlng = null;  // Start Gate Lengths
     let currentPPfirst = null;  // First Call
     let currentPPsecond = null;  // Second Call
-    let currentPPfinal = null;    // Final Call: FINISH
+    let currnetPPstr = null;     // Straight Call
+    let currentPPfinish = null;    // FINISH LINE
     
     let totalCalls = 4;
     let slotIndex = 0;
@@ -217,7 +219,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             stlng: currentPPstlng,
             first: currentPPfirst,
             second: currentPPsecond,
-            final: currentPPfinal
+            straight: currentPPstr,
+            finish: currentPPfinish
             
             
           });
@@ -251,7 +254,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPstlng = null;
         currentPPfirst = null;
         currentPPsecond = null;
-        currentPPfinal = null;
+        currentPPstr = null;
+        currentPPfinish = null;
         
         // start this PP block with the date line
         currentPP.push(line);
@@ -370,7 +374,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       // RaceType — the line immediately after RR
       // ---------------------------------------------
         const raceTypeM = trimmed.match(
-      /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
+      /\g(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/i
    );
       if (raceTypeM) {
          currentPPraceType = raceTypeM[0];
@@ -429,11 +433,17 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Position
-       if (currentPPstart === null && STARTING_GATE_REGEX.test(
+       if (currentPPstart === null && STARTING_GATE_REGEX.test(trimmed)) {
          currentPPstart = trimmed;
         continue;
     }
       // Starting Gates Lengths
+    if (currentPPstlng === null && STARTING_GATE_LENTGTHS_REGEX.test(trimmed)) {
+         currentPPstlng = trimmed;
+    }else{
+         currentPPstlng = "";
+      continue;
+    }
    //   const startLengthM = trimmed.match(/(|¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾|)/i);
   
     //  if (startLengthM) {
@@ -441,20 +451,25 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
    //    continue;
   //  }    
     // First Call
- //   if (currentPPfirst === null && FIRST_CALL_REGEX.test(
-     //    currentPPfirst = trimmed;
-     //   continue;
-  //  }
+      if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
+           currentPPfirst = trimmed;
+          continue;
+      }
       // Second Call
- //   if (currentPPsecond === null && SECOND_CALL_REGEX.test(
-    //     currentPPsecond = trimmed;
-     //   continue;
-//    }
+    if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
+           currentPPsecond = trimmed;
+          continue;
+      }
+      // Straight Call
+      if (currentPPstr === null && STRAIGHT_CALL_REGEX.test(trimmed)) {
+           currentPPstr = trimmed;
+          continue;
+      }
       // FINISH
-    //  if (currentPPfinal === null && FINAL_REGEX.test(
-     //    currentPPfinal = trimmed;
-    //    continue;
-  //  }
+      if (currentPPfinish === null && FINISH_CALL_REGEX.test(trimmed)) {
+           currentPPfinish = trimmed;
+          continue;
+      }
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -486,7 +501,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         stlng: currentPPstlng,
         first: currentPPfirst,
         second: currentPPsecond,
-        final: currentPPfinal
+        straight: currentPPstr,
+        finish: currentPPfinish
       });
     }
 
