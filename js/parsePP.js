@@ -429,8 +429,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
             continue;
       }
       // First Call
-      if (currentPPgatelng === null && FIRST_CALL_REGEX.test(trimmed)) {
-  currentPPgatelng = trimmed;
+      if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
+  currentPPfirst = trimmed;
   continue;
 }
       
