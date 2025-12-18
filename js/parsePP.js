@@ -286,14 +286,15 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       currentPPglyph = "";
       currentPPdistance = L1;
     i = j1; // consume distance
+    continue;
   }
  //CASE 3 — nothing useful found
-     else {
-       currentPPglyph = "";
-       currentPPdistance = "";
-       continue; // end of DATE block
+  //   else {
+    //   currentPPglyph = "";
+     //  currentPPdistance = "";
+    //   continue; // end of DATE block
       
-        }
+     //   }
 
         // ⚡️ RUNNING SURFACE ⚡️
        const surfaceM = trimmed.match(/ft|gd|my|sy|wf|fm|yl|sf|hy|sl/);
