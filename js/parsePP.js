@@ -297,9 +297,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
    // }
  
    // ⚡️ RUNNING SURFACE ⚡️
-     const surfaceS = trimmed.match(/\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
-          if (surfaceS) {
-           currentPPsurface = surfaceS[1];
+   //  const surfaceS = trimmed.match(/\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i);
+       //   if (surfaceS) {
+        //   currentPPsurface = surfaceS[1];
        //   continue;
          }
       // ⚡️ END OF SURFACE CODE ⚡️
