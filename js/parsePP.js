@@ -448,8 +448,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // FINISH
-      if (currentPPfinish === null && FINISH_CALL_REGEX.test(trimmed)) {
-  currentPPfinish = trimmed;
+      if (currentPPfinish === null && FINISH_REGEX.test(trimmed)) {
+  currentPPfinish = trimmed:
   continue;
 }
       
