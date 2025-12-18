@@ -433,10 +433,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
                   //  currentPPgatelng = gateLengthM[0];
            // continue;
     //  }
-      if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
-        currentgatelng = trimmed; 
-        continue;
-      }
+    //  if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
+     //   currentgatelng = trimmed; 
+      //  continue;
+    //  }
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
