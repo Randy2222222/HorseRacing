@@ -69,8 +69,8 @@ const STARTING_GATE_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_LENGTHS_REGEX =
 /(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾)/;
 const LENGTHS = /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/;
-const STARTING_GATE_LENGTHS_REGEX = /^\[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
-///const STARTING_GATE_LENGTHS_REGEX = /!\d\s(?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/u;// added !\d to beginning and g at end
+//const STARTING_GATE_LENGTHS_REGEX = /^\[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
+const STARTING_GATE_LENGTHS_REGEX = /!\d((\s)(?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/u;// added !\d to beginning and g at end
 //const STARTING_GATE_LENGTHS_REGEX = /^[^-]+-[^-]+$/
 //const STARTING_GATE_LENGTHS_REGEX =/(?:(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾))/u;
 //const STARTING_GATE_LENGTHS_REGEX = /[u2070-u2079]/;
@@ -444,12 +444,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
            
            //     continue;
        //    }
-      if (currentPPgatelng === null && LENGTHS.test(trimmed)) {
-  currentPPgatelng = trimmed;
-      }else{
-        currentPPgatelng = "";
-
-}
+      if (currentPPgatelng === null && STARTING_GATES_LENGTHS_REGEX.test(trimmed)) {
+       currentPPgatelng = trimmed;
+      continue;
+     }
       
 //const m = trimmed.match(LENGTHS);
 //currentPPgatelng = m ? m[0] : "";
