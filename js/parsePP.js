@@ -439,10 +439,34 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       
 //const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
 //currentPPgatelng = m ? m[0] : "";
-      const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+      // His
+      function extractGateLength(token) {
+  if (!token) return "";
 
-// m[0] is ALWAYS defined — even if empty
-currentPPgatelng = m && m[0] ? m[0] : "";
+  token = token.trim();
+
+  // Case 1: pure fraction (¼, ½, ¾)
+  if (LENGTH_FRACTIONS.includes(token)) {
+    return token;
+  }
+
+  // Case 2: superscript only
+  if (LENGTH_SUPERSCRIPTS.includes(token)) {
+    return token;
+  }
+
+  // Case 3: superscript + fraction
+  for (const n of LENGTH_SUPERSCRIPTS) {
+    for (const f of LENGTH_FRACTIONS) {
+      if (token === n + f) {
+        return token;
+      }
+    }
+  }
+
+  // Case 4: empty field (valid)
+  return "";
+}
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
