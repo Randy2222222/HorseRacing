@@ -260,7 +260,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPfinish = null;
         
         // start this PP block with the date line
-       // currentPP.push(line);
+        currentPP.push(line);
 
 
 // ------------------------------------------
