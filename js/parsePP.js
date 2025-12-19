@@ -79,7 +79,7 @@ const FINISH_REGEX = /^\d{1,2}$/;
 //----------------------------------
 // 🔥 Helper Function for Lengths🔥
 //----------------------------------
-const SUPERSCRIPTS = [
+const SUPERSCRIPT = [
   "¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹",
   "¹⁰","¹¹","¹²","¹³","¹⁴","¹⁵","¹⁶","¹⁷","¹⁸","¹⁹","²⁰"
 ];
@@ -91,7 +91,7 @@ function extractGateLength(line) {
 
   let out = "";
 
-  for (const s of SUPERSCRIPTS.sort((a,b)=>b.length-a.length)) {
+  for (const s of SUPERSCRIPT.sort((a,b)=>b.length-a.length)) {
     if (line.includes(s)) {
       out += s;
       break;
@@ -471,7 +471,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 //const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
 //currentPPgatelng = m ? m[0] : "";
       // His
-      currentPPgatelng = extractGateLength.test(trimmed);
+      currentPPgatelng = extractGateLength.(trimmed);
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
