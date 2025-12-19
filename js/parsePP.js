@@ -79,33 +79,34 @@ const FINISH_REGEX = /^\d{1,2}$/;
 //----------------------------------
 // 🔥 Helper Function for Lengths🔥
 //----------------------------------
-const SUPERSCRIPT = [
-  "¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹",
-  "¹⁰","¹¹","¹²","¹³","¹⁴","¹⁵","¹⁶","¹⁷","¹⁸","¹⁹","²⁰"
+const GATE_SUPERS = [
+  "²⁰","¹⁹","¹⁸","¹⁷","¹⁶","¹⁵","¹⁴","¹³","¹²","¹¹","¹⁰", // longest first
+  "⁹","⁸","⁷","⁶","⁵","⁴","³","²","¹"
 ];
 
-const FRACTIONS = ["¼","½","¾"];
-
+const GATE_FRACS = ["¼","½","¾"];
 function extractGateLength(line) {
   if (!line) return "";
 
   let out = "";
 
-  for (const s of SUPERSCRIPT.sort((a,b)=>b.length-a.length)) {
+  // superscript number (optional)
+  for (const s of GATE_SUPERS) {
     if (line.includes(s)) {
-      out += s;
+      out = s;
       break;
     }
   }
 
-  for (const f of FRACTIONS) {
+  // fraction (optional)
+  for (const f of GATE_FRACS) {
     if (line.includes(f)) {
       out += f;
       break;
     }
   }
 
-  return out;
+  return out; // "" if nothing found
 }
 // Change SurfTag to Superscript
 const SUP_TAG = {
