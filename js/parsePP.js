@@ -437,8 +437,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
           /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
           if (gateLengthM) {
                         currentPPgatelng = gateLengthM[0];
-                continue;
-          }
+            } else {
+  currentPPgatelng = "";
+}
+             //   continue;
+       //   }
       
 //const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
 //currentPPgatelng = m ? m[0] : "";
