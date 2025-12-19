@@ -436,20 +436,17 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-        const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
-        //  /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
+        const gateLengthM = trimmed.match(LENGTHS);
           if (gateLengthM) {
                         currentPPgatelng = gateLengthM[0];
-            } else {
+               } else {
   currentPPgatelng = "";
-}
-             //   continue;
-       //   }
+           
+                continue;
+           }
       
-//const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+//const m = trimmed.match(LENGTHS);
 //currentPPgatelng = m ? m[0] : "";
-      // His
-   //   currentPPgatelng = extractGateLength.(trimmed);
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
