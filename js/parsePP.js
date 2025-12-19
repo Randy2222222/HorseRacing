@@ -440,6 +440,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 //const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
 //currentPPgatelng = m ? m[0] : "";
       // His
+      const LENGTH_FRACTIONS = ["¼", "½", "¾"];
+const LENGTH_SUPERSCRIPTS = [
+  "¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹",
+  "¹⁰","¹¹","¹²","¹³","¹⁴","¹⁵","¹⁶","¹⁷","¹⁸","¹⁹","²⁰"
+];
       function extractGateLength(token) {
   if (!token) return "";
 
