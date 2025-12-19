@@ -66,6 +66,8 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
+const STARTING_GATE_LENGTHS_REGEX =
+/(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾)/;
 //const STARTING_GATE_LENGTHS_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
 ///const STARTING_GATE_LENGTHS_REGEX = /!\d((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/u;// added !\d to beginning and g at end
 //const STARTING_GATE_LENGTHS_REGEX = /^[^-]+-[^-]+$/
@@ -433,8 +435,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-        const gateLengthM = trimmed.match(
-          /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
+        const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+        //  /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
           if (gateLengthM) {
                         currentPPgatelng = gateLengthM[0];
             } else {
