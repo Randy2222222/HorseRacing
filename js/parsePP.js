@@ -471,7 +471,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 //const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
 //currentPPgatelng = m ? m[0] : "";
       // His
-      currentPPgatelng = extractGateLength.(trimmed);
+     // currentPPgatelng = extractGateLength.(trimmed);
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
