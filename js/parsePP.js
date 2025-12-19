@@ -446,6 +446,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
        //    }
       if (currentPPgatelng === null && LENGTHS.test(trimmed)) {
   currentPPgatelng = trimmed;
+      }else{
+        currentPPgatelng = "";
   continue;
 }
       
