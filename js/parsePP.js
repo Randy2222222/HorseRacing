@@ -71,7 +71,7 @@ const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX = /^[^-]+-[^-]+$/
 //const STARTING_GATE_LENGTHS_REGEX =/(?:(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾))/u;
 //const STARTING_GATE_LENGTHS_REGEX = /[u2070-u2079]/;
-const STARTING_GATE_LENGTHS_REGEX = /(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])?(?:¼|½|¾)?/;
+//const STARTING_GATE_LENGTHS_REGEX = /(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])?(?:¼|½|¾)?/;
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
 const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
@@ -471,7 +471,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 //const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
 //currentPPgatelng = m ? m[0] : "";
       // His
-     // currentPPgatelng = extractGateLength.(trimmed);
+      currentPPgatelng = extractGateLength.(trimmed);
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
