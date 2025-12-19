@@ -79,35 +79,6 @@ const FINISH_REGEX = /^\d{1,2}$/;
 //----------------------------------
 // 🔥 Helper Function for Lengths🔥
 //----------------------------------
-const GATE_SUPERS = [
-  "²⁰","¹⁹","¹⁸","¹⁷","¹⁶","¹⁵","¹⁴","¹³","¹²","¹¹","¹⁰", // longest first
-  "⁹","⁸","⁷","⁶","⁵","⁴","³","²","¹"
-];
-
-const GATE_FRACS = ["¼","½","¾"];
-function extractGateLength(line) {
-  if (!line) return "";
-
-  let out = "";
-
-  // superscript number (optional)
-  for (const s of GATE_SUPERS) {
-    if (line.includes(s)) {
-      out = s;
-      break;
-    }
-  }
-
-  // fraction (optional)
-  for (const f of GATE_FRACS) {
-    if (line.includes(f)) {
-      out += f;
-      break;
-    }
-  }
-
-  return out; // "" if nothing found
-}
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -462,17 +433,17 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-   //   const gateLengthM = trimmed.match(
-      //  /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
-      //  if (gateLengthM) {
-                  //    currentPPgatelng = gateLengthM[0];
-           //   continue;
-     //   }
+        const gateLengthM = trimmed.match(
+          /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
+          if (gateLengthM) {
+                        currentPPgatelng = gateLengthM[0];
+                continue;
+          }
       
 //const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
 //currentPPgatelng = m ? m[0] : "";
       // His
-      currentPPgatelng = extractGateLength.(trimmed);
+   //   currentPPgatelng = extractGateLength.(trimmed);
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
