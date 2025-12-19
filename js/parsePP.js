@@ -448,7 +448,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPgatelng = trimmed;
       }else{
         currentPPgatelng = "";
-  continue;
+
 }
       
 //const m = trimmed.match(LENGTHS);
