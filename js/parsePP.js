@@ -76,6 +76,51 @@ const FIRST_CALL_REGEX = /^\d{1,2}$/;
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
 const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
 const FINISH_REGEX = /^\d{1,2}$/;
+//----------------------------------
+// 🔥 Helper Function for Lengths🔥
+//----------------------------------
+const SUP_DIGITS_1_9 = new Set(["¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"]);
+const SUP_DIGITS_0_9 = new Set(["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"]);
+const FRACTIONS = new Set(["¼","½","¾"]);
+
+function extractGateLength(line) {
+  if (!line) return "";
+
+  const chars = [...line];
+
+  // Find the first place a length token could start
+  for (let k = 0; k < chars.length; k++) {
+    const c1 = chars[k];
+    const c2 = chars[k + 1] || "";
+    const c3 = chars[k + 2] || "";
+
+    let result = "";
+
+    // --- Case A: whole number (superscript) ---
+    // 1-digit superscript ¹..⁹
+    if (SUP_DIGITS_1_9.has(c1)) {
+      // try 2-digit forms: ¹⁰..¹⁹ or ²⁰
+      if ((c1 === "¹" && SUP_DIGITS_0_9.has(c2)) || (c1 === "²" && c2 === "⁰")) {
+        result = c1 + c2; // "¹⁰".."¹⁹" or "²⁰"
+        // optional fraction immediately after the number
+        if (FRACTIONS.has(c3)) result += c3;
+        return result;
+      }
+
+      // 1-digit + optional fraction
+      result = c1;
+      if (FRACTIONS.has(c2)) result += c2;
+      return result;
+    }
+
+    // --- Case B: fraction only ---
+    if (FRACTIONS.has(c1)) {
+      return c1; // "¼" or "½" or "¾"
+    }
+  }
+
+  return ""; // nothing found
+}
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
