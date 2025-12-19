@@ -438,8 +438,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
            //   continue;
      //   }
       
-const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
-currentPPgatelng = m ? m[0] : "";
+//const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+//currentPPgatelng = m ? m[0] : "";
+      const m = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+
+// m[0] is ALWAYS defined — even if empty
+currentPPgatelng = m && m[0] ? m[0] : "";
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
