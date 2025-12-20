@@ -142,7 +142,7 @@ export function parsePP(decodedText) {
   const lines = decodedText
     .split("\n")
     .map(l => l.trim())
-    .filter(l => l.length > 0);
+  //  .filter(l => l.length > 0);
 
   const structure = {
     rawLines: lines,
