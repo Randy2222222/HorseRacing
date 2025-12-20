@@ -181,7 +181,6 @@ export function parsePP(decodedText) {
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPgatelng = null; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
-    let currentPPfirstlng = null; // First Call Lengths
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
     let currentPPfinish = null;  // FINISH
@@ -224,7 +223,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             gate: currentPPgate,
             gl: currentPPgatelng,
             first: currentPPfirst,
-            firstlng: currentPPfirstlng,
             second: currentPPsecond,
             str: currentPPstr,
             finish: currentPPfinish
@@ -258,7 +256,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPgate = null;
         currentPPgatelng = null;
         currentPPfirst = null;
-        currentPPfirstlng = null;
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
@@ -456,10 +453,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // First Call Lengths
-      if (currentPPfirstlng === null && LENGTHS_REGEX.test(trimmed)) {
-  currentPPfirstlng = trimmed;
-  continue;
-}
+   //   if (currentPPfirstlng === null && LENGTHS_REGEX.test(trimmed)) {
+//  currentPPfirstlng = trimmed;
+ // continue;
+//}
       // Second Call
       if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
   currentPPsecond = trimmed;
@@ -505,7 +502,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         gate: currentPPgate,
         gl: currentPPgatelng,
         first: currentPPfirst,
-        firstlng: currentPPfirstlng,
         second: currentPPsecond,
         str: currentPPstr,
         finish: currentPPfinish
