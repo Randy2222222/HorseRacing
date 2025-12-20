@@ -68,7 +68,7 @@ const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX =
 ///(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾)/;
-const LENGTHS = /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/;
+const LENGTHS_REGEX = /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/;
 //const STARTING_GATE_LENGTHS_REGEX = /^\[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
 const STARTING_GATE_LENGTHS = /!\d((\s)(?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/u;// added !\d to beginning and g at end
 //const STARTING_GATE_LENGTHS_REGEX = /^[^-]+-[^-]+$/
@@ -178,9 +178,9 @@ export function parsePP(decodedText) {
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
-    let currentPPgatelng = ""; // Horses Lengths behind Leader
+    let currentPPgatelng = null; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
-    let currentPPfirstlng = ""; // First Call Lengths
+    let currentPPfirstlng = null; // First Call Lengths
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
     let currentPPfinish = null;  // FINISH
@@ -255,9 +255,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPgate = null;
-        currentPPgatelng = "";
+        currentPPgatelng = null;
         currentPPfirst = null;
-        currentPPfirstlng = "";
+        currentPPfirstlng = null;
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
