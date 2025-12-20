@@ -455,11 +455,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // First Call Lengths
-      const firstLengthM = trimmed.match(LENGTHS); 
-         if (firstLengthM) {
-                currentPPfirstlng = firstLengthM[0];
-            continue;
-         }
+      if (currentPPfirstlng === null && LENGTHS_REGEX.test(trimmed)) {
+  currentPPfirstlng = trimmed;
+  continue;
+}
       // Second Call
       if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
   currentPPsecond = trimmed;
