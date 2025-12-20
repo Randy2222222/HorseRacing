@@ -440,7 +440,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
            if (gateLengthM) {
                        currentPPgatelng = gateLengthM[0];
            
-               continue;
+               
            }
       
       
