@@ -68,7 +68,7 @@ const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX =
 ///(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾)/;
-//const LENGTHS_REGEX = 
+const LENGTHS = 
   /(|¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾|)/; 
 const LENGTHS_REGEX = /^\[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:|¼|½|¾)$/;
 const STARTING_GATE_LENGTHS = /!\d((\s)(?:¼|½|||)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/u;// added !\d to beginning and g at end
@@ -179,6 +179,7 @@ export function parsePP(decodedText) {
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
+    let currentPPgatelng = null; // Lengths after leaving gate
     let currentPPfirst = null;  // First Call
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
@@ -220,6 +221,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             spd: currentPPspd,
             pp: currentPPpp,
             gate: currentPPgate,
+            length: currentPPgatelng,
             first: currentPPfirst,
             second: currentPPsecond,
             str: currentPPstr,
@@ -252,6 +254,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPgate = null;
+        currentPPgatelng = null;
         currentPPfirst = null;
         currentPPsecond = null;
         currentPPstr = null;
@@ -434,11 +437,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-       // const gateLengthM = trimmed.match(LENGTHS); 
-       //  if (gateLengthM) {
-           //     currentPPgatelng = gateLengthM[0];
-         //   continue;
-        // }
+         const gateLengthM = trimmed.match(LENGTHS); 
+            if (gateLengthM) {
+                  currentPPgatelng = gateLengthM[0];
+              continue;
+            }
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
@@ -446,10 +449,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // First Call Lengths
-   //   if (currentPPfirstlng === null && LENGTHS_REGEX.test(trimmed)) {
-//  currentPPfirstlng = trimmed;
- // continue;
-//}
+   if (currentPPfirstlng === null && LENGTHS_REGEX.test(trimmed)) {
+     currentPPfirstlng = trimmed;
+    continue;
+  }
       // Second Call
       if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
   currentPPsecond = trimmed;
@@ -493,6 +496,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         spd: currentPPspd,
         pp: currentPPpp,
         gate: currentPPgate,
+        length: currentPPgatelng,
         first: currentPPfirst,
         second: currentPPsecond,
         str: currentPPstr,
