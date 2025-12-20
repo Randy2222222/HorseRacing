@@ -178,9 +178,9 @@ export function parsePP(decodedText) {
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
-    let currentPPgatelng = null; // Horses Lengths behind Leader
+    let currentPPgatelng = ""; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
-    let currentPPfirstlng = null; // First Call Lengths
+    let currentPPfirstlng = ""; // First Call Lengths
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
     let currentPPfinish = null;  // FINISH
@@ -255,9 +255,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPgate = null;
-        currentPPgatelng = null;
+        currentPPgatelng = "";
         currentPPfirst = null;
-        currentPPfirstlng = null;
+        currentPPfirstlng = "";
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
