@@ -66,8 +66,8 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
-const STARTING_GATE_LENGTHS_REGEX =
-/(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾)/;
+//const STARTING_GATE_LENGTHS_REGEX =
+///(?:¹⁰|¹¹|¹²|¹³|¹⁴|¹⁵|¹⁶|¹⁷|¹⁸|¹⁹|²⁰|[¹²³⁴⁵⁶⁷⁸⁹])(?:¼|½|¾)?|(?:¼|½|¾)/;
 const LENGTHS = /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/;
 //const STARTING_GATE_LENGTHS_REGEX = /^\[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
 const STARTING_GATE_LENGTHS_REGEX = /!\d((\s)(?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/u;// added !\d to beginning and g at end
