@@ -104,7 +104,7 @@ if (DEV_MODE === "structured") {
       out += `    SPD: ${pp.spd}\n`
       out += `    Post: ${pp.pp}\n`
       out += `    Start: ${pp.start}\n`
-      out +=`    Length: ${pp.startlng}\n`
+      out +=`    Length: ${pp.gatelng}\n`
       out += `   1stCall: ${pp.first}\n`
       out += `   2ndCall: ${pp.second}\n`
       out += `   StrCall: ${pp.str}\n`
