@@ -436,17 +436,18 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-     //  const gateLengthM = trimmed.match(LENGTHS);
-        //   if (gateLengthM) {
-          //       currentPPgatelng = gateLengthM[0];
-          //   continue;
-     //    }
-  
-const parsedGateLen = extractSomething(trimmed);
-
-if (parsedGateLen !== undefined) {
-  currentPPgatelng = parsedGateLen;
-}
+      
+    
+        const gateLengthM = trimmed.match(LENGTHS);
+      // undefined 👇
+      if (gateLengthM.optionalField !== undefined); {
+        currentPPgatelng = ""; else }
+       // Safe to use object.optionalField👆
+  //if
+           (gateLengthM) {
+                currentPPgatelng = gateLengthM[0];
+            continue;
+         }
       
       
 //const m = trimmed.match(LENGTHS);
