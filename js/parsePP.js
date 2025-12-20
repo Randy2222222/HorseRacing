@@ -74,6 +74,44 @@ const FIRST_CALL_REGEX = /^\d{1,2}$/;
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
 const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
 const FINISH_REGEX = /^\d{1,2}$/;
+
+// --- Add this helper to sanitize the PP object before pushing ---
+function makePPObject() {
+  return {
+    raw: [...currentPP],
+    date: currentPPdate ?? "",
+    track: currentPPtrack ?? "",
+    race: currentPPraceNo ?? "",
+    glyph: currentPPglyph ?? "",
+    distance: currentPPdistance ?? "",
+    surface: currentPPsurface ?? "",
+    surfTag: currentPPsurfTag ?? "",
+    leaderTimes: currentPPleaderTimes ?? {
+      leader1:    { raw: "", sup: "" },
+      leader2:    { raw: "", sup: "" },
+      leader3:    { raw: "", sup: "" },
+      leaderFinal:{ raw: "", sup: "" }
+    },
+    rr: currentPPraceResult ?? "",
+    raceType: currentPPraceType ?? "",
+    cr: currentPPclassRating ?? "",
+    pace: {
+      e1: currentPPpace?.e1 ?? "",
+      e2: currentPPpace?.e2 ?? "",
+      lp: currentPPpace?.lp ?? ""
+    },
+    oneC: currentPPoneC ?? "",
+    twoC: currentPPtwoC ?? "",
+    spd: currentPPspd ?? "",
+    pp: currentPPpp ?? "",
+    gate: currentPPgate ?? "",
+    gl: currentPPgatelng ?? "",
+    first: currentPPfirst ?? "",
+    second: currentPPsecond ?? "",
+    str: currentPPstr ?? "",
+    finish: currentPPfinish ?? ""
+  };
+}
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
