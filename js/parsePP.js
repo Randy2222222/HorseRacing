@@ -192,8 +192,12 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       if (DATE_REGEX.test(line)) {
 
         // 🔒 Save previous block (if any)
-        if (currentPP.length > 0) {
-          h.pp.push({
+        
+if (currentPP.length > 0) {
+  h.pp.push(makePPObject());
+}
+     //   if (currentPP.length > 0) {
+        //  h.pp.push({
             raw: [...currentPP],
             date: currentPPdate,
             track: currentPPtrack,
@@ -462,8 +466,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
     }
 
     // 🏁 Final PP block
-    if (currentPP.length > 0) {
-      h.pp.push({
+
+if (currentPP.length > 0) {
+  h.pp.push(makePPObject());
+}
+  //  if (currentPP.length > 0) {
+   //   h.pp.push({
         raw: [...currentPP],
         date: currentPPdate,
         track: currentPPtrack,
