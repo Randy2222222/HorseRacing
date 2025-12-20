@@ -257,7 +257,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPgate = null;
         currentPPgatelng = null;
         currentPPfirst = null;
-        currentfirstlng = null;
+        currentPPfirstlng = null;
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
