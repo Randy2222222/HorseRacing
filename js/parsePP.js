@@ -179,7 +179,6 @@ export function parsePP(decodedText) {
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
-    let currentPPgatelng = null; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
@@ -221,7 +220,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             spd: currentPPspd,
             pp: currentPPpp,
             gate: currentPPgate,
-            gl: currentPPgatelng,
             first: currentPPfirst,
             second: currentPPsecond,
             str: currentPPstr,
@@ -254,7 +252,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPgate = null;
-        currentPPgatelng = null;
         currentPPfirst = null;
         currentPPsecond = null;
         currentPPstr = null;
@@ -437,15 +434,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-        const gateLengthM = trimmed.match(LENGTHS); 
-         if (gateLengthM) {
-                currentPPgatelng = gateLengthM[0];
-            continue;
-         }
-      
-      
-//const m = trimmed.match(LENGTHS);
-//currentPPgatelng = m ? m[0] : "";
+       // const gateLengthM = trimmed.match(LENGTHS); 
+       //  if (gateLengthM) {
+           //     currentPPgatelng = gateLengthM[0];
+         //   continue;
+        // }
         
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
@@ -500,7 +493,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         spd: currentPPspd,
         pp: currentPPpp,
         gate: currentPPgate,
-        gl: currentPPgatelng,
         first: currentPPfirst,
         second: currentPPsecond,
         str: currentPPstr,
