@@ -137,7 +137,7 @@ export function parsePP(decodedText) {
   const lines = decodedText
     .split("\n")
     .map(l => l.trim())
-    .filter(l => l.length > 0);
+   // .filter(l => l.length > 0);
 
   const structure = {
     rawLines: lines,
@@ -314,11 +314,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
    
  
    // ⚡️ RUNNING SURFACE ⚡️
-   // const surfaceM = trimmed.match(/(|ft|gd|my|sy|wf|fm|yl|sf|hy|sl|)/i);
-     // if (surfaceM) {
-    //     currentPPsurface = surfaceM[0];
-     //  continue;
-  //  }     
+      const surfaceM = trimmed.match(/(|ft|gd|my|sy|wf|fm|yl|sf|hy|sl|)/i);
+        if (surfaceM) {
+          currentPPsurface = surfaceM[0];
+        continue;
+      }     
       // ⚡️ END OF SURFACE CODE ⚡️
 
 
@@ -439,12 +439,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
     }
       // Starting Gates Lengths
- //   if (currentPPstlng === null && STARTING_GATE_LENTGTHS_REGEX.test(trimmed)) {
-     //    currentPPstlng = trimmed;
+     if (currentPPstlng === null && STARTING_GATE_LENTGTHS_REGEX.test(trimmed)) {
+          currentPPstlng = trimmed;
   //  }else{
-     //    currentPPstlng = "";
-   //   continue;
-   // }
+    //currentPPstlng = "";
+       continue;
+     }
    //   const startLengthM = trimmed.match(/(|¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾|)/i);
   
     //  if (startLengthM) {
