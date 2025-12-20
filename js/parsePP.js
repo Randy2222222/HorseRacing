@@ -74,44 +74,6 @@ const FIRST_CALL_REGEX = /^\d{1,2}$/;
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
 const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
 const FINISH_REGEX = /^\d{1,2}$/;
-
-// --- Add this helper to sanitize the PP object before pushing ---
-function makePPObject() {
-  return {
-    raw: [...currentPP],
-    date: currentPPdate ?? "",
-    track: currentPPtrack ?? "",
-    race: currentPPraceNo ?? "",
-    glyph: currentPPglyph ?? "",
-    distance: currentPPdistance ?? "",
-    surface: currentPPsurface ?? "",
-    surfTag: currentPPsurfTag ?? "",
-    leaderTimes: currentPPleaderTimes ?? {
-      leader1:    { raw: "", sup: "" },
-      leader2:    { raw: "", sup: "" },
-      leader3:    { raw: "", sup: "" },
-      leaderFinal:{ raw: "", sup: "" }
-    },
-    rr: currentPPraceResult ?? "",
-    raceType: currentPPraceType ?? "",
-    cr: currentPPclassRating ?? "",
-    pace: {
-      e1: currentPPpace?.e1 ?? "",
-      e2: currentPPpace?.e2 ?? "",
-      lp: currentPPpace?.lp ?? ""
-    },
-    oneC: currentPPoneC ?? "",
-    twoC: currentPPtwoC ?? "",
-    spd: currentPPspd ?? "",
-    pp: currentPPpp ?? "",
-    gate: currentPPgate ?? "",
-    gl: currentPPgatelng ?? "",
-    first: currentPPfirst ?? "",
-    second: currentPPsecond ?? "",
-    str: currentPPstr ?? "",
-    finish: currentPPfinish ?? ""
-  };
-}
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -230,12 +192,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       if (DATE_REGEX.test(line)) {
 
         // 🔒 Save previous block (if any)
-        
-if (currentPP.length > 0) {
-  h.pp.push(makePPObject());
-}
-     //   if (currentPP.length > 0) {
-        //  h.pp.push({
+        if (currentPP.length > 0) {
+          h.pp.push({
             raw: [...currentPP],
             date: currentPPdate,
             track: currentPPtrack,
@@ -504,12 +462,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
     }
 
     // 🏁 Final PP block
-
-if (currentPP.length > 0) {
-  h.pp.push(makePPObject());
-}
-  //  if (currentPP.length > 0) {
-   //   h.pp.push({
+    if (currentPP.length > 0) {
+      h.pp.push({
         raw: [...currentPP],
         date: currentPPdate,
         track: currentPPtrack,
