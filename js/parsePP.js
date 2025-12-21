@@ -443,8 +443,19 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-      if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
-  currentPPgatelng = trimmed;
+if (currentPPgate !== null && currentPPgatelng === null) {
+
+  // look at the VERY NEXT LINE ONLY
+  const nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : "";
+
+  // if the next line looks like a length, take it
+  if (STARTING_GATE_LENGTHS_REGEX.test(nextLine)) {
+    currentPPgatelng = nextLine;
+  } else {
+    // no length = horses ran together
+    currentPPgatelng = "";
+  }
+
   continue;
 }
 
