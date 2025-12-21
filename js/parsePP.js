@@ -69,7 +69,7 @@ const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 //const STARTING_GATE_LENGTHS_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
-const STARTING_GATE_LENGTHS_REGEX = /[\s\u00A0]*((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
+//const STARTING_GATE_LENGTHS_REGEX = /[\s\u00A0]*((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
 
 //const STARTING_GATE_LENGTHS_REGEX = /[\s\u00A0]*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/;
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
@@ -430,23 +430,32 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-// Match lengths with optional whitespace and fractions
-// Print debugging output for tricky lines
-      // Ensure all lines are sanitized first
-const sanitizedLine = trimmed.trim(); // Remove leading/trailing spaces
-      const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+
+// Preprocess line to remove unwanted whitespace
+const sanitizedLine = trimmed.trim();
+
+// Check for lengths with optional spaces before superscripts
+const gateLengthM = sanitizedLine.match(/\s*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/);
+
+// Assign empty string as fallback for display
+currentPPgatelng = gateLengthM?.[0] || "";
+
+// Logging for debugging
+if (!gateLengthM) {
+  console.warn("Lengths field not found. Defaulting to empty string.");
+}
+console.log(`Parsed length: "${currentPPgatelng}"`);
+    
+      
+      
+      
+    //  const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
     //    /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
-  if (!gateLengthM) {
-  console.log("No lengths found, defaulting to empty string.");
-}else{
-currentPPgatelng = gateLengthM?.[0] || ""; // Default to empty for display
-      
-      
       //  if (gateLengthM) {
                   //  currentPPgatelng = gateLengthM?.[0] || "";
       
-            continue;
-      }
+         //   continue;
+    //  }
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
