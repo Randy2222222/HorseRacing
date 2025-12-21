@@ -308,7 +308,16 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
 
         // ⚡️ RUNNING SURFACE ⚡️
-       
+       let jSurface = nextNonBlank(lines, i + 1);
+let surfaceLine = lines[jSurface] || "";
+
+if (SURFACE_REGEX.test(surfaceLine)) {
+  currentPPsurface = surfaceLine.trim();
+  i = jSurface; // consume surface
+} else {
+  currentPPsurface = "";
+  continue;
+}
       // ⚡️ END OF SURFACE CODE ⚡️
 
 
