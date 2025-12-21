@@ -126,7 +126,7 @@ function splitHorses(fullText) {
 
   return horses;
  }
-let expectGateLengths = false;
+
 // =====================================================
 // MAIN PARSER
 // =====================================================
@@ -171,6 +171,7 @@ export function parsePP(decodedText) {
     let currentPPtwoC = null;   // race shape 2c
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
+    let expectGateLengths = false;  // Gate Lengths
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPgatelng = null; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
