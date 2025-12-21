@@ -260,8 +260,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
-        
-function nextNonBlank(lines, startIndex) {
+  function nextNonBlank(lines, startIndex) {
      let j = startIndex;
      while (j < lines.length && lines[j].trim() === "") j++;
    return j;
@@ -287,8 +286,8 @@ if (L1.length === 1 && !/^\d/.test(L1)) {
     i = j2; // consume distance
   } else {
     currentPPdistance = "";
-    currentPPsurface = "";
-    currentPPsurfTag = "";
+  //  currentPPsurface = "";
+  //  currentPPsurfTag = "";
     i = j2;
     return;
   }
