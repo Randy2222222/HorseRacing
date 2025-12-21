@@ -285,9 +285,10 @@ if (L1.length === 1 && !/^\d/.test(L1)) {
     currentPPdistance = L2;
     i = j2; // consume distance
   } else {
+    currentPPglyph = "";
     currentPPdistance = "";
-    currentPPsurface = "";
-    currentPPsurfTag = "";
+   // currentPPsurface = "";
+  //  currentPPsurfTag = "";
     i = j2;
     return;
   }
@@ -306,8 +307,8 @@ else if (DISTANCE_REGEX.test(L1)) {
 else {
   currentPPglyph = "";
   currentPPdistance = "";
-  currentPPsurface = "";
-  currentPPsurftag = "";
+ // currentPPsurface = "";
+//  currentPPsurftag = "";
   return;
 }
 // =================================================
