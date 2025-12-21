@@ -449,7 +449,7 @@ if (currentPPgate !== null && currentPPgatelng === null) {
   const nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : "";
 
   // if the next line looks like a length, take it
-  if (STARTING_GATE_LENGTHS_REGEX.test(nextLine)) {
+  if (STARTING_GATE_LENGTHS_REGEX.match(nextLine)) {
     currentPPgatelng = nextLine;
   } else {
     // no length = horses ran together
