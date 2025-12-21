@@ -430,10 +430,21 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-      const gateLengthM = trimmed.match(
-        /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
-      if (gateLengthM) {
-                    currentPPgatelng = gateLengthM[0];
+// Match lengths with optional whitespace and fractions
+// Print debugging output for tricky lines
+      // Ensure all lines are sanitized first
+const sanitizedLine = trimmed.trim(); // Remove leading/trailing spaces
+      const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
+    //    /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
+  if (!gateLengthM) {
+  console.log("No lengths found, defaulting to empty string.");
+}else{
+currentPPgatelng = gateLengthM?.[0] || ""; // Default to empty for display
+      
+      
+      //  if (gateLengthM) {
+                  //  currentPPgatelng = gateLengthM?.[0] || "";
+      
             continue;
       }
       // First Call
