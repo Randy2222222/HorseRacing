@@ -30,13 +30,13 @@ const DISTANCE_REGEX = /([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁�
 // 5️⃣ Surface codes (2-letter)
 //const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
 //const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/;
+const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i;
 
-const SURFACE_TAG_REGEX = /(s|x|n|t|y)/i;
+//const SURFACE_TAG_REGEX = /(s|x|n|t|y)/;
 
-const SURFACE_TAG = ["s","x","n","t","y"];
+//const SURFACE_TAG = ["s","x","n","t","y"];
 //const SURFACE = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
-const SURF_SUPS = ["ˢ","ˣ","ⁿ","ᵗ","ʸ"];
+const SURFACE_TAG_REGEX = /(ˢ|ˣ|ⁿ|ᵗ|ʸ)/;
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
@@ -334,7 +334,6 @@ let tagLine = lines[tagIndex] || "";
 
 if (SURFACE_TAG_REGEX.test(tagLine)) {
   currentPPsurfTag = tagLine.trim();
-  currentPPsurfTag = toSupTag(trimmed);
   i = tagIndex; // consume tag
 } else {
   currentPPsurfTag = ""; // tag absent
