@@ -374,17 +374,17 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-      if (currentPPraceType === null && RACETYPE_REGEX = .test(trimmed)) {
-        currentPPraceType = trimmed;
-        continue;
-     }
-   //     const raceTypeM = trimmed.match(
-  //    /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
-//   );
-     // if (raceTypeM) {
-     //    currentPPraceType = raceTypeM[0];
-     //  continue;
- //   }     
+    //  if (currentPPraceType === null && RACETYPE_REGEX = .test(trimmed)) {
+    //    currentPPraceType = trimmed;
+    //    continue;
+   //  }
+          const raceTypeM = trimmed.match(
+        /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
+     );
+        if (raceTypeM) {
+           currentPPraceType = raceTypeM[0];
+         continue;
+      }     
       
 
 
@@ -452,12 +452,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
     //  const sanitizedLine = trimmed.trim();
 //const gateLengthM = sanitizedLine.match(/\s*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/);
  //  const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
-    //    /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
-     //   if (gateLengthM) {
-              //      currentPPgatelng = gateLengthM[0] || "";
+      //    /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
+        //  if (gateLengthM) {
+                  //    currentPPgatelng = gateLengthM[0] || "";
       
-      //   continue;
-     //  }
+       //    continue;
+     //    }
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
