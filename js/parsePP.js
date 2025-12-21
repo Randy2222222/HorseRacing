@@ -254,13 +254,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPfinish = null;
         
         // start this PP block with the date line
-        currentPP.push(line);
-
-
+        currentPP.push(line); 
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
-  function nextNonBlank(lines, startIndex) {
+   function nextNonBlank(lines, startIndex) {
      let j = startIndex;
      while (j < lines.length && lines[j].trim() === "") j++;
    return j;
@@ -271,75 +269,42 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 // -----------------------------------------
 // STEP — FIND GLYPH + DISTANCE (skip blanks)
 // -----------------------------------------
+
    let j1 = nextNonBlank(lines, i + 1);    // could be glyph or distance
    let L1 = lines[j1] || "";
+
 // CASE 1 — L1 IS A GLYPH (always 1 char)
   // ex: Ⓣ, Ⓐ, ⓧ, 🅃
-if (L1.length === 1 && !/^\d/.test(L1)) {
-  currentPPglyph = L1;
-  // distance must be next non-blank
-  let j2 = nextNonBlank(lines, j1 + 1);
-  let L2 = lines[j2] || "";
-  
-  if (DISTANCE_REGEX.test(L2)) {
-    currentPPdistance = L2;
-    i = j2; // consume distance
-  } else {
-    currentPPglyph = "";
-    currentPPdistance = "";
-   // currentPPsurface = "";
-  //  currentPPsurfTag = "";
-    i = j2;
-    return;
+  if (L1.length === 1 && !/^\d/.test(L1)) {
+      currentPPglyph = L1;
+
+    // Next NON-BLANK *must* be distance
+      let j2 = nextNonBlank(lines, j1 + 1);
+      let L2 = lines[j2] || "";
+
+      if (DISTANCE_REGEX.test(L2)) {
+         currentPPdistance = L2;
+         i = j2;                    // advance pointer
+     } else {
+         currentPPdistance = "";    // failed to detect distance
+        i = j2;
+    }
+ }
+
+// CASE 2 — L1 IS ALREADY A DISTANCE
+  else if (DISTANCE_REGEX.test(L1)) {
+      currentPPglyph = "";
+      currentPPdistance = L1;
+    i = j1; // consume distance
+    
   }
-}
-// ----------------------------
-// CASE 2 — L1 is distance
-// ----------------------------
-else if (DISTANCE_REGEX.test(L1)) {
-  currentPPglyph = "";
-  currentPPdistance = L1;
-  i = j1; // consume distance
-}
-// ----------------------------
-// CASE 3 — nothing useful
-// ----------------------------
-else {
-  currentPPglyph = "";
-  currentPPdistance = "";
- // currentPPsurface = "";
-//  currentPPsurftag = "";
-  return;
-}
-// =================================================
-// 🔑 SURFACE (NEXT NON-BLANK ONLY)
-// =================================================
-let jSurface = nextNonBlank(lines, i + 1);
-let surfaceLine = lines[jSurface] || "";
-
-if (SURFACE_REGEX.test(surfaceLine)) {
-  currentPPsurface = surfaceLine.trim();
-  i = jSurface; // consume surface
-} else {
-  currentPPsurface = "";
-  currentPPsurftag = "";
-  continue;
-}
-
-// =================================================
-// 🔑 SURFACE TAG (OPTIONAL — IMMEDIATE NEXT LINE ONLY)
-// =================================================
-let tagIndex = i + 1;
-let tagLine = lines[tagIndex] || "";
-
-if (SURFACE_TAG_REGEX.test(tagLine)) {
-  currentPPsurfTag = tagLine.trim();
-  i = tagIndex; // consume tag
-} else {
-  currentPPsurfTag = ""; // tag absent
- // continue;
-}
-   
+ //CASE 3 — nothing useful found
+       else {
+         currentPPglyph = "";
+         currentPPdistance = "";
+       continue; // end of DATE block
+      
+       }
 
 
         // ⚡️ RUNNING SURFACE ⚡️
