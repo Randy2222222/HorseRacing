@@ -446,7 +446,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 if (currentPPgate !== null && currentPPgatelng === null) {
 
   // look at the VERY NEXT LINE ONLY
-  const nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : "";
+  const nextLine = (i - 1 < lines.length) ? lines[i - 1].trim() : "";
 
   // if the next line looks like a length, take it
   if (STARTING_GATE_LENGTHS_REGEX.test(nextLine)) {
