@@ -171,7 +171,6 @@ export function parsePP(decodedText) {
     let currentPPtwoC = null;   // race shape 2c
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
-    let expectGateLengths = false;  // Gate Lengths
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPgatelng = null; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
@@ -183,25 +182,6 @@ export function parsePP(decodedText) {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      
-      // 🏁 Starting Gate //
-      // 👇 consume the very next line after Starting Gate
-  if (expectGateLengths) {
-    currentPPgatelng = trimmed || "";
-    expectGateLengths = false;
-    continue;
-  }
-
-  // 👇 detect Starting Gate
-  if (currentPPgate === null && STARTING_GATE_REGEX.test(trimmed)) {
-    currentPPgate = trimmed;
-    expectGateLengths = true;
-    continue;
-  }
-
-  // keep the rest of your code exactly as-is
-
-    // 🏁 End Starting Gate
 
   //🛟 SAFETY CATCH 🛟
 // --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
