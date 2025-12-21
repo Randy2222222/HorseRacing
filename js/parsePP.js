@@ -182,6 +182,25 @@ export function parsePP(decodedText) {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
+      
+      // 🏁 Starting Gate //
+      // 👇 consume the very next line after Starting Gate
+  if (expectGateLengths) {
+    currentPPgatelng = trimmed || "";
+    expectGateLengths = false;
+    continue;
+  }
+
+  // 👇 detect Starting Gate
+  if (currentPPgate === null && STARTING_GATE_REGEX.test(trimmed)) {
+    currentPPgate = trimmed;
+    expectGateLengths = true;
+    continue;
+  }
+
+  // keep the rest of your code exactly as-is
+}
+    // 🏁 End Starting Gate
 
   //🛟 SAFETY CATCH 🛟
 // --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
