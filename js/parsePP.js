@@ -286,8 +286,8 @@ if (L1.length === 1 && !/^\d/.test(L1)) {
     i = j2; // consume distance
   } else {
     currentPPdistance = "";
-  //  currentPPsurface = "";
-  //  currentPPsurfTag = "";
+    currentPPsurface = "";
+    currentPPsurfTag = "";
     i = j2;
     return;
   }
@@ -306,6 +306,8 @@ else if (DISTANCE_REGEX.test(L1)) {
 else {
   currentPPglyph = "";
   currentPPdistance = "";
+  currentPPsurface = "";
+  currentPPsurftag = "";
   return;
 }
 // =================================================
@@ -319,6 +321,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   i = jSurface; // consume surface
 } else {
   currentPPsurface = "";
+  currentPPsurftag = "";
   continue;
 }
 
@@ -330,7 +333,7 @@ let tagLine = lines[tagIndex] || "";
 
 if (SURFACE_TAG_REGEX.test(tagLine)) {
   currentPPsurfTag = tagLine.trim();
-//  currentPPsurfTag = toSupTag(trimmed);
+  currentPPsurfTag = toSupTag(trimmed);
   i = tagIndex; // consume tag
 } else {
   currentPPsurfTag = ""; // tag absent
