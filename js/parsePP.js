@@ -21,21 +21,14 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
 // 3️⃣ Raw Brisnet surface glyphs → your chosen display symbols
-const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
+//const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
 
 // 4️⃣ Distance Patterns
 const DISTANCE_REGEX = /([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁₆|¼|⁵⁄₁₆|⅜|½|⅝|¾|))/;
 
 // 5️⃣ Surface codes (2-letter)
-//const SURFACE_REGEX = /\b(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)([ˢˣⁿᵗʸ])?\b/i;
-//const SURFACE_REGEX = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURFACE_REGEX = /(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)/i;
-
-//const SURFACE_TAG_REGEX = /(s|x|n|t|y)/;
-
-//const SURFACE_TAG = ["s","x","n","t","y"];
-//const SURFACE = ["ft","gd","my","sy","wf","fm","yl","sf","hy","sl"];
 const SURFACE_TAG_REGEX = /(ˢ|ˣ|ⁿ|ᵗ|ʸ)/;
 
 //  6️⃣ Leader-time helper functions
