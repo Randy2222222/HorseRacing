@@ -126,7 +126,7 @@ function splitHorses(fullText) {
 
   return horses;
  }
-
+let expectGateLengths = false;
 // =====================================================
 // MAIN PARSER
 // =====================================================
