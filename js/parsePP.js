@@ -52,7 +52,7 @@ const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 
 // 8️⃣ RaceType
 //const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
-const RACETYPE_REGEX = /^((?:🅂,Ⓕ)([A-Za-z]{2,})(\d{1,3}[kK]?)?(\/[n\dLx\-]+)?(?:-([A-Za-z\d]+))?(?:\s+([A-Za-z]+\d+[kK]?))?$/;
+const RACETYPE_REGEX = /(?:🅂,Ⓕ)([A-Za-z]{2,})(\d{1,3}[kK]?)?(\/[n\dLx\-]+)?(?:-([A-Za-z\d]+))?(?:\s+([A-Za-z]+\d+[kK]?))/;
 
 // 9️⃣ Class Rating
 const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
