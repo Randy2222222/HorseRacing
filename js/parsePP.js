@@ -430,19 +430,21 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-
-// Preprocess line to remove unwanted whitespace
-const sanitizedLine = trimmed.trim();
+      if (currentPPgatelng === null && STARTING_GATE_LENGTHS_REGEX.test(trimmed)) {
+  currentPPgatelng = trimmed;
+  continue;
+}
 
 // Check for lengths with optional spaces before superscripts
+    //  const sanitizedLine = trimmed.trim();
 //const gateLengthM = sanitizedLine.match(/\s*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/);
-   const gateLengthM = sanitizedLine.match(STARTING_GATE_LENGTHS_REGEX);
+ //  const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
     //    /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
-        if (gateLengthM) {
-                    currentPPgatelng = gateLengthM[0] || "";
+     //   if (gateLengthM) {
+              //      currentPPgatelng = gateLengthM[0] || "";
       
-         continue;
-       }
+      //   continue;
+     //  }
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
