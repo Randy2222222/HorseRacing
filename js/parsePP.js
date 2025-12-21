@@ -338,7 +338,7 @@ if (SURFACE_TAG_REGEX.test(tagLine)) {
   i = tagIndex; // consume tag
 } else {
   currentPPsurfTag = ""; // tag absent
-  continue;
+ // continue;
 }
    
 
