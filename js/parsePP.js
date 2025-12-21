@@ -199,7 +199,7 @@ export function parsePP(decodedText) {
   }
 
   // keep the rest of your code exactly as-is
-}
+
     // 🏁 End Starting Gate
 
   //🛟 SAFETY CATCH 🛟
