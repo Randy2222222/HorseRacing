@@ -62,7 +62,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
-const FIRST_LENGTHS_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
+const FIRST_LG_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
 //const STARTING_GATE_LENGTHS_REGEX = /\s*((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
 
 //const STARTING_GATE_LENGTHS_REGEX = /[\s\u00A0]*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/;
@@ -166,7 +166,7 @@ export function parsePP(decodedText) {
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
-    let currentPPfirst = null;  // First Call
+    let currentPPfirst = { c1: null, lg: null }; // First Call
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
     let currentPPfinish = null;  // FINISH
@@ -239,7 +239,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPgate = null;
-        currentPPfirst = null;
+        currentPPfirst = { c1: null, lg: null };
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
@@ -448,17 +448,14 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
        //    continue;
      //    }
       // First Call
-      if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
-  currentPPfirst = trimmed;
+      if (currentPPfirst.c1 === null && FIRST_CALL_REGEX.test(trimmed)) {
+  currentPPfirst.c1 = trimmed;
     continue;
 }
-      if (currentPPfirst !== null && FIRST_LENGTHS_REGEX.test(trimmed)) {
+      if (currentPPfirst.lg !== null && FIRST_LG_REGEX.test(trimmed)) {
 
-      // First such line after LP = 1c
-      if (currentPPlg === null) {
-        currentPPlg = trimmed;
+        currentPPfirst.lg = trimmed;
         continue;
-      }
       }
       // Second Call
       if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
