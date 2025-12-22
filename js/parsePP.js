@@ -166,7 +166,6 @@ export function parsePP(decodedText) {
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
-    let currentPPgatelng = null; // Horses Lengths behind Leader
     let currentPPfirst = null;  // First Call
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
@@ -208,7 +207,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             spd: currentPPspd,
             pp: currentPPpp,
             gate: currentPPgate,
-            gl: currentPPgatelng,
             first: currentPPfirst,
             second: currentPPsecond,
             str: currentPPstr,
@@ -241,7 +239,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPspd = null;
         currentPPpp = null;
         currentPPgate = null;
-        currentPPgatelng = null;
         currentPPfirst = null;
         currentPPsecond = null;
         currentPPstr = null;
@@ -436,18 +433,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Lengths behind Leader
-if (currentPPgate !== null && currentPPgatelng === null) {
-
-  // look at the VERY NEXT LINE ONLY
-  const nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : "";
-
-  // if the next line looks like a length, take it
-  
-    currentPPgatelng = nextLine;
-}else{
-    currentPPgatelng = "";
-  continue;
-}
 
 // Check for lengths with optional spaces before superscripts
     //  const sanitizedLine = trimmed.trim();
@@ -507,7 +492,6 @@ if (currentPPgate !== null && currentPPgatelng === null) {
         spd: currentPPspd,
         pp: currentPPpp,
         gate: currentPPgate,
-        gl: currentPPgatelng,
         first: currentPPfirst,
         second: currentPPsecond,
         str: currentPPstr,
