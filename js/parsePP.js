@@ -313,8 +313,6 @@ if (SURFACE_REGEX.test(surfaceLine)) {
           // 🏄‍♀️ Surface Tag 🏄‍♀️
    if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
          currentPPsurfTag = trimmed;
-    }else{
-          currentPPsurfTag = "";
      continue;
     }
           // 🏄‍♀️ Surface Tag End 🏄‍♀️
