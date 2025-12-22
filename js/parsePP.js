@@ -319,8 +319,9 @@ if (SURFACE_REGEX.test(surfaceLine)) {
          currentPPsurfTag = nextLine.trim();
     } else {
          currentPPsurfTag = "";
-      continue;
-   }
+       }
+         continue;
+   
           // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
