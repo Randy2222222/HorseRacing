@@ -476,7 +476,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         currentPPstraight.lg = trimmed;
       }
       // FINISH
-      if (currentPPfinish.fn === null && FINISH_CALL_REGEX.test(trimmed)) {
+      if (currentPPfinish.fn === null && FINISH_REGEX.test(trimmed)) {
   currentPPfinish.fn = trimmed;
 }
       if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
