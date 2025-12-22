@@ -167,9 +167,9 @@ export function parsePP(decodedText) {
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPfirst = { c1: null, lg: null }; // First Call
-    let currentPPsecond = null; // Second Call
-    let currentPPstr = null;  // Straight Call
-    let currentPPfinish = null;  // FINISH
+    let currentPPsecond = { c2: null, lg: null }; // Second Call
+    let currentPPstraight = { str: null, lg: null };// Straight Call
+    let currentPPfinish = { fin: null, lg: null };  // FINISH
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -209,7 +209,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             gate: currentPPgate,
             first: currentPPfirst,
             second: currentPPsecond,
-            str: currentPPstr,
+            straight: currentPPstraight,
             finish: currentPPfinish
           });
         }
@@ -240,9 +240,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPpp = null;
         currentPPgate = null;
         currentPPfirst = { c1: null, lg: null };
-        currentPPsecond = null;
-        currentPPstr = null;
-        currentPPfinish = null;
+        currentPPsecond = { c2: null, lg: null };
+        currentPPstraight = { str: null, lg: null };
+        currentPPfinish = { fin: null, lg: null };
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -450,28 +450,35 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // First Call
       if (currentPPfirst.c1 === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst.c1 = trimmed;
-    //continue;
 }
       if (currentPPfirst.lg === null && FIRST_LG_REGEX.test(trimmed)) {
 
         currentPPfirst.lg = trimmed;
-       // continue;
       }
       // Second Call
-      if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
-  currentPPsecond = trimmed;
-  continue;
+      if (currentPPsecond.c2 === null && SECOND_CALL_REGEX.test(trimmed)) {
+  currentPPsecond.c2 = trimmed;
 }
+      if (currentPPsecond.lg === null && SECOND_LG_REGEX.test(trimmed)) {
+
+        currentPPsecond.lg = trimmed;
+      }
       // Straight Call
-      if (currentPPstr === null && STRAIGHT_CALL_REGEX.test(trimmed)) {
-  currentPPstr = trimmed;
-  continue;
+      if (currentPPstraight.str === null && STRAIGHT_CALL_REGEX.test(trimmed)) {
+  currentPPstraight.str = trimmed;
 }
+      if (currentPPstraight.lg === null && STRAIGHT_LG_REGEX.test(trimmed)) {
+
+        currentPPstraight.lg = trimmed;
+      }
       // FINISH
-      if (currentPPfinish === null && FINISH_REGEX.test(trimmed)) {
-  currentPPfinish = trimmed;
-  continue;
+      if (currentPPfinish.fn === null && FINISH_CALL_REGEX.test(trimmed)) {
+  currentPPfinish.fn = trimmed;
 }
+      if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
+
+        currentPPfinish.lg = trimmed;
+      }
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -502,7 +509,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         gate: currentPPgate,
         first: currentPPfirst,
         second: currentPPsecond,
-        str: currentPPstr,
+        straight: currentPPstraight,
         finish: currentPPfinish
       });
     }
