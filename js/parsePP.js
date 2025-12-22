@@ -311,10 +311,9 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
        // ⚡️ END OF SURFACE CODE ⚡️
           // 🏄‍♀️ Surface Tag 🏄‍♀️
-if (currentPPsurface !== null && currentPPsurfTag === null) {
-  const nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : "";
+          let nextLine = (i + 1 < lines.length);
           if (SURFACE_TAG_REGEX.test(nextLine)) {
-             currentPPsurfTag = nextLine;
+             currentPPsurfTag = nextLine.trim();
         } else {
               currentPPsurfTag = "";
         }
