@@ -243,7 +243,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
-        
+      }
         // start this PP block with the date line
         currentPP.push(line); 
 // ------------------------------------------
@@ -321,8 +321,8 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 // ---------------------------
          totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
          slotIndex = 0;
-         continue; // end of DATE block
-      }
+      //   continue; // end of DATE block
+   //   }
       // -----------------------------
       // 2️⃣ Leader Times (calls)
       // -----------------------------
