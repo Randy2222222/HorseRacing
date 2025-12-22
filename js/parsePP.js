@@ -485,7 +485,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
         currentPPfinish.lg = trimmed;
-        continue;
+      //  continue;
       }
       
       // 3️⃣ normal lines inside PP block
