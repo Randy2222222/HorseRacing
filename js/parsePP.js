@@ -457,8 +457,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
 }
       if (currentPPfirst.lg === null && FIRST_LG_REGEX.test(trimmed)) {
-
-        currentPPfirst.lg = trimmed;
+  currentPPfirst.lg = trimmed;
         continue;
       }
       // Second Call
@@ -467,24 +466,26 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
 }
       if (currentPPsecond.lg === null && SECOND_LG_REGEX.test(trimmed)) {
-
-        currentPPsecond.lg = trimmed;
+ currentPPsecond.lg = trimmed;
+        continue;
       }
       // Straight Call
       if (currentPPstraight.str === null && STRAIGHT_CALL_REGEX.test(trimmed)) {
-  currentPPstraight.str = trimmed;
+     currentPPstraight.str = trimmed;
+        continue;
 }
       if (currentPPstraight.lg === null && STRAIGHT_LG_REGEX.test(trimmed)) {
-
         currentPPstraight.lg = trimmed;
+        continue;
       }
       // FINISH
       if (currentPPfinish.fin === null && FINISH_REGEX.test(trimmed)) {
   currentPPfinish.fin = trimmed;
+        continue;
 }
       if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
-
         currentPPfinish.lg = trimmed;
+        conitinue;
       }
       
       // 3️⃣ normal lines inside PP block
