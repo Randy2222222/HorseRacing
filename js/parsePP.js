@@ -311,7 +311,12 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
        // ⚡️ END OF SURFACE CODE ⚡️
           // 🏄‍♀️ Surface Tag 🏄‍♀️
-          
+   if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
+         currentPPsurfTag = trimmed;
+    }else{
+          currentPPsurfTag = "";
+     continue;
+    }
           // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
