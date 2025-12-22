@@ -454,14 +454,17 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // First Call
       if (currentPPfirst.c1 === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst.c1 = trimmed;
+        continue;
 }
       if (currentPPfirst.lg === null && FIRST_LG_REGEX.test(trimmed)) {
 
         currentPPfirst.lg = trimmed;
+        continue;
       }
       // Second Call
       if (currentPPsecond.c2 === null && SECOND_CALL_REGEX.test(trimmed)) {
   currentPPsecond.c2 = trimmed;
+        continue;
 }
       if (currentPPsecond.lg === null && SECOND_LG_REGEX.test(trimmed)) {
 
@@ -476,8 +479,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         currentPPstraight.lg = trimmed;
       }
       // FINISH
-      if (currentPPfinish.fn === null && FINISH_REGEX.test(trimmed)) {
-  currentPPfinish.fn = trimmed;
+      if (currentPPfinish.fin === null && FINISH_REGEX.test(trimmed)) {
+  currentPPfinish.fin = trimmed;
 }
       if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
 
