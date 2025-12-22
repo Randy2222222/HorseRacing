@@ -293,7 +293,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
        else {
          currentPPglyph = "";
          currentPPdistance = "";
-       continue; // end of DATE block
+     //  continue; // end of DATE block
       
        }
 
@@ -310,17 +310,9 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 //  continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
-          // 🏄‍♀️ Surface Tag 🏄‍♀️
-        let tagIndex = i + 1;
-let tagLine = lines[tagIndex] || "";
-
-if (SURFACE_TAG_REGEX.test(tagLine)) {
-  currentPPsurfTag = tagLine.trim();
-//  currentPPsurfTag = toSupTag(trimmed);
-  i = tagIndex; // consume tag
-} else {
-  currentPPsurfTag = "";
-}    // 🏄‍♀️ Surface Tag End 🏄‍♀️
+        // 🏄‍♀️ Surface Tag 🏄‍♀️
+  
+       // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
 // ---------------------------
