@@ -62,7 +62,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
-const LENGTHS_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
+const FIRST_LENGTHS_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
 //const STARTING_GATE_LENGTHS_REGEX = /\s*((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
 
 //const STARTING_GATE_LENGTHS_REGEX = /[\s\u00A0]*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/;
@@ -452,6 +452,14 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
     continue;
 }
+      if (currentPPlg.first !== null && FIRST_LENGTHS_REGEX.test(trimmed)) {
+
+      // First such line after LP = 1c
+      if (currentPPlg === null) {
+        currentPPlg = trimmed;
+        continue;
+      }
+      }
       // Second Call
       if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
   currentPPsecond = trimmed;
