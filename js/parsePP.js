@@ -213,7 +213,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             finish: currentPPfinish
           });
         }
-      }
+      
         // 🎬 Reset everything
         currentPP = [];
         // ▶️ NEW: extract components from header line
@@ -311,18 +311,15 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
        // ⚡️ END OF SURFACE CODE ⚡️
           // 🏄‍♀️ Surface Tag 🏄‍♀️
-   if (currentPPsurfTag === null && SURFACE_TAG_REGEX.test(trimmed)) {
-         currentPPsurfTag = trimmed;
-     continue;
-    }
+   
           // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
 // ---------------------------
          totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
          slotIndex = 0;
-      //   continue; // end of DATE block
-   //   }
+        continue; // end of DATE block
+      }
       // -----------------------------
       // 2️⃣ Leader Times (calls)
       // -----------------------------
