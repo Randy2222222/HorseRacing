@@ -107,6 +107,7 @@ if (DEV_MODE === "structured") {
       out += `    Start: ${pp.gate}\n`
       out += `   Lengths: ${pp.gatelng}\n`
       out += `   1stCall: ${pp.first}\n`
+      out += `   1stLengths: ${pp.firstlng}\n`
       out += `   2ndCall: ${pp.second}\n`
       out += `   StrCall: ${pp.str}\n`
       out += `   Finish: ${pp.finish}\n`
