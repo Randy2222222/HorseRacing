@@ -307,11 +307,20 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   i = jSurface; // consume surface
 } else {
   currentPPsurface = "";
-  continue;
+//  continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
           // 🏄‍♀️ Surface Tag 🏄‍♀️
-          // 🏄‍♀️ Surface Tag End 🏄‍♀️
+        let tagIndex = i + 1;
+let tagLine = lines[tagIndex] || "";
+
+if (SURFACE_TAG_REGEX.test(tagLine)) {
+  currentPPsurfTag = tagLine.trim();
+//  currentPPsurfTag = toSupTag(trimmed);
+  i = tagIndex; // consume tag
+} else {
+  currentPPsurfTag = "";
+}    // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
 // ---------------------------
