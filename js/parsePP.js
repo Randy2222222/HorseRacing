@@ -311,7 +311,15 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
        // ⚡️ END OF SURFACE CODE ⚡️
           // 🏄‍♀️ Surface Tag 🏄‍♀️
-   
+   let tagIndex = i + 1;
+let tagLine = lines[tagIndex] || "";
+if (SURFACE_TAG_REGEX.test(tagLine)) {
+  currentPPsurfTag = tagLine.trim();
+  i = tagIndex; // consume tag
+} else {
+  currentPPsurfTag = ""; // tag absent
+  continue;
+}
           // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
