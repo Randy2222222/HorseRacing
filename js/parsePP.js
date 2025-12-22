@@ -450,12 +450,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // First Call
       if (currentPPfirst.c1 === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst.c1 = trimmed;
-    continue;
+    //continue;
 }
-      if (currentPPfirst.lg !== null && FIRST_LG_REGEX.test(trimmed)) {
+      if (currentPPfirst.lg === null && FIRST_LG_REGEX.test(trimmed)) {
 
         currentPPfirst.lg = trimmed;
-        continue;
+       // continue;
       }
       // Second Call
       if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
