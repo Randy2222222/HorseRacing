@@ -452,7 +452,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
     continue;
 }
-      if (currentPPlg.first !== null && FIRST_LENGTHS_REGEX.test(trimmed)) {
+      if (currentPPfirst !== null && FIRST_LENGTHS_REGEX.test(trimmed)) {
 
       // First such line after LP = 1c
       if (currentPPlg === null) {
