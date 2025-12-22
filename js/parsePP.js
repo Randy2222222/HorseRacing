@@ -213,7 +213,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             finish: currentPPfinish
           });
         }
-
+      }
         // 🎬 Reset everything
         currentPP = [];
         // ▶️ NEW: extract components from header line
@@ -243,7 +243,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
-      }
+      
         // start this PP block with the date line
         currentPP.push(line); 
 // ------------------------------------------
