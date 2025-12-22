@@ -167,7 +167,6 @@ export function parsePP(decodedText) {
     let currentPPpp = null;    // Post Position in Gate
     let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPfirst = null;  // First Call
-    let currentPPlength = null;
     let currentPPsecond = null; // Second Call
     let currentPPstr = null;  // Straight Call
     let currentPPfinish = null;  // FINISH
@@ -209,7 +208,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             pp: currentPPpp,
             gate: currentPPgate,
             first: currentPPfirst,
-            lg: currentPPlength,
             second: currentPPsecond,
             str: currentPPstr,
             finish: currentPPfinish
@@ -242,7 +240,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPpp = null;
         currentPPgate = null;
         currentPPfirst = null;
-        currentPPlength = null;
         currentPPsecond = null;
         currentPPstr = null;
         currentPPfinish = null;
@@ -296,7 +293,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
        else {
          currentPPglyph = "";
          currentPPdistance = "";
-     //  continue; // end of DATE block
+         continue; 
       
        }
 
@@ -310,7 +307,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   i = jSurface; // consume surface
 } else {
   currentPPsurface = "";
-//  continue;
+    continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
@@ -323,7 +320,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       
          totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
          slotIndex = 0;
-   //  continue; // end of DATE block
+       continue; // end of DATE block
    }
       // -----------------------------
       // 2️⃣ Leader Times (calls)
@@ -453,18 +450,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // First Call
       if (currentPPfirst === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst = trimmed;
-//  continue;
-}
-      // First Call Lengths behind Leader
-      let tagIndex = i + 1;
-let tagLine = lines[tagIndex] || "";
-
-if (LENGTHS_REGEX.test(tagLine)) {
-  currentPPlength = tagLine.trim();
-//  currentPPsurfTag = toSupTag(trimmed);
-  i = tagIndex; // consume tag
-} else {
-  currentPPlength = ""; // tag absent
+    continue;
 }
       // Second Call
       if (currentPPsecond === null && SECOND_CALL_REGEX.test(trimmed)) {
@@ -510,7 +496,6 @@ if (LENGTHS_REGEX.test(tagLine)) {
         pp: currentPPpp,
         gate: currentPPgate,
         first: currentPPfirst,
-        lg: currentPPlength,
         second: currentPPsecond,
         str: currentPPstr,
         finish: currentPPfinish
