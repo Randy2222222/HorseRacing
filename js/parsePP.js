@@ -175,6 +175,7 @@ export function parsePP(decodedText) {
     let currentPPsecond = { c2: null, lg: null }; // Second Call
     let currentPPstraight = { str: null, lg: null };// Straight Call
     let currentPPfinish = { fin: null, lg: null };  // FINISH
+    let currentPPjockey = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -215,7 +216,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             first: currentPPfirst,
             second: currentPPsecond,
             straight: currentPPstraight,
-            finish: currentPPfinish
+            finish: currentPPfinish,
+            jockey: currentPPjockey
           });
         }
       
@@ -248,6 +250,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPsecond = { c2: null, lg: null };
         currentPPstraight = { str: null, lg: null };
         currentPPfinish = { fin: null, lg: null };
+        currentPPjockey = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -486,7 +489,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
         currentPPfinish.lg = trimmed;
-      //  continue;
+        continue;
+      }
+      // 🏇Jockey and Weight
+      if (currentPPjockey === null && JOCKEY_REGEX.test(trimmed)) {
+        currentPPjockey = trimmed;
+        continue;
       }
       
       // 3️⃣ normal lines inside PP block
@@ -519,7 +527,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         first: currentPPfirst,
         second: currentPPsecond,
         straight: currentPPstraight,
-        finish: currentPPfinish
+        finish: currentPPfinish,
+        jockey: currentPPjockey
       });
     }
 
