@@ -62,6 +62,7 @@ const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
 const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
+const STARTING_GATE_LG_REGEX = /^((?:ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))$/;
 //const FIRST_LG_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
 //const FIRST_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
 
@@ -439,11 +440,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Position
-       if (currentPPgate.gc === null && GATE_REGEX.test(trimmed)) {
+       if (currentPPgate.gc === null && STARTING_GATE_REGEX.test(trimmed)) {
   currentPPgate.gc = trimmed;
         continue;
 }
-      if (currentPPgate.lg === null && GATE_LG_REGEX.test(trimmed)) {
+      if (currentPPgate.lg === null && STARTING_GATE_LG_REGEX.test(trimmed)) {
   currentPPgate.lg = trimmed;
         continue;
       }
