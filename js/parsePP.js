@@ -67,13 +67,13 @@ const STARTING_GATE_REGEX = /^\d{1,2}$/;
 
 //const STARTING_GATE_LENGTHS_REGEX = /[\s\u00A0]*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/;
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
-const FIRST_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
+const FIRST_LG_REGEX = /^((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))$/;
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
-const SECOND_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
+const SECOND_LG_REGEX = /^((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))$/;
 const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
-const STRAIGHT_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
+const STRAIGHT_LG_REGEX = /^((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))$/;
 const FINISH_REGEX = /^\d{1,2}$/;
-const FINISH_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
+const FINISH_LG_REGEX = /^((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))$/;
 const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
