@@ -304,11 +304,14 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
 
         // ⚡️ RUNNING SURFACE ⚡️
-       if (currentPPsurface.sf === null && SURFACE_REGEX.test(trimmed)) {
-  currentPPsurface.sf = trimmed;
-        continue;
-}
-      if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(trimmed)) {
+       let jSurface = nextNonBlank(lines, i + 1);
+let surfaceLine = lines[jSurface] || "";
+
+if (SURFACE_REGEX.test(surfaceLine)) {
+  currentPPsurface.sf = surfaceLine.trim();
+  i = jSurface; // consume surface
+} 
+   if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(trimmed)) {
   currentPPsurface.tg = trimmed;
         continue;
       }
