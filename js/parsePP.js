@@ -170,7 +170,7 @@ export function parsePP(decodedText) {
     let currentPPtwoC = null;   // race shape 2c
     let currentPPspd = null;    // 🆕 Brisnet Speed Rating (SPD
     let currentPPpp = null;    // Post Position in Gate
-    let currentPPgate = null;  // Horse left Gate in what order( 1st, 4th, 7th, etc.
+    let currentPPgate = { gc: null, lg: null }; // Horse left Gate in what order( 1st, 4th, 7th, etc.
     let currentPPfirst = { c1: null, lg: null }; // First Call
     let currentPPsecond = { c2: null, lg: null }; // Second Call
     let currentPPstraight = { str: null, lg: null };// Straight Call
@@ -245,7 +245,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPtwoC = null;
         currentPPspd = null;
         currentPPpp = null;
-        currentPPgate = null;
+        currentPPgate = { gc: null, lg: null };
         currentPPfirst = { c1: null, lg: null };
         currentPPsecond = { c2: null, lg: null };
         currentPPstraight = { str: null, lg: null };
@@ -439,22 +439,14 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   continue;
 }
       // Starting Gate Position
-       if (currentPPgate === null && STARTING_GATE_REGEX.test(trimmed)) {
-  currentPPgate = trimmed;
-  continue;
+       if (currentPPgate.gc === null && GATE_REGEX.test(trimmed)) {
+  currentPPgate.gc = trimmed;
+        continue;
 }
-      // Starting Gate Lengths behind Leader
-
-// Check for lengths with optional spaces before superscripts
-    //  const sanitizedLine = trimmed.trim();
-//const gateLengthM = sanitizedLine.match(/\s*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/);
- //  const gateLengthM = trimmed.match(STARTING_GATE_LENGTHS_REGEX);
-      //    /¼|½|¾|¹|¹¼|¹½|¹¾|²|²¼|²½|²¾|³¼|³½|³¾|⁴|⁴¼|⁴½|⁴¾|⁵|⁵¼|⁵½|⁵¾|⁶|⁶¼|⁶½|⁶¾|⁷|⁷¼|⁷½|⁷¾|⁸|⁸¼|⁸½|⁸¾|⁹|⁹¼|⁹½|⁹¾|¹⁰|¹⁰¼|¹⁰½|¹⁰¾/);
-        //  if (gateLengthM) {
-                  //    currentPPgatelng = gateLengthM[0] || "";
-      
-       //    continue;
-     //    }
+      if (currentPPgate.lg === null && GATE_LG_REGEX.test(trimmed)) {
+  currentPPgate.lg = trimmed;
+        continue;
+      }
       // First Call
       if (currentPPfirst.c1 === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst.c1 = trimmed;
