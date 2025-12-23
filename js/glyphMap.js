@@ -68,9 +68,9 @@ export const GLYPHS = {
   //"¹": "ns",
   //"²": "hd",
   //"³": "nk",
-  "ⁿˢ"
-  "ʰᵈ"
-  "ⁿᵏ"
+ // "ⁿˢ"
+ // "ʰᵈ"
+ // "ⁿᵏ"
 //(?:ⁿˢ|ʰᵈ|ⁿᵏ)
 // Matches single superscripts or your racing abbreviations
 //const SURFACE_TAG_REGEX = /(ˢ|ˣ|ⁿ|ᵗ|ʸ|ⁿˢ|ʰᵈ|ⁿᵏ)/;
