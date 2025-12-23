@@ -159,8 +159,7 @@ export function parsePP(decodedText) {
     let currentPPraceNo = null;
     let currentPPglyph = null;
     let currentPPdistance = null;
-    let currentPPsurface = null;
-    let currentPPsurfTag = null;
+    let currentPPsurface = { sf: null, tg: null }
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = null;
@@ -202,7 +201,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             glyph: currentPPglyph,
             distance: currentPPdistance,
             surface: currentPPsurface,
-            surfTag: currentPPsurfTag,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -229,8 +227,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
         currentPPglyph = null;
         currentPPdistance = null;
-        currentPPsurface = null;
-        currentPPsurfTag = null;
+        currentPPsurface = { sf: null, tg: null }
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -311,12 +308,13 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 let surfaceLine = lines[jSurface] || "";
 
 if (SURFACE_REGEX.test(surfaceLine)) {
-  currentPPsurface = surfaceLine.trim();
+  currentPPsurface.sf = surfaceLine.trim();
   i = jSurface; // consume surface
-} else {
-  currentPPsurface = "";
-    continue;
-}
+} 
+   if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(trimmed)) {
+  currentPPsurface.tg = trimmed;
+        continue;
+      }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
   
@@ -513,7 +511,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
-        surfTag: currentPPsurfTag,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
