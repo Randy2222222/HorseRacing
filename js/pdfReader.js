@@ -104,7 +104,7 @@ if (DEV_MODE === "structured") {
       out += `  2c Shape: ${pp.twoC}\n`;
       out += `       SPD: ${pp.spd}\n`
       out += `      Post: ${pp.pp}\n`
-      out += `     Start: ${pp.gate}\n`
+      out += `     Start: ${pp.gate.gc}${pp.gate.lg}\n`
       out += `   1stCall: ${pp.first.c1}${pp.first.lg}\n`
       out += `   2ndCall: ${pp.second.c2}${pp.second.lg}\n`
       out += `   StrCall: ${pp.straight.str}${pp.straight.lg}\n`
