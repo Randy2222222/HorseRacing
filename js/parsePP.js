@@ -74,6 +74,7 @@ const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
 const STRAIGHT_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
 const FINISH_REGEX = /^\d{1,2}$/;
 const FINISH_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
+const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
