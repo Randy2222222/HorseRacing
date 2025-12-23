@@ -446,6 +446,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPgate.lg === null && STARTING_GATE_LG_REGEX.test(trimmed)) {
   currentPPgate.lg = trimmed;
+      }else{
+  currentPPgate.lg = "";     
         continue;
       }
       // First Call
@@ -455,6 +457,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPfirst.lg === null && FIRST_LG_REGEX.test(trimmed)) {
   currentPPfirst.lg = trimmed;
+      }else{
+  currentPPfirst.lg = "";
         continue;
       }
       // Second Call
@@ -464,6 +468,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPsecond.lg === null && SECOND_LG_REGEX.test(trimmed)) {
  currentPPsecond.lg = trimmed;
+      }else{
+ currentPPsecond.lg = "";
         continue;
       }
       // Straight Call
@@ -473,6 +479,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPstraight.lg === null && STRAIGHT_LG_REGEX.test(trimmed)) {
         currentPPstraight.lg = trimmed;
+      }else{
+        currentPPstraight.lg = "";
         continue;
       }
       // FINISH
@@ -482,6 +490,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
         currentPPfinish.lg = trimmed;
+      }else{
+        currentPPfinish.lg = "";
         continue;
       }
       // 🏇Jockey and Weight
