@@ -81,6 +81,7 @@ if (DEV_MODE === "structured") {
       //   out += `    Date: ${pp.date}\n`;
     //  out += `    Track: ${pp.track}\n`;
      // out += `    Race#: ${pp.race}\n`;
+      out += `     Glyph: ${pp.glyph}\n`;
       out += `  Distance: ${pp.distance}\n`;
       out += `   Surface: ${pp.surface}\n`;
       out += `   Surftag: ${pp.surftag}\n`;
