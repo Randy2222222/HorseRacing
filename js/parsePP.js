@@ -376,17 +376,28 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       // ---------------------------------------------
       // RaceType — the line immediately after RR
       // ---------------------------------------------
-    //  if (currentPPraceType === null && RACETYPE_REGEX = .test(trimmed)) {
+  // Assuming currentPPraceResult already parsed
+let raceTypeLine = lines[i + 1] || "";   // next line after race result
+
+// Only grab it if it’s not blank and not the ClassRating superscript
+if (raceTypeLine.trim() !== "" && !/^[⁰¹²³⁴⁵⁶⁷⁸⁹]$/.test(raceTypeLine.trim())) {
+    currentPPraceType = raceTypeLine.trim();
+    i++;  // advance past this line so next loop starts at ClassRating
+} else {
+    currentPPraceType = "";
+  continue;
+}
+      //  if (currentPPraceType === null && RACETYPE_REGEX = .test(trimmed)) {
     //    currentPPraceType = trimmed;
     //    continue;
    //  }
-          const raceTypeM = trimmed.match(
-        /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
-     );
-        if (raceTypeM) {
-           currentPPraceType = raceTypeM[0];
-         continue;
-      }     
+      //    const raceTypeM = trimmed.match(
+   //     /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
+  //   );
+    //    if (raceTypeM) {
+       //    currentPPraceType = raceTypeM[0];
+     //    continue;
+    //  }     
       
 
 
