@@ -36,7 +36,9 @@ export function decodeTinyNumber(sym) {
 //     This is where we use superscripts, ns/hd/nk, Ⓣ, 3↑, 4↑, etc.
 // ------------------------------------------------------------
 export const GLYPHS = {
-
+"¹": "ⁿˢ",
+"²": "ʰᵈ",
+"³": "ⁿᵏ",
   // Tiny race / time numbers → superscripts
   "§": "⁰",
   "¨": "¹",
@@ -65,9 +67,9 @@ export const GLYPHS = {
  // "\u0081": "½",
  // "ƒ": "¾",
 // Nose / Head / Neck display
-"¹": "ⁿˢ",
-"²": "ʰᵈ",
-"³": "ⁿᵏ",
+//"¹": "ⁿˢ",
+//"²": "ʰᵈ",
+//"³": "ⁿᵏ",
 //(?:ⁿˢ|ʰᵈ|ⁿᵏ)
 // Matches single superscripts or your racing abbreviations
 
