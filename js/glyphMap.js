@@ -66,11 +66,11 @@ export const GLYPHS = {
  // "ƒ": "¾",
 // Nose / Head / Neck display
 //"¹":
-"ⁿˢ"
+//"ⁿˢ"
 //"²": 
-"ʰᵈ"
+//"ʰᵈ"
 //"³":  
-"ⁿᵏ"
+//"ⁿᵏ"
 //(?:ⁿˢ|ʰᵈ|ⁿᵏ)
 // Matches single superscripts or your racing abbreviations
 
