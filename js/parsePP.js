@@ -186,6 +186,9 @@ export function parsePP(decodedText) {
     let currentPPjockey = null;
     let currentPPequipment = null;
     let currentPPodds = null;
+    let currentPPwin = { wn: null, lg: null };
+    let currentPPplace = { sh: null, lg: null };
+    let currentPPshow = { pl: null, lg: null };
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -228,7 +231,10 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             finish: currentPPfinish,
             jockey: currentPPjockey,
             equipment: currentPPequipment,
-            odds: currentPPodds
+            odds: currentPPodds,
+            win: currentPPwin,
+            place: currentPPplace,
+            show: currentPPshow
           });
         }
       
@@ -263,6 +269,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPjockey = null;
         currentPPequipment = null;
         currentPPodds = null;
+        currentPPwin = { wn: null, lg: null };
+        currentPPplace = { pl: null, lg: null };
+        currentPPshow = { sh: null, lg: null };
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -515,7 +524,33 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         currentPPodds = trimmed;
         continue;
       }
-      
+      // Winners Horse name and lengths in front of Place Horse
+      if (currentPPwin.wn === null && WIN_REGEX.test(trimmed)) {
+  currentPPwin.wn = trimmed;
+        continue;
+}
+      if (currentPPwin.lg === null && WIN_LG_REGEX.test(trimmed)) {
+  currentPPwin.lg = trimmed;   
+        continue;
+      }
+      // Place Horse and lengths behind Winner
+      if (currentPPplace.pl === null && PLACE_REGEX.test(trimmed)) {
+  currentPPplace.pl = trimmed;
+        continue;
+}
+      if (currentPPplace.lg === null && PLACE_LG_REGEX.test(trimmed)) {
+  currentPPplace.lg = trimmed;   
+        continue;
+      }
+      // Show Horse Name and lengths behind Place Horse
+      if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
+  currentPPshow.sh = trimmed;
+        continue;
+}
+      if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
+  currentPPshow.lg = trimmed;   
+        continue;
+      }
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
         currentPP.push(line);
@@ -548,7 +583,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         finish: currentPPfinish,
         jockey: currentPPjockey,
         equipment: currentPPequipment,
-        odds: currentPPodds
+        odds: currentPPodds,
+        win: currentPPwin,
+        place: currentPPplace,
+        show: currentPPshow
       });
     }
 
