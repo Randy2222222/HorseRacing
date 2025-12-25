@@ -29,7 +29,7 @@ const DISTANCE_REGEX = /([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁�
 
 // 5️⃣ Surface codes (2-letter)
 const SURFACE_REGEX = /^(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/i;
-const SURFACE_TAG_REGEX = /(ˢ|ˣ|ⁿ|ᵗ|ʸ|)/;
+const SURFACE_TAG_REGEX = /(ˢ|ˣ|ⁿ|ᵗ|ʸ)/;
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
