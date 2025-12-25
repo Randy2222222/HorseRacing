@@ -255,7 +255,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       
         // start this PP block with the date line
         currentPP.push(line); 
-        // Add conyinnue and closing }
+        // Add continue and closing bracket
         conitnue
       }
 // ------------------------------------------
