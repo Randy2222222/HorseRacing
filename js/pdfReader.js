@@ -110,6 +110,7 @@ if (DEV_MODE === "structured") {
       out += `   StrCall: ${pp.straight.str}${pp.straight.lg}\n`
       out += `    Finish: ${pp.finish.fin}${pp.finish.lg}\n`
       out += `   Jockey#: ${pp.jockey}\n`
+      out += ` Equipment: ${pp.equipment}\n`
     });
 
     out += "========================================\n\n";
