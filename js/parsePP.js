@@ -384,23 +384,13 @@ if (currentPPsurface.sf === null) {
       }
 
       // RaceType — Description of Race and Name
-      // 🏁 RaceType — one line after RaceResults
-if (currentPPraceResult && currentPPraceType === null) {
-  const j = nextNonBlank(lines, i + 1);
-  const rt = lines[j] || "";
-
-  if (rt.trim() !== "") {
-    currentPPraceType = rt.trim();
-    i = j; // consume RaceType line
-  }
-}
-       //  const raceTypeM = trimmed.match(
-      //   /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
-     //  );
-        //  if (raceTypeM) {
-         //    currentPPraceType = raceTypeM[0];
-         //  continue;
-       // }     
+           const raceTypeM = trimmed.match(
+           /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
+         );
+            if (raceTypeM) {
+               currentPPraceType = raceTypeM[0];
+             continue;
+          }     
       
       // CLASS RATING — Must Be 3 superscript digits,
        if (currentPPclassRating === null && CR_SUP_LINE_REGEX.test(trimmed)) {
