@@ -323,7 +323,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   // 🏄‍♀️ Surface Tag (VERY NEXT LINE ONLY)
 let surfTagLine = lines[i + 1] || "";
 
-if (currentPPsurftag === null && SURFTAG_REGEX.test(surfTagLine)) {
+if (currentPPsurftag === null && SURFACE_ TAG_REGEX.test(surfTagLine)) {
   currentPPsurftag = surfTagLine.trim();
   // DO NOT advance i
 }
