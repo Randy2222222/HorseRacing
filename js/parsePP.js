@@ -305,22 +305,28 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
 
         // ⚡️ RUNNING SURFACE ⚡️
-// --- SURFACE + SURFACE TAG ---
-if (currentPPsurface.sf === null && SURFACE_REGEX.test(trimmed)) {
+// ---- SURFACE + SURFACE TAG ----
+if (currentPPsurface.sf === null) {
 
-  currentPPsurface.sf = trimmed;
+  const jSurface = nextNonBlank(lines, i + 1);
+  const surfaceLine = (lines[jSurface] || "").trim();
 
-  // look at the very next physical line only
-  const nextLine = (lines[i + 1] || "").trim();
+  if (SURFACE_REGEX.test(surfaceLine)) {
+    currentPPsurface.sf = surfaceLine;
 
-  if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(nextLine)) {
-    currentPPsurface.tg = nextLine;
-    i++; // consume tag line
-  } else {
-    currentPPsurface.tg = "";
+    // SurfaceTag is the *physical* next line after surface
+    const tagLine = (lines[jSurface + 1] || "").trim();
+
+    if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(tagLine)) {
+      currentPPsurface.tg = tagLine;
+      i = jSurface + 1; // consume surface + tag
+    } else {
+      currentPPsurface.tg = "";
+      i = jSurface; // consume surface only
+    }
+
+    continue;
   }
-
-  continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
