@@ -320,13 +320,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
-  // 🏄‍♀️ Surface Tag (VERY NEXT LINE ONLY)
-let surfTagLine = lines[i + 1] || "";
-
-if (currentPPsurftag === null && SURFACE_ TAG_REGEX.test(surfTagLine)) {
-  currentPPsurftag = surfTagLine.trim();
-  // DO NOT advance i
-}
+  
        // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
