@@ -318,7 +318,7 @@ if (currentPPsurface.sf === null) {
     const tagLine = (lines[jSurface + 1] || "").trim();
 
     if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(tagLine)) {
-      currentPPsurface.tg = MAP_GLYPH[tagLine] || tagLine;
+      currentPPsurface.tg = GLYPH_MAP[tagLine] || tagLine;
       i = jSurface + 1; // consume surface + tag
     } else {
       currentPPsurface.tg = "";
