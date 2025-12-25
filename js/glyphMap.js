@@ -94,16 +94,6 @@ export const GLYPHS = {
   "™": "Ⓕ",
   "‘": "🅂",
 };
-//---------------------------
-// Glyph Map for Surface Tag
-//---------------------------
-const GLYPH_MAP = {
-  "s_raw": "ˢ", // sealed track
-  "x_raw": "ˣ", // example: another surface tag
-  "n_raw": "ⁿ",
-  "t_raw": "ᵗ",
-  "y_raw": "ʸ"
-};
 // ------------------------------------------------------------
 // 3️⃣ LENGTH MAP — for math (SPL/LPS etc.)
 //     You can import this separately when you do margin math.
