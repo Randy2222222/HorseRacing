@@ -111,6 +111,7 @@ if (DEV_MODE === "structured") {
       out += `    Finish: ${pp.finish.fin}${pp.finish.lg}\n`
       out += `   Jockey#: ${pp.jockey}\n`
       out += ` Equipment: ${pp.equipment}\n`
+      out += `      Odds: ${pp.odds}\n`
     });
 
     out += "========================================\n\n";
