@@ -76,7 +76,7 @@ const STRAIGHT_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|
 const FINISH_REGEX = /^\d{1,2}$/;
 const FINISH_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
-const EQUIPMENT_REGEX = /^(?:[A-Z][a-z])$/;
+const EQUIPMENT_REGEX = /|Lb|L|b| |/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -177,6 +177,7 @@ export function parsePP(decodedText) {
     let currentPPstraight = { str: null, lg: null };// Straight Call
     let currentPPfinish = { fin: null, lg: null };  // FINISH
     let currentPPjockey = null;
+    let currentPPequipment = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -217,7 +218,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             second: currentPPsecond,
             straight: currentPPstraight,
             finish: currentPPfinish,
-            jockey: currentPPjockey
+            jockey: currentPPjockey,
+            equipment: currentPPequipment,
           });
         }
       
@@ -250,6 +252,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPstraight = { str: null, lg: null };
         currentPPfinish = { fin: null, lg: null };
         currentPPjockey = null;
+        currentPPequipment = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -492,6 +495,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         currentPPjockey = trimmed;
         continue;
       }
+      // Equipment
+      if (currentPPequipment === null && EQUIPMENT_REGEX.test(trimmed)) {
+        currentPPequipment = trimmed;
+        continue;
+      }
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -523,7 +531,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         second: currentPPsecond,
         straight: currentPPstraight,
         finish: currentPPfinish,
-        jockey: currentPPjockey
+        jockey: currentPPjockey,
+        equipment: currentPPequipment
       });
     }
 
