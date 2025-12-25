@@ -76,7 +76,7 @@ const STRAIGHT_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|
 const FINISH_REGEX = /^\d{1,2}$/;
 const FINISH_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
-const EQUIPMENT_REGEX = /|Lb|L|b| |/;
+const EQUIPMENT_REGEX = /|Lb|L|b|/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -498,6 +498,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Equipment
       if (currentPPequipment === null && EQUIPMENT_REGEX.test(trimmed)) {
         currentPPequipment = trimmed;
+      }else{
+        currentPPequipment = "";
         continue;
       }
       
