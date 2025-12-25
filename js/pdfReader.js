@@ -83,8 +83,7 @@ if (DEV_MODE === "structured") {
      // out += `    Race#: ${pp.race}\n`;
       out += `     Glyph: ${pp.glyph}\n`;
       out += `  Distance: ${pp.distance}\n`;
-      out += `   Surface: ${pp.surface}\n`;
-      out += `   Surftag: ${pp.surftag}\n`;
+      out += `   Surface: ${pp.surface.sf}${pp.surface.tg}\n`;
 
       out += `    Leader Times:\n`;
       out += `        1c: ${pp.leaderTimes.leader1.raw || ""} ${pp.leaderTimes.leader1.sup || ""}\n`;
