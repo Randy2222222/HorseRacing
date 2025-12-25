@@ -77,6 +77,7 @@ const FINISH_REGEX = /^\d{1,2}$/;
 const FINISH_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 const EQUIPMENT_REGEX = /^(Lb|L|b)$/;
+const = ODDS_REGEX = /^\d{1,2}|.|\d{1,2}$\;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -178,6 +179,7 @@ export function parsePP(decodedText) {
     let currentPPfinish = { fin: null, lg: null };  // FINISH
     let currentPPjockey = null;
     let currentPPequipment = null;
+    let currentPPodds = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -219,7 +221,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             straight: currentPPstraight,
             finish: currentPPfinish,
             jockey: currentPPjockey,
-            equipment: currentPPequipment,
+            odds: currentPPodds,
+            equipment: currentPPequipment
           });
         }
       
@@ -253,6 +256,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPfinish = { fin: null, lg: null };
         currentPPjockey = null;
         currentPPequipment = null;
+        currentPPodds = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -500,6 +504,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         currentPPequipment = trimmed;
         continue;
       }
+      // Odds
+      if (currentPPodds === null && ODDS_REGEX.test(trimmed)) {
+        currentPPodds = trimmed;
+        continue;
+      }
       
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
@@ -532,7 +541,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         straight: currentPPstraight,
         finish: currentPPfinish,
         jockey: currentPPjockey,
-        equipment: currentPPequipment
+        equipment: currentPPequipment,
+        odds: currentPPodds
       });
     }
 
