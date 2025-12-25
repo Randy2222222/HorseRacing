@@ -255,6 +255,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
       
         // start this PP block with the date line
         currentPP.push(line); 
+        // Add conyinnue and closing }
+        conitnue
+      }
 // ------------------------------------------
 // ⭐️ Counting Function must keep ⭐️
 // ------------------------------------------
@@ -329,8 +332,8 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       
          totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
          slotIndex = 0;
-       continue; // end of DATE block
-   }
+    //   continue; // end of DATE block
+ //  }
       // -----------------------------
       // 2️⃣ Leader Times (calls)
       // -----------------------------
