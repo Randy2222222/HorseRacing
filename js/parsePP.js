@@ -160,8 +160,7 @@ export function parsePP(decodedText) {
     let currentPPraceNo = null;
     let currentPPglyph = null;
     let currentPPdistance = null;
-    let currentPPsurface = null;
-    let currentPPsurftag = null;
+    let currentPPsurface = { sf: null, tg: null }
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = null;
@@ -203,7 +202,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             glyph: currentPPglyph,
             distance: currentPPdistance,
             surface: currentPPsurface,
-            surftag: currentPPsurftag,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -230,8 +228,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
         currentPPglyph = null;
         currentPPdistance = null;
-        currentPPsurface = null;
-        currentPPsurftag = null;
+        currentPPsurface = { sf: null, tg: null };
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -308,15 +305,22 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
 
         // ⚡️ RUNNING SURFACE ⚡️
-let jSurface = nextNonBlank(lines, i + 1);
-let surfaceLine = lines[jSurface] || "";
+// --- SURFACE + SURFACE TAG ---
+if (currentPPsurface.sf === null && SURFACE_REGEX.test(trimmed)) {
 
-if (SURFACE_REGEX.test(surfaceLine)) {
-  currentPPsurface = surfaceLine.trim();
-  i = jSurface; // consume surface
-} else {
-  currentPPsurface = "";
-    continue;
+  currentPPsurface.sf = trimmed;
+
+  // look at the very next physical line only
+  const nextLine = (lines[i + 1] || "").trim();
+
+  if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(nextLine)) {
+    currentPPsurface.tg = nextLine;
+    i++; // consume tag line
+  } else {
+    currentPPsurface.tg = "";
+  }
+
+  continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
@@ -498,7 +502,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
-        surftag: currentPPsurftag,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
