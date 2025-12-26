@@ -6,7 +6,7 @@
 import { parsePP } from "./parsePP.js";
 import { applyGlyphMap } from "./glyphMap.js";
 
-const DEV_MODE = "structured";  // turn off later when finished
+const DEV_MODE = "decoded";  // turn off later when finished
 
 function updateStatus(msg) {
   document.getElementById("pdfStatus").textContent = msg;
