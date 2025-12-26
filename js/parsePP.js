@@ -373,10 +373,18 @@ if (currentPPsurface.sf === null) {
       if (isTimeLine(trimmed)) {
 
         // handle short sprints (missing leader1)
-        if (slotIndex === 0 && totalCalls === 3) {
-          slotIndex++; // skip leader1
-        }
-
+      //  if (slotIndex === 0 && totalCalls === 3) {
+       //   slotIndex++; // skip leader1
+       // }
+       // Start New Code
+      slotIndex = 0;
+currentPPleaderTimes = {
+  leader1:    { raw: "", sup: "" },
+  leader2:    { raw: "", sup: "" },
+  leader3:    { raw: "", sup: "" },
+  leaderFinal:{ raw: "", sup: "" }
+};
+       // stop extra code
         let raw = trimmed;
         let sup = null;
 
