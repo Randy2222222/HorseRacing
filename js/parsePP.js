@@ -245,16 +245,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   currentPPdate  = line.slice(0, 7);      // 12Oct25
   currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
-        //Start New Code
-// ====== START OF NEW HORSE ======
-//slotIndex = 0;
-//currentPPleaderTimes = {
-//  leader1:    { raw: "", sup: "" },
-//  leader2:    { raw: "", sup: "" },
-//  leader3:    { raw: "", sup: "" },
-//  leaderFinal:{ raw: "", sup: "" }
-//};
-        // End New Code 
         currentPPglyph = null;
         currentPPdistance = null;
         currentPPsurface = { sf: null, tg: null };
