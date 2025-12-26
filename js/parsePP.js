@@ -228,7 +228,7 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
-    let currentPPcomments = null;
+ //   let currentPPcomments = null;
     let currentPPfield = null;
     let totalCalls = 4;
     let slotIndex = 0;
@@ -276,7 +276,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             win: currentPPwin,
             place: currentPPplace,
             show: currentPPshow,
-            comments: currentPPcomments,
+         //   comments: currentPPcomments,
             field: currentPPfield
           
             
@@ -317,7 +317,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
-        currentPPcomments = null;
+     //   currentPPcomments = null;
         currentPPfield = null;
         
         
@@ -610,12 +610,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
           //   continue;
        //   }    
         // 💬 Comments 💬
-      function parseRaceNotes(line) {
-    }
-      if (currentPPcomments === null) {
-          currentPPcomments = parseRaceNotes(trimmed);
-      continue;
-     }
+   //   function parseRaceNotes(line) {
+  //  }
+     // if (currentPPcomments === null) {
+     //     currentPPcomments = parseRaceNotes(trimmed);
+     // continue;
+   //  }
       // Field: How many 🏇Horses in the Race
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
   currentPPfield = trimmed;
@@ -659,7 +659,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         win: currentPPwin,
         place: currentPPplace,
         show: currentPPshow,
-        comments: currentPPcomments,
+      //  comments: currentPPcomments,
         field: currentPPfield
       
         
