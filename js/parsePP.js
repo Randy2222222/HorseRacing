@@ -83,7 +83,7 @@ const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ
 const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z ]+$/;
-const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+//const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -188,7 +188,8 @@ export function parsePP(decodedText) {
     let currentPPodds = null;
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
-    let currentPPshow = { sh: null, lg: null };
+    let currentPPshow = null;
+    let currentPPshowlg = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -234,7 +235,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            show: currentPPshow
+            show: currentPPshow,
+            showlg: currentshowlg
           });
         }
       
@@ -271,7 +273,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPodds = null;
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
-        currentPPshow = { sh: null, lg: null };
+        currentPPshow = null;
+        currentshowlg = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -543,17 +546,21 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
       }
       // Show Horse Name and lengths behind Place Horse
-      if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
-  currentPPshow.sh = trimmed;
+      if (currentPPshow === null && SHOW_REGEX.test(trimmed)) {
+  currentPPshow = trimmed;
         continue;
       }
-        const lastField = horseData.lg;  // whatever your parser gives you
-currentHorse.lg = lastField || "";
+      
 
       if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
           continue;
       }
+      const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
+            if (showLengthM) {
+               currentPPshowlg = showLengthM[0];
+             continue;
+          }    
 
 
       
@@ -592,7 +599,8 @@ currentHorse.lg = lastField || "";
         odds: currentPPodds,
         win: currentPPwin,
         place: currentPPplace,
-        showed: currentPPshowed
+        show: currentPPshow,
+        showlg: currentPP
       });
     }
 
