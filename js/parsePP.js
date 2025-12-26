@@ -188,7 +188,7 @@ export function parsePP(decodedText) {
     let currentPPodds = null;
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
-    let currentPPshow = { sh: null, lg; null };
+    let currentPPshow = { sh: null, lg: null };
     let totalCalls = 4;
     let slotIndex = 0;
 
