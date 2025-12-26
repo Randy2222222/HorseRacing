@@ -82,8 +82,8 @@ const WIN_REGEX = /^[A-Za-z' ]+$/;
 const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const PLACE_REGEX = /^[A-Za-z' ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const SHOW_REGEX = /^[A-Za-z' ]+$/;
-const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const SHOWS_REGEX = /^[A-Za-z' ]+$/;
+const SHOWS_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const FIELD_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
 //💬 Comment Funtion 💬
 //  const positionRegex = /\b\d+(-\d+)?p\b|\b\d+w\b|\b\d+\/\d+\b/gi; // 2-4p, 3w, 3/8
@@ -194,9 +194,12 @@ export function parsePP(decodedText) {
     let currentPPjockey = null;
     let currentPPequipment = null;
     let currentPPodds = null;
-    let currentPPwin = { wn: null, lg: null };
-    let currentPPplace = { pl: null, lg: null };
-    let currentPPshow = { sh: null, lg: null };
+    let currentPPwin = null;
+    let currentPPwinlg = null;
+    let currentPPplace = null;
+    let currentPPplacelg = null;
+    let currentPPshows = null;
+    let currentPPshowslg = null;
     let currentPPcomments = null;
     let currentPPfield = null;
     let totalCalls = 4;
@@ -243,8 +246,11 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             equipment: currentPPequipment,
             odds: currentPPodds,
             win: currentPPwin,
+            winlg: currentPPwinlg,
             place: currentPPplace,
-            show: currentPPshow,
+            placelg: currentPPplacelg,
+            show: currentPPshows,
+            showlg: currentPPshowslg,
             comments: currentPPcomments,
             field: currentPPfield
           
@@ -283,9 +289,12 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPjockey = null;
         currentPPequipment = null;
         currentPPodds = null;
-        currentPPwin = { wn: null, lg: null };
-        currentPPplace = { pl: null, lg: null };
-        currentPPshow = { sh: null, lg: null };
+        currentPPwin = null;
+        currentPPwinlg = null;
+        currentPPplace = null;
+        currentPPplacelg = null;
+        currentPPshows = null;
+        currentPPshows = null;
         currentPPcomments = null;
         currentPPfield = null;
         
@@ -543,26 +552,26 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
       }
       // Winners Horse name and lengths in front of Place Horse
-      if (currentPPwin.wn === null && WIN_REGEX.test(trimmed)) {
-  currentPPwin.wn = trimmed;
+      if (currentPPwin === null && WIN_REGEX.test(trimmed)) {
+  currentPPwin = trimmed;
         continue;
 }
-      if (currentPPwin.lg === null && WIN_LG_REGEX.test(trimmed)) {
-  currentPPwin.lg = trimmed;   
+      if (currentPPwinlg === null && WIN_LG_REGEX.test(trimmed)) {
+  currentPPwinlg = trimmed;   
         continue;
       }
       // Place Horse and lengths behind Winner
-      if (currentPPplace.pl === null && PLACE_REGEX.test(trimmed)) {
-  currentPPplace.pl = trimmed;
+      if (currentPPplace === null && PLACE_REGEX.test(trimmed)) {
+  currentPPplace = trimmed;
         continue;
 }
-      if (currentPPplace.lg === null && PLACE_LG_REGEX.test(trimmed)) {
-  currentPPplace.lg = trimmed;   
+      if (currentPPplacelg === null && PLACE_LG_REGEX.test(trimmed)) {
+  currentPPplacelg = trimmed;   
         continue;
       }
       // Show Horse Name and lengths behind Place Horse
-      if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
-  currentPPshow.sh = trimmed;
+      if (currentPPshows === null && SHOWS_REGEX.test(trimmed)) {
+  currentPPshows = trimmed;
       continue;
       }
       
@@ -575,7 +584,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
    //   }    
         const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
               if (showLengthM) {
-                 currentPPshow.lg = showLengthM[1];
+                 currentPPshowlg = showLengthM[1];
                continue;
             }    
         // 💬 Comments 💬
@@ -625,8 +634,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         equipment: currentPPequipment,
         odds: currentPPodds,
         win: currentPPwin,
+        winlg: currentPPwinlg,
         place: currentPPplace,
+        placelg: currentPPplacelg,
         show: currentPPshow,
+        showlg: currentPPshowslg,
         comments: currentPPcomments,
         field: currentPPfield
       
