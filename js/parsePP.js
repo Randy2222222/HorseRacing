@@ -556,8 +556,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 
         if (currentPPshowlg === null && SHOW_LG_REGEX.test(trimmed)) {
     currentPPshowlg = trimmed;   
-            continue;
-        }
+      }else{
+    currentPPshowlg = "";
+          continue;
+      }    
     //  const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
          //   if (showLengthM) {
            //    currentPPshowlg = showLengthM[0];
