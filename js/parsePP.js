@@ -250,7 +250,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPglyph = null;
         currentPPdistance = null;
         currentPPsurface = { sf: null, tg: null };
-        slotindex = 0;
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
