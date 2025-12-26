@@ -83,7 +83,7 @@ const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ
 const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z ]+$/;
-//const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -189,7 +189,6 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = null;
-    let currentPPshowlg = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -236,7 +235,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             win: currentPPwin,
             place: currentPPplace,
             show: currentPPshow,
-            showlg: currentshowlg
+            
           });
         }
       
@@ -274,7 +273,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = null;
-        currentshowlg = null;
+        
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -556,11 +555,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 //  currentPPshow.lg = trimmed;   
       //    continue;
    //   }
-      const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
-            if (showLengthM) {
-               currentPPshowlg = showLengthM[0];
-             continue;
-          }    
+    //  const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
+         //   if (showLengthM) {
+           //    currentPPshowlg = showLengthM[0];
+          //   continue;
+       //   }    
 
 
       
@@ -600,7 +599,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         win: currentPPwin,
         place: currentPPplace,
         show: currentPPshow,
-        showlg: currentPP
+        
       });
     }
 
