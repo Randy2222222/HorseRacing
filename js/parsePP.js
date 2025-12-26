@@ -82,8 +82,8 @@ const WIN_REGEX = /^[A-Za-z ]+$/;
 const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const SHOWED_REGEX = /^[A-Za-z ]+$/;
-const SHOWED_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)s*$/;
+const SHOW_REGEX = /^[A-Za-z ]+$/;
+const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -188,7 +188,7 @@ export function parsePP(decodedText) {
     let currentPPodds = null;
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
-    let currentPPshowed = { sh: null, lg: null };
+    let currentPPshow = { sh: null, lg: null };
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -234,7 +234,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            showed: currentPPshowed
+            show: currentPPshow
           });
         }
       
@@ -271,7 +271,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPodds = null;
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
-        currentPPshowed = { sh: null, lg: null };
+        currentPPshow = { sh: null, lg: null };
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -543,14 +543,17 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
       }
       // Show Horse Name and lengths behind Place Horse
-      if (currentPPshowed.sh === null && SHOWED_REGEX.test(trimmed)) {
-  currentPPshowed.sh = trimmed;
+      if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
+  currentPPshow.sh = trimmed;
         continue;
 }
-      if (currentPPshowed.lg === null && SHOWED_LG_REGEX.test(trimmed)) {
-  currentPPshowed.lg = trimmed;   
+      if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
+  currentPPshow.lg = trimmed;   
           continue;
       }
+
+
+      
       // 3️⃣ normal lines inside PP block
       if (currentPP.length > 0) {
         currentPP.push(line);
