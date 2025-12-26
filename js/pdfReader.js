@@ -61,8 +61,8 @@ export async function readPDFAndDecode(file) {
    if (decodedOut) decodedOut.textContent = decodedText;
  }
 
-  return decodedText;   // parser will use this next
-}
+ // return decodedText;   // parser will use this next
+//}
 // ===============================
 // 🔥 STRUCTURED PARSE OUTPUT
 // ===============================
@@ -120,11 +120,10 @@ if (DEV_MODE === "structured") {
     out += "========================================\n\n";
   }
 
-  const structuredOut = document.getElementById("devStructuredOutput");
-  if (structuredOut) structuredOut.textContent = out;
+    const structuredOut = document.getElementById("devStructuredOutput");
+     if (structuredOut) structuredOut.textContent = out;
 
+    return decodedText;
+   }
   return decodedText;
-}
-
-//return decodedText;
-//}
+  }
