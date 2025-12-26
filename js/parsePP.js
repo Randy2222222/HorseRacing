@@ -543,7 +543,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
       }
       // Show Horse Name and lengths behind Place Horse
-      const clean = trim.trimmed();
       if (currentPPshowed.sh === null && SHOWED_REGEX.test(trimmed)) {
   currentPPshowed.sh = trimmed;
         continue;
