@@ -89,8 +89,7 @@ const FIELD_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
 //  const positionRegex = /\b\d+(-\d+)?p\b|\b\d+w\b|\b\d+\/\d+\b/gi; // 2-4p, 3w, 3/8
 //  const paceRegex = /\b\d+-w\b|\b\d+p\b/gi; 
  // const abbreviations = [
-  //  'ins','st','clr','bmp','bid','caught','drove','yield','chsd',
-  //  'wknd upr','off slw','btw','early','late','traffic','pair turn','not enough'
+//const COMMENT_REGEX = /(ins|st|clr|bmp|bid|caught|drove|yield|chsd|wknd|upr|off|slw|btw|early|late|traffic|pair|turn|not|enough)/;
   
 // 💬 End Comments Function 💬
 // Change SurfTag to Superscript
@@ -198,7 +197,7 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
- //   let currentPPcomments = null;
+    let currentPPcomments = null;
     let currentPPfield = null;
     let totalCalls = 4;
     let slotIndex = 0;
@@ -246,7 +245,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             win: currentPPwin,
             place: currentPPplace,
             show: currentPPshow,
-         //   comments: currentPPcomments,
+            comments: currentPPcomments,
             field: currentPPfield
           
             
@@ -287,7 +286,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
-     //   currentPPcomments = null;
+        currentPPcomments = null;
         currentPPfield = null;
         
         
@@ -564,28 +563,27 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Show Horse Name and lengths behind Place Horse
       if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
   currentPPshow.sh = trimmed;
-      
+      continue;
       }
       
 
-        if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
-    currentPPshow.lg = trimmed;   
-      }else{
-    currentPPshow.lg = "";
-          
-      }    
-    //  const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
-         //   if (showLengthM) {
-           //    currentPPshowlg = showLengthM[0];
-          //   continue;
-       //   }    
+      //  if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
+   // currentPPshow.lg = trimmed;   
+    //  }else{
+  //  currentPPshow.lg = "";
+   //   continue;
+   //   }    
+        const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
+              if (showLengthM) {
+                 currentPPshow.lg = showLengthM[1];
+               continue;
+            }    
         // 💬 Comments 💬
-   //   function parseRaceNotes(line) {
-  //  }
-     // if (currentPPcomments === null) {
-     //     currentPPcomments = parseRaceNotes(trimmed);
-     // continue;
-   //  }
+      const commentM = trimmed.match(/(ins|st|clr|bmp|bid|caught|drove|yield|chsd|wknd|upr|off|slw|btw|early|late|traffic|pair|turn|not|enough)/);
+              if (commentM) {
+                 currentPPcomments = commentM[1];
+               continue;
+            }
       // Field: How many 🏇Horses in the Race
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
   currentPPfield = trimmed;
@@ -629,7 +627,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         win: currentPPwin,
         place: currentPPplace,
         show: currentPPshow,
-      //  comments: currentPPcomments,
+        comments: currentPPcomments,
         field: currentPPfield
       
         
