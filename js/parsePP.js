@@ -546,7 +546,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
   currentPPshow.sh = trimmed;
         continue;
-}
+      }
+        const lastField = horseData.lg;  // whatever your parser gives you
+currentHorse.lg = lastField || "";
+
       if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
           continue;
