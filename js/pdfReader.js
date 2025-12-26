@@ -125,3 +125,6 @@ if (DEV_MODE === "structured") {
 
   return decodedText;
 }
+
+return decodedText;
+}
