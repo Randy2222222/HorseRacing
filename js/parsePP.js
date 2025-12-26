@@ -84,6 +84,45 @@ const PLACE_REGEX = /^[A-Za-z' ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z' ]+$/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const FIELD_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}$/;
+//💬 Comment Funtion 💬
+function parseRaceNotes(line) {
+  // Step 1: split on semicolons
+  const chunks = line.split(';').map(c => c.trim()).filter(c => c.length > 0);
+  // Step 2: define regex patterns
+  const positionRegex = /\b\d+(-\d+)?p\b|\b\d+w\b|\b\d+\/\d+\b/gi; // 2-4p, 3w, 3/8
+  const paceRegex = /\b\d+-w\b|\b\d+p\b/gi; // 6-w, 5p
+  // Master abbreviation list (single + multi-word)
+  const abbreviations = [
+    'ins','st','clr','bmp','bid','caught','drove','yield','chsd',
+    'wknd upr','off slw','btw','early','late','traffic','pair turn','not enough'
+  ];
+  // Step 3: process each chunk
+  const parsed = chunks.map(chunk => {
+    const result = {};
+    // Normalize spacing
+    let workingChunk = chunk.replace(/\s+/g,' ').trim();
+    // Find positions / pace info
+    const posMatches = workingChunk.match(positionRegex);
+    if (posMatches) result.position = posMatches.map(m => m.trim());
+    // Find abbreviations (match multi-word first)
+    const abbrevMatches = [];
+    abbreviations.sort((a,b) => b.length - a.length).forEach(ab => {
+      const regex = new RegExp(`\\b${ab}\\b`, 'i');
+      if (regex.test(workingChunk)) {
+        abbrevMatches.push(ab);
+        workingChunk = workingChunk.replace(regex,''); // remove from chunk
+      }
+    });
+    if (abbrevMatches.length) result.abbreviations = abbrevMatches;
+    // Anything left is free text
+    workingChunk = workingChunk.replace(/[-/]/g,'').trim(); // remove trailing punctuation
+    if (workingChunk) result.freeText = workingChunk;
+    return result;
+  });
+  return parsed;
+}
+// 💬 End Comments Function 💬
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -189,6 +228,8 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
+    let currentPPcomments = null;
+    let currentPPfield = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -234,7 +275,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            show: currentPPshow
+            show: currentPPshow,
+            comments: currentPPcomments,
+            field: currentPPfield
           
             
           });
@@ -274,6 +317,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
+        currentPPcomments = null;
+        currentPPfield = null;
         
         
       
@@ -564,7 +609,18 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
            //    currentPPshowlg = showLengthM[0];
           //   continue;
        //   }    
-
+        // 💬 Comments 💬
+      function parseRaceNotes(line) {
+    }
+      if (currentPPcomments === null) {
+          currentPPcomments = parseRaceNotes(trimmed);
+      continue;
+     }
+      // Field: How many 🏇Horses in the Race
+      if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
+  currentPPfield = trimmed;
+        continue;
+}
 
       
       // 3️⃣ normal lines inside PP block
@@ -602,7 +658,9 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         odds: currentPPodds,
         win: currentPPwin,
         place: currentPPplace,
-        show: currentPPshow
+        show: currentPPshow,
+        comments: currentPPcomments,
+        field: currentPPfield
       
         
       });
