@@ -590,7 +590,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         odds: currentPPodds,
         win: currentPPwin,
         place: currentPPplace,
-        showed: currentPPshowed
+        show: currentPPshow
       });
     }
 
