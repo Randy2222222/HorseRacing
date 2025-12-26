@@ -13,7 +13,7 @@ function toSuperscript(n) {
   if (n == null) return "";
   const idx = Number(n);
   return Number.isInteger(idx) ? (SUPERSCRIPTS[idx] || "") : "";
-}
+
 
 // 1️⃣ Horse Anchor
 const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]+)\s*\d*\)/g;
@@ -245,6 +245,16 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   currentPPdate  = line.slice(0, 7);      // 12Oct25
   currentPPtrack = line.slice(7, 10);     // Kee, CD, GP, SA, etc.
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
+        //Start New Code
+// ====== START OF NEW HORSE ======
+slotIndex = 0;
+currentPPleaderTimes = {
+  leader1:    { raw: "", sup: "" },
+  leader2:    { raw: "", sup: "" },
+  leader3:    { raw: "", sup: "" },
+  leaderFinal:{ raw: "", sup: "" }
+};
+        // End New Code 
         currentPPglyph = null;
         currentPPdistance = null;
         currentPPsurface = { sf: null, tg: null };
@@ -373,18 +383,10 @@ if (currentPPsurface.sf === null) {
       if (isTimeLine(trimmed)) {
 
         // handle short sprints (missing leader1)
-      //  if (slotIndex === 0 && totalCalls === 3) {
-       //   slotIndex++; // skip leader1
-       // }
-       // Start New Code
-      slotIndex = 0;
-currentPPleaderTimes = {
-  leader1:    { raw: "", sup: "" },
-  leader2:    { raw: "", sup: "" },
-  leader3:    { raw: "", sup: "" },
-  leaderFinal:{ raw: "", sup: "" }
-};
-       // stop extra code
+         if (slotIndex === 0 && totalCalls === 3) {
+         slotIndex++; // skip leader1
+          }
+       
         let raw = trimmed;
         let sup = null;
 
