@@ -78,11 +78,11 @@ const FINISH_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|�
 const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 const EQUIPMENT_REGEX = /^(Lb|L|b)$/;
 const ODDS_REGEX = /^\d{1,2}\.\d{1,2}$/;
-const WIN_REGEX = /^[A-Za-z ]+$/;
+const WIN_REGEX = /^[A-Za-z]+$/;
 const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const PLACE_REGEX = /^[A-Za-z ]+$/;
+const PLACE_REGEX = /^[A-Za-z]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const SHOW_REGEX = /^[A-Za-z ]+$/;
+const SHOW_REGEX = /^[A-Za-z]+$/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -189,6 +189,7 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = null;
+    let currentPPshowlg = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -235,6 +236,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             win: currentPPwin,
             place: currentPPplace,
             show: currentPPshow,
+            showlg: currentPPshowlg
             
           });
         }
@@ -273,6 +275,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = null;
+        currentPPshowlg = null;
         
       
         // start this PP block with the date line
@@ -551,10 +554,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       }
       
 
-   //   if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
-//  currentPPshow.lg = trimmed;   
-      //    continue;
-   //   }
+        if (currentPPshowlg === null && SHOW_LG_REGEX.test(trimmed)) {
+    currentPPshowlg = trimmed;   
+            continue;
+        }
     //  const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
          //   if (showLengthM) {
            //    currentPPshowlg = showLengthM[0];
@@ -599,6 +602,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         win: currentPPwin,
         place: currentPPplace,
         show: currentPPshow,
+        showlg: currentPPshowlg
         
       });
     }
