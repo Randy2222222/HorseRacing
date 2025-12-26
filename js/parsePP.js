@@ -9,10 +9,10 @@ import { GLYPH_DIGITS } from "./glyphMap.js";
 import { GLYPHS } from "./glyphMap.js";
 // Make the little numbers for leader times
 const SUPERSCRIPTS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"];
-function toSuperscript(n) {
-  if (n == null) return "";
-  const idx = Number(n);
-  return Number.isInteger(idx) ? (SUPERSCRIPTS[idx] || "") : "";
+//function toSuperscript(n) {
+//  if (n == null) return "";
+//  const idx = Number(n);
+//  return Number.isInteger(idx) ? (SUPERSCRIPTS[idx] || "") : "";
 
 
 // 1️⃣ Horse Anchor
