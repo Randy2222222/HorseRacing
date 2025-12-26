@@ -95,7 +95,7 @@ if (DEV_MODE === "structured") {
       out += `  RaceType: ${pp.raceType}\n`;
       out += `        CR: ${pp.cr}\n`;
 
-     // out += `    Pace:\n`;
+      out += `      Pace:\n`;
       out += `        E1: ${pp.pace.e1}\n`;
       out += `        E2: ${pp.pace.e2}\n`;
       out += `        LP: ${pp.pace.lp}\n`;
