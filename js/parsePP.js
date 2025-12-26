@@ -249,8 +249,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             winlg: currentPPwinlg,
             place: currentPPplace,
             placelg: currentPPplacelg,
-            show: currentPPshows,
-            showlg: currentPPshowslg,
+            shows: currentPPshows,
+            showslg: currentPPshowslg,
             comments: currentPPcomments,
             field: currentPPfield
           
@@ -582,15 +582,15 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   //  currentPPshow.lg = "";
    //   continue;
    //   }    
-        const showLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
-              if (showLengthM) {
-                 currentPPshowlg = showLengthM[1];
+        const showsLengthM = trimmed.match(/^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/);
+              if (showsLengthM) {
+                 currentPPshowslg = showsLengthM[1];
                continue;
             }    
         // 💬 Comments 💬
-      const commentM = trimmed.match(/(ins|st|clr|bmp|bid|caught|drove|yield|chsd|wknd|upr|off|slw|btw|early|late|traffic|pair|turn|not|enough)/);
-              if (commentM) {
-                 currentPPcomments = commentM[1];
+      const commentsM = trimmed.match(/(ins|st|clr|bmp|bid|caught|drove|yield|chsd|wknd|upr|off|slw|btw|early|late|traffic|pair|turn|not|enough)/);
+              if (commentsM) {
+                 currentPPcomments = commentsM[0];
                continue;
             }
       // Field: How many 🏇Horses in the Race
@@ -637,8 +637,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         winlg: currentPPwinlg,
         place: currentPPplace,
         placelg: currentPPplacelg,
-        show: currentPPshow,
-        showlg: currentPPshowslg,
+        shows: currentPPshows,
+        showslg: currentPPshowslg,
         comments: currentPPcomments,
         field: currentPPfield
       
