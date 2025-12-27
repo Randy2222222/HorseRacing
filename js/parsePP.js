@@ -86,7 +86,7 @@ const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ
 const PLACE_REGEX = /^[A-Za-z' ]+g/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const POSTION_REGEX = /^[A-Za-z ,‘’'`-]+g/
-const LENGTHS_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const HRSLGH_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 
 // Change SurfTag to Superscriptl
 const SUP_TAG = {
@@ -540,29 +540,29 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
       }
       // Winners Horse name and lengths in front of Place Horse
-      if (currentPPwin.wn === null && WIN_REGEX.test(trimmed)) {
+      if (currentPPwin.wn === null && POSITION_REGEX.test(trimmed)) {
   currentPPwin.wn = trimmed;
           continue;
 }
-      if (currentPPwin.lg === null && WIN_LG_REGEX.test(trimmed)) {
+      if (currentPPwin.lg === null && HRSLGH_REGEX.test(trimmed)) {
   currentPPwin.lg = trimmed;   
           continue;
       }
       // Place Horse and lengths behind Winner
-      if (currentPPplace.pl === null && PLACE_REGEX.test(trimmed)) {
+      if (currentPPplace.pl === null && POSITION_REGEX.test(trimmed)) {
   currentPPplace.pl = trimmed;
           continue;
 }
-      if (currentPPplace.lg === null && PLACE_LG_REGEX.test(trimmed)) {
+      if (currentPPplace.lg === null && HRSLGHREGEX.test(trimmed)) {
   currentPPplace.lg = trimmed;   
           continue;
       }
       // Show Horse Name and lengths behind Place Horse
-      if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
+      if (currentPPshow.sh === null && POSITION.test(trimmed)) {
   currentPPshow.sh = trimmed;
           continue;
 }
-      if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
+      if (currentPPshow.lg === null && HRSLGHREGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
             continue;
       }
