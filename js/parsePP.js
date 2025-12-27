@@ -364,7 +364,7 @@ if (currentPPsurface.sf === null) {
       
          totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
          slotIndex = 0;
-     //  continue; // end of DATE block
+         continue; // end of DATE block
    }
       // -----------------------------
       // 2️⃣ Leader Times (calls)
