@@ -197,45 +197,6 @@ export function parsePP(decodedText) {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-     // 🔥 Could get burnt 🔥
-// ====== FINISHERS (Win / Place / Show) ======
-if (!currentPPwin.wn) {
-  if (WIN_REGEX.test(line)) {
-    currentPPwin.wn = line.trim();
-    continue;
-   } 
-}
-if (!currentPPwin.lg) {
-  if (WIN_LG_REGEX.test(line)) {
-    currentPPwin.lg = line.trim();
-    continue;
-  }
-}
-if (!currentPPplace.pl) {
-  if (PLACE_REGEX.test(line)) {
-    currentPPplace.pl = line.trim();
-    continue;
-  }
-}
-if (!currentPPplace.lg) {
-  if (PLACE_LG_REGEX.test(line)) {
-    currentPPplace.lg = line.trim();
-    continue;
-  }
-}
-if (!currentPPshow.sh) {
-  if (SHOW_REGEX.test(line)) {
-    currentPPshow.sh = line.trim();
-    continue;
-  }
-}
-if (!currentPPshow.lg) {
-  if (SHOW_LG_REGEX.test(line)) {
-    currentPshow.lg = line.trim();
-    continue;
-  }
-}
-// 🔥 Keep an eye open fot Fire 🔥
   //🛟 SAFETY CATCH 🛟
 // --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
 if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
