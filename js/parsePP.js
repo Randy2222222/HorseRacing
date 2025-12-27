@@ -81,12 +81,12 @@ const FINISH_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|�
 const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 const EQUIPMENT_REGEX = /^(Lb|L|b)$/;
 const ODDS_REGEX = /^\d{1,2}\.\d{1,2}$/;
-const WIN_REGEX = /^[A-Za-z' ]+g/;
+const WIN_REGEX = /^[A-Za-z', -]+g/;
 const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const PLACE_REGEX = /^[A-Za-z' ]+g/;
+const PLACE_REGEX = /^[A-Za-z', -]+g/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const POSTION_REGEX = /^[A-Za-z ,‘’'`-]+g/
-const HRSLGH_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const LAST_REGEX = /^[A-Za-z', -]+g/
+const LAST_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 
 // Change SurfTag to Superscriptl
 const SUP_TAG = {
@@ -194,7 +194,7 @@ export function parsePP(decodedText) {
     let currentPPodds = null;
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
-    let currentPPshow = { sh: null, lg: null };
+    let currentPPlast = { sh: null, lg: null };
   //  let totalCalls = 4;
   //  let slotIndex = 0;
 
@@ -239,7 +239,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            show: currentPPshow
+            last: currentPPlasr
           });
         }
       
@@ -286,7 +286,7 @@ currentPPleaderTimes = {
         currentPPodds = null;
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
-        currentPPshow = { sh: null, lg: null };
+        currentPPlast = { sh: null, lg: null };
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -540,30 +540,30 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         continue;
       }
       // Winners Horse name and lengths in front of Place Horse
-      if (currentPPwin.wn === null && POSITION_REGEX.test(trimmed)) {
+      if (currentPPwin.wn === null && LAST_REGEX.test(trimmed)) {
   currentPPwin.wn = trimmed;
           continue;
 }
-      if (currentPPwin.lg === null && HRSLGH_REGEX.test(trimmed)) {
+      if (currentPPwin.lg === null && LAST_LG_REGEX.test(trimmed)) {
   currentPPwin.lg = trimmed;   
           continue;
       }
       // Place Horse and lengths behind Winner
-      if (currentPPplace.pl === null && POSITION_REGEX.test(trimmed)) {
+      if (currentPPplace.pl === null && PLACE_REGEX.test(trimmed)) {
   currentPPplace.pl = trimmed;
           continue;
 }
-      if (currentPPplace.lg === null && HRSLGHREGEX.test(trimmed)) {
+      if (currentPPplace.lg === null && PLACE_LG_REGEX.test(trimmed)) {
   currentPPplace.lg = trimmed;   
           continue;
       }
       // Show Horse Name and lengths behind Place Horse
-      if (currentPPshow.sh === null && POSITION.test(trimmed)) {
-  currentPPshow.sh = trimmed;
+      if (currentPPlast.sh === null && LAST_REGEX.test(trimmed)) {
+  currentPOlast.sh = trimmed;
           continue;
 }
-      if (currentPPshow.lg === null && HRSLGHREGEX.test(trimmed)) {
-  currentPPshow.lg = trimmed;   
+      if (currentPPlast.lg === null && LAST_LG_REGEX.test(trimmed)) {
+  currentPPlastlg = trimmed;   
             continue;
       }
 
@@ -604,7 +604,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         odds: currentPPodds,
         win: currentPPwin,
         place: currentPPplace,
-        show: currentPPshow
+        last: currentPPlast
       });
     }
 
