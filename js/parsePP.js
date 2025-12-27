@@ -251,12 +251,22 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPglyph = null;
         currentPPdistance = null;
         currentPPsurface = { sf: null, tg: null };
-        currentPPleaderTimes = {
-          leader1:    { raw: null, sup: null },
-          leader2:    { raw: null, sup: null },
-          leader3:    { raw: null, sup: null },
-          leaderFinal:{ raw: null, sup: null }
-        };
+        // 🔥 get burned 🔥
+slotIndex = 0;
+totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
+currentPPleaderTimes = {
+  leader1:    { raw: null, sup: null },
+  leader2:    { raw: null, sup: null },
+  leader3:    { raw: null, sup: null },
+  leaderFinal:{ raw: null, sup: null },
+};
+        //🔥 Burnn't 🔥⚰️
+      //  currentPPleaderTimes = {
+        //  leader1:    { raw: null, sup: null },
+       //   leader2:    { raw: null, sup: null },
+       //   leader3:    { raw: null, sup: null },
+        //  leaderFinal:{ raw: null, sup: null }
+       // }
         currentPPraceResult    = null;
         currentPPraceType      = null;
         currentPPclassRating   = null;
