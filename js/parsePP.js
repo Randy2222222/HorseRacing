@@ -78,7 +78,12 @@ const STRAIGHT_CALL_REGEX = /^\d{1,2}$/;
 const STRAIGHT_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const FINISH_REGEX = /^\d{1,2}$/;
 const FINISH_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
+//const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
+
+consr
+  
+
+const JOCKEY_REGEX = /\b[A-Z][a-z]*(?:[',-][A-Z][a-z]*)*(?:\s[A-Z][a-z]*(?:[',-][A-Z][a-z]*)*)+\bg/;
 const EQUIPMENT_REGEX = /^(Lb|L|b)$/;
 const ODDS_REGEX = /^\d{1,2}\.\d{1,2}$/;
 const WIN_REGEX = /^[A-Za-z' ]+g/;
@@ -87,6 +92,7 @@ const PLACE_REGEX = /^[A-Za-z' ]+g/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z' ]+g/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const ODDS_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -237,7 +243,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            show: currentPPshow
+            show: currneyPPshow
           });
         }
       
@@ -275,6 +281,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
+                          
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -552,9 +559,9 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
-          continue;
+      continue;
       }
-
+      
 
       
       // 3️⃣ normal lines inside PP block
