@@ -197,7 +197,24 @@ export function parsePP(decodedText) {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
+     // 🔥 Could get burnt 🔥
+ // ====== FINISHERS (Win / Place / Show) ======
+const finishersFields = [
+  { field: "win", sub: "wn", regex: WIN_REGEX },
+  { field: "win", sub: "lg", regex: WIN_LG_REGEX },
+  { field: "place", sub: "pl", regex: PLACE_REGEX },
+  { field: "place", sub: "lg", regex: PLACE_LG_REGEX },
+  { field: "show", sub: "sh", regex: SHOW_REGEX },
+  { field: "show", sub: "lg", regex: SHOW_LG_REGEX }
+];
 
+for (const f of finishersFields) {
+  if (!currentPP[f.field][f.sub] && f.regex.test(line)) {
+    currentPP[f.field][f.sub] = line.trim();
+    continue; // move to next line once matched
+  }
+}
+// 🔥 Keep an eye open fot Fire 🔥
   //🛟 SAFETY CATCH 🛟
 // --- SAFE DISTANCE DETECT BEFORE CASE BLOCK ---
 if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
