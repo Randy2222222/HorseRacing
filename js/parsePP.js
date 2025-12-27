@@ -85,9 +85,10 @@ const WIN_REGEX = /^[A-Za-z' ]+g/;
 const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const PLACE_REGEX = /^[A-Za-z' ]+g/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const SHOW_REGEX = /^[A-Za-z' ]+g/;
-const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-// Change SurfTag to Superscript
+const POSTION_REGEX = /^[A-Za-z' ]+g/;
+const LENGTHS_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+
+// Change SurfTag to Superscriptl
 const SUP_TAG = {
   s: "ˢ",
   x: "ˣ",
