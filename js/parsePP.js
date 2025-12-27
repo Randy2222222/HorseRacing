@@ -172,6 +172,7 @@ export function parsePP(decodedText) {
     let currentPPglyph = null;
     let currentPPdistance = null;
     let currentPPsurface = { sf: null, tg: null }
+    let slotIndex = 0;
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = null;
@@ -193,7 +194,7 @@ export function parsePP(decodedText) {
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
     let totalCalls = 4;
-    let slotIndex = 0;
+  //  let slotIndex = 0;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
