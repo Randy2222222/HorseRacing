@@ -81,11 +81,11 @@ const FINISH_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|�
 const JOCKEY_REGEX = /^[A-Z][a-z]+[A-Z]{1,2}[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
 const EQUIPMENT_REGEX = /^(Lb|L|b)$/;
 const ODDS_REGEX = /^\d{1,2}\.\d{1,2}$/;
-const WIN_REGEX = /^[A-Za-z',- ]+/;
+const WIN_REGEX = /^[A-Za-z ]+/;
 const WIN_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const PLACE_REGEX = /^[A-Za-z',- ]+/;
+const PLACE_REGEX = /^[A-Za-z ]+/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const SHOW_REGEX = /^[A-Za-z',- ]+g/;
+const SHOW_REGEX = /^[A-Za-z ]+g/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
