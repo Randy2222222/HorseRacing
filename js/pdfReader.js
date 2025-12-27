@@ -112,7 +112,7 @@ if (DEV_MODE === "structured") {
       out += `   Jockey#: ${pp.jockey}\n`
       out += ` Equipment: ${pp.equipment}\n`
       out += `      Odds: ${pp.odds}\n`
-      out += ` Finishers: ${pp.win.wn}${pp.win.lg}${pp.place.pl}${pp.place.lg}${pp.show.sh}${pp.show.lg}\n`
+      out += ` Finishers: ${pp.win.wn}${pp.win.lg}${pp.place.pl}${pp.place.lg}${pp.last.sh}${pp.last.lg}\n`
    //   out += `  Comments: ${pp.comments}\n`
      // out += `     Field: ${pp.field}\n`
     });
